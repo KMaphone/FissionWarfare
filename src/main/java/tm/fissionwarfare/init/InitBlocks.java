@@ -1,4 +1,4 @@
-package tm.fw.init;
+package tm.fissionwarfare.init;
 
 public class InitBlocks {
 
