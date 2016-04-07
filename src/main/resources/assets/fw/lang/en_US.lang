@@ -1,0 +1,12 @@
+#Items
+
+item.link_core.name=§bLink Core§r
+item.book_location.name=§9Location Link Book§r
+item.book_player.name=§4Player Link Book§r
+item.book_interface.name=§6Interface Link Book§r
+item.book_belt.name=§aBelt Link Book§r
+
+#Blocks
+
+tile.link_pad.name=§a§lLink Pad§r
+tile.nexus.name=§5§lLink Nexus§r
