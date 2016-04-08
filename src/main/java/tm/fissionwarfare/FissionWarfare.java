@@ -23,7 +23,7 @@ public class FissionWarfare {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
-	public static WorldGenOre  worldGenOre = new WorldGenOre();
+	public static WorldGenOre worldGenOre;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -35,6 +35,7 @@ public class FissionWarfare {
 	public void init(FMLInitializationEvent event) {	
 		InitRecipes.init();
 		
+		worldGenOre = new WorldGenOre();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);
 	}
 	
