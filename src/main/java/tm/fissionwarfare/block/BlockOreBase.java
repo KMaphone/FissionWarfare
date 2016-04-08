@@ -1,28 +1,32 @@
 package tm.fissionwarfare.block;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class BlockOreBase extends BlockBase {
 	
 	Random rand = new Random();
 	
-	private Item droppedItem;
+	private ItemStack droppedItem;
 	
 	private int dropAmountMin, dropAmountMax;
 	private int expAmountMin, expAmountMax;
 	
 	public BlockOreBase(String imagePath) {
 		super(imagePath + "_ore", Material.rock, 1, 3, 3, Block.soundTypeStone);
-		droppedItem = Item.getItemFromBlock(this);
+		droppedItem = new ItemStack(this);
 	}
 	
-	public BlockOreBase setDroppedItem(Item item, int dropAmountMin, int dropAmountMax, int expAmountMin, int expAmountMax) {
+	public BlockOreBase setDroppedItem(ItemStack item, int dropAmountMin, int dropAmountMax, int expAmountMin, int expAmountMax) {
 		droppedItem = item;
 		this.dropAmountMin = dropAmountMin;
 		this.dropAmountMax = dropAmountMax;
@@ -33,7 +37,7 @@ public class BlockOreBase extends BlockBase {
 
 	public int quantityDroppedWithBonus(int fortune, Random random) {
 		
-		if (fortune > 0 && droppedItem != Item.getItemFromBlock(this)) {		
+		if (fortune > 0 && !ItemStack.areItemStacksEqual(droppedItem, new ItemStack(this))) {		
 			
 			int j = random.nextInt(fortune + 2) - 1;
 
@@ -53,9 +57,11 @@ public class BlockOreBase extends BlockBase {
 	public int getExpDrop(IBlockAccess blockAccess, int i1, int i2) {
 		return MathHelper.getRandomIntegerInRange(rand, expAmountMin, expAmountMax);
 	}
-
+	
 	@Override
-	public Item getItemDropped(int i1, Random rand, int i2) {
-		return droppedItem;
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {		
+		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		list.add(new ItemStack(droppedItem.getItem(), quantityDroppedWithBonus(fortune, rand), droppedItem.getItemDamage()));
+		return list;
 	}
 }

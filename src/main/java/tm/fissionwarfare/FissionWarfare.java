@@ -8,13 +8,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitRecipes;
 import tm.fissionwarfare.proxy.IProxy;
 import tm.fissionwarfare.world.WorldGenOre;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = "after:ThermalExpansion")
 public class FissionWarfare {
 	
 	@Instance(Reference.MOD_ID)
@@ -24,7 +25,7 @@ public class FissionWarfare {
 	public static IProxy proxy;
 	
 	public static WorldGenOre worldGenOre;
-
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		InitItems.init();
