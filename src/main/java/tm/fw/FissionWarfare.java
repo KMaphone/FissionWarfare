@@ -1,4 +1,4 @@
-package tm.fissionwarfare;
+package tm.fw;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -7,10 +7,10 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import tm.fissionwarfare.init.InitBlocks;
-import tm.fissionwarfare.init.InitItems;
-import tm.fissionwarfare.init.InitRecipes;
-import tm.fissionwarfare.proxy.IProxy;
+import tm.fw.init.InitBlocks;
+import tm.fw.init.InitItems;
+import tm.fw.init.InitRecipes;
+import tm.fw.proxy.IProxy;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class FissionWarfare {

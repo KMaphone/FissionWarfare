@@ -1,4 +1,4 @@
-package tm.fissionwarfare.proxy;
+package tm.fw.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

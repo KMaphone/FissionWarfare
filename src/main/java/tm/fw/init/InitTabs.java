@@ -1,9 +1,9 @@
-package tm.fissionwarfare.init;
+package tm.fw.init;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import tm.fissionwarfare.Reference;
+import tm.fw.Reference;
 
 public class InitTabs {
 

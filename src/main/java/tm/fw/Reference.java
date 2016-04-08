@@ -1,4 +1,4 @@
-package tm.fissionwarfare;
+package tm.fw;
 
 public class Reference {
 	

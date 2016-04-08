@@ -1,4 +1,4 @@
-package tm.fissionwarfare.init;
+package tm.fw.init;
 
 public class InitItems {
 
