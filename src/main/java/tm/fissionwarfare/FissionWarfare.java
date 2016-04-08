@@ -7,10 +7,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitRecipes;
 import tm.fissionwarfare.proxy.IProxy;
+import tm.fissionwarfare.world.WorldGenOre;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class FissionWarfare {
@@ -20,6 +22,8 @@ public class FissionWarfare {
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
+	
+	public static WorldGenOre  worldGenOre = new WorldGenOre();
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -29,7 +33,9 @@ public class FissionWarfare {
 		
 	@EventHandler
 	public void init(FMLInitializationEvent event) {	
-		InitRecipes.init();		
+		InitRecipes.init();
+		
+		GameRegistry.registerWorldGenerator(worldGenOre, 1);
 	}
 	
 	@EventHandler
