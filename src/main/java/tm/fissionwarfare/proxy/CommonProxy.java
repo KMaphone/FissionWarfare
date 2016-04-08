@@ -1,4 +1,4 @@
-package tm.fw.proxy;
+package tm.fissionwarfare.proxy;
 
 public abstract class CommonProxy implements IProxy {
 

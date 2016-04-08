@@ -1,10 +1,10 @@
-package tm.fw.block;
+package tm.fissionwarfare.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import tm.fw.Reference;
-import tm.fw.init.InitTabs;
+import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.init.InitTabs;
 
 public class BlockBase extends Block {
 

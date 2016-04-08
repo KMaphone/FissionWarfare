@@ -1,4 +1,4 @@
-package tm.fw.item;
+package tm.fissionwarfare.item;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import tm.fw.Reference;
-import tm.fw.init.InitTabs;
+import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.init.InitTabs;
 
 public class ItemBase extends Item {
 	

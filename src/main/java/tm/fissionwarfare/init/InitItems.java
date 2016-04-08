@@ -1,7 +1,7 @@
-package tm.fw.init;
+package tm.fissionwarfare.init;
 
 import net.minecraft.item.Item;
-import tm.fw.item.ItemBase;
+import tm.fissionwarfare.item.ItemBase;
 
 public class InitItems {
 

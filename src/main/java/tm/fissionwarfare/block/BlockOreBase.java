@@ -1,4 +1,4 @@
-package tm.fw.block;
+package tm.fissionwarfare.block;
 
 import java.util.Random;
 
