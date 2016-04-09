@@ -15,7 +15,7 @@ import tm.fissionwarfare.init.InitRecipes;
 import tm.fissionwarfare.proxy.IProxy;
 import tm.fissionwarfare.world.WorldGenOre;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = "after:ThermalExpansion")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = Reference.DEPENDENCIES)
 public class FissionWarfare {
 	
 	@Instance(Reference.MOD_ID)
