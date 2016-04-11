@@ -29,7 +29,7 @@ public class FissionWarfare {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		InitItems.init();
-		InitBlocks.init();
+		InitBlocks.init();			
 	}
 		
 	@EventHandler

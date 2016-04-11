@@ -6,12 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class OreGenOption {
+public class OreGenProfile {
 
 	public int minY, maxY, amount, size;
 	public Block ore;
 
-	public OreGenOption(int minY, int maxY, int amount, int size, Block ore) {
+	public OreGenProfile(int minY, int maxY, int amount, int size, Block ore) {
 		this.minY = minY;
 		this.maxY = maxY;
 		this.amount = amount;

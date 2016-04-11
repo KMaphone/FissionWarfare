@@ -1,12 +1,9 @@
 #Items
 
-item.link_core.name=§bLink Core§r
-item.book_location.name=§9Location Link Book§r
-item.book_player.name=§4Player Link Book§r
-item.book_interface.name=§6Interface Link Book§r
-item.book_belt.name=§aBelt Link Book§r
+item.quartz.name=Quartz
 
 #Blocks
 
-tile.link_pad.name=§a§lLink Pad§r
-tile.nexus.name=§5§lLink Nexus§r
+tile.quartz_ore.name=Quartz Ore
+tile.sulfur_ore.name=Sulfur Ore
+tile.uranium_ore.name=Uranium Ore
