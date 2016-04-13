@@ -10,11 +10,19 @@ public class FluxExplosion {
 	private double size;
 	private Vector3d vector;
 	
+	private int step = 10;
+	
+	public FluxExplosion(World world, double size, Vector3d vector) {
+		this.world = world;
+		this.size = size;
+		this.vector = vector;
+	}
+	
 	public void doExplosionPartA() {
 		
-		for (int yaw = 0; yaw < 360; yaw++) {
+		for (int yaw = 0; yaw < 360; yaw += step) {
 			
-			for (int pitch = 0; pitch < 360; pitch++) {
+			for (int pitch = 0; pitch < 360; pitch += step) {
 			
 				Angle2d angle = new Angle2d(pitch, yaw);
 				Vector3d velcity = Vector3d.getVectorFromAngle(angle);
@@ -28,5 +36,9 @@ public class FluxExplosion {
 				}
 			}
 		}
+	}
+	
+	public void doExplosionPartB() {
+		world.playSoundEffect(vector.x, vector.y, vector.z, "random.explode", (float) size, 1F);
 	}
 }
