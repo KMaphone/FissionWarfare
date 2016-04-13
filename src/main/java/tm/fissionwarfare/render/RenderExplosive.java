@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.init.InitBlocks;
 
 public class RenderExplosive extends Render {
 	
@@ -16,13 +16,14 @@ public class RenderExplosive extends Render {
 
     public RenderExplosive() {
         this.shadowSize = 0.5F;
-        System.out.println("23465426");
+        System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
     }
 
     public void doRender(EntityExplosive entityExplosive, double x, double y, double z, float f1, float f2) {
     	  	
         GL11.glPushMatrix();
         GL11.glTranslatef((float)x, (float)y, (float)z);
+        
         float f3;
 
         if ((float)entityExplosive.fuse - f2 + 1.0F < 10.0F) {
@@ -44,8 +45,8 @@ public class RenderExplosive extends Render {
         }
 
         f3 = (1.0F - ((float)entityExplosive.fuse - f2 + 1.0F) / 100.0F) * 0.8F;
-        this.bindEntityTexture(entityExplosive);
-        this.blockRenderer.renderBlockAsItem(Blocks.tnt, 0, entityExplosive.getBrightness(f2));
+        this.bindTexture(TextureMap.locationBlocksTexture);
+        this.blockRenderer.renderBlockAsItem(InitBlocks.explosive, 0, entityExplosive.getBrightness(f2));
 
         if (entityExplosive.fuse / 5 % 2 == 0) {
         	
@@ -54,7 +55,7 @@ public class RenderExplosive extends Render {
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, f3);
-            this.blockRenderer.renderBlockAsItem(Blocks.tnt, 0, 1.0F);
+            this.blockRenderer.renderBlockAsItem(InitBlocks.explosive, 0, 1.0F);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glEnable(GL11.GL_LIGHTING);
@@ -64,15 +65,12 @@ public class RenderExplosive extends Render {
         GL11.glPopMatrix();
     }
 
-    protected ResourceLocation getEntityTexture(EntityExplosive entity) {
-        return TextureMap.locationBlocksTexture;
-    }
-
-    protected ResourceLocation getEntityTexture(Entity entity) {
-        return this.getEntityTexture((EntityExplosive)entity);
-    }
-
     public void doRender(Entity entity, double x, double y, double z, float f1, float f2) {
         this.doRender((EntityExplosive)entity, x, y, z, f1, f2);
     }
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
+		return null;
+	}
 }

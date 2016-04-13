@@ -6,6 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.world.FluxExplosion;
 
 public class EntityExplosive extends Entity {
 
@@ -63,7 +65,7 @@ public class EntityExplosive extends Entity {
 		if (this.fuse-- <= 0) {
 			
 			this.setDead();
-
+			
 			if (!this.worldObj.isRemote) {
 				this.explode();
 			}
@@ -73,7 +75,10 @@ public class EntityExplosive extends Entity {
 	}
 
 	private void explode() {
-		
+		FluxExplosion explosion = new FluxExplosion(worldObj, 10, 1, new Vector3d(posX, posY, posZ));
+		explosion.doExplosionPartA();
+		explosion.doExplosionPartB();
+		explosion.doExplosionPartC();
 	}
 	
 	protected void writeEntityToNBT(NBTTagCompound nbt) {
