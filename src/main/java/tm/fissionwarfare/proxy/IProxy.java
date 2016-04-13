@@ -6,4 +6,5 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public interface IProxy {
 
+	public void registerRenders();
 }

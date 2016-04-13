@@ -5,4 +5,8 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class ServerProxy extends CommonProxy {
 
+	@Override
+	public void registerRenders() {
+		
+	}
 }

@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import tm.fissionwarfare.init.InitBlocks;
+import tm.fissionwarfare.init.InitEntities;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitRecipes;
 import tm.fissionwarfare.proxy.IProxy;
@@ -29,12 +30,16 @@ public class FissionWarfare {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		InitItems.init();
-		InitBlocks.init();			
+		InitBlocks.init();
+		InitRecipes.init();
 	}
 		
 	@EventHandler
-	public void init(FMLInitializationEvent event) {	
-		InitRecipes.init();
+	public void init(FMLInitializationEvent event) {
+		
+		proxy.registerRenders();
+		
+		InitEntities.init();
 		
 		worldGenOre = new WorldGenOre();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);

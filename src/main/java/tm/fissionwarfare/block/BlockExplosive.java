@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.entity.EntityExplosive;
 
 public class BlockExplosive extends BlockBase {
 
@@ -46,6 +47,7 @@ public class BlockExplosive extends BlockBase {
 	
 	public void activate(World world, int x, int y, int z) {	
 		 world.setBlockToAir(x, y, z);
+		 world.spawnEntityInWorld(new EntityExplosive(world, x, y, z));
 	}
 		
 	@Override
