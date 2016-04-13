@@ -37,6 +37,15 @@ public class FluxExplosion {
 		location.setBlockToAir();
 	}
 	
+	public boolean canMoveThrough(Location location) {
+		
+		if (location.matches(Blocks.bedrock)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void doExplosionPartA() {
 		
 		for (int yaw = 0; yaw < 360; yaw += step) {
@@ -47,6 +56,10 @@ public class FluxExplosion {
 				List<Location> locations = RaytraceUtil.traceBlocks(vector, angle, world, size + ((Math.random() * 8) - 4));
 				
 				for (Location loc : locations) {
+					if (!canMoveThrough(loc)) {
+						break;
+					}
+					
 					hitBlock(loc);
 				}
 			}

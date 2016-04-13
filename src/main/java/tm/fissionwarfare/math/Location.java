@@ -39,4 +39,18 @@ public class Location {
 	public void setBlockToAir() {
 		setBlock(Blocks.air);
 	}
+	
+	public boolean matches(Block block) {
+		return getBlock() == block;
+	}
+	
+	public boolean matches(Block... blocks) {
+		for (Block block : blocks) {
+			if (matches(block)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

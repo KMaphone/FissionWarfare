@@ -47,7 +47,7 @@ public class BlockExplosive extends BlockBase {
 	
 	public void activate(World world, int x, int y, int z) {	
 		 world.setBlockToAir(x, y, z);
-		 world.spawnEntityInWorld(new EntityExplosive(world, x, y, z));
+		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5));
 	}
 		
 	@Override
@@ -59,7 +59,6 @@ public class BlockExplosive extends BlockBase {
 
 	@Override
 	public void registerBlockIcons(IIconRegister iconReg) {
-	
 		blockIcon = iconReg.registerIcon(getTextureName() + "_side");
 		top_image = iconReg.registerIcon(getTextureName() + "_top");
 		bottom_image = iconReg.registerIcon(getTextureName() + "_bottom");

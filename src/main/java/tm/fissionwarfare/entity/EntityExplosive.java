@@ -11,30 +11,26 @@ import tm.fissionwarfare.world.FluxExplosion;
 
 public class EntityExplosive extends Entity {
 
-	public int fuse;
+	public int fuse = 80;
 
 	public EntityExplosive(World world) {
 		super(world);
 		this.preventEntitySpawning = true;
-		this.setSize(0.98F, 0.98F);
 		this.yOffset = this.height / 2.0F;
 	}
 
-	public EntityExplosive(World world, int x, int y, int z) {
+	public EntityExplosive(World world, double x, double y, double z) {
 		this(world);
 		this.setPosition(x, y, z);
-		float f = (float) (Math.random() * Math.PI * 2.0D);
-		this.motionX = (double) (-((float) Math.sin((double) f)) * 0.02F);
-		this.motionY = 0.20000000298023224D;
-		this.motionZ = (double) (-((float) Math.cos((double) f)) * 0.02F);
-		this.fuse = 80;
 		this.prevPosX = x;
 		this.prevPosY = y;
 		this.prevPosZ = z;
 	}
 
 	@Override
-	protected void entityInit() {}
+	protected void entityInit() {
+		setSize(1F, 1F);
+	}
 
 	protected boolean canTriggerWalking() {
 		return false;

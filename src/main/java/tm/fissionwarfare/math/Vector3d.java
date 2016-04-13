@@ -1,5 +1,7 @@
 package tm.fissionwarfare.math;
 
+import net.minecraft.util.Vec3;
+
 public class Vector3d {
 	
 	public double x, y, z;
@@ -57,5 +59,9 @@ public class Vector3d {
 	
 	public Vector3d copy() {
 		return new Vector3d(x, y, z);
+	}
+	
+	public Vec3 convert() {
+		return Vec3.createVectorHelper(x, y, z);
 	}
 }
