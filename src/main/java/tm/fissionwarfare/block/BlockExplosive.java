@@ -47,7 +47,7 @@ public class BlockExplosive extends BlockBase {
 	
 	public void activate(World world, int x, int y, int z) {	
 		 world.setBlockToAir(x, y, z);
-		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5));
+		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5, this));
 	}
 		
 	@Override

@@ -40,17 +40,21 @@ public class Location {
 		setBlock(Blocks.air);
 	}
 	
-	public boolean matches(Block block) {
+	public boolean compare(Block block) {
 		return getBlock() == block;
 	}
 	
-	public boolean matches(Block... blocks) {
+	public boolean compare(Block... blocks) {
 		for (Block block : blocks) {
-			if (matches(block)) {
+			if (compare(block)) {
 				return true;
 			}
 		}
 		
 		return false;
+	}
+	
+	public boolean matches(Location loc) {
+		return loc.x == x && loc.y == y && loc.z == z && loc.world == world;
 	}
 }

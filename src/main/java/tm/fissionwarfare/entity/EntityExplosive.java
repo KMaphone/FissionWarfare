@@ -1,92 +1,115 @@
 package tm.fissionwarfare.entity;
 
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import tm.fissionwarfare.explosion.BasicExplosion;
 import tm.fissionwarfare.math.Vector3d;
-import tm.fissionwarfare.world.FluxExplosion;
 
-public class EntityExplosive extends Entity {
+public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 
+	public Block block;
 	public int fuse = 80;
 
 	public EntityExplosive(World world) {
 		super(world);
-		this.preventEntitySpawning = true;
-		this.yOffset = this.height / 2.0F;
 	}
 
-	public EntityExplosive(World world, double x, double y, double z) {
+	public EntityExplosive(World world, double x, double y, double z, Block block) {
 		this(world);
-		this.setPosition(x, y, z);
-		this.prevPosX = x;
-		this.prevPosY = y;
-		this.prevPosZ = z;
+		this.block = block;
+		setPosition(x, y, z);
+		prevPosX = x;
+		prevPosY = y;
+		prevPosZ = z;
 	}
 
 	@Override
 	protected void entityInit() {
-		setSize(1F, 1F);
-	}
-
-	protected boolean canTriggerWalking() {
-		return false;
-	}
-
-	public boolean canBeCollidedWith() {
-		return !this.isDead;
+		preventEntitySpawning = true;
+		yOffset = height / 3;
+		setSize(0.95F, 0.95F);
 	}
 
 	public void onUpdate() {
-		
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
-		this.motionY -= 0.04;
-		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= 0.9800000190734863D;
-		this.motionY *= 0.9800000190734863D;
-		this.motionZ *= 0.9800000190734863D;
 
-		if (this.onGround) {
-			
-			this.motionX *= 0.699999988079071D;
-			this.motionZ *= 0.699999988079071D;
-			this.motionY *= -0.5D;
+		prevPosX = posX;
+		prevPosY = posY;
+		prevPosZ = posZ;
+		
+		moveEntity(motionX, motionY, motionZ);
+
+		if (!onGround) {
+			motionY -= 0.02D;
+		} else {
+			motionY = 0;
 		}
 
-		if (this.fuse-- <= 0) {
-			
-			this.setDead();
-			
-			if (!this.worldObj.isRemote) {
-				this.explode();
-			}
-		} 
+		if (!isDead && fuse <= 0) {
+
+			setDead();
+			explode();
+		}
 		
-		else this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+		fuse--;
+		worldObj.spawnParticle("smoke", posX, posY + 0.5, posZ, 0, 0, 0);
 	}
 
 	private void explode() {
-		FluxExplosion explosion = new FluxExplosion(worldObj, 10, 1, new Vector3d(posX, posY, posZ));
-		explosion.doExplosionPartA();
-		explosion.doExplosionPartB();
-		explosion.doExplosionPartC();
+		BasicExplosion explosion = new BasicExplosion();
+
+		if (!worldObj.isRemote) {
+			explosion.doBlockDamage();
+			explosion.doPlayerDamage();
+		}
+		
+		explosion.doEffects();
+	}
+
+	@SideOnly(Side.CLIENT)
+	public float getShadowSize() {
+		return 0F;
 	}
 	
-	protected void writeEntityToNBT(NBTTagCompound nbt) {
-        nbt.setInteger("Fuse", this.fuse);
-    }
+	@Override
+	public boolean canTriggerWalking() {
+		return false;
+	}
 
-    protected void readEntityFromNBT(NBTTagCompound nbt) {
-        this.fuse = nbt.getInteger("Fuse");
-    }
+	@Override
+	public boolean canBeCollidedWith() {
+		return false;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public float getShadowSize() {
-        return 0.0F;
-    }
+	@Override
+	public void writeEntityToNBT(NBTTagCompound nbt) {
+		nbt.setInteger("Fuse", fuse);
+		nbt.setInteger("Block", Block.getIdFromBlock(block));
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound nbt) {
+		fuse = nbt.getInteger("Fuse");
+		block = Block.getBlockById(nbt.getInteger("Block"));
+	}
+
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		writeEntityToNBT(nbt);
+		ByteBufUtils.writeTag(buffer, nbt);
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		NBTTagCompound nbt = ByteBufUtils.readTag(additionalData);
+		readEntityFromNBT(nbt);
+	}
 }
