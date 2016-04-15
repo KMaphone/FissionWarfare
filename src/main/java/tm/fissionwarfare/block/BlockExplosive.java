@@ -16,9 +16,14 @@ import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 
 	private IIcon top_image, bottom_image;
+	
+	private IExplosionType explosion;
+	private int fuse;
 
-	public BlockExplosive(String imagePath) {
+	public BlockExplosive(String imagePath, IExplosionType explosion, int fuse) {
 		super(imagePath + "_explosive", Material.tnt, 0, 0, 0, Block.soundTypeStone);
+		this.explosion = explosion;
+		this.fuse = fuse;
 	}
 
 	public void onBlockAdded(World world, int x, int y, int z) {
@@ -50,7 +55,7 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	
 	public void activate(World world, int x, int y, int z) {	
 		 world.setBlockToAir(x, y, z);
-		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5, this));
+		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5, this, fuse));
 	}
 		
 	@Override
@@ -69,6 +74,6 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 
 	@Override
 	public IExplosionType getExplosion() {
-		return new BasicExplosion();
+		return explosion;
 	}
 }

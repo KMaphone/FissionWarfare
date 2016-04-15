@@ -22,9 +22,10 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		super(world);
 	}
 
-	public EntityExplosive(World world, double x, double y, double z, Block block) {
+	public EntityExplosive(World world, double x, double y, double z, Block block, int fuse) {
 		this(world);
 		this.block = block;
+		this.fuse = fuse;
 		setPosition(x, y, z);
 	}
 
