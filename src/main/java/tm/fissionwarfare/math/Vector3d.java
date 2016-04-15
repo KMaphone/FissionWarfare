@@ -64,4 +64,9 @@ public class Vector3d {
 	public Vec3 convert() {
 		return Vec3.createVectorHelper(x, y, z);
 	}
+	
+	@Override
+	public String toString() {
+		return "( " + x + ", " + y + ", " + z + " )";
+	}
 }

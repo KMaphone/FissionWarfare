@@ -1,9 +1,9 @@
-package tm.fissionwarfare.explosion;
+package tm.fissionwarfare.explosion.type;
 
 import net.minecraft.world.World;
 import tm.fissionwarfare.math.Vector3d;
 
-public interface IExplosion {
+public interface IExplosionType {
 	
 	public void setup(World world, Vector3d vector);
 	

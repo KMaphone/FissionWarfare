@@ -9,8 +9,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.explosion.type.BasicExplosion;
+import tm.fissionwarfare.explosion.type.IExplosionType;
+import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 
-public class BlockExplosive extends BlockBase {
+public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 
 	private IIcon top_image, bottom_image;
 
@@ -62,5 +65,10 @@ public class BlockExplosive extends BlockBase {
 		blockIcon = iconReg.registerIcon(getTextureName() + "_side");
 		top_image = iconReg.registerIcon(getTextureName() + "_top");
 		bottom_image = iconReg.registerIcon(getTextureName() + "_bottom");
+	}
+
+	@Override
+	public IExplosionType getExplosion() {
+		return new BasicExplosion();
 	}
 }

@@ -25,7 +25,7 @@ public class RenderExplosive extends Render {
 		Block block = entityExplosive.block;
 
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x, (float) y, (float) z);
+		GL11.glTranslatef((float) x, (float) y + 0.5F, (float) z);
 
 		float f3;
 

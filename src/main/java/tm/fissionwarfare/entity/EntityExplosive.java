@@ -7,16 +7,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import tm.fissionwarfare.explosion.BasicExplosion;
+import tm.fissionwarfare.explosion.type.IExplosionType;
+import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 import tm.fissionwarfare.math.Vector3d;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 
 	public Block block;
-	public int fuse = 80;
+	public int fuse = 100;
 
 	public EntityExplosive(World world) {
 		super(world);
@@ -26,15 +26,14 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this(world);
 		this.block = block;
 		setPosition(x, y, z);
-		prevPosX = x;
-		prevPosY = y;
-		prevPosZ = z;
 	}
 
 	@Override
 	protected void entityInit() {
+		prevPosX = posX;
+		prevPosY = posY;
+		prevPosZ = posZ;
 		preventEntitySpawning = true;
-		yOffset = height / 3;
 		setSize(0.95F, 0.95F);
 	}
 
@@ -63,14 +62,24 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 	}
 
 	private void explode() {
-		BasicExplosion explosion = new BasicExplosion();
-
-		if (!worldObj.isRemote) {
-			explosion.doBlockDamage();
-			explosion.doPlayerDamage();
-		}
 		
-		explosion.doEffects();
+		if (block instanceof IExplosiveBlock) {
+			
+			IExplosionType explosion = ((IExplosiveBlock) block).getExplosion();
+			
+			explosion.setup(worldObj, getVector());
+			
+			if (!worldObj.isRemote) {
+				explosion.doBlockDamage();
+				explosion.doPlayerDamage();
+			}
+			
+			explosion.doEffects();
+		}
+	}
+	
+	public Vector3d getVector() {
+		return new Vector3d(posX, posY, posZ);
 	}
 
 	@SideOnly(Side.CLIENT)
