@@ -11,6 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitEntities;
+import tm.fissionwarfare.init.InitFluids;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitRecipes;
 import tm.fissionwarfare.proxy.IProxy;
@@ -31,6 +32,7 @@ public class FissionWarfare {
 	public void preInit(FMLPreInitializationEvent event) {
 		InitItems.init();
 		InitBlocks.init();
+		InitFluids.init();
 		InitRecipes.init();
 	}
 		

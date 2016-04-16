@@ -13,11 +13,14 @@ public class BlockBase extends Block {
 		setBlockName(name);
 		setBlockTextureName(Reference.MOD_ID + ":" + imagePath);
 		setHarvestLevel("pickaxe", harvestLevel);
-		setStepSound(stepSound);
-		setCreativeTab(InitTabs.tabMain);
+		setStepSound(stepSound);		
 		setHardness(hardness);
 		setResistance(resistance);
-		if (isRegistered) GameRegistry.registerBlock(this, name);
+		
+		if (isRegistered) {
+			setCreativeTab(InitTabs.tabMain);
+			GameRegistry.registerBlock(this, name);
+		}
 	}
 	
 	public BlockBase(String imagePath, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {

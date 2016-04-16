@@ -2,8 +2,17 @@
 
 item.quartz.name=Quartz
 
+item.cement.name=Cement
+item.wet_cement=Wet Cement
+
 #Blocks
 
 tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
+
+tile.concrete_mix.name=Concrete Mix
+
+#Fluids
+
+fluid.concrete_mix=Concrete Mix
