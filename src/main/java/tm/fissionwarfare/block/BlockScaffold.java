@@ -39,7 +39,7 @@ public class BlockScaffold extends BlockContainerBase {
 		list.add(new ItemStack(item, 1, 1));
 		list.add(new ItemStack(item, 1, 2));
 	}
-
+	
 	@Override
 	public TileEntity getTileEntity(int meta) {
 		return new TileEntityScaffold(meta);

@@ -3,13 +3,18 @@
 item.quartz.name=Quartz
 
 item.cement.name=Cement
-item.wet_cement=Wet Cement
+item.wet_cement.name=Wet Cement
 
 #Blocks
 
 tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
+
+tile.scaffold.name=Scaffold
+tile.scaffold_0.name=Iron Scaffold
+tile.scaffold_1.name=Steel Scaffold
+tile.scaffold_2.name=Invar Scaffold
 
 tile.concrete_mix.name=Concrete Mix
 
