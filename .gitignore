@@ -3,7 +3,6 @@
 /.settings/
 /gradle/
 
-*.bat
 *.gradle
 *.project
 *.classpath
