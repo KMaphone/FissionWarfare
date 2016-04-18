@@ -20,7 +20,7 @@ public class BasicExplosion implements IExplosionType {
 	
 	@Override
 	public void doBlockDamage() {
-		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 10);
+		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 8);
 	}
 
 	@Override
