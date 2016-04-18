@@ -15,5 +15,23 @@ public class InitRecipes {
 		
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.cement), new ItemStack(InitItems.wet_cement), new FluidStack(FluidRegistry.WATER, 1000), false);
 		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.wet_cement), new FluidStack(InitFluids.concrete_mix, 1000));
+		
+		ThermalExpansionHelper.addTransposerFill(1000,
+				new ItemStack(InitItems.frame_iron),
+				new ItemStack(Blocks.stone),
+				new FluidStack(InitFluids.concrete_mix, 1000),
+				false);
+		
+		ThermalExpansionHelper.addTransposerFill(2000,
+				new ItemStack(InitItems.frame_steel),
+				new ItemStack(Blocks.stone),
+				new FluidStack(InitFluids.concrete_mix, 2000),
+				false);
+		
+		ThermalExpansionHelper.addTransposerFill(4000,
+				new ItemStack(InitItems.frame_invar),
+				new ItemStack(Blocks.stone),
+				new FluidStack(InitFluids.concrete_mix, 4000),
+				false);
 	}
 }
