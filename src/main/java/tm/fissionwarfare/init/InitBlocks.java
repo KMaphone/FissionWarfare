@@ -22,7 +22,7 @@ public class InitBlocks {
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4);		
 		uranium_ore = new BlockOreBase("uranium").setLightLevel(0.3F);
 		
-		scaffold = new BlockScaffold();
+		//scaffold = new BlockScaffold();
 		
 		basicExplosive = new BlockExplosive("basic", new BasicExplosion(), 80);
 	}	
