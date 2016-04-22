@@ -1,5 +1,6 @@
 package tm.fissionwarfare.math;
 
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
 public class Vector3d {
@@ -10,6 +11,12 @@ public class Vector3d {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public void roundFloor() {
+		x = Math.floor(x);
+		y = Math.floor(y);
+		z = Math.floor(z);
 	}
 	
 	public void add(Vector3d vec) {

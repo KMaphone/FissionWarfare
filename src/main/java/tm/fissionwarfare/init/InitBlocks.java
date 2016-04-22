@@ -3,6 +3,7 @@ package tm.fissionwarfare.init;
 import cofh.thermalfoundation.item.TFItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockScaffold;
@@ -15,6 +16,7 @@ public class InitBlocks {
 	public static Block scaffold;
 	
 	public static Block basicExplosive;
+	public static Block concrete;
 	
 	public static void init() {
 			
@@ -25,5 +27,7 @@ public class InitBlocks {
 		//scaffold = new BlockScaffold();
 		
 		basicExplosive = new BlockExplosive("basic", new BasicExplosion(), 80);
+		concrete = new BlockConcrete();
+		
 	}	
 }

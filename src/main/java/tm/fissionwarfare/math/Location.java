@@ -2,6 +2,7 @@ package tm.fissionwarfare.math;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class Location {
@@ -17,7 +18,11 @@ public class Location {
 	}
 	
 	public Location(World world, Vector3d vector) {
-		this(world, (int) vector.x, (int) vector.y, (int) vector.z);
+		
+		this.world = world;
+		this.x = MathHelper.floor_double(vector.x);
+		this.y = MathHelper.floor_double(vector.y);
+		this.z = MathHelper.floor_double(vector.z);
 	}
 
 	public Block getBlock() {
@@ -55,6 +60,6 @@ public class Location {
 	}
 	
 	public boolean matches(Location loc) {
-		return loc.x == x && loc.y == y && loc.z == z && loc.world == world;
+		return loc.x == x && loc.y == y && loc.z == z && loc.world.provider.dimensionId == world.provider.dimensionId;
 	}
 }
