@@ -21,7 +21,7 @@ public class BasicExplosion implements IExplosionType {
 	
 	@Override
 	public void doBlockDamage() {
-		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 5);
+		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 15, 5);
 	}
 
 	@Override

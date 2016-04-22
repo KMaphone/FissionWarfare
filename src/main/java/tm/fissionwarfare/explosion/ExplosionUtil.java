@@ -19,7 +19,7 @@ public class ExplosionUtil {
 	
 	private static List<Location> effectedBlocks = new ArrayList<Location>();
 	
-	public static void generateExplosion(World world, Vector3d vector, double size, int step) {
+	public static void generateExplosion(World world, Vector3d vector, double size, double power, int step) {
 		
 		effectedBlocks.clear();
 				
@@ -30,7 +30,7 @@ public class ExplosionUtil {
 			for (int pitch = 0; pitch < 180; pitch += step) {
 
 				Angle2d angle = new Angle2d(pitch, yaw);
-				generateExplosionRay(vector, angle, world, size);
+				generateExplosionRay(vector, angle, world, size, power);
 			}
 		}
 		
@@ -50,31 +50,21 @@ public class ExplosionUtil {
 		return false;
 	}
 	
-	private static void processBlock(Location location) {
+	private static void processBlock(Location location) {	
 		
-		Block block = location.getBlock();
-		
-		if (block instanceof BlockConcrete) {
-			
-			BlockConcrete concrete = (BlockConcrete) block;
-			
-			concrete.breakConcrete(location.world, location.x, location.y, location.z);
-		}
-		
-		else {
-			location.setBlockToAir();
-		}
+		location.setBlockToAir();		
 	}
 
-	private static void generateExplosionRay(Vector3d vector, Angle2d angle, World world, double distance) {
+	private static void generateExplosionRay(Vector3d vector, Angle2d angle, World world, double distance, double power) {
 		
 		Vector3d velcity = vector.getVectorFromAngle(angle);
 		Vector3d raytrace = vector.copy();
 		
-		Location lastLoc = null;
+		Location lastLoc = new Location(world, vector);;
 		
-		int life = (int) distance;
-		
+		double life = power;
+		double defaultDamage = power / distance;
+				
 		while (vector.distance(raytrace) <= distance) {
 			
 			raytrace.add(velcity);
@@ -84,7 +74,7 @@ public class ExplosionUtil {
 				break;
 			}
 			
-			if (loc.getBlock() == Blocks.bedrock) {
+			if (loc.getBlock().getBlockHardness(world, loc.x, loc.y, loc.z) < 0) {
 				break;
 			}
 				
@@ -93,11 +83,14 @@ public class ExplosionUtil {
 				
 				lastLoc = loc;
 				
-				if (loc.getBlock() != Blocks.air && !contains(loc)) {
+				if (loc.getBlock() != Blocks.air) {
+										
+					double damage = getStrength(loc.getBlock());
 					
-					effectedBlocks.add(loc);
+					if (damage > 0) life -= damage;
+					else life -= defaultDamage;
 					
-					life -= getStrength(loc.getBlock());
+					if (life > 0 && !contains(loc)) effectedBlocks.add(loc);
 				}
 			}
 		}
