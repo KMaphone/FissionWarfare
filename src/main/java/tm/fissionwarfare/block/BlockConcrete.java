@@ -22,7 +22,7 @@ public class BlockConcrete extends BlockBase implements IConcreteBlock {
 		if (metadata >= getMaxDamage()) {
 			
 			world.setBlockToAir(x, y, z);
-			world.playSoundEffect(x, y, z, Reference.MOD_ID + ":concrete_break", 1F, 1F);
+			world.playSoundEffect(x, y, z, Reference.MOD_ID + ":concrete_break", 0.05F, 1F);
 		}
 			
 		world.setBlockMetadataWithNotify(x, y, z, metadata, 3);
