@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tm.fissionwarfare.Reference;
 
 public class BlockConcrete extends BlockBase implements IConcreteBlock {
 	
@@ -21,7 +22,7 @@ public class BlockConcrete extends BlockBase implements IConcreteBlock {
 		if (metadata >= getMaxDamage()) {
 			
 			world.setBlockToAir(x, y, z);
-			world.playSoundEffect(x, y, z, "mob.zombie.woodbreak", 1F, 0.6F);
+			world.playSoundEffect(x, y, z, Reference.MOD_ID + ":concrete_break", 1F, 1F);
 		}
 			
 		world.setBlockMetadataWithNotify(x, y, z, metadata, 3);

@@ -1,22 +1,31 @@
 package tm.fissionwarfare.entity;
 
+import cofh.lib.audio.ISoundSource;
+import cofh.lib.audio.SoundBase;
+import cofh.lib.util.helpers.SoundHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.explosion.type.IExplosionType;
 import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.sounds.BombSound;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 
 	public Block block;
 	public int fuse = 100;
+	
+	private SoundBase beep;
 
 	public EntityExplosive(World world) {
 		super(world);
@@ -27,6 +36,8 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this.block = block;
 		this.fuse = fuse;
 		setPosition(x, y, z);
+		
+		SoundHelper.playSound(new BombSound(this));
 	}
 
 	@Override
@@ -45,7 +56,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		prevPosZ = posZ;
 		
 		moveEntity(motionX, motionY, motionZ);
-
+		
 		if (!onGround) {
 			motionY -= 0.02D;
 		} else {
