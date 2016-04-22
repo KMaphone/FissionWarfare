@@ -17,6 +17,7 @@ public class BombSound extends MovingSound {
 	public BombSound(Entity entity) {
 		super(location);
 		this.entity = entity;
+		this.repeat = true;
 	}
 
 	@Override

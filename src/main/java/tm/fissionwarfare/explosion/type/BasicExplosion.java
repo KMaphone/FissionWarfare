@@ -5,6 +5,7 @@ import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.sounds.FWSound;
 
 public class BasicExplosion implements IExplosionType {
 
@@ -31,6 +32,6 @@ public class BasicExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		world.playSoundEffect(vector.x, vector.y, vector.z, Reference.MOD_ID + ":blast_1", BASIC_SIZE * 2, 1F);
+		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
 	}
 }
