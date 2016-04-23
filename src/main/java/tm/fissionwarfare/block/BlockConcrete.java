@@ -19,17 +19,15 @@ import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemBlockMeta;
 
-public class BlockConcrete extends BlockBase implements IConcreteBlock {
+public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon[] textures = new IIcon[3];
 	
 	public BlockConcrete() {
-		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone, false);
-		setCreativeTab(InitTabs.tabMain);
-		GameRegistry.registerBlock(this, ItemBlockMeta.class, "concrete");
+		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone);
 	}
-
+	
 	@Override
 	public int getMaxMeta() {
 		return 15;
