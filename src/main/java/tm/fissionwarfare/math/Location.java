@@ -25,6 +25,15 @@ public class Location {
 		this.z = MathHelper.floor_double(vector.z);
 	}
 
+	public double getDistance(Location location) {
+		
+		int dx = x - location.x;
+		int dy = y - location.y;
+		int dz = z - location.z;
+		
+		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
+	}
+	
 	public Block getBlock() {
 		return world.getBlock(x, y, z);
 	}
