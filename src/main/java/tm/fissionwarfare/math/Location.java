@@ -18,7 +18,6 @@ public class Location {
 	}
 	
 	public Location(World world, Vector3d vector) {
-		
 		this.world = world;
 		this.x = MathHelper.floor_double(vector.x);
 		this.y = MathHelper.floor_double(vector.y);

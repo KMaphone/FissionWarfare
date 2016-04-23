@@ -66,8 +66,10 @@ public class ExplosionUtil {
 			if (loc.getBlock().getBlockHardness(world, loc.x, loc.y, loc.z) < 0) {
 				break;
 			}
-				
-		
+			
+			if (loc.getBlock() instanceof IConcreteBlock) {
+				break;
+			}
 				
 			if (loc.getBlock() != Blocks.air && !contains(loc)) {
 										
