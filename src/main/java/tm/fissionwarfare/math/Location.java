@@ -46,6 +46,10 @@ public class Location {
 		return getBlock().getExplosionResistance(null, world, x, y, z, explosionX, explosionY, explosionZ);
 	}
 	
+	public void setBlockMetadata(int meta) {
+		world.setBlockMetadataWithNotify(x, y, z, meta, 3);
+	}
+	
 	public void setBlock(Block block) {
 		world.setBlock(x, y, z, block);
 	}

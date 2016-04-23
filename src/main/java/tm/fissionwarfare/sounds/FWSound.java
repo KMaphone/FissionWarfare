@@ -6,7 +6,6 @@ import tm.fissionwarfare.Reference;
 public class FWSound {
 
 	public static final FWSound small_blast = new FWSound("blast_1");
-	public static final FWSound concrete_break = new FWSound("concrete_break");
 	
 	private String sound;
 

@@ -22,8 +22,8 @@ public class ShapeUtil {
 					Location loc = new Location(location.world, rx, ry, rz);
 					
 					if (location.getDistance(loc) <= r) {
+						
 						list.add(loc);
-						System.out.println(loc);
 					}
 				}
 			}
