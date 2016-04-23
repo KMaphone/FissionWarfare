@@ -23,6 +23,10 @@ public class BlockBase extends Block {
 		}
 	}
 	
+	public BlockBase(String imagePath, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
+		this(imagePath, imagePath, material, harvestLevel, hardness, resistance, stepSound, isRegistered);
+	}
+	
 	public BlockBase(String imagePath, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
 		this(imagePath, imagePath, material, harvestLevel, hardness, resistance, stepSound, true);
 	}

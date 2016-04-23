@@ -102,7 +102,7 @@ public class ExplosionUtil {
 			
 			IConcreteBlock concrete = (IConcreteBlock) block;
 			
-			return concrete.getBlockStrength();
+			return concrete.getMaxMeta();
 		}
 		
 		return 0;
