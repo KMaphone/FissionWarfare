@@ -13,7 +13,7 @@ public class BlockBase extends Block {
 		setBlockName(name);
 		setBlockTextureName(Reference.MOD_ID + ":" + imagePath);
 		setHarvestLevel("pickaxe", harvestLevel);
-		setStepSound(stepSound);		
+		setStepSound(stepSound);
 		setHardness(hardness);
 		setResistance(resistance);
 		

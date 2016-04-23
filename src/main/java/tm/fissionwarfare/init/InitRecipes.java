@@ -17,8 +17,8 @@ public class InitRecipes {
 
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 
-		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.cement),	new ItemStack(InitItems.wet_cement), new FluidStack(FluidRegistry.WATER, 1000), false);
-		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.wet_cement),	new FluidStack(InitFluids.concrete_mix, 1000));
+		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.cement),	new ItemStack(InitItems.cement, 1, 1), new FluidStack(FluidRegistry.WATER, 1000), false);
+		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cement, 1, 1),	new FluidStack(InitFluids.concrete_mix, 1000));
 
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.frame_iron), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 1000), false);
 

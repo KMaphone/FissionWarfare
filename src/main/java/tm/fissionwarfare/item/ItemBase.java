@@ -24,7 +24,10 @@ import tm.fissionwarfare.init.InitTabs;
 
 public class ItemBase extends Item {
 	
+	public String imagePath;
+	
 	public ItemBase(String imagePath) {
+		this.imagePath = imagePath;
 		setUnlocalizedName(imagePath);
 		setTextureName(Reference.MOD_ID + ":" + imagePath);
 		setCreativeTab(InitTabs.tabMain);

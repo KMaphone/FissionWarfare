@@ -20,7 +20,5 @@ public class InitFluids {
 		FluidRegistry.registerFluid(concrete_mix);
 		
 		block_concrete_mix = new BlockFluidBase(concrete_mix, Material.water);
-		
-		//concrete_mix = concrete_mix.setBlock(block_concrete_mix);
 	}
 }
