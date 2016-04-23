@@ -22,7 +22,7 @@ import tm.fissionwarfare.item.ItemBlockMeta;
 public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	
 	@SideOnly(Side.CLIENT)
-	private IIcon[] textures = new IIcon[3];
+	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
 	
 	public BlockConcrete() {
 		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone);
@@ -30,32 +30,26 @@ public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	
 	@Override
 	public int getMaxMeta() {
-		return 15;
+		return 14;
 	}
-	
-	public int getTextureIndex(int meta) {
-		if (meta > 10) return 2;
-		if (meta > 5) return 1;
-		else return 0;
-	}
-	
+		
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return textures[getTextureIndex(meta)];
+		return textures[meta];
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		list.add(new ItemStack(item, 1, 5));
-		list.add(new ItemStack(item, 1, 10));
-		list.add(new ItemStack(item, 1, 15));
+		list.add(new ItemStack(item, 1, 4));
+		list.add(new ItemStack(item, 1, 9));
+		list.add(new ItemStack(item, 1, 14));
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconReg) {
 
 		for (int i = 0; i < textures.length; i++) {
-			textures[i] = iconReg.registerIcon(Reference.MOD_ID + ":concrete_" + (i + 1));
+			textures[i] = iconReg.registerIcon(Reference.MOD_ID + ":concrete/concrete_" + i);
 		}
 	}
 }
