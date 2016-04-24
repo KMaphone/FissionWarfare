@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
+import tm.fissionwarfare.item.ItemBlockConcrete;
 import tm.fissionwarfare.item.ItemBlockMeta;
 
 public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
@@ -25,7 +26,7 @@ public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
 	
 	public BlockConcrete() {
-		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone);
+		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, ItemBlockConcrete.class);
 	}
 	
 	@Override

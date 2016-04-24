@@ -10,9 +10,9 @@ public class InitItems {
 	public static Item steel_ingot;
 	
 	public static Item cement;
-	public static Item frame_iron;
-	public static Item frame_steel;
-	public static Item frame_invar;
+	public static Item iron_frame;
+	public static Item steel_frame;
+	public static Item invar_frame;
 	
 	public static void init() {
 		
@@ -21,8 +21,8 @@ public class InitItems {
 		
 		cement = new ItemCement("cement");
 		
-		frame_iron = new ItemBase("frame_iron");
-		frame_steel = new ItemBase("frame_steel");
-		frame_invar = new ItemBase("frame_invar");
+		iron_frame = new ItemBase("iron_frame");
+		steel_frame = new ItemBase("steel_frame");
+		invar_frame = new ItemBase("invar_frame");
 	}
 }

@@ -20,17 +20,17 @@ public class InitRecipes {
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.cement),	new ItemStack(InitItems.cement, 1, 1), new FluidStack(FluidRegistry.WATER, 1000), false);
 		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cement, 1, 1),	new FluidStack(InitFluids.concrete_mix, 1000));
 
-		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.frame_iron), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 1000), false);
+		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 1000), false);
 
-		ThermalExpansionHelper.addTransposerFill(2000, new ItemStack(InitItems.frame_steel), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 2000), false);
+		ThermalExpansionHelper.addTransposerFill(2000, new ItemStack(InitItems.steel_frame), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 2000), false);
 
-		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.frame_invar), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 4000), false);
+		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.invar_frame), new ItemStack(Blocks.stone), new FluidStack(InitFluids.concrete_mix, 4000), false);
 
 		ThermalExpansionHelper.addSmelterRecipe(1000, new ItemStack(Items.iron_ingot), new ItemStack(Items.coal), new ItemStack(InitItems.steel_ingot));
 
-		addFrameRecipe(InitItems.frame_iron, new ItemStack(Items.iron_ingot));
-		addFrameRecipe(InitItems.frame_steel, new ItemStack(InitItems.steel_ingot));
-		addFrameRecipe(InitItems.frame_invar, TFItems.ingotInvar);
+		addFrameRecipe(InitItems.iron_frame, new ItemStack(Items.iron_ingot));
+		addFrameRecipe(InitItems.steel_frame, new ItemStack(InitItems.steel_ingot));
+		addFrameRecipe(InitItems.invar_frame, TFItems.ingotInvar);
 	}
 
 	private static void addFrameRecipe(Item output, ItemStack stack) {

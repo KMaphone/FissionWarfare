@@ -26,6 +26,16 @@ public class ItemCement extends ItemBase {
 		list.add(new ItemStack(item, 1, 1));
 	}
 	
+	@Override
+	public String getUnlocalizedName(ItemStack is) {
+		return getUnlocalizedName() + "_" + is.getItemDamage();
+	}
+	
+	@Override
+	public IIcon getIconFromDamage(int meta) {
+		return meta == 1 ? wet_icon : itemIcon;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconReg) {
 		itemIcon = iconReg.registerIcon(Reference.MOD_ID + ":" + imagePath);
