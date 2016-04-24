@@ -13,6 +13,7 @@ item.invar_frame.name=Invar Frame
 
 #Blocks
 
+tile.limestone.name=Limestone
 tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
