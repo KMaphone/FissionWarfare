@@ -1,6 +1,7 @@
 package tm.fissionwarfare.init;
 
 import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 import tm.fissionwarfare.item.ItemBase;
 import tm.fissionwarfare.item.ItemCement;
 
@@ -24,5 +25,7 @@ public class InitItems {
 		iron_frame = new ItemBase("iron_frame");
 		steel_frame = new ItemBase("steel_frame");
 		invar_frame = new ItemBase("invar_frame");
+		
+		OreDictionary.registerOre("ingotSteel", steel_ingot);
 	}
 }

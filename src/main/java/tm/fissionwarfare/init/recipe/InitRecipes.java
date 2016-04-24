@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import tm.fissionwarfare.init.InitItems;
 
 public class InitRecipes {
@@ -18,13 +19,13 @@ public class InitRecipes {
 
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 
-		addFrameRecipe(InitItems.iron_frame, new ItemStack(Items.iron_ingot));
-		addFrameRecipe(InitItems.steel_frame, new ItemStack(InitItems.steel_ingot));
-		addFrameRecipe(InitItems.invar_frame, TFItems.ingotInvar);
+		addFrameRecipe(InitItems.iron_frame, "ingotIron");
+		addFrameRecipe(InitItems.steel_frame, "ingotSteel");
+		addFrameRecipe(InitItems.invar_frame, "ingotInvar");
 	}
 
-	private static void addFrameRecipe(Item output, ItemStack stack) {
+	private static void addFrameRecipe(Item output, String oreIngot) {
 
-		GameRegistry.addShapedRecipe(new ItemStack(output, 16), new Object[] { "I I", " I ", "I I", 'I', stack });
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(output, 16), new Object[] {"I I", " I ", "I I", 'I', oreIngot}));
 	}
 }

@@ -42,7 +42,7 @@ public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	public int getMaxMeta() {
 		return 14;
 	}
-				
+	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return textures[meta];
