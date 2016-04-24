@@ -22,7 +22,6 @@ public class InitBlocks {
 		uranium_ore = new BlockOreBase("uranium").setLightLevel(0.3F);
 		
 		basicExplosive = new BlockExplosive("basic", new BasicExplosion(), 80);
-		concrete = new BlockConcrete();
-		
+		concrete = new BlockConcrete();		
 	}	
 }

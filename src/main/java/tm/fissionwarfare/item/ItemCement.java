@@ -38,7 +38,7 @@ public class ItemCement extends ItemBase {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconReg) {
-		itemIcon = iconReg.registerIcon(Reference.MOD_ID + ":" + imagePath);
-		wet_icon = iconReg.registerIcon(Reference.MOD_ID + ":" + "wet_" + imagePath);
+		itemIcon = iconReg.registerIcon(Reference.MOD_ID + ":" + imageName);
+		wet_icon = iconReg.registerIcon(Reference.MOD_ID + ":" + "wet_" + imageName);
 	}
 }

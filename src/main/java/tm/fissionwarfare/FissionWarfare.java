@@ -13,7 +13,8 @@ import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitEntities;
 import tm.fissionwarfare.init.InitFluids;
 import tm.fissionwarfare.init.InitItems;
-import tm.fissionwarfare.init.InitRecipes;
+import tm.fissionwarfare.init.recipe.InitRecipes;
+import tm.fissionwarfare.init.recipe.InitTERecipes;
 import tm.fissionwarfare.proxy.IProxy;
 import tm.fissionwarfare.world.WorldGenOre;
 
@@ -34,6 +35,7 @@ public class FissionWarfare {
 		InitBlocks.init();
 		InitFluids.init();
 		InitRecipes.init();
+		InitTERecipes.init();
 	}
 		
 	@EventHandler

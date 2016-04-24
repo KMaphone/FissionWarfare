@@ -62,7 +62,7 @@ public class BlockOreBase extends BlockBase {
 	}
 	
 	@Override
-	public int getExpDrop(IBlockAccess blockAccess, int i1, int i2) {
+	public int getExpDrop(IBlockAccess blockAccess, int metadata, int fortune) {
 		return MathHelper.getRandomIntegerInRange(rand, expAmountMin, expAmountMax);
 	}
 	

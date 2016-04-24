@@ -10,11 +10,11 @@ import tm.fissionwarfare.item.ItemBlockMeta;
 
 public class BlockBase extends Block {
 
-	public String imagePath;
+	public String imageName;
 	
 	public BlockBase(String imagePath, String name, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
 		super(material);
-		this.imagePath = imagePath;
+		this.imageName = imagePath;
 		setBlockName(name);
 		setBlockTextureName(Reference.MOD_ID + ":" + imagePath);
 		setHarvestLevel("pickaxe", harvestLevel);
