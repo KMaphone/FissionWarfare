@@ -37,23 +37,21 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this.block = block;
 		this.fuse = block.getExplosion().getMaxFuse();
 		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
+		SoundHelper.playSound(new BombSound(this));
 	}
 
 	@Override
-	protected void entityInit() {
-		SoundHelper.playSound(new BombSound(this));
+	public void entityInit() {
+		preventEntitySpawning = true;
+		setSize(0.95F, 0.95F);
 		prevPosX = posX;
 		prevPosY = posY;
 		prevPosZ = posZ;
-		preventEntitySpawning = true;
-		setSize(0.95F, 0.95F);
 	}
 
 	public void onUpdate() {
-
-		prevPosX = posX;
-		prevPosY = posY;
-		prevPosZ = posZ;
+		
+		super.onUpdate();
 		
 		moveEntity(motionX, motionY, motionZ);
 		

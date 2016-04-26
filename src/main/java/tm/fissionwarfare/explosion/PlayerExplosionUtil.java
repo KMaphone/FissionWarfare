@@ -27,16 +27,17 @@ public class PlayerExplosionUtil {
 		return list;
 	}
 
-	public static void doLivingDamage(World world, Vector3d vector, double range, double maxDamage) {
+	public static void doLivingDamage(World world, Vector3d vector, double range, float maxDamage) {
 
-		for (EntityLivingBase living : getLivingEntities(world)) {
+		List<EntityLivingBase> list = getLivingEntities(world);
+		
+		for (EntityLivingBase living : list) {
 
 			double distance = living.getDistance(vector.x, vector.y, vector.z);
 
-			int damage = (int) (range - ((maxDamage / range) * distance));
-
-			if (damage > 0) {
-				living.attackEntityFrom(DamageSource.generic, damage);
+			if (distance <= range) {
+				
+				living.attackEntityFrom(DamageSource.generic, maxDamage);
 			}
 		}
 	}
