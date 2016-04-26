@@ -1,5 +1,7 @@
 package tm.fissionwarfare.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,7 +17,8 @@ import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 
-	private IIcon top_image, bottom_image;
+	@SideOnly(Side.CLIENT)
+	private IIcon top_image;
 	
 	private IExplosionType explosion;
 	private int fuse;
@@ -59,17 +62,21 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	}
 		
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		if (side == 0) return bottom_image;
-		if (side == 1) return top_image;
+		
+		if (side == 0 || side == 1) {			
+			return top_image;
+		}
+		
 		return blockIcon;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconReg) {
 		blockIcon = iconReg.registerIcon(getTextureName() + "_side");
 		top_image = iconReg.registerIcon(getTextureName() + "_top");
-		bottom_image = iconReg.registerIcon(getTextureName() + "_bottom");
 	}
 
 	@Override

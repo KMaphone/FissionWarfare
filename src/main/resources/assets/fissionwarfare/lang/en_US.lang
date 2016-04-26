@@ -11,6 +11,11 @@ item.iron_frame.name=Iron Frame
 item.steel_frame.name=Steel Frame
 item.invar_frame.name=Invar Frame
 
+#Explosives
+
+tile.basic_explosive.name=Basic Explosive
+tile.fire_explosive.name=Pyrotechnics Explosive
+
 #Blocks
 
 tile.limestone.name=Limestone

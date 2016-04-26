@@ -36,7 +36,7 @@ public class FireExplosion implements IExplosionType {
 			
 			Location temp = location.add(ForgeDirection.UP);
 			
-			if (temp.checkBlock(Blocks.air)) {
+			if (!location.checkBlock(Blocks.air) && temp.checkBlock(Blocks.air)) {
 				temp.setBlock(Blocks.fire);
 			}
 		}
