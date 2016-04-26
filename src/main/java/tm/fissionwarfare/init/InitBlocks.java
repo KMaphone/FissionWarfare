@@ -10,6 +10,7 @@ import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 import tm.fissionwarfare.explosion.type.FireExplosion;
+import tm.fissionwarfare.explosion.type.ShrapnelExplosion;
 
 public class InitBlocks {
 
@@ -17,6 +18,7 @@ public class InitBlocks {
 	
 	public static Block basicExplosive;
 	public static Block fireExplosive;
+	public static Block shrapnelExplosive;
 	
 	public static Block concrete;
 	public static Block limestone;
@@ -29,8 +31,9 @@ public class InitBlocks {
 		
 		limestone = new BlockBase("limestone" , Material.rock, 1, 3.0F, 3.0F, Block.soundTypeStone);
 		
-		basicExplosive = new BlockExplosive("basic", new BasicExplosion(), 80);
-		fireExplosive = new BlockExplosive("fire", new FireExplosion(), 80);
+		basicExplosive = new BlockExplosive("basic", new BasicExplosion());
+		fireExplosive = new BlockExplosive("fire", new FireExplosion());
+		shrapnelExplosive = new BlockExplosive("shrapnel", new ShrapnelExplosion());
 		
 		concrete = new BlockConcrete();		
 	}	

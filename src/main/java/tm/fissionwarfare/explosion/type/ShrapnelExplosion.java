@@ -1,19 +1,22 @@
 package tm.fissionwarfare.explosion.type;
 
+import java.util.List;
+
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.explosion.ConcreteUtil;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.IExplosionType;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.math.Location;
+import tm.fissionwarfare.math.ShapeUtil;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
 
-public class BasicExplosion implements IExplosionType {
+public class ShrapnelExplosion implements IExplosionType {
 
-	private static final int BASIC_SIZE = 5;
-	
 	private World world;
 	private Vector3d vector;
 	
@@ -25,22 +28,20 @@ public class BasicExplosion implements IExplosionType {
 	
 	@Override
 	public void doBlockDamage() {
-		ConcreteUtil.generateShockwave(new Location(world, vector), BASIC_SIZE, 1);
-		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 8);
 	}
 
 	@Override
 	public void doPlayerDamage() {
-		PlayerExplosionUtil.doLivingDamage(world, vector, BASIC_SIZE * 2, 20);
+		PlayerExplosionUtil.doLivingDamage(world, vector, 20, 100);
 	}
 
 	@Override
 	public void doEffects() {
-		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10F, 1F);
 	}
 	
 	@Override
 	public int getMaxFuse() {
-		return 80;
+		return 100;
 	}
 }

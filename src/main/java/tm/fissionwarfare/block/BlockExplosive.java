@@ -11,9 +11,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.explosion.IExplosionType;
+import tm.fissionwarfare.explosion.IExplosiveBlock;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
-import tm.fissionwarfare.explosion.type.IExplosionType;
-import tm.fissionwarfare.explosion.type.IExplosiveBlock;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 
@@ -21,12 +21,10 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	private IIcon top_image;
 	
 	private IExplosionType explosion;
-	private int fuse;
 
-	public BlockExplosive(String imagePath, IExplosionType explosion, int fuse) {
+	public BlockExplosive(String imagePath, IExplosionType explosion) {
 		super(imagePath + "_explosive", Material.tnt, 0, 0, 0, Block.soundTypeStone);
 		this.explosion = explosion;
-		this.fuse = fuse;
 	}
 
 	public void onBlockAdded(World world, int x, int y, int z) {
@@ -55,11 +53,6 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
         
         else return super.onBlockActivated(world, x, y, z, player, meta, f1, f2, f3);
     }
-	
-	public void activate(World world, int x, int y, int z) {	
-		 world.setBlockToAir(x, y, z);
-		 world.spawnEntityInWorld(new EntityExplosive(world, x + 0.5, y + 0.5, z + 0.5, this, fuse));
-	}
 		
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -77,6 +70,11 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	public void registerBlockIcons(IIconRegister iconReg) {
 		blockIcon = iconReg.registerIcon(getTextureName() + "_side");
 		top_image = iconReg.registerIcon(getTextureName() + "_top");
+	}
+	
+	public void activate(World world, int x, int y, int z) {	
+		 world.setBlockToAir(x, y, z);
+		 world.spawnEntityInWorld(new EntityExplosive(world, x, y, z, this));
 	}
 
 	@Override

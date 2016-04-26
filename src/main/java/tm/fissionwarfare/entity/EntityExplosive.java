@@ -15,15 +15,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.explosion.type.IExplosionType;
-import tm.fissionwarfare.explosion.type.IExplosiveBlock;
+import tm.fissionwarfare.block.BlockExplosive;
+import tm.fissionwarfare.explosion.IExplosionType;
+import tm.fissionwarfare.explosion.IExplosiveBlock;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.BombSound;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 
-	public Block block;
-	public int fuse = 100;
+	public BlockExplosive block;
+	public int fuse;
 	
 	private SoundBase beep;
 
@@ -31,17 +32,16 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		super(world);
 	}
 
-	public EntityExplosive(World world, double x, double y, double z, Block block, int fuse) {
+	public EntityExplosive(World world, int x, int y, int z, BlockExplosive block) {
 		this(world);
 		this.block = block;
-		this.fuse = fuse;
-		setPosition(x, y, z);
-		
-		SoundHelper.playSound(new BombSound(this));
+		this.fuse = block.getExplosion().getMaxFuse();
+		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
 	}
 
 	@Override
 	protected void entityInit() {
+		SoundHelper.playSound(new BombSound(this));
 		prevPosX = posX;
 		prevPosY = posY;
 		prevPosZ = posZ;
@@ -75,19 +75,16 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 
 	private void explode() {
 		
-		if (block instanceof IExplosiveBlock) {
+		IExplosionType explosion = block.getExplosion();
+		
+		explosion.setup(worldObj, getVector());
 			
-			IExplosionType explosion = ((IExplosiveBlock) block).getExplosion();
-			
-			explosion.setup(worldObj, getVector());
-			
-			if (!worldObj.isRemote) {
-				explosion.doBlockDamage();
-				explosion.doPlayerDamage();
-			}
-			
-			explosion.doEffects();
+		if (!worldObj.isRemote) {
+			explosion.doBlockDamage();
+			explosion.doPlayerDamage();
 		}
+			
+		explosion.doEffects();
 	}
 	
 	public Vector3d getVector() {
@@ -118,7 +115,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
 		fuse = nbt.getInteger("Fuse");
-		block = Block.getBlockById(nbt.getInteger("Block"));
+		block = (BlockExplosive) Block.getBlockById(nbt.getInteger("Block"));
 	}
 
 	@Override

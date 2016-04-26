@@ -1,4 +1,4 @@
-package tm.fissionwarfare.explosion.type;
+package tm.fissionwarfare.explosion;
 
 public interface IExplosiveBlock {
 

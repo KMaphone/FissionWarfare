@@ -1,4 +1,4 @@
-package tm.fissionwarfare.explosion.type;
+package tm.fissionwarfare.explosion;
 
 import net.minecraft.world.World;
 import tm.fissionwarfare.math.Vector3d;
@@ -12,4 +12,6 @@ public interface IExplosionType {
 	public void doPlayerDamage();
 	
 	public void doEffects();
+	
+	public int getMaxFuse();
 }

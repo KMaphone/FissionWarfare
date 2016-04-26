@@ -8,6 +8,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.explosion.ConcreteUtil;
 import tm.fissionwarfare.explosion.ExplosionUtil;
+import tm.fissionwarfare.explosion.IExplosionType;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.ShapeUtil;
@@ -49,5 +50,10 @@ public class FireExplosion implements IExplosionType {
 	@Override
 	public void doEffects() {
 		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+	}
+	
+	@Override
+	public int getMaxFuse() {
+		return 100;
 	}
 }
