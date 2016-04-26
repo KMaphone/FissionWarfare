@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class Location {
 
@@ -23,14 +24,18 @@ public class Location {
 		this.y = MathHelper.floor_double(vector.y);
 		this.z = MathHelper.floor_double(vector.z);
 	}
+	
+	public Location add(ForgeDirection dir, int scale) {
+		return new Location(world, x + dir.offsetX * scale, y + dir.offsetY * scale, z + dir.offsetZ * scale);
+	}
+	
+	
+	public Location add(ForgeDirection dir) {
+		return add(dir, 1);
+	}
 
-	public double getDistance(Location location) {
-		
-		int dx = x - location.x;
-		int dy = y - location.y;
-		int dz = z - location.z;
-		
-		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
+	public Location copy() {
+		return new Location(world, x, y, z);
 	}
 	
 	public Block getBlock() {
@@ -39,6 +44,15 @@ public class Location {
 
 	public int getMetadata() {
 		return world.getBlockMetadata(x, y, z);
+	}
+
+	public double getDistance(Location location) {
+		
+		int dx = x - location.x;
+		int dy = y - location.y;
+		int dz = z - location.z;
+		
+		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
 	}
 
 	public float getBlockResistance(double explosionX, double explosionY, double explosionZ) {
@@ -57,18 +71,8 @@ public class Location {
 		setBlock(Blocks.air);
 	}
 	
-	public boolean compare(Block block) {
+	public boolean checkBlock(Block block) {
 		return getBlock() == block;
-	}
-	
-	public boolean compare(Block... blocks) {
-		for (Block block : blocks) {
-			if (compare(block)) {
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
 	public boolean matches(Location loc) {
