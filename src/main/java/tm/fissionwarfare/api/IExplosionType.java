@@ -1,4 +1,4 @@
-package tm.fissionwarfare.explosion;
+package tm.fissionwarfare.api;
 
 import net.minecraft.world.World;
 import tm.fissionwarfare.math.Vector3d;

@@ -15,9 +15,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.api.IExplosionType;
+import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.block.BlockExplosive;
-import tm.fissionwarfare.explosion.IExplosionType;
-import tm.fissionwarfare.explosion.IExplosiveBlock;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.BombSound;
 

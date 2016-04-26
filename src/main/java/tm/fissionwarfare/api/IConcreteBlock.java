@@ -1,4 +1,4 @@
-package tm.fissionwarfare.block;
+package tm.fissionwarfare.api;
 
 public interface IConcreteBlock {
 

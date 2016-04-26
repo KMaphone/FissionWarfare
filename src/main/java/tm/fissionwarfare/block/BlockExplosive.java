@@ -10,9 +10,9 @@ import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.api.IExplosionType;
+import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.entity.EntityExplosive;
-import tm.fissionwarfare.explosion.IExplosionType;
-import tm.fissionwarfare.explosion.IExplosiveBlock;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {

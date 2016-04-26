@@ -3,7 +3,7 @@ package tm.fissionwarfare.explosion;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import tm.fissionwarfare.block.IConcreteBlock;
+import tm.fissionwarfare.api.IConcreteBlock;
 import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.ShapeUtil;
 import tm.fissionwarfare.sounds.FWSound;

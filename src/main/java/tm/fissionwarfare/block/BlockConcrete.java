@@ -19,6 +19,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.api.IConcreteBlock;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemBlockConcrete;
