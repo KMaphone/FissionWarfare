@@ -20,7 +20,5 @@ public class InitTERecipes {
 		ThermalExpansionHelper.addTransposerFill(2000, new ItemStack(InitItems.steel_frame), new ItemStack(InitBlocks.concrete, 1, 9), new FluidStack(InitFluids.concrete_mix, 2000), false);
 
 		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.invar_frame), new ItemStack(InitBlocks.concrete, 1, 14), new FluidStack(InitFluids.concrete_mix, 4000), false);
-
-		ThermalExpansionHelper.addSmelterRecipe(8000, new ItemStack(Items.iron_ingot), new ItemStack(Items.coal, 2), new ItemStack(InitItems.steel_ingot));		
 	}
 }
