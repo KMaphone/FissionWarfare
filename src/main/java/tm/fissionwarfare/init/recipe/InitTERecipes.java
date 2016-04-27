@@ -13,7 +13,6 @@ public class InitTERecipes {
 
 	public static void init() {
 		
-		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.cement),	new ItemStack(InitItems.cement, 1, 1), new FluidStack(FluidRegistry.WATER, 1000), false);
 		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cement, 1, 1),	new FluidStack(InitFluids.concrete_mix, 1000));
 
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.concrete, 1, 4), new FluidStack(InitFluids.concrete_mix, 1000), false);
@@ -22,6 +21,6 @@ public class InitTERecipes {
 
 		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.invar_frame), new ItemStack(InitBlocks.concrete, 1, 14), new FluidStack(InitFluids.concrete_mix, 4000), false);
 
-		ThermalExpansionHelper.addSmelterRecipe(1000, new ItemStack(Items.iron_ingot), new ItemStack(Items.coal), new ItemStack(InitItems.steel_ingot));		
+		ThermalExpansionHelper.addSmelterRecipe(8000, new ItemStack(Items.iron_ingot), new ItemStack(Items.coal, 2), new ItemStack(InitItems.steel_ingot));		
 	}
 }
