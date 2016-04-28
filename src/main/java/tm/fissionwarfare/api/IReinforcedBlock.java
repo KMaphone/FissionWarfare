@@ -1,6 +1,6 @@
 package tm.fissionwarfare.api;
 
-public interface IConcreteBlock {
+public interface IReinforcedBlock {
 
 	public int getMaxMeta();
 }

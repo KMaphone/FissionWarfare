@@ -22,7 +22,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.api.IConcreteBlock;
+import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTabs;
@@ -30,34 +30,27 @@ import tm.fissionwarfare.item.ItemBlockConcrete;
 import tm.fissionwarfare.item.ItemBlockMeta;
 import tm.fissionwarfare.proxy.ClientProxy;
 
-public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
-	
-	private int[] startingMetas = {4, 9, 14};
-	
-	@SideOnly(Side.CLIENT)
-	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
+public class BlockConcrete extends BlockReinforced {
 	
 	public BlockConcrete() {
-		super("concrete", Material.rock, 0, 5F, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, ItemBlockConcrete.class);
+		super("concrete", ItemBlockConcrete.class);
 	}	
-	
+			
 	@Override
 	public int getMaxMeta() {
 		return 14;
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		list.add(new ItemStack(item, 1, startingMetas[0]));
-		list.add(new ItemStack(item, 1, startingMetas[1]));
-		list.add(new ItemStack(item, 1, startingMetas[2]));
+	@Override
+	public int[] getRegisteredMetas() {
+		return new int[]{4, 9, 14};
 	}
 	
 	public int getRepairedMeta(int meta) {
 		int i;
-		if (meta > 9) i = startingMetas[2];
-		else if (meta > 4) i = startingMetas[1];
-		else i = startingMetas[0];
+		if (meta > 9) i = getRegisteredMetas()[2];
+		else if (meta > 4) i = getRegisteredMetas()[1];
+		else i = getRegisteredMetas()[0];
 		return i;
 	}
 			
@@ -68,11 +61,10 @@ public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 	
 	@Override
 	public int damageDropped(int meta) {
-		
 		int i;
-		if (meta > 13) i = startingMetas[2];
-		else if (meta > 8) i = startingMetas[1];
-		else if (meta > 3) i = startingMetas[0];
+		if (meta > 13) i = getRegisteredMetas()[2];
+		else if (meta > 8) i = getRegisteredMetas()[1];
+		else if (meta > 3) i = getRegisteredMetas()[0];
 		else i = 0;
 		
 		return i;
@@ -102,19 +94,5 @@ public class BlockConcrete extends BlockMetaBase implements IConcreteBlock {
 				}		
 			}
 		}	
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		if (meta >= textures.length) return textures[textures.length - 1]; 
-		return textures[meta];
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconReg) {
-		
-		for (int i = 0; i < textures.length; i++) {
-			textures[i] = iconReg.registerIcon(Reference.MOD_ID + ":concrete/concrete_" + i);
-		}
 	}
 }

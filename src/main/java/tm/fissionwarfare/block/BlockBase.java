@@ -12,11 +12,11 @@ public class BlockBase extends Block {
 
 	public String imageName;
 	
-	public BlockBase(String imagePath, String name, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
+	public BlockBase(String imageName, String name, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
 		super(material);
-		this.imageName = imagePath;
+		this.imageName = imageName;
 		setBlockName(name);
-		setBlockTextureName(Reference.MOD_ID + ":" + imagePath);
+		setBlockTextureName(Reference.MOD_ID + ":" + imageName);
 		setHarvestLevel("pickaxe", harvestLevel);
 		setStepSound(stepSound);
 		setHardness(hardness);
@@ -28,11 +28,11 @@ public class BlockBase extends Block {
 		}
 	}
 	
-	public BlockBase(String imagePath, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
-		this(imagePath, imagePath, material, harvestLevel, hardness, resistance, stepSound, isRegistered);
+	public BlockBase(String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
+		this(imageName, imageName, material, harvestLevel, hardness, resistance, stepSound, isRegistered);
 	}
 	
-	public BlockBase(String imagePath, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
-		this(imagePath, imagePath, material, harvestLevel, hardness, resistance, stepSound, true);
+	public BlockBase(String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
+		this(imageName, imageName, material, harvestLevel, hardness, resistance, stepSound, true);
 	}
 }

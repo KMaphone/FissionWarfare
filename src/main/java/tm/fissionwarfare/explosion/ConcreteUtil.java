@@ -3,7 +3,7 @@ package tm.fissionwarfare.explosion;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import tm.fissionwarfare.api.IConcreteBlock;
+import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.ShapeUtil;
 import tm.fissionwarfare.sounds.FWSound;
@@ -25,9 +25,9 @@ public class ConcreteUtil {
 		int currentMeta = location.getMetadata();
 		int newMeta = currentMeta - damage;
 		
-		if (block instanceof IConcreteBlock) {
+		if (block instanceof IReinforcedBlock) {
 			
-			IConcreteBlock concrete = (IConcreteBlock) block;
+			IReinforcedBlock concrete = (IReinforcedBlock) block;
 			
 			if (newMeta < 0) {
 				

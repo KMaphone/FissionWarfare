@@ -8,7 +8,7 @@ import com.sun.swing.internal.plaf.basic.resources.basic;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import tm.fissionwarfare.api.IConcreteBlock;
+import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.Location;
@@ -67,7 +67,7 @@ public class ExplosionUtil {
 				break;
 			}
 			
-			if (loc.getBlock() instanceof IConcreteBlock) {
+			if (loc.getBlock() instanceof IReinforcedBlock) {
 				break;
 			}
 				
