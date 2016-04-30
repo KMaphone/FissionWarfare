@@ -38,7 +38,7 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		return 3 + (10F * world.getBlockMetadata(x, y, z));
+		return 3 + (world.getBlockMetadata(x, y, z));
 	}
 	
 	@SideOnly(Side.CLIENT)

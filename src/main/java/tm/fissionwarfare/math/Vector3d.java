@@ -1,5 +1,6 @@
 package tm.fissionwarfare.math;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
@@ -11,6 +12,10 @@ public class Vector3d {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public Vector3d(Entity e) {
+		this(e.posX, e.posY, e.posZ);
 	}
 	
 	public void roundFloor() {
@@ -50,6 +55,21 @@ public class Vector3d {
 		double dz = z - vec.z;
 		
 		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+	}
+	
+	public static Angle2d getAngleFromVectors(Vector3d vec1, Vector3d vec2) {
+		
+		double dx = vec1.x - vec2.x;
+		double dy = vec1.y - vec2.y;
+		double dz = vec1.z - vec2.z;
+					
+		double yawRad = Math.atan2(dx, dz);		
+		double pitchRad = Math.atan2(Math.sqrt(Math.pow(dx, 2) + Math.pow(dz, 2)), dy);
+		
+		double rotYaw = Math.toDegrees(yawRad);
+		double rotPitch = Math.toDegrees(pitchRad);
+		
+		return new Angle2d(rotPitch, rotYaw);
 	}
 	
 	public static Vector3d getVectorFromAngle(Angle2d angle) {

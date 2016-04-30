@@ -9,6 +9,7 @@ import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockReinforcedGlass;
+import tm.fissionwarfare.block.BlockTurret;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 import tm.fissionwarfare.explosion.type.FireExplosion;
 import tm.fissionwarfare.explosion.type.ShrapnelExplosion;
@@ -26,6 +27,7 @@ public class InitBlocks {
 	public static Block concrete;
 	public static Block reinforced_glass;
 	
+	public static Block turret;	
 	
 	public static void init() {
 		
@@ -41,5 +43,7 @@ public class InitBlocks {
 		
 		concrete = new BlockConcrete();		
 		reinforced_glass = new BlockReinforcedGlass();
+		
+		turret = new BlockTurret();
 	}	
 }
