@@ -2,7 +2,7 @@ package tm.fissionwarfare.gui;
 
 public class GuiRect {
 
-	private int x, y, width, height;
+	public int x, y, width, height;
 	
 	public GuiRect(int x, int y, int width, int height) {
 		this.x = x;
@@ -12,6 +12,6 @@ public class GuiRect {
 	}
 	
 	public boolean contains(int px, int py) {
-		return px > x && px < (x + width) && py > y && py < (y + height);
+		return px > x - 1 && px < (x + width) + 1 && py > y - 1 && py < (y + height) + 1;
 	}
 }

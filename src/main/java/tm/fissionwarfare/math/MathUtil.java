@@ -2,6 +2,10 @@ package tm.fissionwarfare.math;
 
 public class MathUtil {
 
+	public static int scaleInt(int value, int maxValue, int scaleMax) {
+		return (scaleMax / maxValue) * value;
+	}
+	
 	public static double approach(double value, double target, double speed) {
 
 		double difference = Math.abs(value - target);
