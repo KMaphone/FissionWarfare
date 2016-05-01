@@ -14,6 +14,8 @@ public class InitTERecipes {
 	public static void init() {
 		
 		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cement, 1, 1),	new FluidStack(InitFluids.concrete_mix, 1000));
+		
+		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cementT2, 1, 1),	new FluidStack(InitFluids.concrete_mixT2, 1000));
 
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.concrete, 1, 4), new FluidStack(InitFluids.concrete_mix, 1000), false);
 

@@ -16,8 +16,10 @@ import tm.fissionwarfare.init.InitItems;
 public class InitRecipes {
 
 	public static void init() {
-
+		
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, TFItems.dustIron });
 
 		addFrameRecipe(InitItems.iron_frame, "ingotIron");
 		addFrameRecipe(InitItems.steel_frame, "ingotSteel");

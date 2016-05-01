@@ -6,6 +6,8 @@ item.steel_ingot.name=Steel Ingot
 
 item.cement_0.name=Cement
 item.cement_1.name=Wet Cement
+item.cementT2_0.name=CementT2
+item.cementT2_1.name=Wet CementT2
 
 item.iron_frame.name=Iron Frame
 item.steel_frame.name=Steel Frame

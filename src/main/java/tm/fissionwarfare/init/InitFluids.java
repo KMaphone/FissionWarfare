@@ -12,12 +12,15 @@ import tm.fissionwarfare.item.ItemBase;
 public class InitFluids {
 
 	public static Fluid concrete_mix;
+	public static Fluid concrete_mixT2;
 	public static Block block_concrete_mix;
 	
 	public static void init() {
 		
 		concrete_mix = new Fluid("concrete_mix").setDensity(5000).setViscosity(8000);
+		concrete_mixT2 = new Fluid("concrete_mixT2").setDensity(5000).setViscosity(8000);
 		FluidRegistry.registerFluid(concrete_mix);
+		FluidRegistry.registerFluid(concrete_mixT2);
 		
 		block_concrete_mix = new BlockFluidBase(concrete_mix, Material.water);
 	}
