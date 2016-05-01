@@ -9,7 +9,7 @@ import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.render.RenderExplosive;
 import tm.fissionwarfare.render.RenderTurret;
 import tm.fissionwarfare.render.item.ItemRenderTurret;
-import tm.fissionwarfare.tileentity.TileEntityTurret;
+import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
 
 public class ClientProxy extends CommonProxy {
 	

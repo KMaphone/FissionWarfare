@@ -2,6 +2,7 @@ package tm.fissionwarfare.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import scala.annotation.meta.getter;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
 
@@ -68,15 +70,18 @@ public abstract class BlockContainerBase extends BlockContainer {
 		ISidedInventory tileentity = (ISidedInventory) world.getTileEntity(x, y, z);
 		
 		if (tileentity != null) {
+			
 			for (int i1 = 0; i1 < tileentity.getSizeInventory(); ++i1) {
 				ItemStack itemstack = tileentity.getStackInSlot(i1);
 
 				if (itemstack != null) {
+					
 					float f = this.random.nextFloat() * 0.8F + 0.1F;
 					float f1 = this.random.nextFloat() * 0.8F + 0.1F;
 					EntityItem entityitem;
 
 					for (float f2 = this.random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem)) {
+						
 						int j1 = this.random.nextInt(21) + 10;
 
 						if (j1 > itemstack.stackSize) {
@@ -106,7 +111,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
 		
 		if(!w.isRemote) {			
-			//FMLNetworkHandler.openGui(p, ProjectWorkspace.instance, 0, w, x, y, z);	
+			FMLNetworkHandler.openGui(p, FissionWarfare.instance, 0, w, x, y, z);	
 		}
 		
 		return true;	

@@ -7,8 +7,10 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
+import tm.fissionwarfare.gui.GuiHandler;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitEntities;
 import tm.fissionwarfare.init.InitFluids;
@@ -32,6 +34,9 @@ public class FissionWarfare {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		
 		InitItems.init();
 		InitBlocks.init();
 		InitFluids.init();

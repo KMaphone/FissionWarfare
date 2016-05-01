@@ -2,7 +2,7 @@ package tm.fissionwarfare.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.tileentity.TileEntityTurret;
+import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
 
 public class InitTileEntities {
 

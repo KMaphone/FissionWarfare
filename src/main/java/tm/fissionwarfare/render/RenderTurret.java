@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import tm.fissionwarfare.tileentity.TileEntityTurret;
+import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
 
 public class RenderTurret extends RenderBase {
 
