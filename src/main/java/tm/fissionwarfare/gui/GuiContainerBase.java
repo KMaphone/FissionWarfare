@@ -44,8 +44,8 @@ public abstract class GuiContainerBase extends GuiContainer {
 		drawGuiBackground(mouseX, mouseY);	
 		
 		GuiUtil.drawCenteredString(getGuiTitle(), getScreenX() + getGuiSize() / 2, getScreenY() + 6);
-				
-		GuiUtil.drawStatusPanel(10, 50, getScreenX() -19, getScreenY() + ((getGuiSize() / 4) - 34), mouseX, mouseY);
+		
+		GuiUtil.drawStatusPanel(100, 100, getScreenX() - 19, getScreenY() + ((getGuiSize() / 4) - 34), mouseX, mouseY);
 		
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 	}

@@ -14,6 +14,7 @@ public class InitFluids {
 	public static Fluid concrete_mix;
 	public static Fluid concrete_mixT2;
 	public static Block block_concrete_mix;
+	public static Block block_concrete_mixT2;
 	
 	public static void init() {
 		
@@ -23,5 +24,6 @@ public class InitFluids {
 		FluidRegistry.registerFluid(concrete_mixT2);
 		
 		block_concrete_mix = new BlockFluidBase(concrete_mix, Material.water);
+		block_concrete_mixT2 = new BlockFluidBase(concrete_mixT2, Material.water);
 	}
 }

@@ -2,8 +2,11 @@ package tm.fissionwarfare.math;
 
 public class MathUtil {
 
-	public static int scaleInt(int value, int maxValue, int scaleMax) {
-		return (scaleMax / maxValue) * value;
+	public static int scaleInt(int value, int maxValue, int maxScale) {
+		
+		float f = value * maxScale / maxValue;
+		
+		return (int)f;
 	}
 	
 	public static double approach(double value, double target, double speed) {

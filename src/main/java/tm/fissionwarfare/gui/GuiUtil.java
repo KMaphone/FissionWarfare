@@ -24,13 +24,14 @@ public class GuiUtil {
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		drawRect(x, y, 0, 0, 0, 19, 76);		
 		
+		drawScaledHeightRect(x + 4, y + 58, 19, 0, 0, 12, 40, progress, 100);
+		drawScaledHeightRect(x + 7, y + 55, 19, 40, 0, 6, 34, energy, 100);
+		
 		if (rect.contains(mouseX, mouseY) && ! rect2.contains(mouseX, mouseY)) {
 			drawTextBox("Progress: " + progress + "%", mouseX, mouseY, rect);
 		}
 		
-		else drawTextBox(energy + " " + "/ 500 RF", mouseX, mouseY, rect2);	
-		
-		drawScaledHeightRect(x, y, 19, 0, progress, 12, 40, progress, 100);
+		else drawTextBox(energy + " " + "/ 500 RF", mouseX, mouseY, rect2);			
 	}
 	
 	public static void drawTextBox(String text, int mouseX, int mouseY, GuiRect rect) {
@@ -55,8 +56,8 @@ public class GuiUtil {
 	}
 	
 	public static void drawScaledHeightRect(int x, int y, int u, int v, int zLevel, int width, int height, int value, int maxValue) {
-		
-		drawRect(x, y, u, v, zLevel, width, -MathUtil.scaleInt(value, maxValue, height));
+		int scale = MathUtil.scaleInt(value, maxValue, height);
+		drawRect(x, y - scale, u, v + height - scale, zLevel, width, scale);
 	}
 	
 	public static void drawRect(int x, int y, int u, int v, int zLevel, int width, int height) {
