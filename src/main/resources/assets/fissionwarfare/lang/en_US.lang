@@ -29,6 +29,8 @@ tile.concrete_0.name=Concrete
 tile.concrete_1.name=Hardened Concrete
 tile.concrete_2.name=Reinforced Concrete
 
+tile.turret.name=Turret
+
 #Fluids
 
 fluid.concrete_mix=Concrete Mix

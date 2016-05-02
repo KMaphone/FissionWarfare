@@ -41,8 +41,6 @@ public abstract class ContainerBase extends Container {
 
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
 		
-		System.out.println(slotId);
-		
 		ItemStack itemstack = null;
 		Slot slot = (Slot)this.inventorySlots.get(slotId);
 			

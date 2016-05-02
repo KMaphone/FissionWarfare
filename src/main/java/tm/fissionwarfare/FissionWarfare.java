@@ -12,7 +12,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
-import tm.fissionwarfare.gui.GuiHandler;
+import tm.fissionwarfare.gui.base.GuiHandler;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitEntities;
 import tm.fissionwarfare.init.InitFluids;

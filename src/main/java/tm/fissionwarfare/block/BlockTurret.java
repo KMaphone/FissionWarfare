@@ -11,7 +11,7 @@ import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
 public class BlockTurret extends BlockContainerBase {
 
 	public BlockTurret() {
-		super("steel_casing", 2, Material.iron, 1, 1, Block.soundTypeMetal);
+		super("turret", 2, Material.iron, 1, 1, Block.soundTypeMetal);
 		setBounds(1.5F, 0, 1.5F, 14.5F, 8, 14.5F);
 	}
 	
@@ -32,7 +32,6 @@ public class BlockTurret extends BlockContainerBase {
 	
 	@Override
 	public TileEntity getTileEntity(int meta) {
-
 		return new TileEntityTurret();
 	}	
 }

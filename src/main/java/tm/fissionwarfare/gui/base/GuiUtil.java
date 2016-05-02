@@ -1,4 +1,4 @@
-package tm.fissionwarfare.gui;
+package tm.fissionwarfare.gui.base;
 
 import org.lwjgl.opengl.GL11;
 
@@ -21,7 +21,7 @@ public class GuiUtil {
 		GuiRect rect = new GuiRect(x + 1, y + 15, 18, 46);
 		GuiRect rect2 = new GuiRect(rect.x + 5, rect.y + 5, rect.width - 10, rect.height - 10);
 		
-		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
+		mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
 		drawRect(x, y, 0, 0, 0, 19, 76);		
 		
 		drawScaledHeightRect(x + 4, y + 58, 19, 0, 0, 12, 40, progress, maxProgress);
@@ -38,21 +38,21 @@ public class GuiUtil {
 		
 		if (rect.contains(mouseX, mouseY)) {
 			
-			drawCappedRect(mouseX + 2, mouseY - 12, 0, 208, 0, mc.fontRenderer.getStringWidth(text) + 1, 12, 256);
+			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 1, 12, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
 		}
 	}
 	
-	public static void drawCenteredString(String text, int x, int y) {
+	public static void drawCenteredString(String text, int x, int y, int color) {
 				
-		mc.fontRenderer.drawString(text, x - (mc.fontRenderer.getStringWidth(text) / 2), y, 4210752);
+		mc.fontRenderer.drawString(text, x - (mc.fontRenderer.getStringWidth(text) / 2), y, color);
 		GL11.glColor4f(1, 1, 1, 1);
 	}
 	
-	public static void drawCappedRect(int x, int y, int u, int v, int zLevel, int sWidth, int height, int maxWidth) {
+	public static void drawCappedRect(int x, int y, int u, int v, int zLevel, int width, int height, int maxWidth) {
 		
-		drawRect(x, y, u, v, zLevel, sWidth, height);
-		drawRect(x + sWidth, y, u + maxWidth - 2, v, zLevel, 2, height);		
+		drawRect(x, y, u, v, zLevel, width, height);
+		drawRect(x + width, y, u + maxWidth - 2, v, zLevel, 2, height);
 	}
 	
 	public static void drawScaledHeightRect(int x, int y, int u, int v, int zLevel, int width, int height, int value, int maxValue) {

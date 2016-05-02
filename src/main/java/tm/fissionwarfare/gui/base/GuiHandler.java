@@ -1,4 +1,4 @@
-package tm.fissionwarfare.gui;
+package tm.fissionwarfare.gui.base;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;

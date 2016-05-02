@@ -1,4 +1,4 @@
-package tm.fissionwarfare.gui;
+package tm.fissionwarfare.gui.base;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

@@ -1,5 +1,7 @@
 package tm.fissionwarfare;
 
+import net.minecraft.util.ResourceLocation;
+
 public class Reference {
 	
 	public static final String MOD_ID = "FissionWarfare";
@@ -9,4 +11,6 @@ public class Reference {
 	public static final String SERVER_PROXY_CLASS = "tm.fissionwarfare.proxy.ServerProxy";
 	public static final String GUI_FACTORY_CLASS = "tm.fissionwarfare.gui.GuiFactory";
 	public static final String DEPENDENCIES = "after:ThermalExpansion;after:CoFHCore;after:ThermalFoundation";
+	
+	public static final ResourceLocation GUI_TEXTURES = new ResourceLocation(MOD_ID + ":textures/gui/gui_textures.png");
 }

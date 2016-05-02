@@ -1,4 +1,6 @@
-package tm.fissionwarfare.gui;
+package tm.fissionwarfare.gui.base;
+
+import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +17,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		this.ySize = getGuiSize();
 	}
 	
-	public abstract String getGuiTextures();
+	public abstract String getGuiTexturesName();
 	public abstract String getGuiTitle();
 		
 	public abstract void drawGuiBackground(int mouseX, int mouseY);
@@ -38,12 +40,12 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		updateScreen();
 		
-		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
+		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTexturesName() + ".png"));
 		drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSize(), getGuiSize());
 		
 		drawGuiBackground(mouseX, mouseY);	
 		
-		GuiUtil.drawCenteredString(getGuiTitle(), getScreenX() + getGuiSize() / 2, getScreenY() + 6);
+		GuiUtil.drawCenteredString(getGuiTitle(), getScreenX() + getGuiSize() / 2, getScreenY() + 6, 0xCCCCCC);
 	}
 	
 	@Override
