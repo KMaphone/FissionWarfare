@@ -19,9 +19,11 @@ public class EntityBullet extends EntityThrowable {
 	
 	public EntityBullet(World world) {
 		super(world);
+		velcity = new Vector3d(0, 0, 0);
 	}
 	
-	public void shoot(Angle2d angle, double speed, float damage) {
+	public void shoot(Vector3d vector, Angle2d angle, double speed, float damage) {
+		setPosition(vector.x, vector.y, vector.z);
 		this.velcity = Vector3d.getVectorFromAngle(angle);
 		this.speed = speed;
 		this.damage = damage;
@@ -31,9 +33,15 @@ public class EntityBullet extends EntityThrowable {
 	public void onUpdate() {
 		super.onUpdate();
 		
+		if (!isDead && ticksExisted > 20 * 30) {
+			setDead();
+		}
+		
 		motionX = velcity.x * speed;
 		motionY = velcity.y * speed;
 		motionZ = velcity.z * speed;
+		
+		moveEntity(motionX, motionY, motionZ);
 	}
 
 	@Override
@@ -41,11 +49,13 @@ public class EntityBullet extends EntityThrowable {
 		
 		Entity entity = pos.entityHit;
 		
-		if (entity != null && entity instanceof EntityLivingBase) {
+		if (!isDead && entity != null && entity instanceof EntityLivingBase) {
 			
 			EntityLivingBase living = (EntityLivingBase) entity;
 			
 			living.attackEntityFrom(DamageSource.generic, damage);
+			
+			setDead();
 		}
 	}
 }

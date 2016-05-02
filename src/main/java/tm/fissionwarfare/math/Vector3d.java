@@ -57,28 +57,13 @@ public class Vector3d {
 		return Math.sqrt(dx * dx + dy * dy + dz * dz);
 	}
 	
-	public static Angle2d getAngleFromVectors(Vector3d vec1, Vector3d vec2) {
-		
-		double dx = vec1.x - vec2.x;
-		double dy = vec1.y - vec2.y;
-		double dz = vec1.z - vec2.z;
-					
-		double yawRad = Math.atan2(dx, dz);		
-		double pitchRad = Math.atan2(Math.sqrt(Math.pow(dx, 2) + Math.pow(dz, 2)), dy);
-		
-		double rotYaw = Math.toDegrees(yawRad);
-		double rotPitch = Math.toDegrees(pitchRad);
-		
-		return new Angle2d(rotPitch, rotYaw);
-	}
-	
 	public static Vector3d getVectorFromAngle(Angle2d angle) {
 		
 		double pitchRad = Math.toRadians(angle.pitch);
 		double yawRad = Math.toRadians(angle.yaw);
 		
-		double x = Math.sin(yawRad) * Math.sin(pitchRad);
-		double z = Math.cos(yawRad) * Math.sin(pitchRad);
+		double x = Math.sin(pitchRad) * Math.cos(yawRad);
+		double z = Math.sin(pitchRad) * -Math.sin(yawRad);
 		double y = Math.cos(pitchRad);
 		
 		return new Vector3d(x, y, z);

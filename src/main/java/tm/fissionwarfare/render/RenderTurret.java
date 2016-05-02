@@ -33,7 +33,7 @@ public class RenderTurret extends RenderBase {
 		model.renderOnly("Base_3_Cube_3", "Claw_1_Cube_4", "Claw_2_Cube_5");
 		
 		GL11.glTranslated(0, 1.7D, 0);
-		GL11.glRotated(turret.angle.pitch, 0, 0, 1);
+		GL11.glRotated(turret.angle.pitch - 90, 0, 0, 1);
 		GL11.glTranslated(0, -1.7D, 0);
 		
 		model.renderOnly("Head_Cube_6", "Antenna_Cube_7", "Antenna_Top_Cube_8", "Barrel_Cube_9", "Barrel_Tip_Cube_10");

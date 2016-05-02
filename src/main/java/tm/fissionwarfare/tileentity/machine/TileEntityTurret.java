@@ -1,32 +1,31 @@
 package tm.fissionwarfare.tileentity.machine;
 
-import com.sun.javafx.geom.Vec3d;
-
-import cofh.api.energy.EnergyStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.util.Vec3;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.api.ISecurity;
+import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.gui.GuiTurret;
 import tm.fissionwarfare.inventory.ContainerTurret;
 import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
+import tm.fissionwarfare.math.RaytraceUtil;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
-public class TileEntityTurret extends TileEntityEnergyBase {
+public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity {
 		
 	public static final int RANGE = 10;	
 	public Angle2d angle = new Angle2d(0, 0);	
 	public EntityPlayer target;
+	
+	public SecurityProfile profile = new SecurityProfile();
 	
 	@Override
 	public int getMaxEnergy() {
@@ -51,60 +50,57 @@ public class TileEntityTurret extends TileEntityEnergyBase {
 	@Override
 	public void updateEntity() {
 		
-		progress++;
-		isDoneAndReset();		
-		
 		if (target == null) {
 			
-			angle.pitch += MathUtil.approach(angle.pitch, 0, 6);
+			angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
 			angle.yaw += 0.5F;
 			
 			findTarget();
-		}
+			progress = 0;
+		} 
 		
-		else {
+		if (target != null) {
 			
-			Angle2d targetAngle = Vector3d.getAngleFromVectors(getVector(), new Vector3d(target));
+			Angle2d targetAngle = Angle2d.getAngleFromVectors(getVector(), new Vector3d(target));
 			
 			angle.pitch += MathUtil.approach(angle.pitch, targetAngle.pitch, 6);
-			angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);			
+			angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);	
 			
 			if (canHit(target)) {
-				System.out.println("Pew Pew Pew");
+				
+				progress++;
+				
+				if (isDone() && !worldObj.isRemote) {
+					
+					fire();
+				}
+				
+			} else {
+				progress = 0;
 			}
 			
 			if (!isTargetInRange(target) || target.capabilities.isCreativeMode) {
 				target = null;
 			}			
 		}
+		
+		isDoneAndReset();		
 	}
 	
-	public boolean canHit(Entity e) {
-		
-		Vec3 tileVec = Vec3.createVectorHelper(xCoord + 0.5D, yCoord + 1, zCoord + 0.5D);
-		Vec3 entityVec = Vec3.createVectorHelper(e.posX, e.posY + 1, e.posZ);
-		
-		MovingObjectPosition blockMop = worldObj.rayTraceBlocks(tileVec, entityVec);
-		
-		
-		if (blockMop == null && e.getCollisionBox(e) != null) {
-			
-			MovingObjectPosition playerMop = e.getCollisionBox(e).calculateIntercept(tileVec, entityVec);
-			
-			if (playerMop != null) {
-				return true;
-			}
-		}
-		
-		return false;
+	public boolean canHit(Entity entity) {
+		return RaytraceUtil.traceForEntity(getVector(), new Vector3d(target), worldObj);
+	}
+	
+	public void fire() {
+		target.attackEntityFrom(DamageSource.generic, 10);
 	}
 	
 	public boolean isTargetInRange(Entity e) {
-		return e.getDistance(xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F) <= RANGE;
+		return e.getDistance(xCoord + 0.5F, yCoord + 1D, zCoord + 0.5F) <= RANGE;
 	}
 	
 	public Vector3d getVector() {
-		return new Vector3d(xCoord + 0.5F, yCoord + 1, zCoord + 0.5F);
+		return new Vector3d(xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D);
 	}
 	
 	public void findTarget() {
@@ -115,7 +111,7 @@ public class TileEntityTurret extends TileEntityEnergyBase {
 				
 				EntityPlayer player = (EntityPlayer)o;
 				
-				if (isTargetInRange(player) && !player.capabilities.isCreativeMode) {
+				if (isTargetInRange(player) && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
 					
 					target = player;
 					return;
@@ -143,5 +139,22 @@ public class TileEntityTurret extends TileEntityEnergyBase {
 	@Override
 	public boolean canConnectEnergy(ForgeDirection dir) {
 		return true;
+	}
+
+	@Override
+	public SecurityProfile getSecurityProfile() {
+		return profile;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		profile.readFromNBT(nbt);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		profile.writeToNBT(nbt);
 	}
 }

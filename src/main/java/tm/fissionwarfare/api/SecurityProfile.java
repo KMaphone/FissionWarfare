@@ -16,11 +16,11 @@ public class SecurityProfile {
 		teamName = team.getRegisteredName();
 	}
 	
-	public void setTeamNameFromPlayer(EntityPlayer player) {
-		teamName = player.getTeam().getRegisteredName();
-	}
-	
 	public boolean isSameTeam(EntityPlayer player) {
+		
+		if (teamName == null) {
+			return true;
+		}
 		
 		Team team = player.worldObj.getScoreboard().getTeam(teamName);
 		
@@ -28,10 +28,14 @@ public class SecurityProfile {
 	}
 	
 	public void readFromNBT(NBTTagCompound nbt) {
-		teamName = nbt.getString("teamName");
+		if (nbt.hasKey("teamName")) {
+			teamName = nbt.getString("teamName");
+		}
 	}
 	
 	public void writeToNBT(NBTTagCompound nbt) {
-		nbt.setString("teamName", teamName);
+		if (teamName != null) {
+			nbt.setString("teamName", teamName);
+		}
 	}
 }

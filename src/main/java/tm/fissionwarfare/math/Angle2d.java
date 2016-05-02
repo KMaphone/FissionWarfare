@@ -9,15 +9,17 @@ public class Angle2d {
 		this.yaw = yaw;
 	}
 	
-	public static Angle2d getAngleFromVector(Vector3d vec1, Vector3d vec2) {
+	public static Angle2d getAngleFromVectors(Vector3d vec1, Vector3d vec2) {
 		
 		double dx = vec1.x - vec2.x;
 		double dy = vec1.y - vec2.y;
 		double dz = vec1.z - vec2.z;
 		
-		double pitch = Math.atan2(dz, dx);
-		double yaw = Math.atan2(Math.sqrt(Math.pow(dx, 2) + Math.pow(dz, 2)), dy);
+		double dis = vec1.distance(vec2);
 		
-		return new Angle2d(pitch, yaw);
+		double yawRad = Math.atan2(dz, -dx);
+		double pitchRad = Math.atan2(dis, dy);
+		
+		return new Angle2d(Math.toDegrees(pitchRad), Math.toDegrees(yawRad));
 	}
 }
