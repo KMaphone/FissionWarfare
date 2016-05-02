@@ -1,11 +1,11 @@
 package tm.fissionwarfare.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
+import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public class ContainerTurret extends ContainerBase {
+public class ContainerTurret extends ContainerEnergyBase {
 
-	public ContainerTurret(EntityPlayer player, TileEntityInventoryBase tileEntity) {
+	public ContainerTurret(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(player, tileEntity);
 		
 	}

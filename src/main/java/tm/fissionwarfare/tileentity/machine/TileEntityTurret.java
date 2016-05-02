@@ -2,6 +2,7 @@ package tm.fissionwarfare.tileentity.machine;
 
 import com.sun.javafx.geom.Vec3d;
 
+import cofh.api.energy.EnergyStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -12,39 +13,46 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
+import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.gui.GuiTurret;
 import tm.fissionwarfare.inventory.ContainerTurret;
 import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
 import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
-public class TileEntityTurret extends TileEntityInventoryBase {
-	
-	public static final int RANGE = 10;
-	
-	public Angle2d angle = new Angle2d(0, 0);
-	
+public class TileEntityTurret extends TileEntityEnergyBase {
+		
+	public static final int RANGE = 10;	
+	public Angle2d angle = new Angle2d(0, 0);	
 	public EntityPlayer target;
 	
 	@Override
-	public int getSizeInventory() {
-		return 1;
+	public int getMaxEnergy() {
+		return 100000;
 	}
 
 	@Override
-	public Container getTileContainer(EntityPlayer player) {
-		return new ContainerTurret(player, this);
+	public int getMaxReceive() {
+		return 10000;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public GuiContainer getTileGuiContainer(EntityPlayer player) {
-		return new GuiTurret(player, this);
+	public int getMaxExtract() {
+		return 10000;
+	}
+	
+	@Override
+	public int getMaxProgress() {
+		return 100;
 	}
 	
 	@Override
 	public void updateEntity() {
+		
+		progress++;
+		isDoneAndReset();		
 		
 		if (target == null) {
 			
@@ -114,5 +122,26 @@ public class TileEntityTurret extends TileEntityInventoryBase {
 				}				
 			}
 		}
+	}
+	
+	@Override
+	public int getSizeInventory() {
+		return 1;
+	}
+
+	@Override
+	public Container getTileContainer(EntityPlayer player) {
+		return new ContainerTurret(player, this);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public GuiContainer getTileGuiContainer(EntityPlayer player) {
+		return new GuiTurret(player, this);
+	}
+
+	@Override
+	public boolean canConnectEnergy(ForgeDirection dir) {
+		return true;
 	}
 }

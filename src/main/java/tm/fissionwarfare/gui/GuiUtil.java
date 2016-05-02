@@ -16,7 +16,7 @@ public class GuiUtil {
 	private static int zLevel = 10;
 	private static final int TEXTURE_SIZE = 256;
 		
-	public static void drawStatusPanel(int energy, int progress, int x, int y, int mouseX, int mouseY) {
+	public static void drawStatusPanel(int energy, int maxEnergy, int progress, int maxProgress, int x, int y, int mouseX, int mouseY) {
 		
 		GuiRect rect = new GuiRect(x + 1, y + 15, 18, 46);
 		GuiRect rect2 = new GuiRect(rect.x + 5, rect.y + 5, rect.width - 10, rect.height - 10);
@@ -24,14 +24,14 @@ public class GuiUtil {
 		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/gui_textures.png"));
 		drawRect(x, y, 0, 0, 0, 19, 76);		
 		
-		drawScaledHeightRect(x + 4, y + 58, 19, 0, 0, 12, 40, progress, 100);
-		drawScaledHeightRect(x + 7, y + 55, 19, 40, 0, 6, 34, energy, 100);
+		drawScaledHeightRect(x + 4, y + 58, 19, 0, 0, 12, 40, progress, maxProgress);
+		drawScaledHeightRect(x + 7, y + 55, 19, 40, 0, 6, 34, energy, maxEnergy);
 		
 		if (rect.contains(mouseX, mouseY) && ! rect2.contains(mouseX, mouseY)) {
 			drawTextBox("Progress: " + progress + "%", mouseX, mouseY, rect);
 		}
 		
-		else drawTextBox(energy + " " + "/ 500 RF", mouseX, mouseY, rect2);			
+		else drawTextBox(energy + " / " + maxEnergy + " RF", mouseX, mouseY, rect2);			
 	}
 	
 	public static void drawTextBox(String text, int mouseX, int mouseY, GuiRect rect) {

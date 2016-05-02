@@ -8,7 +8,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import tm.fissionwarfare.gui.GuiHandler;
 import tm.fissionwarfare.init.InitBlocks;
@@ -18,6 +20,8 @@ import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTileEntities;
 import tm.fissionwarfare.init.recipe.InitRecipes;
 import tm.fissionwarfare.init.recipe.InitTERecipes;
+import tm.fissionwarfare.packet.ClientPacketHandler;
+import tm.fissionwarfare.packet.ServerPacketHandler;
 import tm.fissionwarfare.proxy.IProxy;
 import tm.fissionwarfare.world.WorldGenOre;
 
@@ -29,11 +33,17 @@ public class FissionWarfare {
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
+		
+	public static SimpleNetworkWrapper network;
 	
 	public static WorldGenOre worldGenOre;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("fusionwarfare");
+		network.registerMessage(ServerPacketHandler.Handler.class, ServerPacketHandler.class, 0, Side.SERVER);
+		network.registerMessage(ClientPacketHandler.Handler.class, ClientPacketHandler.class, 1, Side.CLIENT);
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
