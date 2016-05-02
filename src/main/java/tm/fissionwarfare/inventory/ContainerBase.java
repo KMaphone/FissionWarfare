@@ -6,7 +6,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
-public class ContainerBase extends Container {
+public abstract class ContainerBase extends Container {
 
 	public TileEntityInventoryBase tileEntity;
 	public EntityPlayer player;
@@ -17,6 +17,8 @@ public class ContainerBase extends Container {
 		addPlayerInv(8, 94);
 		addPlayerHotbar(8, 152);
 	}
+	
+	public abstract int getNewSlotAmount();
 	
 	public void addPlayerInv(int x, int y) {
 		
@@ -37,8 +39,9 @@ public class ContainerBase extends Container {
 		}
 	}
 
-	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
+		
+		System.out.println(slotId);
 		
 		ItemStack itemstack = null;
 		Slot slot = (Slot)this.inventorySlots.get(slotId);
@@ -47,24 +50,36 @@ public class ContainerBase extends Container {
 			
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-					
-			if (slotId < 27) {
 				
-				if (!this.mergeItemStack(itemstack1, 27, 35, false)) {
-					return null;
+			if (getNewSlotAmount() > 0) {
+				
+				if (slotId <= 35) {
+					
+					if (!mergeIfPossable(slot, itemstack1, 36, 36 + getNewSlotAmount())) {
+						
+						if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
+							return null;
+						}
+					}
+				}	
+				
+				else {
+					
+					if (!mergeIfPossable(slot, itemstack1, 0, 35)) {
+						
+						if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
+							return null;
+						}
+					}
 				}
-
-				slot.onSlotChange(itemstack1, itemstack);
 			}
 			
 			else {
 				
-				if (!this.mergeItemStack(itemstack1, 0, 26, false)) {
+				if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
 					return null;
-				}	
-				
-				slot.onSlotChange(itemstack1, itemstack);
-			}
+				}
+			}			
 			
 			if (itemstack1.stackSize == 0) {				
 				slot.putStack((ItemStack)null);
@@ -82,6 +97,40 @@ public class ContainerBase extends Container {
 		}
 		
 		return itemstack;
+	}
+	
+	public boolean mergeIfPossable(Slot slot, ItemStack is, int id, int maxId) {
+		
+		if (!this.mergeItemStack(is, id, maxId, false)) {
+			return false;
+		}
+
+		slot.onSlotChange(is, is);
+		return true;
+	}
+	
+	public boolean mergeInvHotbarIfPossable(Slot slot, ItemStack is, int id) {
+		
+		if (id < 27) {
+			
+			if (!mergeIfPossable(slot, is, 27, 35)) {
+				return false;
+			}
+
+			slot.onSlotChange(is, is);
+			
+		}
+		
+		else {
+			
+			if (!mergeIfPossable(slot, is, 0, 26)) {
+				return false;
+			}	
+			
+			slot.onSlotChange(is, is);
+		}
+		
+		return true;
 	}
 
 	@Override

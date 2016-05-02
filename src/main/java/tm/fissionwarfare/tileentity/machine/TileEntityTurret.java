@@ -126,7 +126,7 @@ public class TileEntityTurret extends TileEntityEnergyBase {
 	
 	@Override
 	public int getSizeInventory() {
-		return 1;
+		return 3;
 	}
 
 	@Override
