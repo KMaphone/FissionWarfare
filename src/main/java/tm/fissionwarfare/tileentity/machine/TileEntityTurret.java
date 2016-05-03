@@ -6,12 +6,14 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.gui.GuiTurret;
+import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerTurret;
 import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
@@ -26,6 +28,12 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public EntityPlayer target;
 	
 	public SecurityProfile profile = new SecurityProfile();
+	
+	public TileEntityTurret() {
+		setInputSlots(0);
+		setSideInputSlots(0);
+		setExtractSlots(0);
+	}
 	
 	@Override
 	public int getMaxEnergy() {
@@ -124,7 +132,12 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public int getSizeInventory() {
 		return 3;
 	}
-
+	
+	@Override
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+		return stack.getItem() == InitItems.quartz;
+	}
+	
 	@Override
 	public Container getTileContainer(EntityPlayer player) {
 		return new ContainerTurret(player, this);
@@ -138,7 +151,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 
 	@Override
 	public boolean canConnectEnergy(ForgeDirection dir) {
-		return true;
+		return dir != ForgeDirection.UP;
 	}
 
 	@Override

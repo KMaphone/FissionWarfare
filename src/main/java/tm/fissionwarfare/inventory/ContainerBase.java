@@ -21,7 +21,7 @@ public abstract class ContainerBase extends Container {
 	public abstract int getNewSlotAmount();
 	
 	public void addPlayerInv(int x, int y) {
-		
+				
 		for (int i = 0; i < 3; i++) {
 			
 			for (int j = 0; j < 9; j++) {		
@@ -51,6 +51,13 @@ public abstract class ContainerBase extends Container {
 				
 			if (getNewSlotAmount() > 0) {
 				
+				if (!slot.isItemValid(itemstack1)) {
+					
+					if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
+						return null;
+					}
+				}
+				
 				if (slotId <= 35) {
 					
 					if (!mergeIfPossable(slot, itemstack1, 36, 36 + getNewSlotAmount())) {
@@ -62,7 +69,7 @@ public abstract class ContainerBase extends Container {
 				}	
 				
 				else {
-					
+										
 					if (!mergeIfPossable(slot, itemstack1, 0, 35)) {
 						
 						if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {

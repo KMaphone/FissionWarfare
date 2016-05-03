@@ -1,5 +1,7 @@
 package tm.fissionwarfare.tileentity.base;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -9,6 +11,21 @@ import tm.fissionwarfare.tileentity.ITileEntityGuiHandler;
 public abstract class TileEntityInventoryBase  extends TileEntityBase implements ISidedInventory, ITileEntityGuiHandler {
 	
 	public ItemStack[] slots = new ItemStack[getSizeInventory()];
+	
+	private int[] inputSlots, sideInputSlots, extractSlots;
+	private ItemStack[] filters = new ItemStack[slots.length];
+	
+	public void setExtractSlots(int... extractSlots) {
+		this.extractSlots = extractSlots;
+	}
+	
+	public void setInputSlots(int... inputSlots) {
+		this.inputSlots = inputSlots;
+	}
+	
+	public void setSideInputSlots(int... sideInputSlots) {
+		this.sideInputSlots = sideInputSlots;
+	}
 	
 	@Override
 	public ItemStack getStackInSlot(int i) {
@@ -88,7 +105,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	public String getInventoryName() {
 		return null;
 	}
-
+	
 	@Override
 	public void openInventory() {}
 
@@ -97,11 +114,11 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return false;
+		return true;
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
+	public int[] getAccessibleSlotsFromSide(int dir) {
 		
 		int[] slots = new int[getSizeInventory()];
 		
@@ -113,12 +130,38 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack stack, int side) {
+	public boolean canInsertItem(int slot, ItemStack stack, int dir) {
+		
+		if (dir == 1) {
+					
+			for (int id : inputSlots) {
+			
+				if (id == slot) return true; 
+			}
+		}
+		
+		if (dir > 1) {
+			
+			for (int id : sideInputSlots) {
+				
+				if (id == slot) return true; 
+			}
+		}
+		
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack stack, int side) {
+	public boolean canExtractItem(int slot, ItemStack stack, int dir) {
+		
+		if (dir == 0) {
+		
+			for (int id : extractSlots) {
+			
+				if (id == slot) return true; 
+			}
+		}
+		
 		return false;
 	}	
 	
