@@ -58,6 +58,8 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
+		//System.out.println(profile.getTeamName());
+		
 		if (target == null) {
 			
 			angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
@@ -78,12 +80,13 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				
 				progress++;
 				
-				if (isDone() && !worldObj.isRemote) {
-					
+				if (isDone() && !worldObj.isRemote) {					
 					fire();
 				}
 				
-			} else {
+			} 
+			
+			else {
 				progress = 0;
 			}
 			
@@ -130,7 +133,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	@Override
 	public int getSizeInventory() {
-		return 3;
+		return 1;
 	}
 	
 	@Override
@@ -162,12 +165,22 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		profile.readFromNBT(nbt);
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
+	}
+	
+	@Override
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+		profile.readFromNBT(nbt);
+	}
+	
+	@Override
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
 		profile.writeToNBT(nbt);
 	}
 }
