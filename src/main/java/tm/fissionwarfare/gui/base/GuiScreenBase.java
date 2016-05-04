@@ -6,7 +6,7 @@ import tm.fissionwarfare.Reference;
 
 public abstract class GuiScreenBase extends GuiScreen {
 
-	public abstract String getGuiTextures();
+	public abstract String getGuiTextureName();
 
 	public abstract int getGuiSizeX();
 	public abstract int getGuiSizeY();	
@@ -30,7 +30,7 @@ public abstract class GuiScreenBase extends GuiScreen {
 		
 		drawDefaultBackground();
 		
-		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextures() + ".png"));
+		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextureName() + ".png"));
 		drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSizeX(), getGuiSizeY());	
 		
 		drawGuiBackground(mouseX, mouseY);		

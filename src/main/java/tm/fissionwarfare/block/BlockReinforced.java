@@ -16,14 +16,15 @@ import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemBlockMeta;
+import tm.fissionwarfare.item.ItemBlockReinforced;
 
 public abstract class BlockReinforced extends BlockMetaBase implements IReinforcedBlock {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
 	
-	public BlockReinforced(String imageName, Class<? extends ItemBlockMeta> itemBlock) {
-		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, itemBlock);
+	public BlockReinforced(String imageName) {
+		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, ItemBlockReinforced.class);
 	}
 	
 	public abstract int[] getRegisteredMetas();

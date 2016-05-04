@@ -12,6 +12,8 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
+import net.minecraftforge.common.MinecraftForge;
+import tm.fissionwarfare.event.SecurityEvent;
 import tm.fissionwarfare.gui.base.GuiHandler;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitEntities;
@@ -40,12 +42,14 @@ public class FissionWarfare {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		
+			
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("fusionwarfare");
 		network.registerMessage(ServerPacketHandler.Handler.class, ServerPacketHandler.class, 0, Side.SERVER);
 		network.registerMessage(ClientPacketHandler.Handler.class, ClientPacketHandler.class, 1, Side.CLIENT);
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		
+		MinecraftForge.EVENT_BUS.register(new SecurityEvent());
 		
 		InitItems.init();
 		InitBlocks.init();

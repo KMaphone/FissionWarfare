@@ -17,7 +17,7 @@ public class GuiTurret extends GuiEnergyContainerBase {
 	}
 
 	@Override
-	public String getGuiTexturesName() {
+	public String getGuiTextureName() {
 		return "turret";
 	}
 

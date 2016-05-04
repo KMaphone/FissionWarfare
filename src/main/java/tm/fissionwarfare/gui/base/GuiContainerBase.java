@@ -17,7 +17,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		this.ySize = getGuiSize();
 	}
 	
-	public abstract String getGuiTexturesName();
+	public abstract String getGuiTextureName();
 	public abstract String getGuiTitle();
 		
 	public abstract void drawGuiBackground(int mouseX, int mouseY);
@@ -40,7 +40,7 @@ public abstract class GuiContainerBase extends GuiContainer {
 		
 		updateScreen();
 		
-		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTexturesName() + ".png"));
+		mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MOD_ID + ":textures/gui/" + getGuiTextureName() + ".png"));
 		drawTexturedModalRect(getScreenX(), getScreenY(), 0, 0, getGuiSize(), getGuiSize());
 		
 		drawGuiBackground(mouseX, mouseY);	

@@ -3,9 +3,9 @@ package tm.fissionwarfare.item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockConcrete extends ItemBlockMeta {
+public class ItemBlockReinforced extends ItemBlockMeta {
 
-	public ItemBlockConcrete(Block block) {
+	public ItemBlockReinforced(Block block) {
 		super(block);
 	}
 	

@@ -26,14 +26,14 @@ import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTabs;
-import tm.fissionwarfare.item.ItemBlockConcrete;
+import tm.fissionwarfare.item.ItemBlockReinforced;
 import tm.fissionwarfare.item.ItemBlockMeta;
 import tm.fissionwarfare.proxy.ClientProxy;
 
 public class BlockConcrete extends BlockReinforced {
 	
 	public BlockConcrete() {
-		super("concrete", ItemBlockConcrete.class);
+		super("concrete");
 	}	
 			
 	@Override

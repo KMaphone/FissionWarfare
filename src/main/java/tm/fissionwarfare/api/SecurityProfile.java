@@ -16,9 +16,13 @@ public class SecurityProfile {
 		teamName = team.getRegisteredName();
 	}
 	
+	public boolean hasTeam() {
+		return teamName != null;
+	}
+	
 	public boolean isSameTeam(EntityPlayer player) {
 		
-		if (teamName == null) {
+		if (!hasTeam()) {
 			return true;
 		}
 		

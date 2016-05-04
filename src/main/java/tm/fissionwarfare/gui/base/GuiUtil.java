@@ -38,9 +38,21 @@ public class GuiUtil {
 		
 		if (rect.contains(mouseX, mouseY)) {
 			
+			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
 			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 1, 12, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
+			GL11.glColor4f(1, 1, 1, 1);
 		}
+	}
+	
+	public static void drawBottomInfoBox(String text, int x, int y, int color) {
+		
+		int width = mc.fontRenderer.getStringWidth(text);
+		
+		mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
+		drawCappedRect(x - (width / 2) - 3, y, 0, 230, 0, width + 3, 1, 256);
+		drawCappedRect(x - (width / 2) - 3, y + 1, 0, 230, 0, width + 3, 10, 256);
+		drawCenteredString(text, x, y + 1, color);
 	}
 	
 	public static void drawCenteredString(String text, int x, int y, int color) {
