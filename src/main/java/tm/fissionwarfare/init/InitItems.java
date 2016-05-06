@@ -8,6 +8,7 @@ import tm.fissionwarfare.item.ItemCement;
 public class InitItems {
 
 	public static Item quartz;
+	public static Item quartz_sand;
 	public static Item steel_ingot;
 	
 	public static Item cement;
@@ -20,6 +21,7 @@ public class InitItems {
 	public static void init() {
 		
 		quartz = new ItemBase("quartz");
+		quartz = new ItemBase("quartz_sand");
 		steel_ingot = new ItemBase("steel_ingot");
 		
 		cement = new ItemCement("cement");

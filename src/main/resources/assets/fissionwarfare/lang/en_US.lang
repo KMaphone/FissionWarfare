@@ -1,6 +1,7 @@
 #Items
 
 item.quartz.name=Quartz
+item.quartz_sand.name=Quartz Sand
 
 item.steel_ingot.name=Steel Ingot
 
@@ -8,6 +9,8 @@ item.cement_0.name=Cement
 item.cement_1.name=Wet Cement
 item.cementT2_0.name=CementT2
 item.cementT2_1.name=Wet CementT2
+item.cementT3_0.name=CementT3
+item.cementT3_1.name=Wet CementT3
 
 item.iron_frame.name=Iron Frame
 item.steel_frame.name=Steel Frame
