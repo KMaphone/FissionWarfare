@@ -16,9 +16,8 @@ import tm.fissionwarfare.explosion.type.ShrapnelExplosion;
 
 public class InitBlocks {
 
-	public static Block quartz_ore, sulfur_ore, uranium_ore;
+	public static Block quartz_ore, sulfur_ore, limestone_ore, uranium_ore;
 	
-	public static Block limestone;
 	
 	public static Block basicExplosive;
 	public static Block fireExplosive;
@@ -31,11 +30,11 @@ public class InitBlocks {
 	
 	public static void init() {
 		
+		limestone_ore = new BlockOreBase("limestone").setDroppedItem(new ItemStack(InitItems.limestone_chunk), 1, 2, 1, 2);
 		quartz_ore = new BlockOreBase("quartz").setDroppedItem(new ItemStack(InitItems.quartz), 1, 2, 1, 2);
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4);		
 		uranium_ore = new BlockOreBase("uranium").setLightLevel(0.3F);
 		
-		limestone = new BlockBase("limestone", Material.rock, 1, 3.0F, 3.0F, Block.soundTypeStone);
 		
 		basicExplosive = new BlockExplosive("basic", new BasicExplosion());
 		fireExplosive = new BlockExplosive("fire", new FireExplosion());

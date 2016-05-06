@@ -10,6 +10,7 @@ public class InitItems {
 	public static Item quartz;
 	public static Item quartz_sand;
 	public static Item steel_ingot;
+	public static Item limestone_chunk;
 	
 	public static Item cement;
 	public static Item cementT2;
@@ -21,8 +22,9 @@ public class InitItems {
 	public static void init() {
 		
 		quartz = new ItemBase("quartz");
-		quartz = new ItemBase("quartz_sand");
+		quartz_sand = new ItemBase("quartz_sand");
 		steel_ingot = new ItemBase("steel_ingot");
+		limestone_chunk = new ItemBase("limestone_chunk");
 		
 		cement = new ItemCement("cement");
 		cementT2 = new ItemCement("cementT2");

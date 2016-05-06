@@ -20,11 +20,11 @@ public class InitRecipes {
 
 	public static void init() {
 		
-		
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, TFItems.dustIron });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitBlocks.limestone, TEItems.slagRich });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitBlocks.limestone, TEItems.slag });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, InitItems.limestone_chunk });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slagRich });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slag });
 
 		addFrameRecipe(InitItems.iron_frame, "ingotIron");
 		addFrameRecipe(InitItems.steel_frame, "ingotSteel");

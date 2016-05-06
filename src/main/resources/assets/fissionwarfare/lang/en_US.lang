@@ -4,6 +4,7 @@ item.quartz.name=Quartz
 item.quartz_sand.name=Quartz Sand
 
 item.steel_ingot.name=Steel Ingot
+item.limestone_chunk.name=Limestone Chunk
 
 item.cement_0.name=Cement
 item.cement_1.name=Wet Cement
@@ -23,7 +24,7 @@ tile.fire_explosive.name=Pyrotechnics Explosive
 
 #Blocks
 
-tile.limestone.name=Limestone
+tile.limestone_ore.name=Limestone Ore
 tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
