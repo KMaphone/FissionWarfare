@@ -12,6 +12,7 @@ public class InitItems {
 	
 	public static Item cement;
 	public static Item cementT2;
+	public static Item cementT3;
 	public static Item iron_frame;
 	public static Item steel_frame;
 	public static Item invar_frame;
@@ -23,6 +24,7 @@ public class InitItems {
 		
 		cement = new ItemCement("cement");
 		cementT2 = new ItemCement("cementT2");
+		cementT3 = new ItemCement("cementT3");
 		
 		iron_frame = new ItemBase("iron_frame");
 		steel_frame = new ItemBase("steel_frame");

@@ -1,6 +1,8 @@
 package tm.fissionwarfare.init.recipe;
 
 import cofh.api.modhelpers.ThermalExpansionHelper;
+import cofh.thermalexpansion.core.TEAchievements;
+import cofh.thermalexpansion.item.TEItems;
 import cofh.thermalfoundation.item.TFItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -11,6 +13,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 
 public class InitRecipes {
@@ -20,6 +23,7 @@ public class InitRecipes {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, TFItems.dustIron });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitBlocks.limestone, TEItems.slagRich });
 
 		addFrameRecipe(InitItems.iron_frame, "ingotIron");
 		addFrameRecipe(InitItems.steel_frame, "ingotSteel");
