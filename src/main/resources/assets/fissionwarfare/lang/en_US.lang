@@ -42,6 +42,6 @@ tile.concrete_mix.name=Concrete Mix
 
 #-#-#-#-#-CONFIG-#-#-#-#-#
 
-catagory.general_options.name=General Options
-catagory.gui.name=GUI
-catagory.ores.name=Ores
+category.general_options.name=General Options
+category.gui.name=GUI
+category.gen.name=World Gen

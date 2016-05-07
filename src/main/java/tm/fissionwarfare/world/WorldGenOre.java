@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.init.InitBlocks;
 
 public class WorldGenOre implements IWorldGenerator {
@@ -26,9 +27,9 @@ public class WorldGenOre implements IWorldGenerator {
 
 	private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
 				
-		sulfurGen.generate(world, rand, chunkX, chunkZ);
-		quartzGen.generate(world, rand, chunkX, chunkZ);
-		limestoneGen.generate(world, rand, chunkX, chunkZ);
-		uraniumGen.generate(world, rand, chunkX, chunkZ);
+		if (FWConfig.enableSulfurGen) sulfurGen.generate(world, rand, chunkX, chunkZ);
+		if (FWConfig.enableQuartzGen) quartzGen.generate(world, rand, chunkX, chunkZ);
+		if (FWConfig.enableUraniumGen) uraniumGen.generate(world, rand, chunkX, chunkZ);
+		if (FWConfig.enableLimestoneGen) limestoneGen.generate(world, rand, chunkX, chunkZ);		
 	}
 }

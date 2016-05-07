@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IReinforcedBlock;
+import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTabs;
@@ -83,16 +84,19 @@ public class BlockConcrete extends BlockReinforced {
 	@Override
 	public void randomDisplayTick(World world, int x, int y, int z,	Random rand) {
 		
-		int meta = world.getBlockMetadata(x, y, z);
-		
-		if (!world.getBlock(x, y - 1, z).isBlockNormalCube()) {
+		if (FWConfig.enableConcretePaticles) {
 			
-			if (meta < 3) {
+			int meta = world.getBlockMetadata(x, y, z);
 			
-				for (int i = 0; i < (3 - meta); i++) {
-					world.spawnParticle("blockdust_" + Block.getIdFromBlock(this) + "_" + world.getBlockMetadata(x, y, z), x + rand.nextDouble(), y, z + rand.nextDouble(), 0, 0, 0);
-				}		
-			}
+			if (!world.getBlock(x, y - 1, z).isBlockNormalCube()) {
+			
+				if (meta < 3) {
+				
+					for (int i = 0; i < (3 - meta); i++) {
+						world.spawnParticle("blockdust_" + Block.getIdFromBlock(this) + "_" + world.getBlockMetadata(x, y, z), x + rand.nextDouble(), y, z + rand.nextDouble(), 0, 0, 0);
+					}		
+				}
+			}	
 		}	
 	}
 }

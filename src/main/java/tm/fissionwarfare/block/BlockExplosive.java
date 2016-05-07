@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.api.IExplosiveBlock;
+import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 
@@ -41,18 +42,6 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 			activate(world, x, y, z);
 		}
 	}
-	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float f1, float f2, float f3) {
-		
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.flint_and_steel) {
-        	
-            activate(world, x, y, z);           
-            player.getCurrentEquippedItem().damageItem(1, player);
-            return true;
-        }
-        
-        else return super.onBlockActivated(world, x, y, z, player, meta, f1, f2, f3);
-    }
 		
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -73,8 +62,11 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	}
 	
 	public void activate(World world, int x, int y, int z) {	
-		 world.setBlockToAir(x, y, z);
-		 world.spawnEntityInWorld(new EntityExplosive(world, x, y, z, this));
+		
+		if (FWConfig.enableIgnitingPlacedExplosives) {
+			world.setBlockToAir(x, y, z);
+			world.spawnEntityInWorld(new EntityExplosive(world, x, y, z, this));
+		}	 
 	}
 
 	@Override
