@@ -19,10 +19,10 @@ public class InitTERecipes {
 		
 		ThermalExpansionHelper.addCrucibleRecipe(8000, new ItemStack(InitItems.cementT3, 1, 1),	new FluidStack(InitFluids.concrete_mixT3, 1000));
 
-		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.concrete, 1, 4), new FluidStack(InitFluids.concrete_mix, 1000), false);
+		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.frame), new ItemStack(InitBlocks.concrete, 1, 4), new FluidStack(InitFluids.concrete_mix, 1000), false);
 
-		ThermalExpansionHelper.addTransposerFill(2000, new ItemStack(InitItems.steel_frame), new ItemStack(InitBlocks.concrete, 1, 9), new FluidStack(InitFluids.concrete_mixT2, 2000), false);
+		ThermalExpansionHelper.addTransposerFill(2000, new ItemStack(InitItems.frame_T2), new ItemStack(InitBlocks.concrete, 1, 9), new FluidStack(InitFluids.concrete_mixT2, 2000), false);
 
-		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.invar_frame), new ItemStack(InitBlocks.concrete, 1, 14), new FluidStack(InitFluids.concrete_mixT3, 4000), false);
+		ThermalExpansionHelper.addTransposerFill(4000, new ItemStack(InitItems.frame_T3), new ItemStack(InitBlocks.concrete, 1, 14), new FluidStack(InitFluids.concrete_mixT3, 4000), false);
 	}
 }

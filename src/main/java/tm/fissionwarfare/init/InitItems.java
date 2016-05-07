@@ -15,9 +15,9 @@ public class InitItems {
 	public static Item cement;
 	public static Item cementT2;
 	public static Item cementT3;
-	public static Item iron_frame;
-	public static Item steel_frame;
-	public static Item invar_frame;
+	public static Item frame;
+	public static Item frame_T2;
+	public static Item frame_T3;
 	
 	public static void init() {
 		
@@ -30,9 +30,9 @@ public class InitItems {
 		cementT2 = new ItemCement("cementT2");
 		cementT3 = new ItemCement("cementT3");
 		
-		iron_frame = new ItemBase("iron_frame");
-		steel_frame = new ItemBase("steel_frame");
-		invar_frame = new ItemBase("invar_frame");
+		frame = new ItemBase("frame");
+		frame_T2 = new ItemBase("frame_T2");
+		frame_T3 = new ItemBase("frame_T3");
 		
 		OreDictionary.registerOre("ingotSteel", steel_ingot);
 	}

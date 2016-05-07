@@ -26,9 +26,9 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slagRich });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slag });
 
-		addFrameRecipe(InitItems.iron_frame, "ingotIron");
-		addFrameRecipe(InitItems.steel_frame, "ingotSteel");
-		addFrameRecipe(InitItems.invar_frame, "ingotInvar");
+		addFrameRecipe(InitItems.frame, "ingotIron");
+		addFrameRecipe(InitItems.frame_T2, "ingotSteel");
+		addFrameRecipe(InitItems.frame_T3, "ingotInvar");
 	}
 
 	private static void addFrameRecipe(Item output, String oreIngot) {
