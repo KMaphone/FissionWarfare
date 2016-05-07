@@ -29,6 +29,10 @@ public abstract class TileEntityEnergyBase extends TileEntityInventoryBase imple
 		return isDone();
 	}
 	
+	public boolean canExtractEnergy(int energy) {
+		return storage.getEnergyStored() >= energy;
+	}
+	
 	@Override
 	public int getEnergyStored(ForgeDirection from) {
 		return storage.getEnergyStored();

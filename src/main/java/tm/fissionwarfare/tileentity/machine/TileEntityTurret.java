@@ -58,44 +58,46 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
-		//System.out.println(profile.getTeamName());
+		markDirty();
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		
-		if (target == null) {
+		if (!worldObj.isRemote) {
 			
-			angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
-			angle.yaw += 0.5F;
+			if (target != null && canExtractEnergy(1000)) {
 			
-			findTarget();
-			progress = 0;
-		} 
-		
-		if (target != null) {
+				Angle2d targetAngle = Angle2d.getAngleFromVectors(getVector(), new Vector3d(target));
 			
-			Angle2d targetAngle = Angle2d.getAngleFromVectors(getVector(), new Vector3d(target));
+				angle.pitch += MathUtil.approach(angle.pitch, targetAngle.pitch, 6);
+				angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);	
 			
-			angle.pitch += MathUtil.approach(angle.pitch, targetAngle.pitch, 6);
-			angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);	
-			
-			if (canHit(target)) {
+				if (canHit(target)) {
 				
-				progress++;
+					progress++;
 				
-				if (isDone() && !worldObj.isRemote) {					
-					fire();
-				}
-				
-			} 
+					if (isDone()) {
+						storage.extractEnergy(1000, false);
+						fire();						
+					}
+				} 
 			
-			else {
-				progress = 0;
+				else progress = 0;
+			
+				if (!isTargetInRange(target) || target.capabilities.isCreativeMode) {
+					target = null;
+				}			
 			}
 			
-			if (!isTargetInRange(target) || target.capabilities.isCreativeMode) {
-				target = null;
-			}			
-		}
+			else {
+				
+				angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
+				angle.yaw += 0.5F;
+				
+				findTarget();
+				progress = 0;
+			}
 		
-		isDoneAndReset();		
+			isDoneAndReset();
+		}	
 	}
 	
 	public boolean canHit(Entity entity) {
@@ -175,12 +177,20 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void readSyncNBT(NBTTagCompound nbt) {
 		super.readSyncNBT(nbt);
+		
 		profile.readFromNBT(nbt);
+		
+		angle.pitch = nbt.getDouble("pitch");
+		angle.yaw = nbt.getDouble("yaw");
 	}
 	
 	@Override
 	public void writeSyncNBT(NBTTagCompound nbt) {
 		super.writeSyncNBT(nbt);
+		
 		profile.writeToNBT(nbt);
+		
+		nbt.setDouble("pitch", angle.pitch);
+		nbt.setDouble("yaw", angle.yaw);
 	}
 }
