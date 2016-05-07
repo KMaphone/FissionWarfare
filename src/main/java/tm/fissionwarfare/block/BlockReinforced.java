@@ -38,8 +38,8 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 		
 		if (meta <= 4) {		
 			
-			int scale = MathUtil.scaleInt(meta, 4, 300);
-			return 300 - scale;
+			int scale = MathUtil.scaleInt(meta, 4, 100);
+			return 100 - scale;
 		}
 		
 		return 0;
