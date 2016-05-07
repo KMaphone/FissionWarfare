@@ -11,12 +11,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemBlockMeta;
 import tm.fissionwarfare.item.ItemBlockReinforced;
+import tm.fissionwarfare.math.MathUtil;
 
 public abstract class BlockReinforced extends BlockMetaBase implements IReinforcedBlock {
 
@@ -28,6 +31,32 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	}
 	
 	public abstract int[] getRegisteredMetas();
+	
+	@Override
+	public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
+		int meta = world.getBlockMetadata(x, y, z);
+		
+		if (meta <= 4) {		
+			
+			int scale = MathUtil.scaleInt(meta, 4, 300);
+			return 300 - scale;
+		}
+		
+		return 0;
+	}
+	
+	@Override
+	public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
+		int meta = world.getBlockMetadata(x, y, z);
+		
+		if (meta <= 4) {		
+			
+			int scale = MathUtil.scaleInt(meta, 4, 10);
+			return scale;
+		}
+		
+		return 0;
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
