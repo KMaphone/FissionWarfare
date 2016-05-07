@@ -20,6 +20,8 @@ public class InitRecipes {
 
 	public static void init() {
 		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { (new ItemStack(Items.coal, 1, 1)), TFItems.dustSulfur });
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { Items.coal, TFItems.dustSulfur });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, InitItems.limestone_chunk });
