@@ -38,8 +38,8 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 		
 		if (meta <= 4) {		
 			
-			int scale = MathUtil.scaleInt(meta, 4, 100);
-			return 100 - scale;
+			int scale = MathUtil.scaleInt(meta, 4, 50);
+			return 50 - scale;
 		}
 		
 		return 0;
@@ -49,13 +49,7 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		int meta = world.getBlockMetadata(x, y, z);
 		
-		if (meta <= 4) {		
-			
-			int scale = MathUtil.scaleInt(meta, 4, 10);
-			return scale;
-		}
-		
-		return 0;
+		return (meta < 4) ? 4 - meta : 0;
 	}
 	
 	@SideOnly(Side.CLIENT)
