@@ -17,7 +17,7 @@ import tm.fissionwarfare.sounds.FWSound;
 
 public class FireExplosion implements IExplosionType {
 
-	private static final int BASIC_SIZE = 20;
+	private static final int BASIC_SIZE = 10;
 	
 	private World world;
 	private Vector3d vector;
