@@ -1,4 +1,4 @@
-#Items
+#-#-#-#-#-ITEMS-#-#-#-#-#
 
 item.quartz.name=Quartz
 item.quartz_sand.name=Quartz Sand
@@ -17,12 +17,12 @@ item.frame.name=Frame
 item.frame_T2.name=FrameT2
 item.frame_T3.name=FrameT3
 
-#Explosives
+#-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 
 tile.basic_explosive.name=Basic Explosive
 tile.fire_explosive.name=Pyrotechnics Explosive
 
-#Blocks
+#-#-#-#-#-BLOCKS-#-#-#-#-#
 
 tile.limestone_ore.name=Limestone Ore
 tile.quartz_ore.name=Quartz Ore
@@ -35,7 +35,13 @@ tile.concrete_2.name=Reinforced Concrete
 
 tile.turret.name=Turret
 
-#Fluids
+#-#-#-#-#-FLUIDS-#-#-#-#-#
 
 fluid.concrete_mix=Concrete Mix
 tile.concrete_mix.name=Concrete Mix
+
+#-#-#-#-#-CONFIG-#-#-#-#-#
+
+catagory.general_options.name=General Options
+catagory.gui.name=GUI
+catagory.ores.name=Ores
