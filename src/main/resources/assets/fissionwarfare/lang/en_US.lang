@@ -17,6 +17,10 @@ item.frame.name=Frame
 item.frame_T2.name=FrameT2
 item.frame_T3.name=FrameT3
 
+item.circuit.name=Circuit
+item.circuit_T2.name=CircuitT2
+item.circuit_T3.name=CircuitT3
+
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 
 tile.basic_explosive.name=Basic Explosive
