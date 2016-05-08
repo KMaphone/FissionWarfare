@@ -9,10 +9,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 
@@ -20,8 +22,8 @@ public class InitRecipes {
 
 	public static void init() {
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { (new ItemStack(Items.coal, 1, 1)), TFItems.dustSulfur });
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { Items.coal, TFItems.dustSulfur });
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { new ItemStack(Items.coal, 1), TFItems.dustSulfur, TFItems.dustSulfur, TFItems.dustSulfur  });
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder, 2), new Object[] { Items.coal, TFItems.dustSulfur, TFItems.dustSulfur, TFItems.dustSulfur });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, InitItems.limestone_chunk });
