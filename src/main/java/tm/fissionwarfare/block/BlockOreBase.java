@@ -12,12 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tm.fissionwarfare.init.InitItems;
 
 public class BlockOreBase extends BlockBase {
 	
 	Random rand = new Random();
 	
 	private ItemStack droppedItem;
+	private ItemStack rareDrop;
 	
 	private int dropAmountMin, dropAmountMax;
 	private int expAmountMin, expAmountMax;
@@ -36,6 +38,11 @@ public class BlockOreBase extends BlockBase {
 		this.expAmountMin = dropAmountMin;
 		this.expAmountMax = expAmountMax;
 		GameRegistry.addSmelting(this, droppedItem, dropAmountMin);
+		return this;
+	}
+	
+	public BlockOreBase setRareDrop(ItemStack item) {
+		rareDrop = item;		
 		return this;
 	}
 
@@ -65,11 +72,25 @@ public class BlockOreBase extends BlockBase {
 	public int getExpDrop(IBlockAccess blockAccess, int metadata, int fortune) {
 		return MathHelper.getRandomIntegerInRange(rand, expAmountMin, expAmountMax);
 	}
+		
+	public void addPossibleDrop(ArrayList<ItemStack> list, int fortune) {
+		
+		if (fortune > 3) fortune = 3; 		
+		ItemStack stack = rand.nextInt(10 - (fortune * 3)) == 0 ? new ItemStack(rareDrop.getItem(), 1, rareDrop.getItemDamage()) : null;
+		
+		if (stack != null) {	
+			list.add(stack);
+		}
+	}
 	
 	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {		
+		
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		
+		addPossibleDrop(list, fortune);
 		list.add(new ItemStack(droppedItem.getItem(), quantityDroppedWithBonus(fortune, rand), droppedItem.getItemDamage()));
+		
 		return list;
 	}
 }
