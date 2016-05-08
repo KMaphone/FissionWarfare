@@ -2,27 +2,26 @@ package tm.fissionwarfare.init;
 
 import cofh.thermalfoundation.item.TFItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
-import tm.fissionwarfare.block.BlockBase;
 import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockReinforcedGlass;
 import tm.fissionwarfare.block.BlockTest;
 import tm.fissionwarfare.block.BlockTurret;
+import tm.fissionwarfare.explosion.type.AtomicExplosion;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
-import tm.fissionwarfare.explosion.type.FireExplosion;
-import tm.fissionwarfare.explosion.type.ShrapnelExplosion;
+import tm.fissionwarfare.explosion.type.ChemicalExplosion;
+import tm.fissionwarfare.explosion.type.EMPExplosion;
 
 public class InitBlocks {
 
 	public static Block quartz_ore, sulfur_ore, limestone_ore, uranium_ore;
 	
-	
 	public static Block basicExplosive;
-	public static Block fireExplosive;
-	public static Block shrapnelExplosive;
+	public static Block empExplosive;
+	public static Block chemicalExplosive;
+	public static Block atomicExplosive;
 	
 	public static Block concrete;
 	public static Block reinforced_glass;
@@ -37,10 +36,10 @@ public class InitBlocks {
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4).setRareDrop(TFItems.dustNiter);		
 		uranium_ore = new BlockOreBase("uranium").setLightLevel(0.3F);
 		
-		
 		basicExplosive = new BlockExplosive("basic", new BasicExplosion());
-		fireExplosive = new BlockExplosive("fire", new FireExplosion());
-		shrapnelExplosive = new BlockExplosive("shrapnel", new ShrapnelExplosion());
+		empExplosive = new BlockExplosive("emp", new EMPExplosion());
+		chemicalExplosive = new BlockExplosive("chemical", new ChemicalExplosion());
+		atomicExplosive = new BlockExplosive("atomic", new AtomicExplosion());
 		
 		concrete = new BlockConcrete();		
 		reinforced_glass = new BlockReinforcedGlass();

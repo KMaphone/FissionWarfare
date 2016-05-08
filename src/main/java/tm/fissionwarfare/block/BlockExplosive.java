@@ -17,14 +17,11 @@ import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
-
-	@SideOnly(Side.CLIENT)
-	private IIcon top_image;
 	
 	private IExplosionType explosion;
 
 	public BlockExplosive(String imagePath, IExplosionType explosion) {
-		super(imagePath + "_explosive", Material.tnt, 0, 0, 0, Block.soundTypeStone);
+		super(imagePath, Material.tnt, 0, 0, 0, Block.soundTypeStone);
 		this.explosion = explosion;
 	}
 
@@ -42,23 +39,11 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 			activate(world, x, y, z);
 		}
 	}
-		
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		
-		if (side == 0 || side == 1) {			
-			return top_image;
-		}
-		
-		return blockIcon;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconReg) {
-		blockIcon = iconReg.registerIcon(getTextureName() + "_side");
-		top_image = iconReg.registerIcon(getTextureName() + "_top");
+		blockIcon = iconReg.registerIcon(getTextureName());
 	}
 	
 	public void activate(World world, int x, int y, int z) {	
