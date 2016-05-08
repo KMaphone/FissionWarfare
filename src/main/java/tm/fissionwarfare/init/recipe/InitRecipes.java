@@ -1,6 +1,7 @@
 package tm.fissionwarfare.init.recipe;
 
 import cofh.api.modhelpers.ThermalExpansionHelper;
+import cofh.thermalexpansion.block.TEBlocks;
 import cofh.thermalexpansion.core.TEAchievements;
 import cofh.thermalexpansion.item.TEItems;
 import cofh.thermalfoundation.item.TFItems;
@@ -29,6 +30,24 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT2), new Object[] { Items.clay_ball, InitItems.limestone_chunk });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slagRich });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cementT3), new Object[] { InitItems.quartz_sand, TEItems.slag });
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.basicExplosive, 1), new Object[] {
+				"FEF", "RRR", "FEF", 'F', InitItems.frame, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
+			}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1), new Object[] {
+				"GGG", "ESE", "GGG", 'G', Blocks.glass, 'E', TFItems.ingotElectrum, 'S', TEItems.powerCoilSilver
+			}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit_T2, 1), new Object[] {
+				"HHH", "SCS", "HHH", 'H', TEBlocks.blockGlass, 'S', TFItems.ingotSignalum, 'C', InitItems.circuit
+			}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit_T3, 1), new Object[] {
+				"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass, 1, 1), 'D', Items.diamond, 'C', InitItems.circuit_T2
+			}));
+
+
 
 		addFrameRecipe(InitItems.frame, "ingotIron");
 		addFrameRecipe(InitItems.frame_T2, "ingotSteel");
