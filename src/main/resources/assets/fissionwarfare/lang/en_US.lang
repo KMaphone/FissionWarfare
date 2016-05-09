@@ -6,20 +6,11 @@ item.quartz_sand.name=Quartz Sand
 item.steel_ingot.name=Steel Ingot
 item.limestone_chunk.name=Limestone Chunk
 
-item.cement_0.name=Cement
-item.cement_1.name=Wet Cement
-item.cementT2_0.name=CementT2
-item.cementT2_1.name=Wet CementT2
-item.cementT3_0.name=CementT3
-item.cementT3_1.name=Wet CementT3
+item.cement.name=Cement
+item.wet_cement.name=Wet Cement
 
 item.frame.name=Frame
-item.frame_T2.name=FrameT2
-item.frame_T3.name=FrameT3
-
 item.circuit.name=Circuit
-item.circuit_T2.name=CircuitT2
-item.circuit_T3.name=CircuitT3
 
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 

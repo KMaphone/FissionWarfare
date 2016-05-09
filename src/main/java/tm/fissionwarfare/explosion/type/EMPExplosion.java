@@ -1,14 +1,8 @@
 package tm.fissionwarfare.explosion.type;
 
 import net.minecraft.world.World;
-import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
-import tm.fissionwarfare.explosion.ConcreteUtil;
-import tm.fissionwarfare.explosion.ExplosionUtil;
-import tm.fissionwarfare.explosion.PlayerExplosionUtil;
-import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.Vector3d;
-import tm.fissionwarfare.sounds.FWSound;
 
 public class EMPExplosion implements IExplosionType {
 

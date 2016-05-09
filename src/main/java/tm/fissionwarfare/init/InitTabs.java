@@ -1,7 +1,6 @@
 package tm.fissionwarfare.init;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.Reference;

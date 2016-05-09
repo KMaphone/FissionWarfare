@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.ShapeUtil;
-import tm.fissionwarfare.sounds.FWSound;
 
 public class ConcreteUtil {
 

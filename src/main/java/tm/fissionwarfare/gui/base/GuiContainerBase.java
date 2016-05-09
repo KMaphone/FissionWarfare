@@ -1,7 +1,5 @@
 package tm.fissionwarfare.gui.base;
 
-import java.util.List;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

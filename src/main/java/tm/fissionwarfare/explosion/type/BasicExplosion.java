@@ -1,7 +1,6 @@
 package tm.fissionwarfare.explosion.type;
 
 import net.minecraft.world.World;
-import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.explosion.ConcreteUtil;
 import tm.fissionwarfare.explosion.ExplosionUtil;

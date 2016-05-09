@@ -1,7 +1,6 @@
 package tm.fissionwarfare.math;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 
 public class Vector3d {

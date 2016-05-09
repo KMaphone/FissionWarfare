@@ -2,12 +2,9 @@ package tm.fissionwarfare.gui.base;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
-import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
 public abstract class GuiEnergyContainerBase extends GuiContainerBase {
 

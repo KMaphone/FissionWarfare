@@ -2,12 +2,10 @@ package tm.fissionwarfare.explosion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.Vector3d;
 
 public class PlayerExplosionUtil {

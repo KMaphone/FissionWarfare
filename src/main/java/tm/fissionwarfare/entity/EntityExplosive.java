@@ -1,6 +1,5 @@
 package tm.fissionwarfare.entity;
 
-import cofh.lib.audio.ISoundSource;
 import cofh.lib.audio.SoundBase;
 import cofh.lib.util.helpers.SoundHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -9,14 +8,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
-import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.BombSound;

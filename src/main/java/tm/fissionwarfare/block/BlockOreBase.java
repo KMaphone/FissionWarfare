@@ -1,18 +1,15 @@
 package tm.fissionwarfare.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import tm.fissionwarfare.init.InitItems;
 
 public class BlockOreBase extends BlockBase {
 	

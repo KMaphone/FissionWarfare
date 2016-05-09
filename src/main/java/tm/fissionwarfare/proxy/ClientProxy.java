@@ -5,7 +5,9 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.event.TierTooltipEvent;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.key.KeyInputHandler;
 import tm.fissionwarfare.render.RenderExplosive;
@@ -18,6 +20,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenders() {
 		
+		MinecraftForge.EVENT_BUS.register(new TierTooltipEvent());
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityExplosive.class, new RenderExplosive());

@@ -1,14 +1,7 @@
 package tm.fissionwarfare.math;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import codechicken.lib.math.MathHelper;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class RaytraceUtil {

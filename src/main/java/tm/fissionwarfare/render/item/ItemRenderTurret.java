@@ -2,12 +2,6 @@ package tm.fissionwarfare.render.item;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
-
 public class ItemRenderTurret extends ItemRenderBase {
 	
 	public ItemRenderTurret() {

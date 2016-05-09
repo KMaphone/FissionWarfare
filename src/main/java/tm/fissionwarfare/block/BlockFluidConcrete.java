@@ -5,31 +5,27 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.init.InitTabs;
+import tm.fissionwarfare.fluid.FluidConcrete;
 
-public class BlockFluidBase extends BlockFluidClassic {
+public class BlockFluidConcrete extends BlockFluidClassic {
 
 	@SideOnly(Side.CLIENT)
 	protected IIcon stillIcon, flowingIcon;
 
-	private String name;
-	private Fluid fluid;
+	private FluidConcrete fluid;
 	
-	public BlockFluidBase(Fluid fluid, Material material) {
-		super(fluid, material);
-		this.name = fluid.getName();		
-		setBlockName(name);			
+	public BlockFluidConcrete(FluidConcrete fluid) {
+		super(fluid, Material.water);
+		setBlockName(fluidName);
 		this.fluid = fluid;
-		GameRegistry.registerBlock(this, name);
+		GameRegistry.registerBlock(this, fluidName);
 	}
-
+	
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		return (side == 0 || side == 1) ? stillIcon : flowingIcon;
@@ -49,8 +45,8 @@ public class BlockFluidBase extends BlockFluidClassic {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
-		stillIcon = register.registerIcon(Reference.MOD_ID + ":" + name + "_still");
-		flowingIcon = register.registerIcon(Reference.MOD_ID + ":" + name + "_flowing");
+		stillIcon = register.registerIcon(Reference.MOD_ID + ":" + fluidName + "_still");
+		flowingIcon = register.registerIcon(Reference.MOD_ID + ":" + fluidName + "_flowing");
 		fluid.setIcons(stillIcon, flowingIcon);
 	}
 }

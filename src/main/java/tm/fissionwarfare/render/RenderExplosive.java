@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tm.fissionwarfare.entity.EntityExplosive;
-import tm.fissionwarfare.init.InitBlocks;
 
 public class RenderExplosive extends Render {
 

@@ -3,7 +3,6 @@ package tm.fissionwarfare.sounds;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.MovingSound;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.entity.EntityExplosive;

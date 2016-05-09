@@ -5,12 +5,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
 public abstract class ContainerEnergyBase extends ContainerBase {
 	
