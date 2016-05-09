@@ -13,6 +13,7 @@ import tm.fissionwarfare.explosion.type.AtomicExplosion;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 import tm.fissionwarfare.explosion.type.ChemicalExplosion;
 import tm.fissionwarfare.explosion.type.EMPExplosion;
+import tm.fissionwarfare.explosion.type.PyroExplosion;
 
 public class InitBlocks {
 
@@ -22,6 +23,7 @@ public class InitBlocks {
 	public static Block empExplosive;
 	public static Block chemicalExplosive;
 	public static Block atomicExplosive;
+	public static Block pyroExplosive;
 	
 	public static Block concrete;
 	public static Block reinforced_glass;
@@ -40,6 +42,7 @@ public class InitBlocks {
 		empExplosive = new BlockExplosive("emp", new EMPExplosion());
 		chemicalExplosive = new BlockExplosive("chemical", new ChemicalExplosion());
 		atomicExplosive = new BlockExplosive("atomic", new AtomicExplosion());
+		pyroExplosive = new BlockExplosive("pyro", new PyroExplosion());
 		
 		concrete = new BlockConcrete();		
 		reinforced_glass = new BlockReinforcedGlass();
