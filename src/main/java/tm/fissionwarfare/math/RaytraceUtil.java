@@ -11,14 +11,14 @@ import net.minecraft.world.World;
 
 public class RaytraceUtil {
 	
-	public static boolean traceForBlocks(Angle2d angle, Vector3d vector, Entity target, World world, Block src) {
+	public static boolean traceForBlocks(Angle2d angle, Vector3d vector, Entity target, World world, Block src, double maxRange) {
 		
 		Vector3d velcity = Vector3d.getVectorFromAngle(angle);
 		Vector3d raytrace = vector.copy();
 		
-		Vector3d targetVector = new Vector3d(target);
+		Vector3d targetVector = new Vector3d(target.posX, target.posY + 1.5F, target.posZ);
 		
-		while (vector.distance(raytrace) <= vector.distance(targetVector)) {
+		while (vector.distance(raytrace) <= maxRange) {
 			
 			raytrace.add(velcity);
 			

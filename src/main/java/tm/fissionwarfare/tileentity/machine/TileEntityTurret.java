@@ -38,8 +38,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	public SecurityProfile profile = new SecurityProfile();
 	
-	private boolean reloaded = false;
-	
 	public TileEntityTurret() {
 		angle.pitch = 90;
 		setInputSlots(0);
@@ -73,12 +71,12 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		markDirty();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		
-		if (!worldObj.isRemote) {
+		angle.pitch = MathHelper.clamp_double(angle.pitch, 30, 150);
+		
+		if (!worldObj.isRemote) {			
 			
-			angle.pitch = MathHelper.clamp_double(angle.pitch, 30, 150);
-			
-			if (!reloaded) {
-				reload();
+			if (!isDone()) {
+				progress++;
 			}
 			
 			if (target == null) {
@@ -89,17 +87,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				hasTarget();
 			}
 		}	
-	}
-	
-	private void reload() {
-		
-		progress++;
-		
-		if (isDone()) {
-			
-			reloaded = true;
-			progress = 0;
-		}
 	}
 	
 	private void hasTarget() {
@@ -113,10 +100,10 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		
 			storage.extractEnergy(ENERGY_COST, false);
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
-			reloaded = false;
+			progress = 0;
 		}
 		
-		if (!isTargetInRange(target) || target.capabilities.isCreativeMode) {
+		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead) {
 			target = null;
 		}
 	}
@@ -132,7 +119,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				
 				EntityPlayer player = (EntityPlayer)o;
 				
-				if (isTargetInRange(player) && !player.capabilities.isCreativeMode/* && !profile.isSameTeam(player)*/) {
+				if (isTargetInRange(player) && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
 					
 					target = player;
 					return;
@@ -144,9 +131,9 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	public boolean canFire() {
 		
-		boolean canHitTarget = !RaytraceUtil.traceForBlocks(angle, getVector(), target, worldObj, InitBlocks.turret);
+		boolean canHitTarget = !RaytraceUtil.traceForBlocks(angle, getVector(), target, worldObj, InitBlocks.turret, RANGE);
 		
-		return canHitTarget && canExtractEnergy(ENERGY_COST) && reloaded;
+		return canHitTarget && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
 	}
 	
 	private Vector3d getTargetVector() {
