@@ -45,8 +45,8 @@ public class BlockFluidConcrete extends BlockFluidClassic {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
-		stillIcon = register.registerIcon(Reference.MOD_ID + ":" + fluidName + "_still");
-		flowingIcon = register.registerIcon(Reference.MOD_ID + ":" + fluidName + "_flowing");
+		stillIcon = register.registerIcon(Reference.MOD_ID + ":fluids/" + fluidName + "_still");
+		flowingIcon = register.registerIcon(Reference.MOD_ID + ":fluids/" + fluidName + "_flowing");
 		fluid.setIcons(stillIcon, flowingIcon);
 	}
 }

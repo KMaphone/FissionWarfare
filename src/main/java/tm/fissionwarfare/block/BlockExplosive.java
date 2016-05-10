@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.world.World;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.config.FWConfig;
@@ -38,7 +39,7 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconReg) {
-		blockIcon = iconReg.registerIcon(getTextureName());
+		blockIcon = iconReg.registerIcon(Reference.MOD_ID + ":explosives/" + imageName);
 	}
 	
 	public void activate(World world, int x, int y, int z) {	
