@@ -41,6 +41,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	private boolean reloaded = false;
 	
 	public TileEntityTurret() {
+		angle.pitch = 90;
 		setInputSlots(0);
 		setSideInputSlots(0);
 		setExtractSlots(0);
@@ -63,7 +64,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	@Override
 	public int getMaxProgress() {
-		return 20 * 8;
+		return 20 * 5;
 	}
 	
 	@Override
@@ -121,6 +122,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	}
 	
 	private void noTarget() {
+		
 		angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
 		angle.yaw += 0.5F;
 				

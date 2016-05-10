@@ -26,7 +26,7 @@ public class GuiUtil {
 		drawScaledHeightRect(x + 7, y + 55, 19, 40, 0, 6, 34, energy, maxEnergy);
 		
 		if (rect.contains(mouseX, mouseY) && ! rect2.contains(mouseX, mouseY)) {
-			drawTextBox("Progress: " + progress + "%", mouseX, mouseY, rect);
+			drawTextBox("Progress: " + MathUtil.scaleInt(progress, maxProgress, 100) + "%", mouseX, mouseY, rect);
 		}
 		
 		else drawTextBox(energy + " / " + maxEnergy + " RF", mouseX, mouseY, rect2);			
