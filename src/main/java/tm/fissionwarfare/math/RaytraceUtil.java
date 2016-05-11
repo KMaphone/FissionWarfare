@@ -11,51 +11,41 @@ import net.minecraft.world.World;
 
 public class RaytraceUtil {
 	
-	public static boolean traceForEntity(Angle2d angle, Vector3d vector, World world, Entity entity, double distance) {
+	public enum HitType {
+		BLOCK, ENTITY, NULL;
+	}
+	
+	public static HitType raytrace(Angle2d angle, Vector3d vector, World world, Block src, Entity target, double distance) {
 		
 		Vector3d velcity = Vector3d.getVectorFromAngle(angle);
-		
 		Vector3d raytrace = vector.copy();
 		
 		while (vector.distance(raytrace) <= distance) {
 			
-			raytrace.add(velcity);
+			raytrace = raytrace.add(velcity);
 			
-			if (entity.boundingBox.isVecInside(Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z))) {
-				return true;
+			if (checkBlock(raytrace, world, src)) {
+				return HitType.BLOCK;
+			}
+			
+			if (target.boundingBox.isVecInside(Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z))) {
+				return HitType.ENTITY;
 			}
 		}
 		
-		return false;
+		return HitType.NULL;
 	}
 	
-	public static boolean traceForBlock(Vector3d vector, Vector3d target, World world, Block src) {
-		
-		Vector3d velcity = Vector3d.getVectorFromAngle(Angle2d.getAngleFromVectors(vector, target));
-		Vector3d raytrace = vector.copy();
-		
-		while (vector.distance(raytrace) <= vector.distance(target)) {
-			
-			raytrace.add(velcity);
-			
-			if (doesHitBlock(raytrace, world, src)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	private static boolean doesHitBlock(Vector3d vector, World world, Block src) {
+	public static boolean checkBlock(Vector3d vector, World world, Block src) {
 		
 		int x = MathHelper.floor_double(vector.x);
 		int y = MathHelper.floor_double(vector.y);
 		int z = MathHelper.floor_double(vector.z);
 		
+		int metadata = world.getBlockMetadata(x, y, z);
 		Block block = world.getBlock(x, y, z);
 		
 		if (block != Blocks.air && block != src) {
-			
 			return true;
 		}
 		

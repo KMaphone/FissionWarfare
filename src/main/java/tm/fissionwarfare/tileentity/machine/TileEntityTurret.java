@@ -25,6 +25,7 @@ import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
 import tm.fissionwarfare.math.RaytraceUtil;
 import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.math.RaytraceUtil.HitType;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity {
@@ -39,7 +40,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public SecurityProfile profile = new SecurityProfile();
 	
 	public TileEntityTurret() {
-		angle.pitch = 90;
 		setInputSlots(0);
 		setSideInputSlots(0);
 		setExtractSlots(0);
@@ -68,10 +68,11 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
-		markDirty();
-		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		
 		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);
+		
+		updateBlock();
+		
+		
 		
 		if (!worldObj.isRemote) {			
 			
@@ -87,6 +88,11 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				hasTarget();
 			}
 		}	
+	}
+	
+	private void updateBlock() {
+		markDirty();
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 	private void hasTarget() {
@@ -110,7 +116,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	private void noTarget() {
 		
-		angle.pitch += MathUtil.approach(angle.pitch, 90, 6);
+		angle.pitch += MathUtil.approach(angle.pitch, 0, 6);
 		angle.yaw += 0.5F;
 				
 		for (Object o : worldObj.loadedEntityList) {
@@ -119,7 +125,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				
 				EntityPlayer player = (EntityPlayer)o;
 				
-				if (isTargetInRange(player) && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
+				if (isTargetInRange(player) && !player.capabilities.isCreativeMode /* && !profile.isSameTeam(player)*/) {
 					
 					target = player;
 					return;
@@ -128,13 +134,11 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		}
 	}
 	
-	
 	public boolean canFire() {
 		
-		boolean hitPlayer = RaytraceUtil.traceForEntity(angle, getVector(), worldObj, target, RANGE);
-		boolean hitBlock = !RaytraceUtil.traceForBlock(getVector(), getTargetVector(), worldObj, InitBlocks.turret);
+		HitType hitType = RaytraceUtil.raytrace(angle, getVector(), worldObj, InitBlocks.turret, target, RANGE);
 		
-		return hitPlayer && hitBlock && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
+		return hitType == HitType.ENTITY && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
 	}
 	
 	private Vector3d getTargetVector() {

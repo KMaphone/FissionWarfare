@@ -13,38 +13,36 @@ public class Vector3d {
 		this.z = z;
 	}
 	
-	public Vector3d(Entity e) {
-		this(e.posX, e.posY, e.posZ);
+	public Vector3d add(double nx, double ny, double nz) {
+		return new Vector3d(x + nx, y + ny, z + nz);
 	}
 	
-	public void roundFloor() {
-		x = Math.floor(x);
-		y = Math.floor(y);
-		z = Math.floor(z);
+	public Vector3d add(Vector3d vec) {
+		return add(vec.x, vec.y, vec.z);
 	}
 	
-	public void add(Vector3d vec) {
-		x += vec.x;
-		y += vec.y;
-		z += vec.z;
+	public Vector3d sub(double nx, double ny, double nz) {
+		return new Vector3d(x - nx, y - ny, z - nz);
 	}
 	
-	public void sub(Vector3d vec) {
-		x -= vec.x;
-		y -= vec.y;
-		z -= vec.z;
+	public Vector3d sub(Vector3d vec) {
+		return sub(vec.x, vec.y, vec.z);
 	}
 	
-	public void div(Vector3d vec) {
-		x /= vec.x;
-		y /= vec.y;
-		z /= vec.z;
+	public Vector3d mul(double nx, double ny, double nz) {
+		return new Vector3d(x * nx, y * ny, z * nz);
 	}
 	
-	public void mul(Vector3d vec) {
-		x *= vec.x;
-		y *= vec.y;
-		z *= vec.z;
+	public Vector3d mul(Vector3d vec) {
+		return mul(vec.x, vec.y, vec.z);
+	}
+	
+	public Vector3d div(double nx, double ny, double nz) {
+		return new Vector3d(x / nx, y / ny, z / nz);
+	}
+	
+	public Vector3d div(Vector3d vec) {
+		return div(vec.x, vec.y, vec.z);
 	}
 	
 	public double distance(Vector3d vec) {
@@ -53,7 +51,7 @@ public class Vector3d {
 		double dy = y - vec.y;
 		double dz = z - vec.z;
 		
-		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+		return Math.sqrt((dx * dx) + (dy * dy) + (dz * dz));
 	}
 	
 	public static Vector3d getVectorFromAngle(Angle2d angle) {
@@ -70,10 +68,6 @@ public class Vector3d {
 	
 	public Vector3d copy() {
 		return new Vector3d(x, y, z);
-	}
-	
-	public Vec3 convert() {
-		return Vec3.createVectorHelper(x, y, z);
 	}
 	
 	@Override
