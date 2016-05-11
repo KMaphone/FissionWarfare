@@ -39,6 +39,10 @@ public class InitRecipes {
 			"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass, 1, 1), 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
 		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.pyroExplosive, 1), new Object[] {
+			"IRI", "BPB", "IRI", 'P', TFItems.bucketPyrotheum, 'R', TFItems.bucketRedstone, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'I', new ItemStack(InitItems.frame, 1, 2)
+		}));
+		
 		addFrameRecipe(new ItemStack(InitItems.frame, 0, 16), "ingotIron");
 		addFrameRecipe(new ItemStack(InitItems.frame, 1, 16), "ingotSteel");
 		addFrameRecipe(new ItemStack(InitItems.frame, 2, 16), "ingotInvar");

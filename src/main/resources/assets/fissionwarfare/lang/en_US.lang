@@ -9,6 +9,10 @@ item.limestone_chunk.name=Limestone Chunk
 item.cement.name=Cement
 item.wet_cement.name=Wet Cement
 
+item.poison_capsule.name=Poison Capsule
+item.fiery_capsule.name=Fiery Capsule
+item.shrapnel_capsule.name=Shrapnel Capsule
+
 item.frame.name=Frame
 item.circuit.name=Circuit
 
