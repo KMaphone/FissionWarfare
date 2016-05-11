@@ -11,27 +11,39 @@ import net.minecraft.world.World;
 
 public class RaytraceUtil {
 	
-	public static boolean traceForBlocks(Angle2d angle, Vector3d vector, Entity target, World world, Block src, double maxRange) {
+	public static boolean traceForEntity(Angle2d angle, Vector3d vector, World world, Entity entity, double distance) {
 		
 		Vector3d velcity = Vector3d.getVectorFromAngle(angle);
+		
 		Vector3d raytrace = vector.copy();
 		
-		Vector3d targetVector = new Vector3d(target.posX, target.posY + 1.5F, target.posZ);
+		while (vector.distance(raytrace) <= distance) {
+			
+			raytrace.add(velcity);
+			
+			if (entity.boundingBox.isVecInside(Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z))) {
+				return true;
+			}
+		}
 		
-		while (vector.distance(raytrace) <= maxRange) {
+		return false;
+	}
+	
+	public static boolean traceForBlock(Vector3d vector, Vector3d target, World world, Block src) {
+		
+		Vector3d velcity = Vector3d.getVectorFromAngle(Angle2d.getAngleFromVectors(vector, target));
+		Vector3d raytrace = vector.copy();
+		
+		while (vector.distance(raytrace) <= vector.distance(target)) {
 			
 			raytrace.add(velcity);
 			
 			if (doesHitBlock(raytrace, world, src)) {
 				return true;
 			}
-			
-			if (target.boundingBox.isVecInside(Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z))) {
-				return false;
-			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 	private static boolean doesHitBlock(Vector3d vector, World world, Block src) {
@@ -43,8 +55,6 @@ public class RaytraceUtil {
 		Block block = world.getBlock(x, y, z);
 		
 		if (block != Blocks.air && block != src) {
-			
-			System.out.println(block);
 			
 			return true;
 		}

@@ -61,9 +61,9 @@ public class Vector3d {
 		double pitchRad = Math.toRadians(angle.pitch);
 		double yawRad = Math.toRadians(angle.yaw);
 		
-		double x = Math.sin(pitchRad) * Math.cos(yawRad);
-		double z = Math.sin(pitchRad) * -Math.sin(yawRad);
-		double y = Math.cos(pitchRad);
+		double x = Math.cos(yawRad);
+		double z = -Math.sin(yawRad);
+		double y = -Math.sin(pitchRad);
 		
 		return new Vector3d(x, y, z);
 	}

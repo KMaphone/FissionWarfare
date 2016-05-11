@@ -9,6 +9,11 @@ public class Angle2d {
 		this.yaw = yaw;
 	}
 	
+	@Override
+	public String toString() {
+		return "( Pitch: " + pitch + ", Yaw: " + yaw + " )";
+	}
+	
 	public static Angle2d getAngleFromVectors(Vector3d vec1, Vector3d vec2) {
 		
 		double dx = vec1.x - vec2.x;
@@ -18,7 +23,7 @@ public class Angle2d {
 		double dis = vec1.distance(vec2);
 		
 		double yawRad = Math.atan2(dz, -dx);
-		double pitchRad = Math.atan2(dis, dy);
+		double pitchRad = -Math.atan2(dy, dis);
 		
 		return new Angle2d(Math.toDegrees(pitchRad), Math.toDegrees(yawRad));
 	}

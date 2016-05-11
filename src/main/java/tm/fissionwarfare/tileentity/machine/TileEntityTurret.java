@@ -71,7 +71,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		markDirty();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		
-		angle.pitch = MathHelper.clamp_double(angle.pitch, 30, 150);
+		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);
 		
 		if (!worldObj.isRemote) {			
 			
@@ -131,9 +131,10 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	public boolean canFire() {
 		
-		boolean canHitTarget = !RaytraceUtil.traceForBlocks(angle, getVector(), target, worldObj, InitBlocks.turret, RANGE);
+		boolean hitPlayer = RaytraceUtil.traceForEntity(angle, getVector(), worldObj, target, RANGE);
+		boolean hitBlock = !RaytraceUtil.traceForBlock(getVector(), getTargetVector(), worldObj, InitBlocks.turret);
 		
-		return canHitTarget && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
+		return hitPlayer && hitBlock && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
 	}
 	
 	private Vector3d getTargetVector() {
