@@ -72,8 +72,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		
 		updateBlock();
 		
-		
-		
 		if (!worldObj.isRemote) {			
 			
 			if (!isDone()) {

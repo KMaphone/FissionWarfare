@@ -13,12 +13,10 @@ public class Vector3d {
 		this.z = z;
 	}
 	
-	public Vector3d add(double nx, double ny, double nz) {
-		return new Vector3d(x + nx, y + ny, z + nz);
-	}
-	
-	public Vector3d add(Vector3d vec) {
-		return add(vec.x, vec.y, vec.z);
+	public void add(Vector3d vec) {
+		x += vec.x;
+		y += vec.y;
+		z += vec.z;
 	}
 	
 	public Vector3d sub(double nx, double ny, double nz) {
@@ -61,7 +59,7 @@ public class Vector3d {
 		
 		double x = Math.cos(yawRad);
 		double z = -Math.sin(yawRad);
-		double y = -Math.sin(pitchRad);
+		double y = Math.sin(pitchRad);
 		
 		return new Vector3d(x, y, z);
 	}

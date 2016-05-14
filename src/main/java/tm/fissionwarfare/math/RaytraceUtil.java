@@ -22,7 +22,7 @@ public class RaytraceUtil {
 		
 		while (vector.distance(raytrace) <= distance) {
 			
-			raytrace = raytrace.add(velcity);
+			raytrace.add(velcity);
 			
 			if (checkBlock(raytrace, world, src)) {
 				return HitType.BLOCK;
