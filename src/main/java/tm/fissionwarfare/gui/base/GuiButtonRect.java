@@ -1,5 +1,7 @@
 package tm.fissionwarfare.gui.base;
 
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
@@ -13,9 +15,12 @@ public class GuiButtonRect extends GuiButton {
 
 	public GuiRect rect;
 	
-	public GuiButtonRect(int id, int x, int y, int width, String text) {
+	public boolean clicked = false;
+	
+	public GuiButtonRect(int id, int x, int y, int width, String text, List buttonList) {
 		super(id, x, y, width, 16, text);
 		rect = new GuiRect(xPosition, yPosition, width, height);
+		buttonList.add(this);
 	}
 	
 	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
@@ -30,7 +35,7 @@ public class GuiButtonRect extends GuiButton {
 				GL11.glColor4f(1F, 1F, 1F, 2F);
 			}
 			
-			if (!enabled) {				
+			if (!enabled || clicked) {				
 				color = 0x707070;
 				GL11.glColor4f(0.5F, 0.5F, 0.5F, 1);
 			}
@@ -40,7 +45,7 @@ public class GuiButtonRect extends GuiButton {
 			
 			GL11.glColor4f(1, 1, 1, 1);
 			
-			GuiUtil.drawCenteredString(displayString, rect.x + (rect.width / 2) + 2, rect.y + (this.height - 8) / 2, color);
+			GuiUtil.drawCenteredString(displayString, rect.x + (rect.width / 2), rect.y + (this.height - 8) / 2, color);
 		}
 	}
 }

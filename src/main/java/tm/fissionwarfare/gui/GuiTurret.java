@@ -28,9 +28,7 @@ public class GuiTurret extends GuiEnergyContainerBase {
 	public void initGui() {
 		super.initGui();
 		
-		toggleButton = new GuiButtonRect(0, getScreenX() + (getGuiSize() / 2) - 17, getScreenY() + (getGuiSize() / 2) - 24, 32, "Off");
-		toggleButton.enabled = true;
-		buttonList.add(toggleButton);
+		toggleButton = new GuiButtonRect(0, getScreenX() + (getGuiSize() / 2) - 17, getScreenY() + (getGuiSize() / 2) - 24, 32, "Off", buttonList);
 	}
 
 	@Override

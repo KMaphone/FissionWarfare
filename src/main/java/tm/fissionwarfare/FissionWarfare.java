@@ -51,7 +51,7 @@ public class FissionWarfare {
 		
 		FMLCommonHandler.instance().bus().register(new FWConfig());
 		
-		network = NetworkRegistry.INSTANCE.newSimpleChannel("fusionwarfare");
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("fissionwarfare");
 		network.registerMessage(ServerPacketHandler.Handler.class, ServerPacketHandler.class, 0, Side.SERVER);
 		network.registerMessage(ClientPacketHandler.Handler.class, ClientPacketHandler.class, 1, Side.CLIENT);
 		

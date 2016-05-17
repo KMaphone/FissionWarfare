@@ -37,7 +37,7 @@ public class GuiUtil {
 		if (rect.contains(mouseX, mouseY)) {
 			
 			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
-			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 1, 12, 256);
+			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 3, 12, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
 			GL11.glColor4f(1, 1, 1, 1);
 		}
@@ -59,10 +59,24 @@ public class GuiUtil {
 		GL11.glColor4f(1, 1, 1, 1);
 	}
 	
+	public static void drawLimitedString(String text, int x, int y, int textLimit, int color) {
+				
+		String temp = text;
+				
+		if (temp.length() > textLimit) {
+			
+			temp = temp.substring(0, textLimit - 1);
+			temp += "...";
+		}	
+		
+		mc.fontRenderer.drawString(temp, x, y, color);
+		GL11.glColor4f(1, 1, 1, 1);
+	}
+	
 	public static void drawCappedRect(int x, int y, int u, int v, int zLevel, int width, int height, int maxWidth) {
 		
-		drawRect(x, y, u, v, zLevel, width, height);
-		drawRect(x + width, y, u + maxWidth - 2, v, zLevel, 2, height);
+		drawRect(x, y, u, v, zLevel, width - 2, height);
+		drawRect(x + width - 2, y, u + maxWidth - 2, v, zLevel, 2, height);
 	}
 	
 	public static void drawScaledHeightRect(int x, int y, int u, int v, int zLevel, int width, int height, int value, int maxValue) {
