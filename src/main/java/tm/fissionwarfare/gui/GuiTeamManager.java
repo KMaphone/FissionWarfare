@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import com.sun.glass.ui.Window;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
@@ -11,6 +14,7 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
+import net.minecraftforge.client.event.MouseEvent;
 import tm.fissionwarfare.api.EnumColorUtil;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiRect;
@@ -124,7 +128,7 @@ public class GuiTeamManager extends GuiScreenBase {
 		if (getSelectedTeam() != null) {
 			friendlyFireButton.clicked = getSelectedTeam().getAllowFriendlyFire();
 		}
-		
+				
 		colorButton.enabled = (getSelectedTeam() != null);
 		addColorButton.enabled = (getSelectedTeam() != null);	
 		friendlyFireButton.enabled = (getSelectedTeam() != null);
@@ -228,32 +232,40 @@ public class GuiTeamManager extends GuiScreenBase {
 			}
 		}
 		
-		if (teams.size() != 0) {
+		wrapTeamIndexes();
+		wrapPlayerIndexes();
+		wrapColorIndexes();		
+	}
+	
+	private int mouseX;
+	
+	@Override
+	public void handleMouseInput() {
+		super.handleMouseInput();
+		
+		int wheel = Mouse.getDWheel();
+		
+		if (Mouse.getX() > 0) {
+			mouseX = Mouse.getX();
+		}
+		
+		if (wheel != 0) {
 			
-			currentTeamIndex %= teams.size();
+			if (mouseX < mc.displayWidth / 2) {
+				
+				if (wheel > 0) --currentTeamIndex;
+				if (wheel < 0) ++currentTeamIndex;
+			}
 			
-			if (currentTeamIndex < 0) {
-				currentTeamIndex = teams.size() - 1;
+			else {
+				
+				if (wheel > 0) --currentPlayerIndex;
+				if (wheel < 0) ++currentPlayerIndex;
 			}
 		}
 		
-		if (playerNames.size() != 0) {
-			
-			currentPlayerIndex %= playerNames.size();
-			
-			if (currentPlayerIndex < 0) {
-				currentPlayerIndex = playerNames.size() - 1;
-			}
-		}
-		
-		if (colors.size() != 0) {
-			
-			currentColorIndex %= colors.size();
-			
-			if (currentColorIndex < 0) {
-				currentColorIndex = colors.size() - 1;
-			}
-		}
+		wrapTeamIndexes();
+		wrapPlayerIndexes();		
 	}
 	
 	public void addTeam() {
@@ -272,6 +284,42 @@ public class GuiTeamManager extends GuiScreenBase {
 			((EntityClientPlayerMP)player).sendChatMessage("/scoreboard teams join " + getSelectedTeam().getRegisteredName() + " " + playerField.getText());	
 			playerField.setText("");
 		}	
+	}
+	
+	public void wrapTeamIndexes() {
+		
+		if (teams.size() != 0) {
+			
+			currentTeamIndex %= teams.size();
+			
+			if (currentTeamIndex < 0) {
+				currentTeamIndex = teams.size() - 1;
+			}
+		}
+	}
+	
+	public void wrapPlayerIndexes() {
+		
+		if (playerNames.size() != 0) {
+			
+			currentPlayerIndex %= playerNames.size();
+			
+			if (currentPlayerIndex < 0) {
+				currentPlayerIndex = playerNames.size() - 1;
+			}
+		}
+	}
+	
+	public void wrapColorIndexes() {
+		
+		if (colors.size() != 0) {
+			
+			currentColorIndex %= colors.size();
+			
+			if (currentColorIndex < 0) {
+				currentColorIndex = colors.size() - 1;
+			}
+		}
 	}
 	
 	private Team getSelectedTeam() {		

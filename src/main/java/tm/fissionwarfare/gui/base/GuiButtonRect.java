@@ -27,17 +27,21 @@ public class GuiButtonRect extends GuiButton {
 
 		if (this.visible) {
 			
-			int color = 0xBBBBBB;
+			int color = 0xAAAAAA;
 			GL11.glColor4f(1, 1, 1, 1);
 			
-			if (rect.contains(mouseX, mouseY)) {
+			if (rect.contains(mouseX, mouseY)) {				
 				color = 0xFFFFFF;
-				GL11.glColor4f(1F, 1F, 1F, 2F);
+				GL11.glColor4f(1F, 1F, 1F, 1F);
+			}
+			
+			else {
+				GL11.glColor4f(0.9F, 0.9F, 0.9F, 9F);
 			}
 			
 			if (!enabled || clicked) {				
 				color = 0x707070;
-				GL11.glColor4f(0.5F, 0.5F, 0.5F, 1);
+				GL11.glColor4f(0.5F, 0.5F, 0.5F, 1F);
 			}
 			
 			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
