@@ -14,6 +14,7 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.MouseEvent;
 import tm.fissionwarfare.api.EnumColorUtil;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
@@ -25,7 +26,7 @@ import tm.fissionwarfare.gui.base.GuiUtil;
 public class GuiTeamManager extends GuiScreenBase {
 	
 	private ArrayList<Team> teams = new ArrayList<Team>();
-	private ArrayList<String> playerNames = new ArrayList<String>();
+	private ArrayList<String> players = new ArrayList<String>();
 	private ArrayList<EnumColorUtil> colors = new ArrayList<EnumColorUtil>();
 	
 	private int currentTeamIndex;
@@ -253,18 +254,18 @@ public class GuiTeamManager extends GuiScreenBase {
 			if (mouseX < mc.displayWidth / 2) {
 				
 				if (wheel > 0) --currentTeamIndex;
-				if (wheel < 0) ++currentTeamIndex;
+				if (wheel < 0) ++currentTeamIndex;			
 			}
 			
 			else {
 				
 				if (wheel > 0) --currentPlayerIndex;
-				if (wheel < 0) ++currentPlayerIndex;
+				if (wheel < 0) ++currentPlayerIndex;			
 			}
 		}
 		
-		wrapTeamIndexes();
-		wrapPlayerIndexes();		
+		currentTeamIndex = MathHelper.clamp_int(currentTeamIndex, 0, teams.size() - 1);
+		currentPlayerIndex = MathHelper.clamp_int(currentPlayerIndex, 0, players.size() - 1);		
 	}
 	
 	public void addTeam() {
@@ -299,12 +300,12 @@ public class GuiTeamManager extends GuiScreenBase {
 	
 	public void wrapPlayerIndexes() {
 		
-		if (playerNames.size() != 0) {
+		if (players.size() != 0) {
 			
-			currentPlayerIndex %= playerNames.size();
+			currentPlayerIndex %= players.size();
 			
 			if (currentPlayerIndex < 0) {
-				currentPlayerIndex = playerNames.size() - 1;
+				currentPlayerIndex = players.size() - 1;
 			}
 		}
 	}
@@ -366,7 +367,7 @@ public class GuiTeamManager extends GuiScreenBase {
 	private String getSelectedPlayer() {		
 		
 		try {
-			return playerNames.get(currentPlayerIndex);
+			return players.get(currentPlayerIndex);
 		}
 		
 		catch (IndexOutOfBoundsException e) {
@@ -377,7 +378,7 @@ public class GuiTeamManager extends GuiScreenBase {
 	private String getPlayer(int index) {
 		
 		try {
-			return playerNames.get(index);
+			return players.get(index);
 		}
 	
 		catch (IndexOutOfBoundsException e) {
@@ -388,7 +389,7 @@ public class GuiTeamManager extends GuiScreenBase {
 	private void refresh() {
 		
 		teams.clear();
-		playerNames.clear();
+		players.clear();
 				
 		for (Object team : player.worldObj.getScoreboard().getTeams()) {		
 			
@@ -401,7 +402,7 @@ public class GuiTeamManager extends GuiScreenBase {
 			
 			for (Object p : ((ScorePlayerTeam)team).getMembershipCollection()) {
 				
-				playerNames.add(p.toString());
+				players.add(p.toString());
 			}			
 		}
 		
@@ -409,7 +410,7 @@ public class GuiTeamManager extends GuiScreenBase {
 			currentTeamIndex = 0;
 		}
 		
-		if (playerNames.size() == 1) {
+		if (players.size() == 1) {
 			currentPlayerIndex = 0;
 		}	
 	}
