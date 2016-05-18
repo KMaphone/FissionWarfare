@@ -6,12 +6,12 @@ import tm.fissionwarfare.api.ITieredItem;
 
 public class ItemCement extends ItemTiered implements ITieredItem {
 
-	private IIcon[] textures= new IIcon[6];
+	private IIcon[] textures = new IIcon[6];
 	
 	public ItemCement() {
 		super("cement", 6);
 	}
-	
+		
 	private int getTierFromMeta(int meta) {
 		return (meta % 3) + 1;
 	}
@@ -23,6 +23,6 @@ public class ItemCement extends ItemTiered implements ITieredItem {
 		
 	@Override
 	public String getUnlocalizedName(ItemStack is) {		
-		return "item." + (is.getItemDamage() > 2 ? ("wet_") : "") + imageName;
+		return "item." + (is.getItemDamage() > 2 ? ("wet_") : "") + imageName + "_" + (getTierFromMeta(is.getItemDamage()) - 1);
 	}
 }

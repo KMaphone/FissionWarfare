@@ -37,6 +37,11 @@ public class ItemTiered extends ItemBase implements ITieredItem {
 	}
 	
 	@Override
+	public String getUnlocalizedName(ItemStack is) {
+		return "item." + imageName + "_" + is.getItemDamage();
+	}
+	
+	@Override
 	public IIcon getIconFromDamage(int meta) {
 		if (meta >= maxTier) return textures[maxTier - 1];
 		return textures[meta];
