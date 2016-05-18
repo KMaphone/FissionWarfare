@@ -3,10 +3,18 @@ package tm.fissionwarfare.api;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.world.World;
 
 public class SecurityProfile {
 
 	private String teamName;
+		
+	public void cleanTeam(World world) {
+		
+		if (world.getScoreboard().getTeam(teamName) == null) {
+			teamName = null;
+		}
+	}
 	
 	public String getTeamName() {
 		return teamName;
@@ -24,6 +32,10 @@ public class SecurityProfile {
 		
 		if (!hasTeam()) {
 			return true;
+		}
+		
+		if (player.getTeam() == null && hasTeam()) {
+			return false;
 		}
 		
 		Team team = player.worldObj.getScoreboard().getTeam(teamName);

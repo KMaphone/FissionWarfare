@@ -48,8 +48,8 @@ public class GuiUtil {
 		int width = mc.fontRenderer.getStringWidth(text);
 		
 		mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
-		drawCappedRect(x - (width / 2) - 3, y, 0, 230, 0, width + 3, 1, 256);
-		drawCappedRect(x - (width / 2) - 3, y + 1, 0, 230, 0, width + 3, 10, 256);
+		drawCappedRect(x - (width / 2) - 3, y, 0, 230, 0, width + 5, 1, 256);
+		drawCappedRect(x - (width / 2) - 3, y + 1, 0, 230, 0, width + 5, 10, 256);
 		drawCenteredString(text, x, y + 1, color);
 	}
 	

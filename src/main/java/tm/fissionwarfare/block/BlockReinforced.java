@@ -22,7 +22,6 @@ import tm.fissionwarfare.math.MathUtil;
 
 public abstract class BlockReinforced extends BlockMetaBase implements IReinforcedBlock {
 
-	@SideOnly(Side.CLIENT)
 	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
 	
 	public BlockReinforced(String imageName) {

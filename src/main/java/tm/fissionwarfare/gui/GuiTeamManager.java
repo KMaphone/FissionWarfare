@@ -154,7 +154,6 @@ public class GuiTeamManager extends GuiScreenBase {
 			String p = getPlayer(i + currentPlayerIndex);
 			
 			if (p != null) {
-				System.out.println(i);
 				GuiUtil.drawLimitedString((i == 0 ? "> " : "") + p, getScreenX() + 170, getScreenY() + 98 + (i * 10), 12, 0xCCCCCC);
 				GuiUtil.drawTextBox(p, mouseX, mouseY, new GuiRect(getScreenX() + 170, getScreenY() + 98 + (i * 10), 78, 9));
 			}

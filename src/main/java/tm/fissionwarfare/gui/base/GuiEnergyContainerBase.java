@@ -9,10 +9,12 @@ import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 public abstract class GuiEnergyContainerBase extends GuiContainerBase {
 
 	public TileEntityEnergyBase tileEntity;
+	public EntityPlayer player;
 	
 	public GuiEnergyContainerBase(Container container, EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(container, player, tileEntity);
 		this.tileEntity = tileEntity;
+		this.player = player;
 	}
 	
 	@Override
@@ -25,8 +27,8 @@ public abstract class GuiEnergyContainerBase extends GuiContainerBase {
 			
 			SecurityProfile profile = ((ISecurity)tileEntity).getSecurityProfile();
 						
-			if (profile.hasTeam()) {				
-				GuiUtil.drawBottomInfoBox(profile.getTeamName(), getScreenX() + getGuiSize() / 2, getScreenY() + getGuiSize(), 0xFFFFFF);
+			if (profile.hasTeam()) {
+				GuiUtil.drawBottomInfoBox(player.worldObj.getScoreboard().getTeam(profile.getTeamName()).getColorPrefix() + profile.getTeamName(), getScreenX() + getGuiSize() / 2, getScreenY() + getGuiSize(), 0xFFFFFF);
 			}		
 		}
 	}		
