@@ -12,9 +12,13 @@ item.wet_cement.name=Wet Cement
 item.poison_capsule.name=Poison Capsule
 item.fiery_capsule.name=Fiery Capsule
 item.shrapnel_capsule.name=Shrapnel Capsule
+item.electromagnet_capsule.name=Electromagnetic Capsule
+item.nuclear_capsule.name=Nuclear Capsule
 
 item.frame.name=Frame
-item.circuit.name=Circuit
+item.circuit.name=Circuit T1
+item.circuit_1.name=Circuit T2
+item.circuit_2.name=Circuit T3
 
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 
