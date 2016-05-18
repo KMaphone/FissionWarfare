@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.init.InitBlocks;
+import tm.fissionwarfare.init.InitItems;
 
 public class WorldGenOre implements IWorldGenerator {
 	
