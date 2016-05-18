@@ -5,6 +5,7 @@ item.quartz_sand.name=Quartz Sand
 
 item.steel_ingot.name=Steel Ingot
 item.limestone_chunk.name=Limestone Chunk
+item.uranium_chunk.name=Uranium Chunk
 
 item.cement.name=Cement
 item.wet_cement.name=Wet Cement
@@ -12,18 +13,20 @@ item.wet_cement.name=Wet Cement
 item.poison_capsule.name=Poison Capsule
 item.fiery_capsule.name=Fiery Capsule
 item.shrapnel_capsule.name=Shrapnel Capsule
-item.electromagnet_capsule.name=Electromagnetic Capsule
+item.electromagnetic_capsule.name=Electromagnetic Capsule
 item.nuclear_capsule.name=Nuclear Capsule
 
 item.frame.name=Frame
-item.circuit.name=Circuit T1
-item.circuit_1.name=Circuit T2
-item.circuit_2.name=Circuit T3
+item.circuit.name=Circuit
+
 
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 
-tile.basic_explosive.name=Basic Explosive
-tile.fire_explosive.name=Pyrotechnics Explosive
+tile.basic.name=Basic Explosive
+tile.pyro.name=Pyrotechnics Explosive
+tile.emp.name=EMP Explosive
+tile.chemical.name=Chemical Explosive
+tile.atomic.name=Atomic Explosive
 
 #-#-#-#-#-BLOCKS-#-#-#-#-#
 
@@ -32,9 +35,12 @@ tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
 
+tile.test_block.name=Test Block
+
 tile.concrete_0.name=Concrete
 tile.concrete_1.name=Hardened Concrete
 tile.concrete_2.name=Reinforced Concrete
+tile.reinforced_glass_0.name=Reinforced Glass
 
 tile.turret.name=Turret
 
