@@ -14,13 +14,29 @@ public class ExplosionUtil {
 	
 	private static List<Location> effectedBlocks = new ArrayList<Location>();
 	
+	public static List<Location> getgEffectedExplosionBlocks(World world, Vector3d vector, double size, int step) {
+		
+		effectedBlocks.clear();
+		
+		for (int yaw = 0; yaw < 360; yaw += step) {
+
+			for (int pitch = -90; pitch <= 90; pitch += step) {
+
+				Angle2d angle = new Angle2d(pitch, yaw);
+				generateExplosionRay(vector, angle, world, size);
+			}
+		}
+		
+		return effectedBlocks;
+	}
+	
 	public static void generateExplosion(World world, Vector3d vector, double size, int step) {
 		
 		effectedBlocks.clear();
 		
 		for (int yaw = 0; yaw < 360; yaw += step) {
 
-			for (int pitch = 0; pitch < 180; pitch += step) {
+			for (int pitch = -90; pitch <= 90; pitch += step) {
 
 				Angle2d angle = new Angle2d(pitch, yaw);
 				generateExplosionRay(vector, angle, world, size);
