@@ -9,17 +9,18 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.fluid.FluidConcrete;
 
-public class BlockFluidConcrete extends BlockFluidClassic {
+public class BlockFluidBase extends BlockFluidClassic {
 
 	@SideOnly(Side.CLIENT)
 	protected IIcon stillIcon, flowingIcon;
 
-	private FluidConcrete fluid;
+	private Fluid fluid;
 	
-	public BlockFluidConcrete(FluidConcrete fluid) {
+	public BlockFluidBase(Fluid fluid) {
 		super(fluid, Material.water);
 		setBlockName(fluidName);
 		this.fluid = fluid;

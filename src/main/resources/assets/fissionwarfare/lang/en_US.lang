@@ -39,6 +39,9 @@ tile.turret.name=Turret
 fluid.concrete_mix=Concrete Mix
 tile.concrete_mix.name=Concrete Mix
 
+fluid.liquid_glass=Liquid Glass
+tile.liquid_glass.name=Liquid Glass
+
 #-#-#-#-#-CONFIG-#-#-#-#-#
 
 category.general_options.name=General Options
