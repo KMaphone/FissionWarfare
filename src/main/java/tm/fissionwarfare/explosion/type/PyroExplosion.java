@@ -35,9 +35,9 @@ public class PyroExplosion implements IExplosionType {
 		
 		for (Location loc : locations) {
 			
-			Location loc2 = loc.copy().add(ForgeDirection.UP);
+			Location loc2 = loc.copy().add(ForgeDirection.DOWN);
 			
-			if (!loc.checkBlock(Blocks.air) && loc2.checkBlock(Blocks.air)) {
+			if (loc.checkBlock(Blocks.air) && !loc2.checkBlock(Blocks.air)) {
 				
 				loc2.setBlock(Blocks.fire);
 			}

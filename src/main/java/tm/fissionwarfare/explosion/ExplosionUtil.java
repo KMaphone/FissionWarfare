@@ -82,7 +82,7 @@ public class ExplosionUtil {
 				break;
 			}
 				
-			if (loc.getBlock() != Blocks.air && !contains(loc)) {
+			if (!contains(loc)) {
 										
 				effectedBlocks.add(loc);
 			}
