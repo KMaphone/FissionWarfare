@@ -23,6 +23,10 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 1, 2), new Object[] { InitItems.quartz_sand, TEItems.slagRich });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 1, 2), new Object[] { InitItems.quartz_sand, TEItems.slag });
 		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.quartz, 1), new Object[] {
+			"QQQ", "Q Q", "QQQ", 'Q', InitItems.quartz_chunk
+		}));
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1), new Object[] {
 			"GGG", "ESE", "GGG", 'G', Blocks.glass, 'E', TFItems.ingotElectrum, 'S', TEItems.powerCoilSilver
 		}));
