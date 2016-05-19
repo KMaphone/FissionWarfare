@@ -28,7 +28,10 @@ public class RaytraceUtil {
 				return HitType.BLOCK;
 			}
 			
-			if (target.boundingBox.isVecInside(Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z))) {
+			Vec3 vec1 = Vec3.createVectorHelper(vector.x, vector.y, vector.z);
+			Vec3 vec2 = Vec3.createVectorHelper(raytrace.x, raytrace.y, raytrace.z);
+			
+			if (target.boundingBox.calculateIntercept(vec1, vec2) != null) {
 				return HitType.ENTITY;
 			}
 		}
