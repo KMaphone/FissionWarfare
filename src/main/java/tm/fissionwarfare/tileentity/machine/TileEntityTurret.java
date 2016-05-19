@@ -68,6 +68,9 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
+		System.out.println((worldObj.isRemote ? "CLIENT - " : "SERVER - ") + "P: " + progress);
+		System.out.println((worldObj.isRemote ? "CLIENT - " : "SERVER - ") + "T: " + target);
+		
 		profile.cleanTeam(worldObj);
 		
 		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);
@@ -125,7 +128,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 				
 				EntityPlayer player = (EntityPlayer)o;
 				
-				if (isTargetInRange(player) && !player.capabilities.isCreativeMode /* && !profile.isSameTeam(player)*/) {
+				if (isTargetInRange(player) && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
 					
 					target = player;
 					return;
