@@ -31,7 +31,8 @@ public class PyroExplosion implements IExplosionType {
 	
 	@Override
 	public void doBlockDamage() {
-		List<Location> locations = ExplosionUtil.getgEffectedExplosionBlocks(world, vector, SIZE, 1);
+		
+		List<Location> locations = ExplosionUtil.getEffectedExplosionBlocks(world, vector, SIZE, 15);
 		
 		for (Location loc : locations) {
 			
@@ -39,7 +40,7 @@ public class PyroExplosion implements IExplosionType {
 			
 			if (loc.checkBlock(Blocks.air) && !loc2.checkBlock(Blocks.air)) {
 				
-				loc2.setBlock(Blocks.fire);
+				loc.setBlock(Blocks.fire);
 			}
 		}
 	}

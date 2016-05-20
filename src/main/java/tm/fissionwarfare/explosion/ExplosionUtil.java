@@ -14,7 +14,7 @@ public class ExplosionUtil {
 	
 	private static List<Location> effectedBlocks = new ArrayList<Location>();
 	
-	public static List<Location> getgEffectedExplosionBlocks(World world, Vector3d vector, double size, int step) {
+	public static List<Location> getEffectedExplosionBlocks(World world, Vector3d vector, double size, int step) {
 		
 		effectedBlocks.clear();
 		

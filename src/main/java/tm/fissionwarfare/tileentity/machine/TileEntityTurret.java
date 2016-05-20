@@ -68,9 +68,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
-		System.out.println((worldObj.isRemote ? "CLIENT - " : "SERVER - ") + "P: " + progress);
-		System.out.println((worldObj.isRemote ? "CLIENT - " : "SERVER - ") + "T: " + target);
-		
 		profile.cleanTeam(worldObj);
 		
 		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);
@@ -78,6 +75,9 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		updateBlock();
 		
 		if (!worldObj.isRemote) {			
+			
+			System.out.println("P: " + progress);
+			System.out.println("T: " + target);
 			
 			if (!isDone()) {
 				progress++;
@@ -106,13 +106,13 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);	
 	
 		if (canFire()) {
-		
+			
 			storage.extractEnergy(ENERGY_COST, false);
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
 			progress = 0;
 		}
 		
-		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead) {
+		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead || profile.isSameTeam(target)) {
 			target = null;
 		}
 	}
@@ -138,8 +138,10 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	}
 	
 	public boolean canFire() {
-		
+				
 		HitType hitType = RaytraceUtil.raytrace(angle, getVector(), worldObj, InitBlocks.turret, target, RANGE);
+		
+		System.out.println(hitType);
 		
 		return hitType == HitType.ENTITY && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
 	}
@@ -153,7 +155,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	}
 	
 	public boolean isTargetInRange(Entity e) {
-		return e.getDistance(xCoord + 0.5F, yCoord + 1D, zCoord + 0.5F) <= RANGE;
+		return e.getDistance(xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D) <= RANGE;
 	}
 	
 	@Override
