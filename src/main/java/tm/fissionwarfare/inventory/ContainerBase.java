@@ -18,7 +18,9 @@ public abstract class ContainerBase extends Container {
 		addPlayerHotbar(8, 152);
 	}
 	
-	public abstract int getNewSlotAmount();
+	public int getNewSlotAmount() {
+		return tileEntity.getSizeInventory();
+	}
 	
 	public void addPlayerInv(int x, int y) {
 				

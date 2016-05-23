@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.block.BlockExplosive;
+import tm.fissionwarfare.block.BlockMissileFactory;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockReinforcedGlass;
 import tm.fissionwarfare.block.BlockTest;
@@ -28,7 +29,9 @@ public class InitBlocks {
 	public static Block concrete;
 	public static Block reinforced_glass;
 	
-	public static Block turret;	
+	public static Block missile_factory;
+	
+	public static Block turret;
 	public static Block test_block;
 	
 	public static void init() {
@@ -43,6 +46,8 @@ public class InitBlocks {
 		chemicalExplosive = new BlockExplosive("chemical", new ChemicalExplosion());
 		atomicExplosive = new BlockExplosive("atomic", new AtomicExplosion());
 		pyroExplosive = new BlockExplosive("pyro", new PyroExplosion());
+		
+		missile_factory = new BlockMissileFactory();
 		
 		concrete = new BlockConcrete();		
 		reinforced_glass = new BlockReinforcedGlass();

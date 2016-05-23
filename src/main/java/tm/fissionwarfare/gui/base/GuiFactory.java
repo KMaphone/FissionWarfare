@@ -1,4 +1,4 @@
-package tm.fissionwarfare.gui;
+package tm.fissionwarfare.gui.base;
 
 import java.util.Set;
 

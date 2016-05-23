@@ -13,9 +13,4 @@ public class ContainerTurret extends ContainerEnergyBase {
 		
 		addSlotToContainer(new SlotFilter(tileEntityEnergy, 0, 80, 39, new ItemStack(InitItems.quartz)));
 	}
-
-	@Override
-	public int getNewSlotAmount() {
-		return 1;
-	}
 }
