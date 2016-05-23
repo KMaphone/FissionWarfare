@@ -5,27 +5,58 @@ import java.util.List;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class SlotFilter extends Slot {
 	
-	public List<ItemStack> filters;
+	public List<Item> itemFilters;
+	public List<Object> objFilters;
 	
-	public SlotFilter(IInventory inv, int id, int x, int y, ItemStack... filters) {
+	public SlotFilter(IInventory inv, int id, int x, int y, Item... filters) {
 		super(inv, id, x, y);
 		
-		this.filters = new ArrayList<ItemStack>();
+		this.itemFilters = new ArrayList<Item>();		
 		
-		for (ItemStack stack : filters) {
-			this.filters.add(stack);
+		for (Item item : filters) {
+			this.itemFilters.add(item);
+		}
+	}
+	
+	public SlotFilter(IInventory inv, int id, int x, int y, Object... filters) {
+		super(inv, id, x, y);
+		
+		this.objFilters = new ArrayList<Object>();		
+		
+		for (Object obj : filters) {
+			this.objFilters.add(obj);
 		}
 	}
 	
 	public boolean isFilter(ItemStack stack) {
 				
-		for (ItemStack filter : this.filters) {
-						
-			if (filter.getItem() == stack.getItem()) return true; 
+		if (this.itemFilters != null) {
+			
+			for (Item itemFilter : this.itemFilters) {
+				
+				if (itemFilter == stack.getItem()) return true; 
+			}		
+		}		
+		
+		if (this.objFilters != null) {
+			
+			for (Object objectFilter : this.objFilters) {	
+				
+				if (stack.getItem() instanceof ItemBlock) {
+					
+					ItemBlock item = (ItemBlock)stack.getItem();
+					
+					if (item.field_150939_a.getClass().equals(objectFilter) || item.field_150939_a.getClass().isInstance(objectFilter)) return true;
+				}
+				
+				if (stack.getItem().getClass().isInstance(objectFilter)) return true;
+			}
 		}
 		
 		return false;

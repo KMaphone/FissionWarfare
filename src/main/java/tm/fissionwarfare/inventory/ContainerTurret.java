@@ -11,6 +11,6 @@ public class ContainerTurret extends ContainerEnergyBase {
 	public ContainerTurret(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(player, tileEntity);
 		
-		addSlotToContainer(new SlotFilter(tileEntityEnergy, 0, 80, 39, new ItemStack(InitItems.quartz)));
+		addSlotToContainer(new SlotFilter(tileEntityEnergy, 0, 80, 39, InitItems.quartz));
 	}
 }
