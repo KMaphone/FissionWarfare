@@ -21,7 +21,7 @@ public class GuiButtonRect extends GuiButton {
 		super(id, x, y, width, 16, text);
 		rect = new GuiRect(xPosition, yPosition, width, height);
 		buttonList.add(this);
-	}
+	}	
 	
 	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
 

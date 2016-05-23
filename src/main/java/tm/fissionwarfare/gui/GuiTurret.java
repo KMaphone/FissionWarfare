@@ -3,12 +3,13 @@ package tm.fissionwarfare.gui;
 import net.minecraft.entity.player.EntityPlayer;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiEnergyContainerBase;
+import tm.fissionwarfare.gui.base.GuiToggleButton;
 import tm.fissionwarfare.inventory.ContainerTurret;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class GuiTurret extends GuiEnergyContainerBase {
 
-	private GuiButtonRect toggleButton;
+	private GuiToggleButton toggleButton;
 	
 	public GuiTurret(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(new ContainerTurret(player, tileEntity), player, tileEntity);
@@ -28,9 +29,9 @@ public class GuiTurret extends GuiEnergyContainerBase {
 	public void initGui() {
 		super.initGui();
 		
-		toggleButton = new GuiButtonRect(0, getScreenX() + (getGuiSize() / 2) - 17, getScreenY() + (getGuiSize() / 2) - 24, 32, "Off", buttonList);
+		toggleButton = new GuiToggleButton(0, getScreenX() + (getGuiSize() / 2) - 16, getScreenY() + (getGuiSize() / 2) - 24, tileEntity, buttonList);
 	}
-
+		
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		

@@ -6,6 +6,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class ServerPacketHandler implements IMessage {
 
@@ -36,6 +37,15 @@ public class ServerPacketHandler implements IMessage {
 			String[] data = message.text.split("%");
 			
 			EntityPlayer player = ctx.getServerHandler().playerEntity;
+			
+			if (data[0].equalsIgnoreCase("toggle.tileEntity")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				((TileEntityEnergyBase)player.worldObj.getTileEntity(x, y, z)).enabled = !((TileEntityEnergyBase)player.worldObj.getTileEntity(x, y, z)).enabled;
+			}
 			
 			return null;
 		}

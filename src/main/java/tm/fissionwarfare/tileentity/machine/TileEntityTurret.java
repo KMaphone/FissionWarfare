@@ -68,16 +68,11 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	@Override
 	public void updateEntity() {
 		
-		profile.cleanTeam(worldObj);
-		
-		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);
-		
+		profile.cleanTeam(worldObj);		
+		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);		
 		updateBlock();
 		
-		if (!worldObj.isRemote) {			
-			
-			System.out.println("P: " + progress);
-			System.out.println("T: " + target);
+		if (!worldObj.isRemote && enabled) {			
 			
 			if (!isDone()) {
 				progress++;
@@ -109,6 +104,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 			
 			storage.extractEnergy(ENERGY_COST, false);
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
+			slots[0].stackSize--;
 			progress = 0;
 		}
 		
@@ -143,7 +139,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		
 		System.out.println(hitType);
 		
-		return hitType == HitType.ENTITY && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone();
+		return hitType == HitType.ENTITY && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone() && slots[0] != null;
 	}
 	
 	private Vector3d getTargetVector() {

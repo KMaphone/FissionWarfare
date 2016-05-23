@@ -8,6 +8,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public abstract class TileEntityEnergyBase extends TileEntityInventoryBase implements IEnergyHandler {
 
 	public int progress = 0;
+	public boolean enabled = true;
 	
 	public abstract int getMaxEnergy();
 	public abstract int getMaxReceive();
@@ -68,12 +69,14 @@ public abstract class TileEntityEnergyBase extends TileEntityInventoryBase imple
 	public void readSyncNBT(NBTTagCompound nbt) {
 		super.readSyncNBT(nbt);
 		progress = nbt.getInteger("progress");
+		enabled = nbt.getBoolean("enabled");
 		storage.readFromNBT(nbt);
 	}
 	
 	public void writeSyncNBT(NBTTagCompound nbt) {
 		super.writeSyncNBT(nbt);		
 		nbt.setInteger("progress", progress);
+		nbt.setBoolean("enabled", enabled);
 		storage.writeToNBT(nbt);
 	}
 }
