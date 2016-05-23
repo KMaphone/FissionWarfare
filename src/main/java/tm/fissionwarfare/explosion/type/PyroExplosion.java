@@ -54,9 +54,4 @@ public class PyroExplosion implements IExplosionType {
 	public void doEffects() {
 		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, SIZE * 2, 1);
 	}
-	
-	@Override
-	public int getMaxFuse() {
-		return 80;
-	}
 }

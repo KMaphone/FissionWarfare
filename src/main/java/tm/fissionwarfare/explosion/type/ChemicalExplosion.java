@@ -29,9 +29,4 @@ public class ChemicalExplosion implements IExplosionType {
 	public void doEffects() {
 		
 	}
-	
-	@Override
-	public int getMaxFuse() {
-		return 80;
-	}
 }

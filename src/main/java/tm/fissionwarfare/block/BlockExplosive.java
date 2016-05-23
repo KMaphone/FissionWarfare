@@ -11,12 +11,13 @@ import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	
-	private IExplosionType explosion;
+	private EnumExplosionType explosion;
 
-	public BlockExplosive(String imagePath, IExplosionType explosion) {
+	public BlockExplosive(String imagePath, EnumExplosionType explosion) {
 		super(imagePath, Material.tnt, 0, 0, 0, Block.soundTypeStone);
 		this.explosion = explosion;
 	}
@@ -51,7 +52,7 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	}
 
 	@Override
-	public IExplosionType getExplosion() {
+	public EnumExplosionType getExplosion() {
 		return explosion;
 	}
 }

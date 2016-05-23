@@ -14,6 +14,7 @@ import tm.fissionwarfare.explosion.type.AtomicExplosion;
 import tm.fissionwarfare.explosion.type.BasicExplosion;
 import tm.fissionwarfare.explosion.type.ChemicalExplosion;
 import tm.fissionwarfare.explosion.type.EMPExplosion;
+import tm.fissionwarfare.explosion.type.EnumExplosionType;
 import tm.fissionwarfare.explosion.type.PyroExplosion;
 
 public class InitBlocks {
@@ -21,7 +22,7 @@ public class InitBlocks {
 	public static Block quartz_ore, sulfur_ore, limestone_ore, uranium_ore;
 	
 	public static Block basicExplosive;
-	public static Block empExplosive;
+	//public static Block empExplosive;
 	public static Block chemicalExplosive;
 	public static Block atomicExplosive;
 	public static Block pyroExplosive;
@@ -41,11 +42,11 @@ public class InitBlocks {
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4).setRareDrop(TFItems.dustNiter);		
 		uranium_ore = new BlockOreBase("uranium").setDroppedItem(new ItemStack(InitItems.uranium_chunk), 1, 2, 1, 2).setLightLevel(0.3F);
 		
-		basicExplosive = new BlockExplosive("basic", new BasicExplosion());
-		empExplosive = new BlockExplosive("emp", new EMPExplosion());
-		chemicalExplosive = new BlockExplosive("chemical", new ChemicalExplosion());
-		atomicExplosive = new BlockExplosive("atomic", new AtomicExplosion());
-		pyroExplosive = new BlockExplosive("pyro", new PyroExplosion());
+		basicExplosive = new BlockExplosive("basic", EnumExplosionType.BASIC);
+		//empExplosive = new BlockExplosive("emp", EnumExplosionType.EMP);
+		chemicalExplosive = new BlockExplosive("chemical", EnumExplosionType.CHEMICAL);
+		atomicExplosive = new BlockExplosive("atomic", EnumExplosionType.ATOMIC);
+		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		
 		missile_factory = new BlockMissileFactory();
 		

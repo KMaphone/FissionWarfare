@@ -12,6 +12,4 @@ public interface IExplosionType {
 	public void doPlayerDamage();
 	
 	public void doEffects();
-	
-	public int getMaxFuse();
 }

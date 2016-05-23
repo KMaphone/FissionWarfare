@@ -35,9 +35,9 @@ public class EMPExplosion implements IExplosionType {
 				
 		for (Location loc : locations) {
 			
-			if (loc.hasTileEntity() && loc.getTileEntity() instanceof IEnergyProvider) {
+			if (loc.hasTileEntity() && loc.getTileEntity() instanceof IEnergyHandler) {
 				
-				IEnergyProvider energy = ((IEnergyProvider)loc.getTileEntity());
+				IEnergyHandler energy = (IEnergyHandler) loc.getTileEntity();
 				
 				while (energy.getEnergyStored(ForgeDirection.UNKNOWN) > 0) {
 					System.out.println(energy.extractEnergy(ForgeDirection.UNKNOWN, energy.getEnergyStored(ForgeDirection.UNKNOWN), false));
@@ -54,10 +54,5 @@ public class EMPExplosion implements IExplosionType {
 	@Override
 	public void doEffects() {
 		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, SIZE * 2, 1);
-	}
-	
-	@Override
-	public int getMaxFuse() {
-		return 80;
 	}
 }
