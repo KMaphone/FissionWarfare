@@ -26,6 +26,9 @@ public class InitItems {
 	public static Item frame;
 	public static Item circuit;	
 	
+	public static Item shell;
+	public static Item bullet;
+	
 	public static void init() {
 		
 		quartz = new ItemBase("quartz");
@@ -45,6 +48,9 @@ public class InitItems {
 		
 		frame = new ItemTiered("frame", 3);
 		circuit = new ItemTiered("circuit", 3);
+		
+		shell = new ItemBase("shell");
+		bullet = new ItemBase("bullet");
 		
 		OreDictionary.registerOre("ingotSteel", steel_ingot);
 	}
