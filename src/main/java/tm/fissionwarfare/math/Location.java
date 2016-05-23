@@ -2,6 +2,7 @@ package tm.fissionwarfare.math;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -44,6 +45,14 @@ public class Location {
 
 	public int getMetadata() {
 		return world.getBlockMetadata(x, y, z);
+	}
+	
+	public boolean hasTileEntity() {
+		return getBlock().hasTileEntity(getMetadata());
+	}
+	
+	public TileEntity getTileEntity() {
+		return world.getTileEntity(x, y, z);
 	}
 
 	public double getDistance(Location location) {
