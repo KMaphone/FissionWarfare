@@ -1,10 +1,13 @@
 package tm.fissionwarfare.tileentity.machine;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -33,6 +36,8 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public static final int RANGE = 10;	
 	public static final float DAMAGE = 10;
 	public static final int ENERGY_COST = 1000;
+	
+	private Random rand = new Random();
 	
 	public Angle2d angle = new Angle2d(0, 0);	
 	public EntityPlayer target;
@@ -102,10 +107,15 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 		if (canFire()) {
 			
-			storage.extractEnergy(ENERGY_COST, false);
-			target.attackEntityFrom(DamageSource.generic, DAMAGE);
-			slots[0].stackSize--;
+			storage.extractEnergy(ENERGY_COST, false);			
 			progress = 0;
+			
+			target.attackEntityFrom(DamageSource.generic, DAMAGE);
+			
+			slots[0].stackSize--;			
+			EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
+			entityItem.addVelocity(-0.5D + rand.nextDouble(), 0.2D, -0.5D + rand.nextDouble());
+			worldObj.spawnEntityInWorld(entityItem);			
 		}
 		
 		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead || profile.isSameTeam(target)) {
