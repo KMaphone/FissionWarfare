@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 import tm.fissionwarfare.item.ItemBase;
 import tm.fissionwarfare.item.ItemCement;
+import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.item.ItemTiered;
 
 public class InitItems {
@@ -26,6 +27,8 @@ public class InitItems {
 	public static Item frame;
 	public static Item circuit;	
 	public static Item fuel_canister;
+	
+	public static Item missile;
 	
 	public static Item shell;
 	public static Item bullet;
@@ -50,6 +53,8 @@ public class InitItems {
 		frame = new ItemTiered("frame", 3);
 		circuit = new ItemTiered("circuit", 3);
 		fuel_canister = new ItemTiered("fuel_canister", 3);
+		
+		missile = new ItemMissile();
 		
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
