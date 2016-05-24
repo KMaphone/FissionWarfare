@@ -21,14 +21,11 @@ public class InitItems {
 	public static Item nuclear_capsule;
 	public static Item electromagnetic_capsule;
 	
-	public static Item liquid_coal_canister;
-	public static Item pyrotheum_canister;
-	public static Item cryotheum_canister;
-	
 	public static Item cement;
 	
 	public static Item frame;
 	public static Item circuit;	
+	public static Item fuel_canister;
 	
 	public static Item shell;
 	public static Item bullet;
@@ -48,14 +45,11 @@ public class InitItems {
 		nuclear_capsule = new ItemBase("nuclear_capsule");
 		electromagnetic_capsule = new ItemBase("electromagnetic_capsule");
 		
-		liquid_coal_canister = new ItemBase("liquid_coal_canister");
-		pyrotheum_canister = new ItemBase("pyrotheum_canister");
-		cryotheum_canister = new ItemBase("cryotheum_canister");
-		
 		cement = new ItemCement();
 		
 		frame = new ItemTiered("frame", 3);
 		circuit = new ItemTiered("circuit", 3);
+		fuel_canister = new ItemTiered("fuel_canister", 3);
 		
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");

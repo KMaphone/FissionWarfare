@@ -1,5 +1,7 @@
 package tm.fissionwarfare.gui.base;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import tm.fissionwarfare.api.ISecurity;
@@ -15,11 +17,14 @@ public abstract class GuiEnergyContainerBase extends GuiContainerBase {
 		super(container, player, tileEntity);
 		this.tileEntity = tileEntity;
 		this.player = player;
-	}
+	}	
 	
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
-		super.drawGuiContainerBackgroundLayer(f, mouseX, mouseY);
+	public void drawScreen(int mouseX, int mouseY, float f) {
+		super.drawScreen(mouseX, mouseY, f);
+		
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glColor4f(1, 1, 1, 1);
 		
 		GuiUtil.drawStatusPanel(tileEntity.storage.getEnergyStored(), tileEntity.storage.getMaxEnergyStored(), tileEntity.progress, tileEntity.getMaxProgress(), getScreenX() - 19, getScreenY() + ((getGuiSize() / 4) - 34), mouseX, mouseY);
 		

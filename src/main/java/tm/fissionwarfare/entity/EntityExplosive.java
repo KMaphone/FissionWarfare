@@ -30,7 +30,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 	public EntityExplosive(World world, int x, int y, int z, BlockExplosive block) {
 		this(world);
 		this.block = block;
-		this.fuse = block.getExplosion().getMaxFuse();
+		this.fuse = block.getExplosion().getFuseTime();
 		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
 		SoundHelper.playSound(new BombSound(this));
 	}
@@ -68,7 +68,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 
 	private void explode() {
 		
-		IExplosionType explosion = block.getExplosion();
+		IExplosionType explosion = block.getExplosion().getExplosionType();
 		
 		explosion.setup(worldObj, getVector());
 			

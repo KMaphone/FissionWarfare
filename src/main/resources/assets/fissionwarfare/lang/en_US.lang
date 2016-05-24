@@ -11,6 +11,7 @@ item.uranium_chunk.name=Uranium Chunk
 item.cement_0.name=Cement Type I
 item.cement_1.name=Cement Type II
 item.cement_2.name=Cement Type III
+
 item.wet_cement_0.name=Wet Cement Type I
 item.wet_cement_1.name=Wet Cement Type II
 item.wet_cement_2.name=Wet Cement Type III
@@ -21,9 +22,9 @@ item.shrapnel_capsule.name=Shrapnel Capsule
 item.electromagnetic_capsule.name=Electromagnetic Capsule
 item.nuclear_capsule.name=Nuclear Capsule
 
-item.liquid_coal_canister.name=Liquid Coal Canister
-item.pyrotheum_canister.name=Pyrotheum Canister
-item.cryotheum_canister.name=Cryotheum Canister
+item.fuel_canister_0.name=Liquid Coal Canister
+item.fuel_canister_1.name=Pyrotheum Canister
+item.fuel_canister_2.name=Cryotheum Canister
 
 item.frame_0.name=Iron Frame
 item.frame_1.name=Steel Frame

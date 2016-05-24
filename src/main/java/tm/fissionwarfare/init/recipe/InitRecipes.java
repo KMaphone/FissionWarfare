@@ -47,15 +47,15 @@ public class InitRecipes {
 		
 		/////////////////////////////////////////////////////////CANISTER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.liquid_coal_canister, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fuel_canister, 1, 0), new Object[] {
 			" T ", "TBT", "TBT", 'T', TFItems.ingotTin, 'B', TFItems.bucketCoal,
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.pyrotheum_canister, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fuel_canister, 1, 1), new Object[] {
 			" T ", "TBT", "TBT", 'T', TFItems.ingotBronze, 'B', TFItems.bucketPyrotheum,
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.cryotheum_canister, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fuel_canister, 1, 2), new Object[] {
 			" T ", "TBT", "TBT", 'T', TFItems.ingotSilver, 'B', TFItems.bucketCryotheum,
 		}));
 		

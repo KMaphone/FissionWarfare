@@ -15,7 +15,7 @@ public class GuiUtil {
 	private static final int TEXTURE_SIZE = 256;
 		
 	public static void drawStatusPanel(int energy, int maxEnergy, int progress, int maxProgress, int x, int y, int mouseX, int mouseY) {
-		
+				
 		GuiRect rect = new GuiRect(x + 1, y + 15, 18, 46);
 		GuiRect rect2 = new GuiRect(rect.x + 5, rect.y + 5, rect.width - 10, rect.height - 10);
 		
@@ -35,11 +35,17 @@ public class GuiUtil {
 	public static void drawTextBox(String text, int mouseX, int mouseY, GuiRect rect) {
 		
 		if (rect.contains(mouseX, mouseY)) {
+						
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0, 0, 100);
 			
 			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
 			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 3, 12, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
-			GL11.glColor4f(1, 1, 1, 1);
+			
+			GL11.glPopMatrix();
+			
+			GL11.glColor4f(1, 1, 1, 1);		
 		}
 	}
 	
