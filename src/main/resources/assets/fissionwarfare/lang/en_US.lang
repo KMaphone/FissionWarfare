@@ -21,6 +21,10 @@ item.shrapnel_capsule.name=Shrapnel Capsule
 item.electromagnetic_capsule.name=Electromagnetic Capsule
 item.nuclear_capsule.name=Nuclear Capsule
 
+item.liquid_coal_canister.name=Liquid Coal Canister
+item.pyrotheum_canister.name=Pyrotheum Canister
+item.cryotheum_canister.name=Cryotheum Canister
+
 item.frame_0.name=Iron Frame
 item.frame_1.name=Steel Frame
 item.frame_2.name=Invar Frame
