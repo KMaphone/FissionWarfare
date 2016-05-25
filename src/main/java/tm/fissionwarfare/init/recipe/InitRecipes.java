@@ -103,11 +103,17 @@ public class InitRecipes {
 			"FEF", "RRR", "FEF", 'F', InitItems.frame, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
 		}));
 		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.turret, 1), new Object[] {
+			"R  ", "MCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 3), 'G', TFItems.gearGold, 'D', Blocks.dispenser, 'R', Blocks.redstone_torch
+		}));
 		
 		
-		addFrameRecipe(new ItemStack(InitItems.frame, 0, 16), "ingotIron");
-		addFrameRecipe(new ItemStack(InitItems.frame, 1, 16), "ingotSteel");
-		addFrameRecipe(new ItemStack(InitItems.frame, 2, 16), "ingotInvar");
+		
+		
+		
+		addFrameRecipe(new ItemStack(InitItems.frame, 16, 0), "ingotIron");
+		addFrameRecipe(new ItemStack(InitItems.frame, 16, 1), "ingotSteel");
+		addFrameRecipe(new ItemStack(InitItems.frame, 16, 2), "ingotInvar");
 	}
 
 	private static void addFrameRecipe(ItemStack output, String oreIngot) {

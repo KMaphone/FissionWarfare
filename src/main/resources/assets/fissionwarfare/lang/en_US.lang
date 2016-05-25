@@ -1,5 +1,7 @@
 #-#-#-#-#-ITEMS-#-#-#-#-#
 
+item.missile.name=Missile
+
 item.quartz.name=Quartz
 item.quartz_sand.name=Quartz Sand
 item.quartz_chunk.name=Quartz Chunk
@@ -54,7 +56,6 @@ tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
 
-tile.test_block.name=Test Block
 
 tile.concrete_0.name=Concrete
 tile.concrete_1.name=Hardened Concrete
@@ -62,6 +63,7 @@ tile.concrete_2.name=Reinforced Concrete
 tile.reinforced_glass_0.name=Reinforced Glass
 
 tile.turret.name=Turret
+tile.missile_factory.name=Missile Factory
 
 #-#-#-#-#-FLUIDS-#-#-#-#-#
 
