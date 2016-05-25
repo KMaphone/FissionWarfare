@@ -57,8 +57,12 @@ public class MissileData {
 
 	public static MissileData getDataFromItem(ItemStack stack) {
 
-		NBTTagCompound nbt = getItemNBTTagCompound(stack);
+		NBTTagCompound nbt = stack.getTagCompound();
 
+		if (nbt == null) {
+			nbt = new NBTTagCompound();
+		}
+		
 		MissileData data = new MissileData();
 
 		data.readFromNBT(nbt);
@@ -68,20 +72,14 @@ public class MissileData {
 
 	public static void setDataToItem(ItemStack stack, MissileData data) {
 
-		NBTTagCompound nbt = getItemNBTTagCompound(stack);
-
-		data.writeFromNBT(nbt);
-	}
-
-	private static NBTTagCompound getItemNBTTagCompound(ItemStack stack) {
-
 		NBTTagCompound nbt = stack.getTagCompound();
 
 		if (nbt == null) {
-			stack.setTagCompound(new NBTTagCompound());
-			return getItemNBTTagCompound(stack);
+			nbt = new NBTTagCompound();
 		}
-
-		return nbt;
+		
+		data.writeFromNBT(nbt);
+		
+		stack.setTagCompound(nbt);
 	}
 }
