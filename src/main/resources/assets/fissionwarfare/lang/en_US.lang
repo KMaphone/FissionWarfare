@@ -34,9 +34,10 @@ item.circuit_0.name=Basic Circuit
 item.circuit_1.name=Advanced Circuit
 item.circuit_2.name=Hyper Circuit
 
+item.missile.name=Missile
+
 item.shell.name=Shell
 item.bullet.name=Bullet
-
 
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 

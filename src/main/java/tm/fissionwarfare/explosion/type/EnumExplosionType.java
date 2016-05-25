@@ -4,18 +4,24 @@ import tm.fissionwarfare.api.IExplosionType;
 
 public enum EnumExplosionType {
 
-	BASIC(new BasicExplosion(), 80),
-	EMP(new EMPExplosion(), 100),
-	ATOMIC(new AtomicExplosion(), 100),
-	CHEMICAL(new ChemicalExplosion(), 100),
-	PYRO(new PyroExplosion(), 100);
+	BASIC("Basic", new BasicExplosion(), 80),
+	EMP("EMP", new EMPExplosion(), 100),
+	ATOMIC("Atomic", new AtomicExplosion(), 100),
+	CHEMICAL("Chemical", new ChemicalExplosion(), 100),
+	PYRO("Pyro", new PyroExplosion(), 100);
 
+	private String name;
 	private IExplosionType explosionType;
 	private int fuseTime;
 
-	private EnumExplosionType(IExplosionType explosionType, int fuseTime) {
+	private EnumExplosionType(String name, IExplosionType explosionType, int fuseTime) {
+		this.name = name;
 		this.explosionType = explosionType;
 		this.fuseTime = fuseTime;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public IExplosionType getExplosionType() {

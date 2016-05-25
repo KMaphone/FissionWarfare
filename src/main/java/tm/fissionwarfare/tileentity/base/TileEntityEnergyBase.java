@@ -25,9 +25,10 @@ public abstract class TileEntityEnergyBase extends TileEntityInventoryBase imple
 		
 		if (isDone()) {
 			progress = 0;
+			return true;
 		}
 		
-		return isDone();
+		return false;
 	}
 	
 	public boolean canExtractEnergy(int energy) {

@@ -16,7 +16,7 @@ public class MissileData {
 		accuracy = nbt.getFloat("accuracy");
 		speed = nbt.getFloat("speed");
 
-		if (nbt.hasKey("type")) {
+		if (nbt.hasKey("explosionType")) {
 			explosionType = EnumExplosionType.valueOf(nbt.getString("type"));
 		}
 	}
@@ -27,7 +27,7 @@ public class MissileData {
 		nbt.setFloat("speed", speed);
 
 		if (explosionType != null) {
-			nbt.setString("type", explosionType.name());
+			nbt.setString("explosionType", explosionType.name());
 		}
 	}
 

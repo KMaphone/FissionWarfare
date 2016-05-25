@@ -72,6 +72,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	@Override
 	public void updateEntity() {
+		super.updateEntity();
 		
 		profile.cleanTeam(worldObj);		
 		angle.pitch = MathHelper.clamp_double(angle.pitch, -60, 60);		
