@@ -54,11 +54,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 		
 		else progress = 0;
 		
-		if (slots[0] != null) System.out.println(((BlockExplosive)Block.getBlockFromItem(slots[0].getItem())).getExplosion().getName());
-		
 		if (isDoneAndReset()) {
-			
-			System.out.println("done");
 			
 			storage.extractEnergy(ENERGY_COST, false);
 			
@@ -70,9 +66,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			data.setAccuracy(slots[1].getItemDamage());
 			data.setSpeed(slots[2].getItemDamage());
 			
-			MissileData.setDataToItem(stack, data);
-			
-			setInventorySlotContents(4, stack);
+			setInventorySlotContents(4, MissileData.setDataToItem(stack, data));
 			
 			for (int i = 0; i < 3; i++) {
 				slots[0].stackSize--;

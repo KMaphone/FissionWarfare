@@ -8,18 +8,19 @@ import tm.fissionwarfare.missile.MissileData;
 
 public class ItemMissile extends ItemBase {
 
-	public MissileData missileData = new MissileData();
-	
 	public ItemMissile() {
 		super("missile");
+		setMaxStackSize(1);
 	}
 	
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {
 		
-		MissileData.getDataFromItem(is);
+		MissileData missileData = MissileData.getDataFromItem(is);
 		
-		list.add("Type: " + missileData.getExplosionType().getName());
+		System.out.println(missileData == null);
+		
+		if (missileData.getExplosionType() != null) list.add("Type: " + missileData.getExplosionType().getName());
 		list.add("Accuracy: " + missileData.getAccuracy());
 		list.add("Speed: " + missileData.getSpeed());
 	}

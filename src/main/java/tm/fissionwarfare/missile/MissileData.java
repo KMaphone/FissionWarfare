@@ -7,8 +7,8 @@ import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class MissileData {
 
-	private float accuracy;
-	private float speed;
+	private float accuracy = 0;
+	private float speed = 0;
 	private EnumExplosionType explosionType;
 
 	public void readFromNBT(NBTTagCompound nbt) {
@@ -17,7 +17,7 @@ public class MissileData {
 		speed = nbt.getFloat("speed");
 
 		if (nbt.hasKey("explosionType")) {
-			explosionType = EnumExplosionType.valueOf(nbt.getString("type"));
+			explosionType = EnumExplosionType.valueOf(nbt.getString("explosionType"));
 		}
 	}
 
@@ -59,9 +59,7 @@ public class MissileData {
 
 		NBTTagCompound nbt = stack.getTagCompound();
 
-		if (nbt == null) {
-			nbt = new NBTTagCompound();
-		}
+		nbt = new NBTTagCompound();		
 		
 		MissileData data = new MissileData();
 
@@ -70,16 +68,16 @@ public class MissileData {
 		return data;
 	}
 
-	public static void setDataToItem(ItemStack stack, MissileData data) {
+	public static ItemStack setDataToItem(ItemStack stack, MissileData data) {
 
 		NBTTagCompound nbt = stack.getTagCompound();
 
-		if (nbt == null) {
-			nbt = new NBTTagCompound();
-		}
+		nbt = new NBTTagCompound();
 		
 		data.writeFromNBT(nbt);
 		
 		stack.setTagCompound(nbt);
+		
+		return stack;
 	}
 }
