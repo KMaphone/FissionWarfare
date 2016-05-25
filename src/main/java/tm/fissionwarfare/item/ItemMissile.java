@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import tm.fissionwarfare.missile.MissileData;
 
 public class ItemMissile extends ItemBase {
@@ -20,8 +21,8 @@ public class ItemMissile extends ItemBase {
 		
 		System.out.println(missileData == null);
 		
-		if (missileData.getExplosionType() != null) list.add("Type: " + missileData.getExplosionType().getName());
-		list.add("Accuracy: " + missileData.getAccuracy());
-		list.add("Speed: " + missileData.getSpeed());
+		if (missileData.getExplosionType() != null) list.add(EnumChatFormatting.GOLD + "Type: " + EnumChatFormatting.AQUA + missileData.getExplosionType().getName());
+		list.add(EnumChatFormatting.GOLD + "Accuracy Tier: " + EnumChatFormatting.AQUA + missileData.getAccuracy());
+		list.add(EnumChatFormatting.GOLD + "Speed Tier: " + EnumChatFormatting.AQUA + missileData.getSpeed());
 	}
 }

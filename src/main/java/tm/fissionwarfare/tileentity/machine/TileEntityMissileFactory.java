@@ -63,16 +63,16 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			MissileData data = new MissileData();
 			
 			data.setExplosionType(((BlockExplosive)Block.getBlockFromItem(slots[0].getItem())).getExplosion());
-			data.setAccuracy(slots[1].getItemDamage());
-			data.setSpeed(slots[2].getItemDamage());
+			data.setAccuracy(slots[1].getItemDamage() + 1);
+			data.setSpeed(slots[2].getItemDamage() + 1);
 			
 			setInventorySlotContents(4, MissileData.setDataToItem(stack, data));
 			
 			for (int i = 0; i < 3; i++) {
-				slots[0].stackSize--;
+				slots[i].stackSize--;
 			}
 			
-			slots[4].stackSize -= 16;		
+			slots[3].stackSize -= 16;		
 		}
 	}
 	
