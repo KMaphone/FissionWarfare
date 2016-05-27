@@ -1,7 +1,5 @@
 package tm.fissionwarfare.api;
 
-import org.apache.commons.codec.binary.Hex;
-
 public enum EnumColorUtil {
 
 	DARK_BLUE("1"),

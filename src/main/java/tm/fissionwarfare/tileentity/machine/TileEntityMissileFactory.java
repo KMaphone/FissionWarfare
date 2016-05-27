@@ -10,7 +10,6 @@ import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.gui.GuiMissileFactory;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerMissileFactory;
-import tm.fissionwarfare.item.ItemTiered;
 import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 

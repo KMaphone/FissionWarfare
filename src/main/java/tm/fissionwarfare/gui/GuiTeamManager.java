@@ -6,8 +6,6 @@ import java.util.Arrays;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.sun.glass.ui.Window;
-
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
@@ -15,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.MathHelper;
-import net.minecraftforge.client.event.MouseEvent;
 import tm.fissionwarfare.api.EnumColorUtil;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiRect;

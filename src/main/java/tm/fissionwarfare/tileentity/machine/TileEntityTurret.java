@@ -4,8 +4,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHopper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -16,9 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.util.Vec3;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
@@ -29,8 +24,8 @@ import tm.fissionwarfare.inventory.ContainerTurret;
 import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
 import tm.fissionwarfare.math.RaytraceUtil;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.math.RaytraceUtil.HitType;
+import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity {

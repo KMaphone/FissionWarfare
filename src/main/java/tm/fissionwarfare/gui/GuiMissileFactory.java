@@ -2,10 +2,8 @@ package tm.fissionwarfare.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import tm.fissionwarfare.gui.base.GuiContainerBase;
 import tm.fissionwarfare.gui.base.GuiEnergyContainerBase;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
 public class GuiMissileFactory extends GuiEnergyContainerBase {
 	

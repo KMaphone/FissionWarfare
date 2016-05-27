@@ -3,13 +3,9 @@ package tm.fissionwarfare.explosion.type;
 import java.util.List;
 
 import cofh.api.energy.IEnergyHandler;
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.IExplosionType;
-import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.math.ShapeUtil;
 import tm.fissionwarfare.math.Vector3d;

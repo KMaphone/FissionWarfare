@@ -3,7 +3,6 @@ package tm.fissionwarfare.explosion;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.math.Angle2d;

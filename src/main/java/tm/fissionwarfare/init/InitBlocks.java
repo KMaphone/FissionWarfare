@@ -9,12 +9,7 @@ import tm.fissionwarfare.block.BlockMissileFactory;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockReinforcedGlass;
 import tm.fissionwarfare.block.BlockTurret;
-import tm.fissionwarfare.explosion.type.AtomicExplosion;
-import tm.fissionwarfare.explosion.type.BasicExplosion;
-import tm.fissionwarfare.explosion.type.ChemicalExplosion;
-import tm.fissionwarfare.explosion.type.EMPExplosion;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;
-import tm.fissionwarfare.explosion.type.PyroExplosion;
 
 public class InitBlocks {
 

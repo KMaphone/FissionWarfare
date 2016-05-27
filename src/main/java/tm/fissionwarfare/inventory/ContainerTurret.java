@@ -1,8 +1,6 @@
 package tm.fissionwarfare.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 

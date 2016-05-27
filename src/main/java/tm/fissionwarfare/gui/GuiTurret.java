@@ -1,7 +1,6 @@
 package tm.fissionwarfare.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
-import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiEnergyContainerBase;
 import tm.fissionwarfare.gui.base.GuiToggleButton;
 import tm.fissionwarfare.inventory.ContainerTurret;

@@ -1,6 +1,5 @@
 package tm.fissionwarfare.missile;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;

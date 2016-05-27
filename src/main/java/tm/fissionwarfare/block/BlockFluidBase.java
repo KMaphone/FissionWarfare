@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.fluid.FluidConcrete;
 
 public class BlockFluidBase extends BlockFluidClassic {
 

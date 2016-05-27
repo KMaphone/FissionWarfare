@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.entity.EntityExplosive;

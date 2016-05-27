@@ -2,13 +2,10 @@ package tm.fissionwarfare.explosion.type;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosionType;
-import tm.fissionwarfare.explosion.ConcreteUtil;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.math.Location;
