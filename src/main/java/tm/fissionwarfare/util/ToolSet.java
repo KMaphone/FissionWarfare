@@ -21,7 +21,9 @@ public class ToolSet {
 	
 	public ToolSet(String imagePath, ToolMaterial toolMaterial, Item recipeItem, boolean hasCraftingRecipe){
 		sword = new ItemSwordBase(imagePath + "_sword", toolMaterial);
+		pickaxe = new ItemPickaxeBase(imagePath + "_pickaxe", toolMaterial);
 		shovel = new ItemShovelBase(imagePath + "_shovel", toolMaterial);
+		axe = new ItemAxeBase(imagePath + "_axe", toolMaterial);
 		hoe = new ItemHoeBase(imagePath + "_hoe", toolMaterial);
 		
 		if(hasCraftingRecipe){

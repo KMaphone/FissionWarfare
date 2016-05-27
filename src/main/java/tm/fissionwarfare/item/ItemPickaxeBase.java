@@ -15,6 +15,7 @@ public class ItemPickaxeBase extends ItemPickaxe {
 		super(toolMaterial);
 		this.imagePath = imagePath;
 		this.toolMaterial = toolMaterial;
+		setTextureName(Reference.MOD_ID + ":tools/" + imagePath);
 		setCreativeTab(InitTabs.tabMain);
 		setUnlocalizedName(imagePath);
 		GameRegistry.registerItem(this, imagePath);
