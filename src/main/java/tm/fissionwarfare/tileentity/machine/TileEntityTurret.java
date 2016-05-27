@@ -5,6 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHopper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -12,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -112,10 +114,13 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 			
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
 			
-			decrStackSize(0, 1);	
-			EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
-			entityItem.addVelocity(-0.5D + rand.nextDouble(), 0.2D, -0.5D + rand.nextDouble());
-			worldObj.spawnEntityInWorld(entityItem);			
+			decrStackSize(0, 1);
+			
+			if (!canShellFitInHopper()) {
+				EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
+				entityItem.addVelocity(-0.5D + rand.nextDouble(), 0.2D, -0.5D + rand.nextDouble());
+				worldObj.spawnEntityInWorld(entityItem);
+			}				
 		}
 		
 		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead || profile.isSameTeam(target)) {
@@ -162,6 +167,29 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	
 	public boolean isTargetInRange(Entity e) {
 		return e.getDistance(xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D) <= RANGE;
+	}
+	
+	public boolean canShellFitInHopper() {
+		
+		if (worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityHopper) {				
+			
+			TileEntityHopper hopper = (TileEntityHopper) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+			
+			for (int s = 0; s < hopper.getSizeInventory(); s++) {
+				
+				if (hopper.getStackInSlot(s) == null) {
+					hopper.setInventorySlotContents(s, new ItemStack(InitItems.shell));
+					return true;
+				}
+				
+				else if (hopper.getStackInSlot(s).getItem() == InitItems.shell && hopper.getStackInSlot(s).stackSize < hopper.getInventoryStackLimit()) {
+					hopper.getStackInSlot(s).stackSize++;
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	@Override

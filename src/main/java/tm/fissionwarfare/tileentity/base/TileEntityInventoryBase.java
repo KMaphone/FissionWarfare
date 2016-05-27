@@ -131,8 +131,8 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int dir) {
-		System.out.println("input");
-		if (dir == 1) {
+
+		if (dir == 1&& inputSlots != null) {
 			
 			for (int id : inputSlots) {
 			
@@ -143,7 +143,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 			}
 		}
 		
-		if (dir > 1) {
+		if (dir > 1&& sideInputSlots != null) {
 			
 			for (int id : sideInputSlots) {
 				
@@ -157,7 +157,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int dir) {
 		
-		if (dir == 0) {
+		if (dir == 0 && extractSlots != null) {
 		
 			for (int id : extractSlots) {
 			
