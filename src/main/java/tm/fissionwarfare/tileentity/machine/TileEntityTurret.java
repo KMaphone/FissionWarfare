@@ -47,7 +47,6 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public TileEntityTurret() {
 		setInputSlots(0);
 		setSideInputSlots(0);
-		setExtractSlots(0);
 	}
 	
 	@Override
@@ -113,7 +112,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 			
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
 			
-			slots[0].stackSize--;			
+			decrStackSize(0, 1);	
 			EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
 			entityItem.addVelocity(-0.5D + rand.nextDouble(), 0.2D, -0.5D + rand.nextDouble());
 			worldObj.spawnEntityInWorld(entityItem);			
@@ -169,12 +168,7 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 	public int getSizeInventory() {
 		return 1;
 	}
-	
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return stack.getItem() == InitItems.quartz;
-	}
-	
+		
 	@Override
 	public Container getTileContainer(EntityPlayer player) {
 		return new ContainerTurret(player, this);

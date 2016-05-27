@@ -37,8 +37,6 @@ public abstract class BlockContainerBase extends BlockContainer {
 			setCreativeTab(InitTabs.tabMain);
 			GameRegistry.registerBlock(this, imagePath);
 		}
-		
-		GameRegistry.registerTileEntity(getTileEntity(0).getClass(), Reference.MOD_ID + ":tile_entity_" + imagePath);
 	}
 	
 	public BlockContainerBase(String imagePath, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
@@ -106,7 +104,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
 		
-		if(!w.isRemote) {			
+		if (!w.isRemote) {			
 			FMLNetworkHandler.openGui(p, FissionWarfare.instance, 0, w, x, y, z);	
 		}
 		

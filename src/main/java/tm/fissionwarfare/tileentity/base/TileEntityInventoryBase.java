@@ -2,6 +2,7 @@ package tm.fissionwarfare.tileentity.base;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tm.fissionwarfare.tileentity.ITileEntityGuiHandler;
@@ -9,6 +10,7 @@ import tm.fissionwarfare.tileentity.ITileEntityGuiHandler;
 public abstract class TileEntityInventoryBase  extends TileEntityBase implements ISidedInventory, ITileEntityGuiHandler {
 	
 	public ItemStack[] slots = new ItemStack[getSizeInventory()];
+	public Slot[] containerSlots = new Slot[getSizeInventory()];
 	
 	private int[] inputSlots, sideInputSlots, extractSlots;
 	private ItemStack[] filters = new ItemStack[slots.length];
@@ -95,7 +97,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
 	}
 	
@@ -111,8 +113,8 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	public void closeInventory() {}
 
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return true;
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {		
+		return containerSlots[slot] != null && containerSlots[slot].isItemValid(stack);
 	}
 
 	@Override
@@ -129,12 +131,15 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int dir) {
-		
+		System.out.println("input");
 		if (dir == 1) {
-					
+			
 			for (int id : inputSlots) {
 			
-				if (id == slot) return true; 
+				if (id == slot) {
+					
+					return true; 
+				}
 			}
 		}
 		

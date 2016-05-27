@@ -19,8 +19,6 @@ public class ItemMissile extends ItemBase {
 		
 		MissileData missileData = MissileData.getDataFromItem(is);
 		
-		System.out.println(missileData == null);
-		
 		if (missileData.getExplosionType() != null) list.add(EnumChatFormatting.GOLD + "Type: " + EnumChatFormatting.AQUA + missileData.getExplosionType().getName());
 		list.add(EnumChatFormatting.GOLD + "Accuracy Tier: " + EnumChatFormatting.AQUA + missileData.getAccuracy());
 		list.add(EnumChatFormatting.GOLD + "Speed Tier: " + EnumChatFormatting.AQUA + missileData.getSpeed());

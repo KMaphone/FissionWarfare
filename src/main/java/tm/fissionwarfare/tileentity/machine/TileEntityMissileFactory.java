@@ -67,12 +67,12 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			data.setSpeed(slots[2].getItemDamage() + 1);
 			
 			setInventorySlotContents(4, MissileData.setDataToItem(stack, data));
-			
+						
 			for (int i = 0; i < 3; i++) {
-				slots[i].stackSize--;
+				decrStackSize(i, 1);
 			}
 			
-			slots[3].stackSize -= 16;		
+			decrStackSize(3, 16);
 		}
 	}
 	

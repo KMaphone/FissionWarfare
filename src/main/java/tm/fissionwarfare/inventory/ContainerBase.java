@@ -18,7 +18,7 @@ public abstract class ContainerBase extends Container {
 		addPlayerHotbar(8, 152);
 	}
 	
-	public int getNewSlotAmount() {
+	public int getTileEntitySlotAmount() {
 		return tileEntity.getSizeInventory();
 	}
 	
@@ -51,39 +51,34 @@ public abstract class ContainerBase extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 				
-			if (getNewSlotAmount() > 0) {
+			//Does tile entity have slots
+			if (getTileEntitySlotAmount() > 0) {
 				
-				if (!slot.isItemValid(itemstack1)) {
-					
-					if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
-						return null;
-					}
-				}
-				
+				//inventory -> tile entity
 				if (slotId <= 35) {
 					
-					if (!mergeIfPossable(slot, itemstack1, 36, 36 + getNewSlotAmount())) {
+					if (!mergeIfPossible(slot, itemstack1, itemstack, 36, 36 + getTileEntitySlotAmount())) {
 						
-						if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
+						if (!mergeInvHotbarIfPossible(slot, itemstack1, itemstack, slotId)) {
 							return null;
-						}
+						}						
 					}
 				}	
 				
+				//tile entity -> inventory
 				else {
 										
-					if (!mergeIfPossable(slot, itemstack1, 0, 35)) {
-						
-						if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
-							return null;
-						}
+					if (!mergeIfPossible(slot, itemstack1, itemstack, 0, 35)) {
+						return null;
 					}
+					
+					slot.onSlotChange(itemstack1, itemstack);
 				}
 			}
 			
 			else {
 				
-				if (!mergeInvHotbarIfPossable(slot, itemstack1, slotId)) {
+				if (!mergeInvHotbarIfPossible(slot, itemstack1, itemstack, slotId)) {
 					return null;
 				}
 			}			
@@ -106,35 +101,34 @@ public abstract class ContainerBase extends Container {
 		return itemstack;
 	}
 	
-	public boolean mergeIfPossable(Slot slot, ItemStack is, int id, int maxId) {
+	public boolean mergeIfPossible(Slot slot, ItemStack is, ItemStack is2, int id, int maxId) {
 		
 		if (!this.mergeItemStack(is, id, maxId, false)) {
 			return false;
 		}
-
-		slot.onSlotChange(is, is);
+		
+		slot.onSlotChange(is, is2);
 		return true;
 	}
 	
-	public boolean mergeInvHotbarIfPossable(Slot slot, ItemStack is, int id) {
+	public boolean mergeInvHotbarIfPossible(Slot slot, ItemStack is, ItemStack is2, int id) {
 		
 		if (id < 27) {
 			
-			if (!mergeIfPossable(slot, is, 27, 35)) {
+			if (!mergeIfPossible(slot, is, is2, 27, 35)) {
 				return false;
 			}
 
-			slot.onSlotChange(is, is);
-			
+			slot.onSlotChange(is, is2);			
 		}
 		
 		else {
 			
-			if (!mergeIfPossable(slot, is, 0, 26)) {
+			if (!mergeIfPossible(slot, is, is2, 0, 26)) {
 				return false;
 			}	
 			
-			slot.onSlotChange(is, is);
+			slot.onSlotChange(is, is2);
 		}
 		
 		return true;

@@ -8,30 +8,35 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
 public class SlotFilter extends Slot {
 	
 	public List<Item> itemFilters;
 	public List<Object> objFilters;
 	
-	public SlotFilter(IInventory inv, int id, int x, int y, Item... filters) {
+	public SlotFilter(IInventory inv, TileEntityInventoryBase tileEntity, int id, int x, int y, Item... filters) {
 		super(inv, id, x, y);
-		
+			
 		this.itemFilters = new ArrayList<Item>();		
 		
 		for (Item item : filters) {
 			this.itemFilters.add(item);
 		}
+		
+		tileEntity.containerSlots[id] = this;
 	}
 	
-	public SlotFilter(IInventory inv, int id, int x, int y, Object... filters) {
+	public SlotFilter(IInventory inv, TileEntityInventoryBase tileEntity, int id, int x, int y, Object... filters) {
 		super(inv, id, x, y);
-		
+					
 		this.objFilters = new ArrayList<Object>();		
 		
 		for (Object obj : filters) {
 			this.objFilters.add(obj);
 		}
+		
+		tileEntity.containerSlots[id] = this;
 	}
 	
 	public boolean isFilter(ItemStack stack) {
