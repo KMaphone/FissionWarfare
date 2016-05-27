@@ -73,6 +73,14 @@ tile.concrete_mix.name=Concrete Mix
 fluid.liquid_glass=Liquid Glass
 tile.liquid_glass.name=Liquid Glass
 
+#-#-#-#-#-TOOLS-#-#-#-#-#
+
+item.steel_sword.name=Steel Sword
+item.steel_pickaxe.name=Steel Pickaxe
+item.steel_shovel.name=Steel Shovel
+item.steel_axe.name=Steel Axe
+item.steel_hoe.name=Steel Hoe
+
 #-#-#-#-#-CONFIG-#-#-#-#-#
 
 category.general_options.name=General Options

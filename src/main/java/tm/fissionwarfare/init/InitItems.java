@@ -6,6 +6,7 @@ import tm.fissionwarfare.item.ItemBase;
 import tm.fissionwarfare.item.ItemCement;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.item.ItemTiered;
+import tm.fissionwarfare.util.ToolSet;
 
 public class InitItems {
 
@@ -33,6 +34,8 @@ public class InitItems {
 	public static Item shell;
 	public static Item bullet;
 	
+	public static ToolSet steel;
+	
 	public static void init() {
 		
 		quartz = new ItemBase("quartz");
@@ -58,6 +61,8 @@ public class InitItems {
 		
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
+		
+		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		
 		OreDictionary.registerOre("ingotSteel", steel_ingot);
 	}

@@ -22,6 +22,7 @@ import tm.fissionwarfare.init.InitEntities;
 import tm.fissionwarfare.init.InitFluids;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTileEntities;
+import tm.fissionwarfare.init.InitToolMaterials;
 import tm.fissionwarfare.init.recipe.InitRecipes;
 import tm.fissionwarfare.init.recipe.InitTERecipes;
 import tm.fissionwarfare.packet.ClientPacketHandler;
@@ -58,6 +59,8 @@ public class FissionWarfare {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
 		MinecraftForge.EVENT_BUS.register(new SecurityEvent());
+		
+		InitToolMaterials.init();
 		
 		InitItems.init();
 		InitBlocks.init();
