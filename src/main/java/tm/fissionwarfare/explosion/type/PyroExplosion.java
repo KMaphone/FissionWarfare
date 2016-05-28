@@ -49,6 +49,7 @@ public class PyroExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, SIZE * 2, 1);
+		FWSound.turret_blast1.play(world, vector.x, vector.y, vector.z, 10, 1);
+		//FWSound.small_blast.play(world, vector.x, vector.y, vector.z, SIZE * 2, 1);
 	}
 }

@@ -26,6 +26,7 @@ import tm.fissionwarfare.math.MathUtil;
 import tm.fissionwarfare.math.RaytraceUtil;
 import tm.fissionwarfare.math.RaytraceUtil.HitType;
 import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity {
@@ -106,10 +107,9 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 			
 			storage.extractEnergy(ENERGY_COST, false);			
 			progress = 0;
-			
 			target.attackEntityFrom(DamageSource.generic, DAMAGE);
-			
 			decrStackSize(0, 1);
+			FWSound.turret_blast1.play(worldObj, xCoord, yCoord, zCoord, 10, 1);
 			
 			if (!canShellFitInHopper()) {
 				EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));

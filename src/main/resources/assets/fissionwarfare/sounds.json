@@ -1,4 +1,5 @@
 {
     "beep": { "category": "master", "sounds": [{ "name": "beep", "stream": false }] },
-	"blast_1": { "category": "master", "sounds": [{ "name": "blast_1", "stream": false }] }
+	"blast_1": { "category": "master", "sounds": [{ "name": "blast_1", "stream": false }] },
+	"turret_blast1": { "category": "master", "sounds": [{ "name": "turret_blast1", "stream": false }] }
 }
