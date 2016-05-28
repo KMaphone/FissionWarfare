@@ -34,7 +34,7 @@ public class InitRecipes {
 		/////////////////////////////////////////////////////////CIRCUIT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1), new Object[] {
-			"GGG", "ESE", "GGG", 'G', Blocks.glass, 'E', TFItems.ingotElectrum, 'S', TEItems.powerCoilSilver
+			"GGG", "ESE", "GGG", 'G', "blockGlassColorless", 'E', TFItems.ingotElectrum, 'S', TEItems.powerCoilSilver
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1, 1), new Object[] {
