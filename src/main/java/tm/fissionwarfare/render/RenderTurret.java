@@ -4,10 +4,13 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
 
-public class RenderTurret extends RenderBase {
-
+public class RenderTurret extends RenderTileEntityBase {
+	
 	public RenderTurret() {
 		super("turret");
 	}

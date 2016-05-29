@@ -6,20 +6,20 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import tm.fissionwarfare.Reference;
 
-public abstract class RenderBase extends TileEntitySpecialRenderer {
+public abstract class RenderTileEntityBase extends TileEntitySpecialRenderer {
 
 	public String modelName, textureName;
 	public IModelCustom model;
 	public ResourceLocation texture;
 	
-	public RenderBase(String modelName, String textureName) {
+	public RenderTileEntityBase(String modelName, String textureName) {
 		this.textureName = textureName;
 		this.modelName = modelName;
 		model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MOD_ID + ":obj/" + modelName + ".obj"));
 		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/" + textureName + ".png");
 	}
 	
-	public RenderBase(String name) {
+	public RenderTileEntityBase(String name) {
 		this(name, name);
 	}
 }

@@ -5,11 +5,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IExplosiveBlock;
 import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.entity.EntityExplosive;
+import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
@@ -34,6 +36,15 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 		if (world.isBlockIndirectlyGettingPowered(x, y, z)) {			
 			activate(world, x, y, z);
 		}
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float f1, float f2, float f3) {
+		
+		System.out.println("click!");
+		EntityMissile entity = new EntityMissile(world, x, y, z);
+		world.spawnEntityInWorld(entity);
+		return false;
 	}
 
 	@Override
