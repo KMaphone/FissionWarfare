@@ -103,9 +103,28 @@ public class InitRecipes {
 			"FEF", "RRR", "FEF", 'F', InitItems.frame, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
 		}));
 		
+		/////////////////////////////////////////////////////////MACHINES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.turret, 1), new Object[] {
 			"R  ", "MCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 3), 'G', TFItems.gearGold, 'D', Blocks.dispenser, 'R', Blocks.redstone_torch
 		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.missile_factory, 1), new Object[] {
+			"MGM", "DCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 1), 'C', new ItemStack(InitItems.circuit, 1, 2), 'G', TFItems.gearGold, 'D', new ItemStack(TEBlocks.blockWorkbench, 1, 1)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.launch_pad, 1), new Object[] {
+			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 3), 'G', new ItemStack(TEBlocks.blockGlass, 1), 'P', Blocks.piston
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.support_frame, 1), new Object[] {
+			" BB", " BB", " BB", 'B', new ItemStack(InitBlocks.steel_block, 1)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.steel_block, 1), new Object[] {
+			"BBB", "BBB", "BBB", 'B', new ItemStack(InitItems.steel_ingot, 1)
+		}));
+		
 		
 		
 		

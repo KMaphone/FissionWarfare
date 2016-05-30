@@ -51,6 +51,8 @@ tile.atomic.name=Atomic Explosive
 
 #-#-#-#-#-BLOCKS-#-#-#-#-#
 
+tile.steel_block.name=Steel Block
+
 tile.limestone_ore.name=Limestone Ore
 tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
@@ -64,6 +66,8 @@ tile.reinforced_glass_0.name=Reinforced Glass
 
 tile.turret.name=Turret
 tile.missile_factory.name=Missile Factory
+tile.launch_pad.name=Launch Pad
+tile.support_frame.name=Support Frame
 
 #-#-#-#-#-FLUIDS-#-#-#-#-#
 
