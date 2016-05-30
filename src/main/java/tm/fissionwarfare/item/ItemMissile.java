@@ -10,7 +10,7 @@ import tm.fissionwarfare.missile.MissileData;
 public class ItemMissile extends ItemBase {
 
 	public ItemMissile() {
-		super("missile");
+		super("missile", false);
 		setMaxStackSize(1);
 	}
 	

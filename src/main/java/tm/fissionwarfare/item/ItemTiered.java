@@ -18,9 +18,10 @@ public class ItemTiered extends ItemBase implements ITieredItem {
 	private IIcon[] textures;
 		
 	public ItemTiered(String imageName, int maxTier) {
-		super(imageName);
-		this.maxTier = maxTier;
+		super(imageName);		
+		this.maxTier = maxTier;		
 		textures = new IIcon[maxTier];
+		this.hasSubtypes = true;
 	}
 
 	@Override

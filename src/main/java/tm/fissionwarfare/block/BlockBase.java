@@ -10,7 +10,7 @@ public class BlockBase extends Block {
 
 	public String imageName;
 	
-	public BlockBase(String imageName, String name, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
+	public BlockBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
 		super(material);
 		this.imageName = imageName;
 		setBlockName(name);

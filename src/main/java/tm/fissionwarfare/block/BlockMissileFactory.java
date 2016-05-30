@@ -35,6 +35,6 @@ public class BlockMissileFactory extends BlockContainerBase {
 		
 		blockIcon = iconreg.registerIcon(Reference.MOD_ID + ":missile_factory_side");
 		top_icon = iconreg.registerIcon(Reference.MOD_ID + ":missile_factory_top");
-		bottom_icon = iconreg.registerIcon(Reference.MOD_ID + ":steel_casing");
+		bottom_icon = iconreg.registerIcon(Reference.MOD_ID + ":steel_block");
 	}
 }

@@ -13,7 +13,7 @@ import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 public class BlockLaunchPad extends BlockContainerBase {
 
 	public BlockLaunchPad() {
-		super("launch_pad", 2, Material.iron, 2.0F, 2.0F, Block.soundTypeMetal);
+		super("launch_pad", "steel_block", 2, Material.iron, 2.0F, 2.0F, Block.soundTypeMetal);
 		setBounds(0, 0, 0, 16, 10.9F, 16);
 	}
 	

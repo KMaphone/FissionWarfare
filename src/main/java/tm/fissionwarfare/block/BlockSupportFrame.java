@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 public class BlockSupportFrame extends BlockContainerBase {
 
 	public BlockSupportFrame() {
-		super("support_frame", 2, Material.iron, 2.0F, 2.0F, Block.soundTypeMetal);
+		super("support_frame", "steel_block", 2, Material.iron, 2.0F, 2.0F, Block.soundTypeMetal);
 	}
 
 	@Override

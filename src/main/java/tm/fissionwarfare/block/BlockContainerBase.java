@@ -24,10 +24,10 @@ public abstract class BlockContainerBase extends BlockContainer {
 
 	float pixel = 1F/16F;
 	
-	public BlockContainerBase(String imagePath, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
+	public BlockContainerBase(String name, String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
 		super(material);		
-		setBlockName(imagePath);
-		setBlockTextureName(Reference.MOD_ID + ":" + imagePath);
+		setBlockName(name);
+		setBlockTextureName(Reference.MOD_ID + ":" + imageName);
 		setHarvestLevel("pickaxe", harvestLevel);
 		setStepSound(stepSound);
 		setHardness(hardness);
@@ -35,12 +35,16 @@ public abstract class BlockContainerBase extends BlockContainer {
 		
 		if (isRegistered) {
 			setCreativeTab(InitTabs.tabMain);
-			GameRegistry.registerBlock(this, imagePath);
+			GameRegistry.registerBlock(this, name);
 		}
 	}
 	
-	public BlockContainerBase(String imagePath, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
-		this(imagePath, harvestLevel, material, resistance, resistance, stepSound, true);
+	public BlockContainerBase(String name, String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
+		this(name, imageName, harvestLevel, material, resistance, resistance, stepSound, true);
+	}
+	
+	public BlockContainerBase(String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
+		this(imageName, imageName, harvestLevel, material, resistance, resistance, stepSound, true);
 	}
 	
 	public BlockContainerBase setBounds(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {
