@@ -85,7 +85,7 @@ public class BlockOreBase extends BlockBase {
 		
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		
-		addPossibleDrop(list, fortune);
+		if (rareDrop != null) addPossibleDrop(list, fortune);
 		list.add(new ItemStack(droppedItem.getItem(), quantityDroppedWithBonus(fortune, rand), droppedItem.getItemDamage()));
 		
 		return list;
