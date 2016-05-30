@@ -5,9 +5,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.gui.GuiLaunchPad;
+import tm.fissionwarfare.inventory.ContainerLaunchPad;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityLaunchPad extends TileEntityEnergyBase {
+	
+	public TileEntityLaunchPad() {
+		setSideInputSlots(0);
+	}
 	
 	@Override
 	public int getMaxEnergy() {
@@ -26,7 +32,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 
 	@Override
 	public int getMaxProgress() {
-		return 0;
+		return 20 * 10;
 	}
 	
 	@Override
@@ -36,7 +42,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 		
 	@Override
 	public int getSizeInventory() {
-		return 0;
+		return 1;
 	}
 	
 	@Override
@@ -46,11 +52,11 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 
 	@Override
 	public Container getTileContainer(EntityPlayer player) {
-		return null;
+		return new ContainerLaunchPad(player, this);
 	}
 
 	@Override
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
-		return null;
+		return new GuiLaunchPad(getTileContainer(player), player, this);
 	}
 }

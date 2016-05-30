@@ -14,7 +14,7 @@ public class BlockLaunchPad extends BlockContainerBase {
 
 	public BlockLaunchPad() {
 		super("launch_pad", 2, Material.iron, 2.0F, 2.0F, Block.soundTypeMetal);
-		setBounds(0, 0, 0, 16, 11F, 16);
+		setBounds(0, 0, 0, 16, 10.9F, 16);
 	}
 	
 	@Override
