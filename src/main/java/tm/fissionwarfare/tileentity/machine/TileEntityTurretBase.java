@@ -29,42 +29,15 @@ import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity {
-		
-	public static final int RANGE = 10;	
-	public static final float DAMAGE = 10;
-	public static final int ENERGY_COST = 1000;
-	
-	private Random rand = new Random();
-	
-	public Angle2d angle = new Angle2d(0, 0);	
-	public EntityPlayer target;
+public abstract class TileEntityTurretBase extends TileEntityEnergyBase implements ISecurity {
 	
 	public SecurityProfile profile = new SecurityProfile();
+	public Angle2d angle = new Angle2d(0, 0);	
+	public Entity target;
 	
-	public TileEntityTurret() {
+	public TileEntityTurretBase() {
 		setInputSlots(0);
 		setSideInputSlots(0);
-	}
-	
-	@Override
-	public int getMaxEnergy() {
-		return 100000;
-	}
-
-	@Override
-	public int getMaxReceive() {
-		return 10000;
-	}
-
-	@Override
-	public int getMaxExtract() {
-		return 10000;
-	}
-	
-	@Override
-	public int getMaxProgress() {
-		return 20 * 5;
 	}
 	
 	@Override
@@ -82,88 +55,68 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 			}
 			
 			if (target == null) {
-				noTarget();
-			}
-			
-			if (target != null) {
-				hasTarget();
+				
+				angle.yaw++;
+				target = findTarget();
+				
+			} else {
+				
+				angle = getAngleFromTarget();
+				
+				checkTarget();
+				
+				if (canFire() && hasEnergyAndAmmo()) {
+					fire();
+					
+					extractEnergy(ForgeDirection.UNKNOWN, getEnergyCost(), false);
+					
+					FWSound.turret_blast1.play(worldObj, xCoord, yCoord, zCoord, 5F, 1F);
+					decrStackSize(0, 1);
+					
+					if (!canShellFitInHopper()) {
+						EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
+						entityItem.addVelocity(Math.random() - 0.5D, 0.2D, Math.random() - 0.5D);
+						worldObj.spawnEntityInWorld(entityItem);
+					}
+					
+					progress = 0;
+				}
 			}
 		}	
 	}
 	
-	private void updateBlock() {
+	public abstract int getEnergyCost();
+	
+	public abstract Entity findTarget();
+	public abstract void checkTarget();
+	public abstract boolean canFire();
+	public abstract void fire();
+	
+	public boolean hasEnergyAndAmmo() {
+		
+		boolean energy = extractEnergy(ForgeDirection.UNKNOWN, getEnergyCost(), true) >= 0;
+		boolean ammo = getStackInSlot(0) != null;
+		
+		return energy && ammo;
+	}
+	
+	public Angle2d getAngleFromTarget() {
+		return Angle2d.getAngleFromVectors(getTurretVector(), getTargetVector());
+	}
+	
+	public Vector3d getTurretVector() {
+		return new Vector3d(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D);
+	}
+	
+	public Vector3d getTargetVector() {
+		return new Vector3d(target.posX + 0.5D, target.posY + 1D, target.posZ + 0.5D);
+	}
+	
+	public void updateBlock() {
 		markDirty();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
-	
-	private void hasTarget() {
-		
-		Angle2d targetAngle = Angle2d.getAngleFromVectors(getVector(), getTargetVector());
-		
-		angle.pitch += MathUtil.approach(angle.pitch, targetAngle.pitch, 6);
-		angle.yaw = MathUtil.approachRotation(angle.yaw, targetAngle.yaw, 6);	
-	
-		if (canFire()) {
-			
-			storage.extractEnergy(ENERGY_COST, false);			
-			progress = 0;
-			target.attackEntityFrom(DamageSource.generic, DAMAGE);
-			decrStackSize(0, 1);
-			FWSound.turret_blast1.play(worldObj, xCoord, yCoord, zCoord, 10, 1);
-			
-			if (!canShellFitInHopper()) {
-				EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
-				entityItem.addVelocity(-0.5D + rand.nextDouble(), 0.2D, -0.5D + rand.nextDouble());
-				worldObj.spawnEntityInWorld(entityItem);
-			}				
-		}
-		
-		if (!isTargetInRange(target) || target.capabilities.isCreativeMode || target.isDead || profile.isSameTeam(target)) {
-			target = null;
-		}
-	}
-	
-	private void noTarget() {
-		
-		angle.pitch += MathUtil.approach(angle.pitch, 0, 6);
-		angle.yaw += 0.5F;
-				
-		for (Object o : worldObj.loadedEntityList) {
-			
-			if (o instanceof EntityPlayer) {
-				
-				EntityPlayer player = (EntityPlayer)o;
-				
-				if (isTargetInRange(player) && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
-					
-					target = player;
-					return;
-				}				
-			}
-		}
-	}
-	
-	public boolean canFire() {
-				
-		HitType hitType = RaytraceUtil.raytrace(angle, getVector(), worldObj, InitBlocks.turret, target, RANGE);
-		
-		System.out.println(hitType);
-		
-		return hitType == HitType.ENTITY && target.hurtTime <= 0 && canExtractEnergy(ENERGY_COST) && isDone() && slots[0] != null;
-	}
-	
-	private Vector3d getTargetVector() {
-		return new Vector3d(target.posX, target.posY + 1.5D, target.posZ);
-	}
-	
-	private Vector3d getVector() {
-		return new Vector3d(xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D);
-	}
-	
-	public boolean isTargetInRange(Entity e) {
-		return e.getDistance(xCoord + 0.5D, yCoord + 1D, zCoord + 0.5D) <= RANGE;
-	}
-	
+
 	public boolean canShellFitInHopper() {
 		
 		if (worldObj.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityHopper) {				
@@ -185,6 +138,28 @@ public class TileEntityTurret extends TileEntityEnergyBase implements ISecurity 
 		}
 		
 		return false;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public int getMaxEnergy() {
+		return 100000;
+	}
+
+	@Override
+	public int getMaxReceive() {
+		return 10000;
+	}
+
+	@Override
+	public int getMaxExtract() {
+		return 10000;
+	}
+	
+	@Override
+	public int getMaxProgress() {
+		return 20 * 5;
 	}
 	
 	@Override

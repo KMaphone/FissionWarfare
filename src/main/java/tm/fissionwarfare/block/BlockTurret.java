@@ -3,7 +3,7 @@ package tm.fissionwarfare.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
-import tm.fissionwarfare.tileentity.machine.TileEntityTurret;
+import tm.fissionwarfare.tileentity.machine.TileEntityTurretSentry;
 
 public class BlockTurret extends BlockContainerBase {
 
@@ -29,6 +29,6 @@ public class BlockTurret extends BlockContainerBase {
 	
 	@Override
 	public TileEntity getTileEntity(int meta) {
-		return new TileEntityTurret();
+		return new TileEntityTurretSentry();
 	}	
 }
