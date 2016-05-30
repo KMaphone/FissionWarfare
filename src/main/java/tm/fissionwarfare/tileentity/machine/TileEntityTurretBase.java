@@ -12,6 +12,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityHopper;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -141,6 +142,11 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------------------------
+	
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, yCoord - 1F, xCoord + 2F, yCoord + 2F, zCoord + 2F);
+	}
 	
 	@Override
 	public int getMaxEnergy() {

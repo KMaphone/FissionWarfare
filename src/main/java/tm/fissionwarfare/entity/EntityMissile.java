@@ -11,7 +11,7 @@ public class EntityMissile extends Entity {
 		setSize(1.8F, 8.5F);
 	}
 	
-	public EntityMissile(World world, int x, int y, int z) {
+	public EntityMissile(World world, double x, double y, double z) {
 		super(world);
 		this.posX = x;
 		this.posY = y;

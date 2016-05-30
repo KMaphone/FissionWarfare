@@ -41,8 +41,7 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float f1, float f2, float f3) {
 		
-		System.out.println("click!");
-		EntityMissile entity = new EntityMissile(world, x, y, z);
+		EntityMissile entity = new EntityMissile(world, x + 0.5D, y, z + 0.5D);
 		world.spawnEntityInWorld(entity);
 		return false;
 	}
