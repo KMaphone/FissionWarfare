@@ -15,7 +15,7 @@ import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityMissileFactory extends TileEntityEnergyBase {
 	
-	public static final int ENERGY_COST = 25000;
+	public int energyCost = 0;
 	
 	public TileEntityMissileFactory() {
 		setInputSlots(0, 1, 2);
@@ -25,17 +25,17 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 	
 	@Override
 	public int getMaxEnergy() {
-		return 100000;
+		return 200000;
 	}
 
 	@Override
 	public int getMaxReceive() {
-		return 25000;
+		return 50000;
 	}
 
 	@Override
 	public int getMaxExtract() {
-		return 25000;
+		return 200000;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 	public void updateEntity() {
 		super.updateEntity();
 		
-		if (isReady()) {
+		if (isReady()) {						
 			progress++;
 		}
 		
@@ -55,7 +55,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 		
 		if (isDoneAndReset()) {
 			
-			storage.extractEnergy(ENERGY_COST, false);
+			storage.extractEnergy(energyCost, false);
 			
 			ItemStack stack = new ItemStack(InitItems.missile);
 			
@@ -77,6 +77,20 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 	
 	public boolean isReady() {
 		
+		if (hasItems()) {
+			energyCost = ((slots[1].getItemDamage() + 1) * 20000) + ((slots[2].getItemDamage() + 1) * 20000);
+		}
+		
+		else {
+			energyCost = 0;
+			return false;
+		}
+			
+		return slots[3].stackSize >= 16 && slots[4] == null && canExtractEnergy(energyCost);
+	}
+	
+	public boolean hasItems() {
+			
 		for (int i = 0; i < 4; i++) {
 			
 			if (slots[i] == null) {
@@ -84,7 +98,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			}
 		}
 		
-		return slots[3].stackSize >= 16 && slots[4] == null && canExtractEnergy(ENERGY_COST);
+		return true;
 	}
 	
 	@Override
