@@ -25,6 +25,7 @@ public class InitItems {
 	
 	public static Item cement;
 	
+	public static Item lightning_rod;
 	public static Item frame;
 	public static Item circuit;	
 	public static Item fuel_canister;
@@ -53,6 +54,7 @@ public class InitItems {
 		
 		cement = new ItemCement();
 		
+		lightning_rod = new ItemBase("lightning_rod");
 		frame = new ItemTiered("frame", 3);
 		circuit = new ItemTiered("circuit", 3);
 		fuel_canister = new ItemTiered("fuel_canister", 3);

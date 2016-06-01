@@ -6,9 +6,10 @@ item.quartz.name=Quartz
 item.quartz_sand.name=Quartz Sand
 item.quartz_chunk.name=Quartz Chunk
 
-item.steel_ingot.name=Steel Ingot
 item.limestone_chunk.name=Limestone Chunk
 item.uranium_chunk.name=Uranium Chunk
+
+item.steel_ingot.name=Steel Ingot
 
 item.cement_0.name=Cement Type I
 item.cement_1.name=Cement Type II
