@@ -3,7 +3,6 @@ package tm.fissionwarfare.init;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 import tm.fissionwarfare.item.ItemBase;
-import tm.fissionwarfare.item.ItemCement;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.item.ItemTiered;
 import tm.fissionwarfare.util.ToolSet;
@@ -24,9 +23,10 @@ public class InitItems {
 	public static Item electromagnetic_capsule;
 	
 	public static Item cement;
+	public static Item wet_cement;
 	
 	public static Item lightning_rod;
-	public static Item frame;
+	public static Item iron_frame;
 	public static Item circuit;	
 	public static Item fuel_canister;
 	
@@ -52,10 +52,11 @@ public class InitItems {
 		nuclear_capsule = new ItemBase("nuclear_capsule");
 		electromagnetic_capsule = new ItemBase("electromagnetic_capsule");
 		
-		cement = new ItemCement();
+		cement = new ItemBase("cement");
+		wet_cement = new ItemBase("wet_cement");
 		
 		lightning_rod = new ItemBase("lightning_rod");
-		frame = new ItemTiered("frame", 3);
+		iron_frame = new ItemBase("iron_frame");
 		circuit = new ItemTiered("circuit", 3);
 		fuel_canister = new ItemTiered("fuel_canister", 3);
 		

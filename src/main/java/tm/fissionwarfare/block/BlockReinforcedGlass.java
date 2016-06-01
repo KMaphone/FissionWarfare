@@ -21,11 +21,6 @@ public class BlockReinforcedGlass extends BlockReinforced {
 	public int getMaxMeta() {
 		return 4;
 	}
-
-	@Override
-	public int[] getRegisteredMetas() {
-		return new int[]{4};
-	}
 	
 	@Override
 	public boolean isOpaqueCube() {
@@ -56,7 +51,7 @@ public class BlockReinforcedGlass extends BlockReinforced {
 	public int damageDropped(int meta) {
 		
 		int i;
-		if (meta > 3) i = getRegisteredMetas()[0];
+		if (meta > 3) i = getMaxMeta();
 		else i = 0;
 		
 		return i;

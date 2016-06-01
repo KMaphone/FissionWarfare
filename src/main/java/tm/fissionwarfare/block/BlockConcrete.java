@@ -14,6 +14,8 @@ import tm.fissionwarfare.config.FWConfig;
 
 public class BlockConcrete extends BlockReinforced {
 	
+	private int[] metaTiers = new int[]{4, 9, 14};
+	
 	public BlockConcrete() {
 		super("concrete");
 	}	
@@ -22,16 +24,11 @@ public class BlockConcrete extends BlockReinforced {
 	public int getMaxMeta() {
 		return 14;
 	}
-	
-	@Override
-	public int[] getRegisteredMetas() {
-		return new int[]{4, 9, 14};
-	}
-	
+		
 	public int getRepairedMeta(int meta) {
-		if (meta > 9) return getRegisteredMetas()[2];
-		else if (meta > 4) return getRegisteredMetas()[1];
-		else return getRegisteredMetas()[0];
+		if (meta > 9) return metaTiers[2];
+		else if (meta > 4) return metaTiers[1];
+		else return metaTiers[0];
 	}
 			
 	@Override
@@ -41,9 +38,9 @@ public class BlockConcrete extends BlockReinforced {
 	
 	@Override
 	public int damageDropped(int meta) {
-		if (meta > 13) return getRegisteredMetas()[2];
-		else if (meta > 8) return getRegisteredMetas()[1];
-		else if (meta > 3) return getRegisteredMetas()[0];
+		if (meta > 13) return metaTiers[2];
+		else if (meta > 8) return metaTiers[1];
+		else if (meta > 3) return metaTiers[0];
 		else return 0;
 	}
 	

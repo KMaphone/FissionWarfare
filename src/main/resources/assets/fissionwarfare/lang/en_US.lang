@@ -12,13 +12,8 @@ item.uranium_chunk.name=Uranium Chunk
 item.steel_ingot.name=Steel Ingot
 item.lightning_rod.name=Lightning Rod
 
-item.cement_0.name=Cement Type I
-item.cement_1.name=Cement Type II
-item.cement_2.name=Cement Type III
-
-item.wet_cement_0.name=Wet Cement Type I
-item.wet_cement_1.name=Wet Cement Type II
-item.wet_cement_2.name=Wet Cement Type III
+item.cement.name=Cement
+item.wet_cement.name=Wet Cement
 
 item.poison_capsule.name=Poison Capsule
 item.fiery_capsule.name=Fiery Capsule
@@ -30,9 +25,7 @@ item.fuel_canister_0.name=Liquid Coal Canister
 item.fuel_canister_1.name=Pyrotheum Canister
 item.fuel_canister_2.name=Cryotheum Canister
 
-item.frame_0.name=Iron Frame
-item.frame_1.name=Steel Frame
-item.frame_2.name=Invar Frame
+item.iron_frame.name=Iron Frame
 
 item.circuit_0.name=Basic Circuit
 item.circuit_1.name=Advanced Circuit

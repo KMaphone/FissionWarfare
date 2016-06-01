@@ -29,8 +29,6 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, ItemBlockReinforced.class);
 	}
 	
-	public abstract int[] getRegisteredMetas();
-	
 	@Override
 	public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		int meta = world.getBlockMetadata(x, y, z);
@@ -54,9 +52,7 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		
-		for (int i = 0; i < getRegisteredMetas().length; i++) {
-			list.add(new ItemStack(item, 1, getRegisteredMetas()[i]));
-		}
+		list.add(new ItemStack(item, 1, 4));
 	}
 	
 	@Override
