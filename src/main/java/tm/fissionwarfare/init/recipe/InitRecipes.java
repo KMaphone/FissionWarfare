@@ -54,7 +54,7 @@ public class InitRecipes {
 		/////////////////////////////////////////////////////////CANISTER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fuel_canister, 1, 0), new Object[] {
-			" T ", "TBT", "TBT", 'S', InitItems.steel_ingot, 'B', TFItems.bucketCoal,
+			" S ", "SBS", "SBS", 'S', InitItems.steel_ingot, 'B', TFItems.bucketCoal,
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fuel_canister, 1, 1), new Object[] {
