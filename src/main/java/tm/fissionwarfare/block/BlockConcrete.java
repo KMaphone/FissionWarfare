@@ -3,9 +3,12 @@ package tm.fissionwarfare.block;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.config.FWConfig;
 
@@ -26,11 +29,9 @@ public class BlockConcrete extends BlockReinforced {
 	}
 	
 	public int getRepairedMeta(int meta) {
-		int i;
-		if (meta > 9) i = getRegisteredMetas()[2];
-		else if (meta > 4) i = getRegisteredMetas()[1];
-		else i = getRegisteredMetas()[0];
-		return i;
+		if (meta > 9) return getRegisteredMetas()[2];
+		else if (meta > 4) return getRegisteredMetas()[1];
+		else return getRegisteredMetas()[0];
 	}
 			
 	@Override
@@ -40,23 +41,20 @@ public class BlockConcrete extends BlockReinforced {
 	
 	@Override
 	public int damageDropped(int meta) {
-		int i;
-		if (meta > 13) i = getRegisteredMetas()[2];
-		else if (meta > 8) i = getRegisteredMetas()[1];
-		else if (meta > 3) i = getRegisteredMetas()[0];
-		else i = 0;
-		
-		return i;
+		if (meta > 13) return getRegisteredMetas()[2];
+		else if (meta > 8) return getRegisteredMetas()[1];
+		else if (meta > 3) return getRegisteredMetas()[0];
+		else return 0;
 	}
 	
 	@Override
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
 		
-		if (metadata < 4) {
+		if (meta < 4) {
 			return new ArrayList<ItemStack>();
 		}
 		
-		return super.getDrops(world, x, y, z, metadata, fortune);
+		return super.getDrops(world, x, y, z, meta, fortune);
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tm.fissionwarfare.item.ItemBlockReinforced;
 
 public class BlockReinforcedGlass extends BlockReinforced {
 

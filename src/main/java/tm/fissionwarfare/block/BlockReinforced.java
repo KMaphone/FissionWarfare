@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitTabs;
+import tm.fissionwarfare.item.ItemBlockMeta;
 import tm.fissionwarfare.item.ItemBlockReinforced;
 import tm.fissionwarfare.math.MathUtil;
 
