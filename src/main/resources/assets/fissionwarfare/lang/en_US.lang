@@ -10,6 +10,7 @@ item.limestone_chunk.name=Limestone Chunk
 item.uranium_chunk.name=Uranium Chunk
 
 item.steel_ingot.name=Steel Ingot
+item.lightning_rod.name=Lightning Rod
 
 item.cement_0.name=Cement Type I
 item.cement_1.name=Cement Type II
