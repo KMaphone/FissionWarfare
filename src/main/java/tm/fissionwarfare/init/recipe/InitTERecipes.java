@@ -1,6 +1,7 @@
 package tm.fissionwarfare.init.recipe;
 
 import cofh.api.modhelpers.ThermalExpansionHelper;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -21,5 +22,9 @@ public class InitTERecipes {
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.concrete, 1, 4), new FluidStack(InitFluids.concrete_mix, 1000), false);
 		
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.reinforced_glass, 1, 4), new FluidStack(InitFluids.liquid_glass, 1000), false);
+		
+		ThermalExpansionHelper.addPulverizerRecipe(1000, new ItemStack(InitItems.radioactive_chunk), new ItemStack(Blocks.cobblestone), new ItemStack(InitItems.uranium_pellet), 20);
+		
+		//ThermalExpansionHelper.addPulverizerRecipe(input, output, sideoutput, energycost, rarespawn chance);
 	}
 }

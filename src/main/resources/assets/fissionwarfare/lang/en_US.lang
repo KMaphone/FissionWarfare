@@ -7,7 +7,8 @@ item.quartz_sand.name=Quartz Sand
 item.quartz_chunk.name=Quartz Chunk
 
 item.limestone_chunk.name=Limestone Chunk
-item.uranium_chunk.name=Uranium Chunk
+item.radioactive_chunk.name=Radioactive Chunk
+item.uranium_pellet.name=Uranium Pellet
 
 item.steel_ingot.name=Steel Ingot
 item.lightning_rod.name=Lightning Rod

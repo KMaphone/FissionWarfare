@@ -13,7 +13,8 @@ public class InitItems {
 	public static Item quartz_sand;
 	public static Item steel_ingot;
 	public static Item limestone_chunk;
-	public static Item uranium_chunk;
+	public static Item radioactive_chunk;
+	public static Item uranium_pellet;
 	public static Item quartz_chunk;
 	
 	public static Item poison_capsule;
@@ -43,7 +44,8 @@ public class InitItems {
 		quartz_sand = new ItemBase("quartz_sand");
 		steel_ingot = new ItemBase("steel_ingot");
 		limestone_chunk = new ItemBase("limestone_chunk");
-		uranium_chunk = new ItemBase("uranium_chunk");
+		radioactive_chunk = new ItemBase("radioactive_chunk");
+		uranium_pellet = new ItemBase("uranium_pellet");
 		quartz_chunk = new ItemBase("quartz_chunk");
 		
 		poison_capsule = new ItemBase("poison_capsule");
