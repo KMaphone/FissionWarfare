@@ -69,7 +69,7 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 				if (canFire() && hasEnergyAndAmmo()) {
 					fire();
 					
-					extractEnergy(ForgeDirection.UNKNOWN, getEnergyCost(), false);
+					storage.extractEnergy(getEnergyCost(), false);
 					
 					FWSound.turret_blast1.play(worldObj, xCoord, yCoord, zCoord, 5F, 1F);
 					decrStackSize(0, 1);
@@ -95,7 +95,7 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 	
 	public boolean hasEnergyAndAmmo() {
 		
-		boolean energy = extractEnergy(ForgeDirection.UNKNOWN, getEnergyCost(), true) >= 0;
+		boolean energy = canExtractEnergy(getEnergyCost());
 		boolean ammo = getStackInSlot(0) != null;
 		
 		return energy && ammo;

@@ -153,7 +153,7 @@ public class GuiTeamManager extends GuiScreenBase {
 			
 			if (p != null) {
 				GuiUtil.drawLimitedString((i == 0 ? "> " : "") + p, getScreenX() + 170, getScreenY() + 98 + (i * 10), 12, 0xCCCCCC);
-				GuiUtil.drawTextBox(p, mouseX, mouseY, new GuiRect(getScreenX() + 170, getScreenY() + 98 + (i * 10), 78, 9));
+				GuiUtil.drawHoveringTextBox(p, mouseX, mouseY, new GuiRect(getScreenX() + 170, getScreenY() + 98 + (i * 10), 78, 9));
 			}
 		}
 		
@@ -163,7 +163,7 @@ public class GuiTeamManager extends GuiScreenBase {
 			
 			if (team != null) {
 				GuiUtil.drawLimitedString((i == 0 ? "> " : "") + ((ScorePlayerTeam)teams.get(i + currentTeamIndex)).getColorPrefix() + team.getRegisteredName(), getScreenX() + 10, getScreenY() + 98 + (i * 10), 12, 0xCCCCCC);
-				GuiUtil.drawTextBox(team.getRegisteredName(), mouseX, mouseY, new GuiRect(getScreenX() + 10, getScreenY() + (98 + (i * 10)), 78, 9));
+				GuiUtil.drawHoveringTextBox(team.getRegisteredName(), mouseX, mouseY, new GuiRect(getScreenX() + 10, getScreenY() + (98 + (i * 10)), 78, 9));
 			}
 		}
 	}	

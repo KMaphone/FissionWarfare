@@ -2,10 +2,11 @@ package tm.fissionwarfare.tileentity.base;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileEntityEnergyBase extends TileEntityInventoryBase implements IEnergyHandler {
+public abstract class TileEntityEnergyBase extends TileEntityInventoryBase implements IEnergyReceiver {
 
 	public int progress = 0;
 	public boolean enabled = true;
@@ -49,12 +50,7 @@ public abstract class TileEntityEnergyBase extends TileEntityInventoryBase imple
 	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
 		return storage.receiveEnergy(maxReceive, simulate);
 	}
-	
-	@Override
-	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
-		return storage.extractEnergy(maxExtract, simulate);
-	}
-	
+		
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);

@@ -15,7 +15,9 @@ public class GuiUtil {
 	private static final int TEXTURE_SIZE = 256;
 		
 	public static void drawStatusPanel(int energy, int maxEnergy, int progress, int maxProgress, int x, int y, int mouseX, int mouseY) {
-				
+		
+		GL11.glEnable(GL11.GL_BLEND);
+		
 		GuiRect rect = new GuiRect(x + 1, y + 15, 18, 46);
 		GuiRect rect2 = new GuiRect(rect.x + 5, rect.y + 5, rect.width - 10, rect.height - 10);
 		
@@ -26,13 +28,13 @@ public class GuiUtil {
 		drawScaledHeightRect(x + 7, y + 55, 19, 40, 0, 6, 34, energy, maxEnergy);
 		
 		if (rect.contains(mouseX, mouseY) && ! rect2.contains(mouseX, mouseY)) {
-			drawTextBox("Progress: " + MathUtil.scaleInt(progress, maxProgress, 100) + "%", mouseX, mouseY, rect);
+			drawHoveringTextBox("Progress: " + MathUtil.scaleInt(progress, maxProgress, 100) + "%", mouseX, mouseY, rect);
 		}
-		
-		else drawTextBox(energy + " / " + maxEnergy + " RF", mouseX, mouseY, rect2);			
+				
+		else drawHoveringTextBox(energy + " / " + maxEnergy + " RF", mouseX, mouseY, rect2);
 	}
-	
-	public static void drawTextBox(String text, int mouseX, int mouseY, GuiRect rect) {
+		
+	public static void drawHoveringTextBox(String text, int mouseX, int mouseY, GuiRect rect) {
 		
 		if (rect.contains(mouseX, mouseY)) {
 						
@@ -40,7 +42,7 @@ public class GuiUtil {
 			GL11.glTranslatef(0, 0, 100);
 			
 			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
-			drawCappedRect(mouseX + 2, mouseY - 12, 0, 228, 0, mc.fontRenderer.getStringWidth(text) + 3, 12, 256);
+			drawCappedRect(mouseX + 2, mouseY - 13, 0, 227, 0, mc.fontRenderer.getStringWidth(text) + 3, 13, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
 			
 			GL11.glPopMatrix();
