@@ -86,12 +86,12 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			return false;
 		}
 			
-		return slots[3].stackSize >= 16 && slots[4] == null && canExtractEnergy(energyCost);
+		return slots[3] != null && slots[3].stackSize >= 16 && slots[4] == null && canExtractEnergy(energyCost);
 	}
 	
 	public boolean hasItems() {
 			
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			
 			if (slots[i] == null) {
 				return false;
