@@ -33,6 +33,8 @@ item.circuit_1.name=Advanced Circuit
 item.circuit_2.name=Hyper Circuit
 
 item.missile.name=Missile
+item.nail_gun.name=Nail Gun
+item.compressor.name=Compressor
 
 item.shell.name=Shell
 item.bullet.name=Bullet

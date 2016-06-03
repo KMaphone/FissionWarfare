@@ -83,6 +83,7 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 
 			EntityLivingBase livingBase = (EntityLivingBase) target;
 			livingBase.attackEntityFrom(new DamageSourceTeam((EntityPlayer) livingBase, profile.getTeamName() + "'s Sentry Turret"), DAMAGE);
+			livingBase.setFire(3);
 		}
 	}
 

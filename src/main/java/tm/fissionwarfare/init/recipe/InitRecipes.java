@@ -2,6 +2,7 @@ package tm.fissionwarfare.init.recipe;
 
 import cofh.thermalexpansion.block.TEBlocks;
 import cofh.thermalexpansion.item.TEItems;
+import cofh.thermalfoundation.block.TFBlocks;
 import cofh.thermalfoundation.item.TFItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -19,12 +20,12 @@ public class InitRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 8), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
 			" C ", "C C", "C C", 'C', TFItems.ingotCopper
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 16), new Object[] {
-			" S ", "SLS", "SLS", 'S', InitItems.shell, 'L', TFItems.ingotLead
+			" S ", "SCS", "SLS", 'S', InitItems.shell, 'C', InitItems.fiery_capsule, 'L', new ItemStack(TFBlocks.blockStorage, 1, 3)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.lightning_rod, 2), new Object[] {
@@ -41,6 +42,14 @@ public class InitRecipes {
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', new ItemStack(Items.coal, 1, 1)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.compressor, 1), new Object[] {
+			"SSS", "CMC", "SSS", 'S', InitItems.steel_plate, 'C', new ItemStack(InitItems.circuit, 1, 0), 'M', new ItemStack(TEItems.itemMultimeter, 1)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun, 1), new Object[] {
+			"SSS", " BC", " SS", 'S', InitItems.steel_ingot, 'C', new ItemStack(InitItems.circuit, 1, 1), 'B', Blocks.stone_button
 		}));
 		
 		/////////////////////////////////////////////////////////CIRCUIT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -73,7 +82,7 @@ public class InitRecipes {
 		
 		/////////////////////////////////////////////////////////CAPSULE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fiery_capsule, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.fiery_capsule, 2), new Object[] {
 			"LBL", "BMB", "LBL", 'L', Items.lava_bucket, 'B', Items.blaze_powder, 'M', Items.magma_cream
 		}));
 		

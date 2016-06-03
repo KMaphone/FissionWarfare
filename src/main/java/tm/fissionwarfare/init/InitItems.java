@@ -3,7 +3,9 @@ package tm.fissionwarfare.init;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 import tm.fissionwarfare.item.ItemBase;
+import tm.fissionwarfare.item.ItemCompressor;
 import tm.fissionwarfare.item.ItemMissile;
+import tm.fissionwarfare.item.ItemNailGun;
 import tm.fissionwarfare.item.ItemTiered;
 import tm.fissionwarfare.util.ToolSet;
 
@@ -34,6 +36,8 @@ public class InitItems {
 	public static Item fuel_canister;
 	
 	public static Item missile;
+	public static Item nail_gun;
+	public static Item compressor;
 	
 	public static Item shell;
 	public static Item bullet;
@@ -67,6 +71,8 @@ public class InitItems {
 		fuel_canister = new ItemTiered("fuel_canister", 3);
 		
 		missile = new ItemMissile();
+		nail_gun = new ItemNailGun();
+		compressor = new ItemCompressor();
 		
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
