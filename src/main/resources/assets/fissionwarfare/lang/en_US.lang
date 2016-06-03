@@ -54,13 +54,12 @@ tile.quartz_ore.name=Quartz Ore
 tile.sulfur_ore.name=Sulfur Ore
 tile.uranium_ore.name=Uranium Ore
 
-
 tile.concrete_0.name=Concrete
 tile.concrete_1.name=Hardened Concrete
 tile.concrete_2.name=Reinforced Concrete
 tile.reinforced_glass_0.name=Reinforced Glass
 
-tile.turret.name=Turret
+tile.sentry_turret.name=Sentry Turret
 tile.missile_factory.name=Missile Factory
 tile.launch_pad.name=Launch Pad
 tile.support_frame.name=Support Frame

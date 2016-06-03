@@ -37,7 +37,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 	
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
-		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, yCoord - 1F, xCoord + 2F, yCoord, zCoord + 2F);
+		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, zCoord - 1F, xCoord + 2F, yCoord + 1F, zCoord + 2F);
 	}
 		
 	@Override

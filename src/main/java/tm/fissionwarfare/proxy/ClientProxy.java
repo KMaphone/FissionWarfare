@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityExplosive.class, new RenderExplosive());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMissile.class, new RenderMissile());
 		
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.turret), new ItemRenderTurret());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.sentry_turret), new ItemRenderTurret());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(InitBlocks.launch_pad), new ItemRenderLaunchPad());
 		MinecraftForgeClient.registerItemRenderer(InitItems.missile, new ItemRenderMissile());
 		

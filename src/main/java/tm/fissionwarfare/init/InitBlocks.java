@@ -12,7 +12,7 @@ import tm.fissionwarfare.block.BlockMissileFactory;
 import tm.fissionwarfare.block.BlockOreBase;
 import tm.fissionwarfare.block.BlockReinforcedGlass;
 import tm.fissionwarfare.block.BlockSupportFrame;
-import tm.fissionwarfare.block.BlockTurret;
+import tm.fissionwarfare.block.BlockSentryTurret;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class InitBlocks {
@@ -33,7 +33,7 @@ public class InitBlocks {
 	public static Block launch_pad;
 	public static Block support_frame;
 	
-	public static Block turret;
+	public static Block sentry_turret;
 	
 	public static void init() {
 		
@@ -56,6 +56,6 @@ public class InitBlocks {
 		concrete = new BlockConcrete();		
 		reinforced_glass = new BlockReinforcedGlass();
 		
-		turret = new BlockTurret();
+		sentry_turret = new BlockSentryTurret();
 	}	
 }

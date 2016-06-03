@@ -117,7 +117,7 @@ public class InitRecipes {
 		
 		/////////////////////////////////////////////////////////MACHINES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.turret, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.sentry_turret, 1), new Object[] {
 			"R  ", "MCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 2), 'G', TFItems.gearGold, 'D', Blocks.dispenser, 'R', Blocks.redstone_torch
 		}));
 		

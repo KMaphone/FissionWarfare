@@ -18,6 +18,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
+import tm.fissionwarfare.damage.DamageSourceTeam;
 import tm.fissionwarfare.gui.GuiTurret;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
@@ -40,7 +41,7 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 
 		for (Object object : worldObj.loadedEntityList) {
 
-			if (object instanceof EntityPlayer && !profile.isSameTeam((EntityPlayer) object)) {
+			if (object instanceof EntityPlayer && !((EntityPlayer)object).capabilities.isCreativeMode && !profile.isSameTeam((EntityPlayer)object)) {
 
 				return (EntityPlayer) object;
 			}
@@ -51,18 +52,18 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 
 	@Override
 	public void checkTarget() {
-
-		if (target.getDistance(xCoord, yCoord, zCoord) >= RANGE) {
+		
+		EntityPlayer player = (EntityPlayer)target;
+		
+		if (target.getDistance(xCoord, yCoord, zCoord) >= RANGE || player.isDead || player.capabilities.isCreativeMode || profile.isSameTeam(player)) {
 			target = null;
 		}
-
 	}
 
 	@Override
 	public boolean canFire() {
 		
-		if (target != null && isDone() && RaytraceUtil.raytrace(getAngleFromTarget(), getTurretVector(), worldObj,
-				InitBlocks.turret, target, RANGE) != HitType.BLOCK) {
+		if (target != null && target.hurtResistantTime <= 0 && isDone() && RaytraceUtil.raytrace(getAngleFromTarget(), getTurretVector(), worldObj, InitBlocks.sentry_turret, target, RANGE) != HitType.BLOCK) {
 
 			Angle2d angle = getAngleFromTarget();
 
@@ -81,8 +82,7 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 		if (target != null && target instanceof EntityLivingBase) {
 
 			EntityLivingBase livingBase = (EntityLivingBase) target;
-
-			livingBase.attackEntityFrom(DamageSource.generic, DAMAGE);
+			livingBase.attackEntityFrom(new DamageSourceTeam((EntityPlayer) livingBase, profile.getTeamName() + "'s Sentry Turret"), DAMAGE);
 		}
 	}
 

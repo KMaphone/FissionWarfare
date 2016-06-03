@@ -4,10 +4,12 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +18,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.gui.GuiTurret;
@@ -26,11 +29,14 @@ import tm.fissionwarfare.math.Angle2d;
 import tm.fissionwarfare.math.MathUtil;
 import tm.fissionwarfare.math.RaytraceUtil;
 import tm.fissionwarfare.math.RaytraceUtil.HitType;
+import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public abstract class TileEntityTurretBase extends TileEntityEnergyBase implements ISecurity {
+	
+	private Random rand = new Random();
 	
 	public SecurityProfile profile = new SecurityProfile();
 	public Angle2d angle = new Angle2d(0, 0);	
@@ -58,9 +64,10 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 			if (target == null) {
 				
 				angle.yaw++;
-				target = findTarget();
-				
-			} else {
+				target = findTarget();				
+			} 
+			
+			else {
 				
 				angle = getAngleFromTarget();
 				
@@ -71,12 +78,18 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 					
 					storage.extractEnergy(getEnergyCost(), false);
 					
-					FWSound.turret_blast1.play(worldObj, xCoord, yCoord, zCoord, 5F, 1F);
+					for (Object o : worldObj.loadedEntityList) {
+						
+						if (o != null && o instanceof EntityPlayerMP && ((EntityPlayer) o).getDistance(xCoord, yCoord, zCoord) <= 30) {
+							FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + FWSound.turret_blast1.getSoundPath() + "%" + xCoord + "%" + yCoord + "%" + zCoord + "%" + 0.3F), (EntityPlayerMP)o);
+						}						
+					}				
+										
 					decrStackSize(0, 1);
 					
 					if (!canShellFitInHopper()) {
-						EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, new ItemStack(InitItems.shell));
-						entityItem.addVelocity(Math.random() - 0.5D, 0.2D, Math.random() - 0.5D);
+						
+						EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 1F, zCoord + 0.5F, new ItemStack(InitItems.shell));						
 						worldObj.spawnEntityInWorld(entityItem);
 					}
 					
@@ -145,7 +158,7 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 	
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
-		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, yCoord - 1F, xCoord + 2F, yCoord + 2F, zCoord + 2F);
+		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, zCoord - 1F, xCoord + 2F, yCoord + 2F, zCoord + 2F);
 	}
 	
 	@Override

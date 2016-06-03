@@ -7,7 +7,9 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
+import tm.fissionwarfare.sounds.FWSound;
 
 public class ClientPacketHandler implements IMessage {
 
@@ -48,6 +50,19 @@ public class ClientPacketHandler implements IMessage {
 					
 					container.tileEntityEnergy.storage.setEnergyStored(energy);
 				}
+			}
+			
+			if (data[0].equalsIgnoreCase("playsound")) {
+				
+				String soundPath = data[1];
+				
+				int x = Integer.parseInt(data[2]);
+				int y = Integer.parseInt(data[3]);
+				int z = Integer.parseInt(data[4]);
+				
+				float gain = Float.parseFloat(data[5]);
+				
+				player.worldObj.playSound(x, y, z, soundPath, gain, 1, false);
 			}
 			
 			return null;
