@@ -7,6 +7,9 @@ public class FWSound {
 
 	public static final FWSound small_blast = new FWSound("blast_1");
 	public static final FWSound turret_blast1 = new FWSound("turret_blast1");
+	public static final FWSound rumbling = new FWSound("rumbling");
+	public static final FWSound cave_in = new FWSound("cave_in");
+	public static final FWSound rumbling_cave = new FWSound("rumbling_cave");
 	
 	private String sound;
 

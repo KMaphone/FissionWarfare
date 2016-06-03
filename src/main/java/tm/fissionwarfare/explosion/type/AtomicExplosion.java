@@ -35,6 +35,10 @@ public class AtomicExplosion extends BasicExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+		if (world.isRemote) {
+			System.out.println("Boom");
+			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
+			FWSound.rumbling.play(world, vector.x, vector.y, vector.z, 1, 1);
+		}
 	}
 }

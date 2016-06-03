@@ -35,6 +35,8 @@ public class BasicExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+		if (world.isRemote) {
+			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+		}
 	}
 }
