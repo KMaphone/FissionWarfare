@@ -34,7 +34,7 @@ public class InitRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 16), new Object[] {
 			"I I", " I ", "I I", 'I', "ingotIron"
 		}));
-		
+	
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', Items.coal
 		}));
@@ -86,17 +86,17 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nuclear_capsule, 1), new Object[] {
-			"EEE", "UUU", "EEE", 'U', InitItems.radioactive_chunk, 'E', TFItems.ingotEnderium,
+			"EEE", "UUU", "EEE", 'U', InitItems.uranium_pellet, 'E', TFItems.ingotEnderium,
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.electromagnetic_capsule, 1), new Object[] {
-			"RRR", "CEC", "RRR", 'E', new ItemStack (TEBlocks.blockFrame, 1, 7), 'C', TEItems.capacitorReinforced, 'R', TEItems.powerCoilElectrum
+			"SSS", "SLS", "CPC", 'L', new ItemStack(InitItems.lightning_rod), 'C', TEItems.capacitorHardened, 'P', TEItems.powerCoilElectrum, 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		////////////////////////////////////////////////////////EXPLOSIVES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.atomicExplosive, 1), new Object[] {
-			"SRS", "BNB", "SRS", 'R', TFItems.bucketEnder, 'N', InitItems.nuclear_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_ingot)
+			"SRS", "BNB", "SRS", 'R', TFItems.bucketEnder, 'N', InitItems.nuclear_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		/*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.empExplosive, 1), new Object[] {
@@ -104,15 +104,15 @@ public class InitRecipes {
 		}));*/
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.pyroExplosive, 1), new Object[] {
-			"SPS", "PFP", "SPS", 'P', TFItems.bucketPyrotheum, 'F', InitItems.fiery_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_ingot)
+			"SPS", "PFP", "SPS", 'P', TFItems.bucketPyrotheum, 'F', InitItems.fiery_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.chemicalExplosive, 1), new Object[] {
-			"SBS", "EPE", "SBS", 'B', TFItems.bucketPetrotheum, 'P', InitItems.poison_capsule, 'E', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_ingot)
+			"SBS", "EPE", "SBS", 'B', TFItems.bucketPetrotheum, 'P', InitItems.poison_capsule, 'E', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.basicExplosive, 1), new Object[] {
-			"SES", "RRR", "SES", 'S', InitItems.steel_ingot, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
+			"SES", "RRR", "SES", 'S', InitItems.steel_plate, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
 		}));
 		
 		/////////////////////////////////////////////////////////MACHINES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -126,7 +126,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.launch_pad, 1), new Object[] {
-			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 1), 'G', new ItemStack(TEBlocks.blockGlass, 1), 'P', Blocks.piston
+			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 1), 'G', new ItemStack(InitItems.steel_plate), 'P', Blocks.piston
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.support_frame, 1), new Object[] {

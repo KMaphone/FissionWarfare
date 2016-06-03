@@ -25,6 +25,8 @@ public class InitTERecipes {
 		
 		ThermalExpansionHelper.addPulverizerRecipe(1000, new ItemStack(InitItems.radioactive_chunk), new ItemStack(Blocks.cobblestone), new ItemStack(InitItems.uranium_pellet), 40);
 		
+		ThermalExpansionHelper.addSmelterRecipe(1000, new ItemStack(InitItems.steel_ingot), new ItemStack(InitItems.steel_ingot), new ItemStack(InitItems.steel_plate));
+		
 		//ThermalExpansionHelper.addPulverizerRecipe(input, output, sideoutput, energycost, rarespawn chance);
 	}
 }
