@@ -18,7 +18,7 @@ public class InitRecipes {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz, 1), new Object[] { InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk});
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement), new Object[] { Blocks.sand, Blocks.gravel });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, InitItems.limestone_chunk });
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
 			" C ", "C C", "C C", 'C', TFItems.ingotCopper
@@ -32,8 +32,16 @@ public class InitRecipes {
 			" L ", "LBL", " L ", 'B', Items.blaze_rod, 'L', TFItems.ingotLumium
 		}));
 					
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 16), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 24), new Object[] {
 			"I I", " I ", "I I", 'I', "ingotIron"
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.invar_frame, 24), new Object[] {
+			"I I", " I ", "I I", 'I', TFItems.ingotInvar
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 24), new Object[] {
+			"SSS", " S ", " S ", 'S', new ItemStack(InitItems.steel_ingot)
 		}));
 	
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
@@ -45,11 +53,11 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.compressor, 1), new Object[] {
-			"SSS", "CMC", "SSS", 'S', InitItems.steel_plate, 'C', new ItemStack(InitItems.circuit, 1, 0), 'M', new ItemStack(TEItems.itemMultimeter, 1)
+			"SSS", "CMC", "SSS", 'S', InitItems.steel_plate, 'C', new ItemStack(InitItems.motor, 1), 'M', new ItemStack(TEItems.itemMultimeter, 1)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun, 1), new Object[] {
-			"SSS", " BC", " SS", 'S', InitItems.steel_ingot, 'C', new ItemStack(InitItems.circuit, 1, 1), 'B', Blocks.stone_button
+			"SSS", " BC", " SS", 'S', InitItems.steel_ingot, 'C', new ItemStack(InitItems.motor, 1), 'B', Blocks.stone_button
 		}));
 		
 		/////////////////////////////////////////////////////////CIRCUIT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -127,7 +135,7 @@ public class InitRecipes {
 		/////////////////////////////////////////////////////////MACHINES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.sentry_turret, 1), new Object[] {
-			"R  ", "MCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 2), 'G', TFItems.gearGold, 'D', Blocks.dispenser, 'R', Blocks.redstone_torch
+			"R  ", "MCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 2), 'G', new ItemStack(InitItems.motor), 'D', Blocks.dispenser, 'R', Blocks.redstone_torch
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.missile_factory, 1), new Object[] {
@@ -135,7 +143,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.launch_pad, 1), new Object[] {
-			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 1), 'G', new ItemStack(InitItems.steel_plate), 'P', Blocks.piston
+			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 1), 'G', new ItemStack(InitItems.steel_plate), 'P', new ItemStack(InitItems.motor)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.support_frame, 1), new Object[] {
@@ -144,6 +152,10 @@ public class InitRecipes {
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.steel_block, 1), new Object[] {
 			"BBB", "BBB", "BBB", 'B', new ItemStack(InitItems.steel_ingot, 1)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.motor, 1), new Object[] {
+			"CCC", "STS", "CCC", 'S', TFItems.gearInvar, 'C', TFItems.ingotCopper, 'T', TEItems.powerCoilSilver
 		}));
 	}
 }

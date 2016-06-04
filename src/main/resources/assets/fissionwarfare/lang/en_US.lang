@@ -11,6 +11,7 @@ item.radioactive_chunk.name=Radioactive Chunk
 item.uranium_pellet.name=Uranium Pellet
 
 item.steel_ingot.name=Steel Ingot
+item.stel_plate.name=Steel Plate
 item.lightning_rod.name=Lightning Rod
 
 item.cement.name=Cement
@@ -27,6 +28,8 @@ item.fuel_canister_1.name=Pyrotheum Canister
 item.fuel_canister_2.name=Cryotheum Canister
 
 item.iron_frame.name=Iron Frame
+item.invar_frame.name=Invar Frame
+item.motor.name=Motor
 
 item.circuit_0.name=Basic Circuit
 item.circuit_1.name=Advanced Circuit
