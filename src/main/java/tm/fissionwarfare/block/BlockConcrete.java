@@ -16,7 +16,7 @@ import tm.fissionwarfare.init.InitItems;
 
 public class BlockConcrete extends BlockReinforced {
 	
-	private int[] metaTiers = new int[]{4, 9, 14};
+	public static int[] metaTiers = new int[]{4, 9, 14};
 	
 	public BlockConcrete() {
 		super("concrete");
