@@ -19,33 +19,27 @@ public class ItemNailGun extends ItemBase {
 	
 	@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int side, float float1, float float2, float float3) {
-		int meta = world.getBlockMetadata(x, y, z);
 		double xd = (double) x;
 		double yd = (double) y;
 		double zd = (double) z;
+		int meta = world.getBlockMetadata(x, y, z);
 		
 		if (world.getBlock(x, y, z) == InitBlocks.concrete){
 			
-		}
-
-			if (player.inventory.hasItemStack(new ItemStack(InitItems.nail)) && player.inventory.hasItemStack(new ItemStack(InitItems.invar_frame))){
+			if (player.inventory.hasItemStack(new ItemStack(InitItems.nail_gun_magazine))){
 				
 				 if (world.getBlockMetadata(x, y, z) < 14){
-					player.inventory.consumeInventoryItem(InitItems.invar_frame);
-					player.inventory.consumeInventoryItem(InitItems.nail);
+					player.inventory.consumeInventoryItem(InitItems.nail_gun_magazine);
 					world.setBlockMetadataWithNotify(x, y, z, meta + ((meta == BlockConcrete.metaTiers[0] || meta == BlockConcrete.metaTiers[1]) ? 5 : 1), 2);
-					world.playSound(xd, yd, zd, "random.anvil_land", .05F, .05F, false);
+					world.playSound(xd, yd, zd, "random.anvil_land", .02F, 1.0F, false);
 					if (meta == BlockConcrete.metaTiers[0] || meta == BlockConcrete.metaTiers[1]){
-						player.inventory.consumeInventoryItem(InitItems.invar_frame);
-						player.inventory.consumeInventoryItem(InitItems.nail);
 						world.setBlockMetadataWithNotify(x, y, z, meta + 5, 2);
-						world.playSound(xd, yd, zd, "random.anvil_land", .05F, .05F, false);
+						world.playSound(xd, yd, zd, "random.anvil_land", .02F, 1.0F, false);
 					}
 			}
+		}	
 		}
-		
 		else System.out.println("NOT CONCRETE");
-		
 		return true;
 	}
 }

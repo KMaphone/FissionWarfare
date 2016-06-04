@@ -39,6 +39,7 @@ item.missile.name=Missile
 item.nail_gun.name=Nail Gun
 item.compressor.name=Compressor
 
+item.nail_gun_magazine.name=Nail Gun Magazine
 item.nail.name=Nail
 item.shell.name=Shell
 item.bullet.name=Bullet

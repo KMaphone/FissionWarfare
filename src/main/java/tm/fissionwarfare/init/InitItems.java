@@ -44,6 +44,7 @@ public class InitItems {
 	public static Item nail;
 	public static Item shell;
 	public static Item bullet;
+	public static Item nail_gun_magazine;
 	
 	public static ToolSet steel;
 	
@@ -82,6 +83,7 @@ public class InitItems {
 		nail = new ItemBase("nail");
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
+		nail_gun_magazine = new ItemBase("nail_gun_magazine");
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		
