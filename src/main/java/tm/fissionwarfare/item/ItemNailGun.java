@@ -23,9 +23,12 @@ public class ItemNailGun extends ItemBase {
 	double zd = (double) z;
 		if (world.getBlock(x, y, z) == InitBlocks.concrete){
 
+			if(player.inventory.hasItemStack(new ItemStack(InitItems.nail)) && player.inventory.hasItemStack(new ItemStack(InitItems.invar_frame))){
 				if (world.getBlockMetadata(x, y, z) < 14){
+					player.inventory.consumeInventoryItem(InitItems.invar_frame);
 					player.inventory.consumeInventoryItem(InitItems.nail);
 					int get = world.getBlockMetadata(x, y, z);
+					world.setBlockMetadataWithNotify(x, y, z, get + 5, 2);
 					//world.playSound(xd, yd, zd, "anvil_land", 1.0F, 1.0F, false);
 				}
 			}
