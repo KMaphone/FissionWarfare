@@ -60,6 +60,16 @@ public class ServerPacketHandler implements IMessage {
 				tileEntity.targetCoords[index] = coord;
 			}
 			
+			if (data[0].equalsIgnoreCase("toggle.launch")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
+				tileEntity.toggleLaunch();
+			}
+			
 			return null;
 		}
 	}

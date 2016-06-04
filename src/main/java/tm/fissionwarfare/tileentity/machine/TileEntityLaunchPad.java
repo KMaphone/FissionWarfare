@@ -15,9 +15,14 @@ import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
 	
-	public int[] targetCoords = new int[3];
 	public SecurityProfile profile = new SecurityProfile();
 	
+	public int energyCost = 0;
+	
+	public int[] targetCoords = new int[3];
+	
+	public boolean launching;
+		
 	public TileEntityLaunchPad() {
 		setSideInputSlots(0);
 	}
@@ -25,6 +30,32 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		
+		System.out.println(launching);
+		
+		if (!canExtractEnergy(energyCost) || slots[0] == null) {
+			launching = false;
+		}
+		
+		if (launching) progress++;
+		else progress = 0;
+		
+		if (isDoneAndReset()) {
+			
+			launching = false;			
+		}
+	}
+	
+	public void toggleLaunch() {
+		if (launching) launching = false;
+		else startLaunch();
+	}
+	
+	public void startLaunch() {
+			
+		if (!launching && canExtractEnergy(energyCost) && slots[0] != null) {			
+			launching = true;
+		}
 	}
 	
 	@Override
@@ -44,7 +75,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 	@Override
 	public int getMaxProgress() {
-		return 20 * 10;
+		return 20 * 20;
 	}
 	
 	@Override
@@ -89,7 +120,8 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			slots[0] = ItemStack.loadItemStackFromNBT(tempTag);
 		}
 		
-		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");
+		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");		
+		launching = nbt.getBoolean("launching");
 	}
 	
 	@Override
@@ -110,6 +142,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 		nbt.setTag("slot_0", tempTag);
 		
-		nbt.setIntArray("coords", targetCoords);
+		nbt.setIntArray("coords", targetCoords);		
+		nbt.setBoolean("launching", launching);
 	}
 }

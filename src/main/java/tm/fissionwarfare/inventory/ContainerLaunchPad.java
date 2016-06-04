@@ -9,6 +9,6 @@ public class ContainerLaunchPad extends ContainerEnergyBase {
 	public ContainerLaunchPad(EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(player, tileEntity);
 
-		addSlotToContainer(new SlotFilter(tileEntityEnergy, tileEntity, 0, 116, 40, InitItems.missile));
+		addSlotToContainer(new SlotFilter(tileEntityEnergy, tileEntity, 0, 116, 21, InitItems.missile));
 	}
 }

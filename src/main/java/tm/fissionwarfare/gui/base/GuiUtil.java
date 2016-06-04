@@ -42,7 +42,7 @@ public class GuiUtil {
 			GL11.glTranslatef(0, 0, 100);
 			
 			mc.getTextureManager().bindTexture(Reference.GUI_TEXTURES);
-			drawCappedRect(mouseX + 2, mouseY - 13, 0, 227, 0, mc.fontRenderer.getStringWidth(text) + 3, 13, 256);
+			drawCappedRect(mouseX + 1, mouseY - 13, 0, 227, 0, mc.fontRenderer.getStringWidth(text) + 5, 13, 256);
 			mc.fontRenderer.drawString(text, mouseX + 4, mouseY - 10, 0xFFFFFF);
 			
 			GL11.glPopMatrix();

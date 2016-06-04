@@ -23,6 +23,7 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 	TileEntityLaunchPad tileEntity;
 	
 	private GuiNumberFieldRect xField, yField, zField;
+	private GuiButtonRect launchButton;
 	
 	public GuiLaunchPad(Container container, EntityPlayer player, TileEntityEnergyBase tileEntity) {
 		super(container, player, tileEntity);
@@ -45,21 +46,36 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 		
 		Keyboard.enableRepeatEvents(true);
 		
-		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 21, 44, 6);
-		yField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 42, 44, 6);
-		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 63, 44, 6);
+		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 21, 70, 10);
+		yField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 42, 70, 10);
+		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 63, 70, 10);
 		
 		xField.setText("" + tileEntity.targetCoords[0]);
 		yField.setText("" + tileEntity.targetCoords[1]);
 		zField.setText("" + tileEntity.targetCoords[2]);
+		
+		launchButton = new GuiButtonRect(0, getScreenX() + 97, getScreenY() + 60, 54, tileEntity.launching ? "Abort" : "Launch", buttonList);
+	}
+	
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		
+		launchButton.displayString = tileEntity.launching ? "Cancel" : "Launch";
+	}
+	
+	@Override
+	protected void actionPerformed(GuiButton button) {
+		
+		if (button.id == launchButton.id) {
+			
+			tileEntity.toggleLaunch();
+			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+		}
 	}
 	
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
-		
-		fontRendererObj.drawString("" + tileEntity.targetCoords[0], getScreenX() + 55, getScreenY() + 23, 0xCCCCCC);
-		fontRendererObj.drawString("" + tileEntity.targetCoords[1], getScreenX() + 55, getScreenY() + 44, 0xCCCCCC);
-		fontRendererObj.drawString("" + tileEntity.targetCoords[2], getScreenX() + 55, getScreenY() + 65, 0xCCCCCC);
 		
 		xField.drawTextBox();
 		yField.drawTextBox();
