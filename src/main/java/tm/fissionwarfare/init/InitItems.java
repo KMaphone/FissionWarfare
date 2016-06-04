@@ -39,6 +39,7 @@ public class InitItems {
 	public static Item nail_gun;
 	public static Item compressor;
 	
+	public static Item nail;
 	public static Item shell;
 	public static Item bullet;
 	
@@ -74,6 +75,7 @@ public class InitItems {
 		nail_gun = new ItemNailGun();
 		compressor = new ItemCompressor();
 		
+		nail = new ItemBase("nail");
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
 		
