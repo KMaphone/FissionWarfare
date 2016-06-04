@@ -26,7 +26,7 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	private IIcon[] textures = new IIcon[getMaxMeta() + 1];
 	
 	public BlockReinforced(String imageName) {
-		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, InitTabs.tabMain, ItemBlockReinforced.class);
+		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, ItemBlockReinforced.class);
 	}
 	
 	@Override

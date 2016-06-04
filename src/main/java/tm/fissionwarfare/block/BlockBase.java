@@ -9,6 +9,7 @@ import tm.fissionwarfare.init.InitTabs;
 public class BlockBase extends Block {
 
 	public String imageName;
+	float pixel = 1F/16F;
 	
 	public BlockBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {		
 		super(material);
@@ -32,5 +33,10 @@ public class BlockBase extends Block {
 	
 	public BlockBase(String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
 		this(imageName, imageName, material, harvestLevel, hardness, resistance, stepSound, true);
+	}
+	
+	public BlockBase setBounds(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {
+		setBlockBounds(xStart * pixel, yStart * pixel, zStart * pixel, xEnd * pixel, yEnd * pixel, zEnd * pixel);
+		return this;
 	}
 }

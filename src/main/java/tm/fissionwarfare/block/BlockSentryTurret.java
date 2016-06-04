@@ -8,7 +8,7 @@ import tm.fissionwarfare.tileentity.machine.TileEntityTurretSentry;
 public class BlockSentryTurret extends BlockContainerBase {
 
 	public BlockSentryTurret() {
-		super("sentry_turret", "steel_block", 2, Material.iron, 1, 1, Block.soundTypeMetal);
+		super("sentry_turret", "steel_block", Material.iron, 2, 1, 1, Block.soundTypeMetal);
 		setBounds(1.5F, 0, 1.5F, 14.5F, 8, 14.5F);
 	}
 	

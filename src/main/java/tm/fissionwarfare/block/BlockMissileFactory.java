@@ -14,7 +14,7 @@ public class BlockMissileFactory extends BlockContainerBase {
 	private IIcon top_icon, bottom_icon;
 	
 	public BlockMissileFactory() {
-		super("missile_factory", 2, Material.iron, 2, 2, Block.soundTypeMetal);
+		super("missile_factory", Material.iron, 2, 2, 2, Block.soundTypeMetal);
 	}
 	
 	@Override

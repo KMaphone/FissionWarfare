@@ -68,7 +68,7 @@ tile.reinforced_glass_0.name=Reinforced Glass
 tile.sentry_turret.name=Sentry Turret
 tile.missile_factory.name=Missile Factory
 tile.launch_pad.name=Launch Pad
-tile.support_frame.name=Support Frame
+tile.support_frame_1.name=Support Frame
 
 #-#-#-#-#-FLUIDS-#-#-#-#-#
 

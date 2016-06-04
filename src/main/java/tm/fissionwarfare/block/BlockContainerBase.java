@@ -24,7 +24,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 
 	float pixel = 1F/16F;
 	
-	public BlockContainerBase(String name, String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
+	public BlockContainerBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound, boolean isRegistered) {
 		super(material);		
 		setBlockName(name);
 		setBlockTextureName(Reference.MOD_ID + ":" + imageName);
@@ -39,12 +39,12 @@ public abstract class BlockContainerBase extends BlockContainer {
 		}
 	}
 	
-	public BlockContainerBase(String name, String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
-		this(name, imageName, harvestLevel, material, resistance, resistance, stepSound, true);
+	public BlockContainerBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
+		this(name, imageName, material, harvestLevel, resistance, resistance, stepSound, true);
 	}
 	
-	public BlockContainerBase(String imageName, int harvestLevel, Material material, float hardness, float resistance, Block.SoundType stepSound) {
-		this(imageName, imageName, harvestLevel, material, resistance, resistance, stepSound, true);
+	public BlockContainerBase(String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
+		this(imageName, imageName, material, harvestLevel, resistance, resistance, stepSound, true);
 	}
 	
 	public BlockContainerBase setBounds(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {
