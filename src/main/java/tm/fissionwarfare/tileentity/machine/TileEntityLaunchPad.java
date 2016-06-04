@@ -3,16 +3,28 @@ package tm.fissionwarfare.tileentity.machine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.api.ISecurity;
+import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.gui.GuiLaunchPad;
 import tm.fissionwarfare.inventory.ContainerLaunchPad;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public class TileEntityLaunchPad extends TileEntityEnergyBase {
+public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
+	
+	public int[] targetCoords = new int[3];
+	public SecurityProfile profile = new SecurityProfile();
 	
 	public TileEntityLaunchPad() {
 		setSideInputSlots(0);
+	}
+	
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
 	}
 	
 	@Override
@@ -37,7 +49,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 	
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
-		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, zCoord - 1F, xCoord + 2F, yCoord + 1F, zCoord + 2F);
+		return AxisAlignedBB.getBoundingBox(xCoord - 1F, yCoord, zCoord - 1F, xCoord + 2F, yCoord + 7F, zCoord + 2F);
 	}
 		
 	@Override
@@ -58,5 +70,46 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase {
 	@Override
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiLaunchPad(getTileContainer(player), player, this);
+	}
+
+	@Override
+	public SecurityProfile getSecurityProfile() {
+		return profile;
+	}
+	
+	@Override
+	public void readSyncNBT(NBTTagCompound nbt) {
+		super.readSyncNBT(nbt);
+		
+		profile.readFromNBT(nbt);
+		
+		NBTTagCompound tempTag = nbt.getCompoundTag("slot_0");
+
+		if (!tempTag.getBoolean("null")) {
+			slots[0] = ItemStack.loadItemStackFromNBT(tempTag);
+		}
+		
+		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");
+	}
+	
+	@Override
+	public void writeSyncNBT(NBTTagCompound nbt) {
+		super.writeSyncNBT(nbt);
+		
+		profile.writeToNBT(nbt);
+		
+		NBTTagCompound tempTag = new NBTTagCompound();
+
+		if (slots[0] != null) {
+
+			slots[0].writeToNBT(tempTag);
+			tempTag.setBoolean("null", false);
+		} 
+		
+		else tempTag.setBoolean("null", true);
+
+		nbt.setTag("slot_0", tempTag);
+		
+		nbt.setIntArray("coords", targetCoords);
 	}
 }
