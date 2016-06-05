@@ -12,7 +12,7 @@ import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 public class ServerPacketHandler implements IMessage {
 
 	private String text;
-
+	
 	public ServerPacketHandler() {
 	}
 
@@ -67,7 +67,7 @@ public class ServerPacketHandler implements IMessage {
 				int z = Integer.parseInt(data[3]);
 				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
-				tileEntity.toggleLaunch();
+				tileEntity.toggleLaunch(player);
 			}
 			
 			return null;

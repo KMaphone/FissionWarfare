@@ -15,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
@@ -72,6 +73,16 @@ public class BlockSupportFrame extends BlockMetaBase {
         if (l == 2) world.setBlockMetadataWithNotify(x, y, z, 0 | i1 << 2, 2);        
         if (l == 3) world.setBlockMetadataWithNotify(x, y, z, 1 | i1 << 2, 2);
     }
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+		return new ItemStack(this, 1, 1);		
+	}
+	
+	@Override
+	public int damageDropped(int meta) {
+		return 1;
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {		

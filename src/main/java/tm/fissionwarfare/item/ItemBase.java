@@ -3,6 +3,8 @@ package tm.fissionwarfare.item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
 
@@ -22,6 +24,15 @@ public class ItemBase extends Item {
 	
 	public ItemBase(String imageName) {
 		this(imageName, true);
+	}
+	
+	public NBTTagCompound getNBT(ItemStack is) {
+		
+		if (is.getTagCompound() == null) {
+			is.setTagCompound(new NBTTagCompound());
+		}
+
+		return is.getTagCompound();
 	}
 	
 	@Override

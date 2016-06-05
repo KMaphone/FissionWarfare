@@ -6,18 +6,20 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.gui.GuiLaunchPad;
 import tm.fissionwarfare.inventory.ContainerLaunchPad;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
+import tm.fissionwarfare.util.UnitChatMessage;
 
 public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
 	
 	public SecurityProfile profile = new SecurityProfile();
 	
-	public int energyCost = 0;
+	public int energyCost = 10000;
 	
 	public int[] targetCoords = new int[3];
 	
@@ -31,9 +33,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	public void updateEntity() {
 		super.updateEntity();
 		
-		System.out.println(launching);
-		
-		if (!canExtractEnergy(energyCost) || slots[0] == null) {
+		if (slots[0] == null || !canExtractEnergy(energyCost) || !isPathClear()) {
 			launching = false;
 		}
 		
@@ -46,16 +46,40 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		}
 	}
 	
-	public void toggleLaunch() {
+	public void toggleLaunch(EntityPlayer player) {
 		if (launching) launching = false;
-		else startLaunch();
+		else startLaunch(player);
 	}
 	
-	public void startLaunch() {
+	public void startLaunch(EntityPlayer player) {
 			
-		if (!launching && canExtractEnergy(energyCost) && slots[0] != null) {			
+		if (!launching && slots[0] != null && canExtractEnergy(energyCost) && isPathClear()) {			
 			launching = true;
 		}
+		
+		else if (worldObj.isRemote) printErrorMessage(player);
+	}
+	
+	private boolean isPathClear() {
+		
+		for (int x = -1; x < 2; x++) {
+			
+			for (int z = -1; z < 2; z++) {
+				
+				if (!worldObj.canBlockSeeTheSky(xCoord + x, yCoord, zCoord + z)) return false;
+			}
+		}
+		
+		return true;
+	}
+		
+	private void printErrorMessage(EntityPlayer player) {
+		
+		UnitChatMessage message = new UnitChatMessage(player, "Launch Pad");
+		
+		if (slots[0] == null) message.printMessage(EnumChatFormatting.RED, "There is no missile in the slot!");		
+		if (!canExtractEnergy(energyCost)) message.printMessage(EnumChatFormatting.RED, "Not enough energy! (" + energyCost + " RF required)");
+		if (!isPathClear()) message.printMessage(EnumChatFormatting.RED, "The path is not cleared! (A 3x3 wide square of blocks need to see the sky)");
 	}
 	
 	@Override

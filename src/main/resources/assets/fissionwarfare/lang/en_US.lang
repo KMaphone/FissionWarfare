@@ -44,6 +44,8 @@ item.nail.name=Nail
 item.shell.name=Shell
 item.bullet.name=Bullet
 
+item.location_linker.name=Location Linker
+
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 
 tile.basic.name=Basic Explosive

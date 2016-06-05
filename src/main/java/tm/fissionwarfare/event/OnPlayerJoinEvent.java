@@ -9,8 +9,6 @@ public class OnPlayerJoinEvent {
 	@SubscribeEvent
 	public void onPlayerJoinWorld(PlayerLoggedInEvent event) {
 		
-		System.out.println("hey");
-		
 		for (Object o : event.player.worldObj.loadedTileEntityList) {
 			
 			if (o != null && o instanceof TileEntityLaunchPad) {

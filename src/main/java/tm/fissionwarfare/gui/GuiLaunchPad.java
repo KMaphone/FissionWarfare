@@ -22,7 +22,7 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 
 	TileEntityLaunchPad tileEntity;
 	
-	private GuiNumberFieldRect xField, yField, zField;
+	private GuiNumberFieldRect xField, zField;
 	private GuiButtonRect launchButton;
 	
 	public GuiLaunchPad(Container container, EntityPlayer player, TileEntityEnergyBase tileEntity) {
@@ -46,13 +46,11 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 		
 		Keyboard.enableRepeatEvents(true);
 		
-		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 21, 70, 10);
-		yField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 42, 70, 10);
-		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 8, getScreenY() + 63, 70, 10);
+		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 26, getScreenY() + 32, 70, 9);
+		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 26, getScreenY() + 54, 70, 9);
 		
 		xField.setText("" + tileEntity.targetCoords[0]);
-		yField.setText("" + tileEntity.targetCoords[1]);
-		zField.setText("" + tileEntity.targetCoords[2]);
+		zField.setText("" + tileEntity.targetCoords[1]);
 		
 		launchButton = new GuiButtonRect(0, getScreenX() + 97, getScreenY() + 60, 54, tileEntity.launching ? "Abort" : "Launch", buttonList);
 	}
@@ -69,7 +67,7 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 		
 		if (button.id == launchButton.id) {
 			
-			tileEntity.toggleLaunch();
+			tileEntity.toggleLaunch(player);
 			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
 		}
 	}
@@ -78,8 +76,10 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
 		xField.drawTextBox();
-		yField.drawTextBox();
 		zField.drawTextBox();
+		
+		fontRendererObj.drawString("X:", getScreenX() + 14, getScreenY() + 34, 0xCCCCCC);
+		fontRendererObj.drawString("Z:", getScreenX() + 14, getScreenY() + 56, 0xCCCCCC);
 	}
 	
 	@Override
@@ -120,19 +120,16 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 		super.keyTyped(c, i);
 			
 		xField.textboxKeyTyped(c, i);
-		yField.textboxKeyTyped(c, i);
 		zField.textboxKeyTyped(c, i);
 		
 		setCoord(xField, 0);
-		setCoord(yField, 1);
-		setCoord(zField, 2);
+		setCoord(zField, 1);
     }
 
 	@Override
 	protected void mouseClicked(int x, int y, int i) {
 	    super.mouseClicked(x, y, i);
 	    xField.mouseClicked(x, y, i);
-	    yField.mouseClicked(x, y, i);
 	    zField.mouseClicked(x, y, i);
 	}
 }
