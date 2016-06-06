@@ -39,14 +39,14 @@ public class FWConfig {
 		config.addCustomCategoryComment(GENERAL_OPTIONS, "General options for " + Reference.MOD_NAME + ".");
 				
 		enableIgnitingPlacedExplosives = config.getBoolean("Ignite Placed Explosives", GENERAL_OPTIONS, true, "Enables or disables the ability to ignite placed explosives.");
-		enableIgnitingPlacedExplosives = config.getBoolean("Nail Gun", GENERAL_OPTIONS, true, "Enables or disables the ability to use the Nail Gun. Some may like disabling this for War Day.");		
+		enableNailGun = config.getBoolean("Nail Gun", GENERAL_OPTIONS, true, "Enables or disables the ability to use the Nail Gun. Some may like disabling this for War Day.");		
 		
-		final String GUI = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Client";
-		config.setCategoryLanguageKey(GUI, "category.client.name");
-		config.addCustomCategoryComment(GUI, "Options for clients.");
+		final String CLIENT = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Client";
+		config.setCategoryLanguageKey(CLIENT, "category.client.name");
+		config.addCustomCategoryComment(CLIENT, "Options for clients.");
 		
-		enableConcretePaticles = config.getBoolean("Concrete Particles", GENERAL_OPTIONS, true, "Enables or disables concrete particles.");
-		enableTeamErrorMessage = config.getBoolean("Team Error Message", GENERAL_OPTIONS, true, "Enables or disables the message when you place a unit without a team.");
+		enableConcretePaticles = config.getBoolean("Concrete Particles", CLIENT, true, "Enables or disables concrete particles.");
+		enableTeamErrorMessage = config.getBoolean("Team Error Message", CLIENT, true, "Enables or disables the message when you place a unit without a team.");
 		
 		final String GEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "World Gen";
 		config.setCategoryLanguageKey(GEN, "category.gen.name");

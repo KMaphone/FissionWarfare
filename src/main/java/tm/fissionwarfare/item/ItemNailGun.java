@@ -53,7 +53,7 @@ public class ItemNailGun extends ItemBase {
 			else System.out.println("NOT CONCRETE");
 		}
 		
-		else ChatUtil.printFWMessage(EnumChatFormatting.RED, "This function was disabled by config!", player);
+		else if (world.isRemote) ChatUtil.printFWMessage(EnumChatFormatting.RED, "This function was disabled by config!", player);
 		
 		return true;
 	}

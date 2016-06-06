@@ -92,5 +92,5 @@ item.steel_hoe.name=Steel Hoe
 #-#-#-#-#-CONFIG-#-#-#-#-#
 
 category.general_options.name=General Options
-category.gui.name=GUI
+category.client.name=Client
 category.gen.name=World Gen
