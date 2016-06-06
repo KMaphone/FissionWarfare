@@ -10,9 +10,12 @@ import tm.fissionwarfare.Reference;
 public class FWConfig {
 
 	public static Configuration config = FissionWarfare.config;
+		
+	public static boolean enableIgnitingPlacedExplosives;
+	public static boolean enableNailGun;
 	
 	public static boolean enableConcretePaticles;
-	public static boolean enableIgnitingPlacedExplosives;
+	public static boolean enableTeamErrorMessage;
 	
 	public static boolean enableSulfurGen;
 	public static boolean enableQuartzGen;
@@ -34,13 +37,16 @@ public class FWConfig {
 		final String GENERAL_OPTIONS = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "General Options";
 		config.setCategoryLanguageKey(GENERAL_OPTIONS, "category.general_options.name");
 		config.addCustomCategoryComment(GENERAL_OPTIONS, "General options for " + Reference.MOD_NAME + ".");
-			
-		enableConcretePaticles = config.getBoolean("Concrete Particles", GENERAL_OPTIONS, true, "Enables or disables concrete particles.");
+				
 		enableIgnitingPlacedExplosives = config.getBoolean("Ignite Placed Explosives", GENERAL_OPTIONS, true, "Enables or disables the ability to ignite placed explosives.");
+		enableIgnitingPlacedExplosives = config.getBoolean("Nail Gun", GENERAL_OPTIONS, true, "Enables or disables the ability to use the Nail Gun. Some may like disabling this for War Day.");		
 		
-		final String GUI = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "GUI";
-		config.setCategoryLanguageKey(GUI, "category.gui.name");
-		config.addCustomCategoryComment(GUI, "Options for GUIs.");
+		final String GUI = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Client";
+		config.setCategoryLanguageKey(GUI, "category.client.name");
+		config.addCustomCategoryComment(GUI, "Options for clients.");
+		
+		enableConcretePaticles = config.getBoolean("Concrete Particles", GENERAL_OPTIONS, true, "Enables or disables concrete particles.");
+		enableTeamErrorMessage = config.getBoolean("Team Error Message", GENERAL_OPTIONS, true, "Enables or disables the message when you place a unit without a team.");
 		
 		final String GEN = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "World Gen";
 		config.setCategoryLanguageKey(GEN, "category.gen.name");

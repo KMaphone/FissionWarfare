@@ -8,6 +8,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import tm.fissionwarfare.api.ISecurity;
+import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.util.ChatUtil;
 
 public class SecurityEvent {
@@ -25,7 +26,7 @@ public class SecurityEvent {
 				
 				if (event.player.getTeam() == null) {
 					
-					ChatUtil.printFWMessage(EnumChatFormatting.WHITE, "You are not on a team. No security will be added!", event.player);
+					if (FWConfig.enableTeamErrorMessage) ChatUtil.printFWMessage(EnumChatFormatting.WHITE, "You are not on a team. No security will be added!", event.player);
 				} 
 				
 				else security.getSecurityProfile().setTeamName(event.player.getTeam());
