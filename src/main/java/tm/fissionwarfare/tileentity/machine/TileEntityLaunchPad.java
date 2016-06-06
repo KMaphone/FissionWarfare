@@ -1,5 +1,9 @@
 package tm.fissionwarfare.tileentity.machine;
 
+import java.util.Random;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -7,21 +11,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
+import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.gui.GuiLaunchPad;
 import tm.fissionwarfare.inventory.ContainerLaunchPad;
+import tm.fissionwarfare.item.ItemMissile;
+import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.UnitChatMessage;
 
 public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
 	
+	private Random rand = new Random();
+	
 	public SecurityProfile profile = new SecurityProfile();
 	
 	public int energyCost = 10000;
 	
-	public int[] targetCoords = new int[3];
+	public int[] targetCoords = new int[2];
 	
 	public boolean launching;
 		
@@ -37,12 +47,44 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			launching = false;
 		}
 		
-		if (launching) progress++;
+		if (launching) {
+			
+			progress++;
+			
+			for (int i = 0; i < progress / 20; i++) {
+
+				double randX = MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D);
+				double randZ = MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D);
+				
+				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, -0.3D, -0.05D, randX);
+				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, 0.3D, -0.05D, randX);
+				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, 0.3D);
+				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, -0.3D);
+				
+				if (i % 8 == 7) {
+					
+					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, -0.3D, -0.05D, randX);
+					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, 0.3D, -0.05D, randX);
+					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, 0.3D);
+					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, -0.3D);
+				}
+			}
+		}
+		
 		else progress = 0;
 		
 		if (isDoneAndReset()) {
 			
-			launching = false;			
+			launching = false;
+			storage.extractEnergy(energyCost, false);
+			
+			if (!worldObj.isRemote) {
+				
+				MissileData missileData = MissileData.getDataFromItem(slots[0]);
+				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, targetCoords[0], targetCoords[1], slots[0]));
+			}					
+			
+			decrStackSize(0, 1);
 		}
 	}
 	
@@ -99,7 +141,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 	@Override
 	public int getMaxProgress() {
-		return 20 * 20;
+		return 20 * 10;
 	}
 	
 	@Override

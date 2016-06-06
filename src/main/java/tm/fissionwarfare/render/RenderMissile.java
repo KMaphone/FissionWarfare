@@ -26,7 +26,13 @@ public class RenderMissile extends Render {
 		GL11.glPushMatrix();
 		
 		GL11.glTranslated(x, y, z);
-		GL11.glScaled(0.627D, 0.627D, 0.627D);		
+		GL11.glScalef(0.469F, 0.469F, 0.469F);
+		GL11.glRotatef(45, 0, 1, 0);
+		
+		if (entity.motionY < 0) {
+			GL11.glRotatef(180, 1, 0, 0);
+		}
+		
 		Minecraft.getMinecraft().renderEngine.bindTexture(getEntityTexture(entity));
 		model.renderAll();
 		

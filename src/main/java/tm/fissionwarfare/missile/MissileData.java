@@ -6,35 +6,35 @@ import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class MissileData {
 
-	private float accuracy = 0;
-	private float speed = 0;
+	private int accuracy = 0;
+	private int speed = 0;
 	private EnumExplosionType explosionType;
 
 	public void readFromNBT(NBTTagCompound nbt) {
 
-		accuracy = nbt.getFloat("accuracy");
-		speed = nbt.getFloat("speed");
+		accuracy = nbt.getInteger("accuracy");
+		speed = nbt.getInteger("speed");
 
 		if (nbt.hasKey("explosionType")) {
 			explosionType = EnumExplosionType.valueOf(nbt.getString("explosionType"));
 		}
 	}
 
-	public void writeFromNBT(NBTTagCompound nbt) {
+	public void writeToNBT(NBTTagCompound nbt) {
 
-		nbt.setFloat("accuracy", accuracy);
-		nbt.setFloat("speed", speed);
+		nbt.setInteger("accuracy", accuracy);
+		nbt.setInteger("speed", speed);
 
 		if (explosionType != null) {
 			nbt.setString("explosionType", explosionType.name());
 		}
 	}
 
-	public void setAccuracy(float accuracy) {
+	public void setAccuracy(int accuracy) {
 		this.accuracy = accuracy;
 	}
 
-	public void setSpeed(float speed) {
+	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
@@ -42,11 +42,11 @@ public class MissileData {
 		this.explosionType = explosionType;
 	}
 
-	public float getAccuracy() {
+	public int getAccuracy() {
 		return accuracy;
 	}
 
-	public float getSpeed() {
+	public int getSpeed() {
 		return speed;
 	}
 
@@ -77,7 +77,7 @@ public class MissileData {
 			nbt = new NBTTagCompound();
 		}
 		
-		data.writeFromNBT(nbt);
+		data.writeToNBT(nbt);
 		
 		stack.setTagCompound(nbt);
 		
