@@ -74,14 +74,31 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		else progress = 0;
 		
 		if (isDoneAndReset()) {
+		
+			MissileData missileData = MissileData.getDataFromItem(slots[0]);
 			
 			launching = false;
 			storage.extractEnergy(energyCost, false);
 			
 			if (!worldObj.isRemote) {
 				
-				MissileData missileData = MissileData.getDataFromItem(slots[0]);
-				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, targetCoords[0], targetCoords[1], slots[0]));
+				int distances[] = {0, 5, 20, 50};
+								
+				int percentage = rand.nextInt(100 - ((missileData.getAccuracy() - 1) * 10));
+				
+				int index;
+				
+				if (percentage < 10) index = 1;
+				else if (percentage < 80) index = 2;
+				else index = 3;
+				
+				int x = MathHelper.getRandomIntegerInRange(rand, distances[index - 1], distances[index]);
+				int z = MathHelper.getRandomIntegerInRange(rand, distances[index - 1], distances[index]);
+				
+				if (rand.nextInt(2) == 0) x = 0 - x;
+				if (rand.nextInt(2) == 0) z = 0 - z;
+								
+				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, targetCoords[0] + x, targetCoords[1] + z, slots[0]));
 			}					
 			
 			decrStackSize(0, 1);

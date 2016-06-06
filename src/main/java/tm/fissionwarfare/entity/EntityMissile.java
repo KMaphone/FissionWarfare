@@ -77,6 +77,24 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			}
 		}
 		
+		if (canExplode && onGround) {
+			
+			MissileData missileData = MissileData.getDataFromItem(missileStack);
+				
+			IExplosionType explosion = missileData.getExplosionType().getExplosionType();
+												
+			explosion.setup(worldObj, getVector());
+					
+			if (!worldObj.isRemote) {
+				explosion.doBlockDamage();
+				explosion.doPlayerDamage();
+			}
+					
+			explosion.doEffects();
+				
+			setDead();
+		}
+		
 		if (!worldObj.isRemote) {
 			
 			if (!canExplode && motionY < 3) {
@@ -90,25 +108,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 				setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
 				motionY = -2;
 				canExplode = true;
-			}
-			
-			if (canExplode && onGround) {
-				
-				MissileData missileData = MissileData.getDataFromItem(missileStack);
-				
-				IExplosionType explosion = missileData.getExplosionType().getExplosionType();
-												
-				explosion.setup(worldObj, getVector());
-					
-				if (!worldObj.isRemote) {
-					explosion.doBlockDamage();
-					explosion.doPlayerDamage();
-				}
-					
-				explosion.doEffects();
-				
-				setDead();
-			}
+			}		
 		}	
 	}
 	
@@ -125,7 +125,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		targetX = tag.getInteger("targetX");
 		targetZ = tag.getInteger("targetZ");
 		
-		ItemStack.loadItemStackFromNBT(tag);
+		missileStack = ItemStack.loadItemStackFromNBT(tag);
 	}
 
 	@Override
