@@ -33,8 +33,8 @@ import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
 public class TileEntityTurretSentry extends TileEntityTurretBase {
 
-	public static final int RANGE = 10;
-	public static final float DAMAGE = 3;
+	public static final int RANGE = 20;
+	public static final float DAMAGE = 4;
 
 	@Override
 	public Entity findTarget() {

@@ -40,11 +40,11 @@ public abstract class BlockContainerBase extends BlockContainer {
 	}
 	
 	public BlockContainerBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
-		this(name, imageName, material, harvestLevel, resistance, resistance, stepSound, true);
+		this(name, imageName, material, harvestLevel, hardness, resistance, stepSound, true);
 	}
 	
 	public BlockContainerBase(String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
-		this(imageName, imageName, material, harvestLevel, resistance, resistance, stepSound, true);
+		this(imageName, imageName, material, harvestLevel, hardness, resistance, stepSound, true);
 	}
 	
 	public BlockContainerBase setBounds(float xStart, float yStart, float zStart, float xEnd, float yEnd, float zEnd) {

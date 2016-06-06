@@ -17,7 +17,7 @@ public class InitRecipes {
 	public static void init() {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz, 1), new Object[] { InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk});
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand), new Object[] { Blocks.sand, InitItems.quartz });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz, InitItems.limestone_chunk });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, InitItems.limestone_chunk });
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
