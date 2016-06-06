@@ -99,7 +99,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 				if (rand.nextInt(2) == 0) z = 0 - z;
 								
 				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, targetCoords[0] + x, targetCoords[1] + z, slots[0]));
-			}					
+			}
 			
 			decrStackSize(0, 1);
 		}
@@ -134,7 +134,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		
 	private void printErrorMessage(EntityPlayer player) {
 		
-		UnitChatMessage message = new UnitChatMessage(player, "Launch Pad");
+		UnitChatMessage message = new UnitChatMessage("Launch Pad", player);
 		
 		if (slots[0] == null) message.printMessage(EnumChatFormatting.RED, "There is no missile in the slot!");		
 		if (!canExtractEnergy(energyCost)) message.printMessage(EnumChatFormatting.RED, "Not enough energy! (" + energyCost + " RF required)");

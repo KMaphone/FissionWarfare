@@ -68,6 +68,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			worldObj.spawnParticle("smoke", posX, posY + yOffset, posZ - offset, randX, yMotion, randZ);					
 			
 			if (i % 7 == 0) {
+				
 				worldObj.spawnParticle("flame", posX, (posY + -motionY) + yOffset, posZ, randX, 0, randZ);
 				
 				worldObj.spawnParticle("flame", posX + offset, posY + yOffset, posZ, randX, yMotion, randZ);
@@ -89,27 +90,24 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 				explosion.doBlockDamage();
 				explosion.doPlayerDamage();
 			}
-					
+			
 			explosion.doEffects();
 				
 			setDead();
 		}
 		
-		if (!worldObj.isRemote) {
+		if (!canExplode && motionY < 3) {
 			
-			if (!canExplode && motionY < 3) {
-				
-				if (motionY < 0.3) motionY += 0.003F;
-				else motionY += 0.2F;
-			}
+			if (motionY < 0.3) motionY += 0.003F;
+			else motionY += 0.2F;
+		}
 			
-			if (posY > 300) {
+		if (posY > 300) {
 				
-				setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
-				motionY = -2;
-				canExplode = true;
-			}		
-		}	
+			setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
+			motionY = -2;
+			canExplode = true;			
+		}
 	}
 	
 	public Vector3d getVector() {

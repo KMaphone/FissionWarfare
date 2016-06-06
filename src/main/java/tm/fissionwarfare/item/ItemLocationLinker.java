@@ -38,7 +38,7 @@ public class ItemLocationLinker extends ItemBase {
 	@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int i, float f1, float f2, float f3) {
 		
-		UnitChatMessage message = new UnitChatMessage(player, "Location Linker");
+		UnitChatMessage message = new UnitChatMessage("Location Linker", player);
 		
 		if (!world.isRemote) {
 						

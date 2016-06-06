@@ -8,6 +8,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import tm.fissionwarfare.api.ISecurity;
+import tm.fissionwarfare.util.ChatUtil;
 
 public class SecurityEvent {
 
@@ -24,8 +25,7 @@ public class SecurityEvent {
 				
 				if (event.player.getTeam() == null) {
 					
-					event.player.addChatMessage(new ChatComponentText("You are not on a team. No security will be added!"));
-					
+					ChatUtil.printFWMessage(EnumChatFormatting.WHITE, "You are not on a team. No security will be added!", event.player);
 				} 
 				
 				else security.getSecurityProfile().setTeamName(event.player.getTeam());
@@ -46,7 +46,7 @@ public class SecurityEvent {
 								
 				if (!security.getSecurityProfile().isSameTeam(event.entityPlayer)) {
 					
-					event.entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "This unit doesn't belong to you!"));
+					ChatUtil.printFWMessage(EnumChatFormatting.RED, "This unit doesn't belong to you!", event.entityPlayer);
 					event.setCanceled(true);
 				}
 			}
