@@ -75,7 +75,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1, 2), new Object[] {
-			"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass, 1, 1), 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
+			"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass), 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
 		
 		/////////////////////////////////////////////////////////CANISTER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -150,8 +150,8 @@ public class InitRecipes {
 			"GGG", "MPM", "MCM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 2), 'C', new ItemStack(InitItems.circuit, 1, 1), 'G', new ItemStack(InitItems.steel_plate), 'P', new ItemStack(InitItems.motor)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.support_frame, 1), new Object[] {
-			" BB", " BB", " BB", 'B', new ItemStack(InitBlocks.steel_block, 1)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.support_frame, 24, 1), new Object[] {
+			"BSB", "BSB", "BSB", 'S', new ItemStack(InitItems.steel_plate), 'B', Blocks.iron_bars
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.steel_block, 1), new Object[] {
@@ -160,6 +160,10 @@ public class InitRecipes {
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.motor, 1), new Object[] {
 			"CCC", "STS", "CCC", 'S', TFItems.gearInvar, 'C', TFItems.ingotCopper, 'T', TEItems.powerCoilSilver
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.location_linker, 1), new Object[] {
+			"R  ", "SCS", "SBS", 'S', InitItems.steel_plate, 'B', Blocks.stone_button, 'R', Blocks.redstone_torch, 'C', new ItemStack(InitItems.circuit, 1, 0)
 		}));
 	}
 }
