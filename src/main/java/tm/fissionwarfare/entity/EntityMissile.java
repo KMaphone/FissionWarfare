@@ -81,18 +81,21 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		if (canExplode && onGround) {
 			
 			MissileData missileData = MissileData.getDataFromItem(missileStack);
+			
+			if (missileData != null) {
 				
-			IExplosionType explosion = missileData.getExplosionType().getExplosionType();
+				IExplosionType explosion = missileData.getExplosionType().getExplosionType();
 												
-			explosion.setup(worldObj, getVector());
+				explosion.setup(worldObj, getVector());
 					
-			if (!worldObj.isRemote) {
-				explosion.doBlockDamage();
-				explosion.doPlayerDamage();
+				if (!worldObj.isRemote) {
+					explosion.doBlockDamage();
+					explosion.doPlayerDamage();
+				}
+			
+				explosion.doEffects();		
 			}
 			
-			explosion.doEffects();
-				
 			setDead();
 		}
 		

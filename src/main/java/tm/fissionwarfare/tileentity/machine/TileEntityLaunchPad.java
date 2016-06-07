@@ -84,11 +84,11 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 				
 				int distances[] = {0, 5, 20, 50};
 								
-				int percentage = rand.nextInt(100 - ((missileData.getAccuracy() - 1) * 10));
+				int percentage = rand.nextInt(100 - ((missileData.getAccuracy() - 1) * 20));
 				
 				int index;
 				
-				if (percentage < 10) index = 1;
+				if (percentage < 20) index = 1;
 				else if (percentage < 80) index = 2;
 				else index = 3;
 				
