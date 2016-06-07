@@ -32,6 +32,8 @@ public abstract class GuiEnergyContainerBase extends GuiContainerBase {
 			
 			SecurityProfile profile = ((ISecurity)tileEntity).getSecurityProfile();
 						
+			profile.cleanTeam(player.worldObj);
+			
 			if (profile.hasTeam()) {
 				GuiUtil.drawBottomInfoBox(player.worldObj.getScoreboard().getTeam(profile.getTeamName()).getColorPrefix() + profile.getTeamName(), getScreenX() + getGuiSize() / 2, getScreenY() + getGuiSize(), 0xFFFFFF);
 			}		
