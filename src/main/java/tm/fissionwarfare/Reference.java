@@ -13,4 +13,6 @@ public class Reference {
 	public static final String DEPENDENCIES = "after:ThermalExpansion;after:CoFHCore;after:ThermalFoundation";
 	
 	public static final ResourceLocation GUI_TEXTURES = new ResourceLocation(MOD_ID + ":textures/gui/gui_textures.png");
+	
+	public static int armorIDCompressor;
 }

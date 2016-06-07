@@ -1,5 +1,7 @@
 package tm.fissionwarfare.tileentity.machine;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -117,6 +119,7 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiMissileFactory(getTileContainer(player), player, this);
 	}

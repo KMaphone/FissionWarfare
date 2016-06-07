@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.event.TierTooltipEvent;
@@ -42,5 +43,11 @@ public class ClientProxy extends CommonProxy {
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTurretSentry.class, new RenderTurret());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaunchPad.class, new RenderLaunchPad());
+		
+		Reference.armorIDCompressor = addArmor("compressor");
+	}
+	
+	public int addArmor(String armor) {
+		return RenderingRegistry.addNewArmourRendererPrefix(armor);				
 	}
 }

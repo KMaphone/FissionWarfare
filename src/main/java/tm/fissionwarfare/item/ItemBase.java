@@ -26,15 +26,6 @@ public class ItemBase extends Item {
 		this(imageName, true);
 	}
 	
-	public NBTTagCompound getNBT(ItemStack is) {
-		
-		if (is.getTagCompound() == null) {
-			is.setTagCompound(new NBTTagCompound());
-		}
-
-		return is.getTagCompound();
-	}
-	
 	@Override
 	public void registerIcons(IIconRegister iconReg) {
 		if (hasTexture) super.registerIcons(iconReg);

@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -184,6 +186,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getTileGuiContainer(EntityPlayer player) {
 		return new GuiLaunchPad(getTileContainer(player), player, this);
 	}
