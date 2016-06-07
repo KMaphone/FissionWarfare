@@ -46,6 +46,10 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		super.onUpdate();
 		
+		MissileData missileData = MissileData.getDataFromItem(missileStack);
+		
+		int speed = (missileData.getSpeed() + 1);
+		
 		noClip = !canExplode;
 		
 		moveEntity(motionX, motionY, motionZ);
@@ -78,17 +82,16 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			}
 		}
 		
-		if (canExplode && onGround) {
+		if (canExplode && onGround) {		
 			
-			MissileData missileData = MissileData.getDataFromItem(missileStack);
-			
-			if (missileData != null) {
+			if (missileData != null && missileData.getExplosionType() != null) {
 				
 				IExplosionType explosion = missileData.getExplosionType().getExplosionType();
 												
 				explosion.setup(worldObj, getVector());
 					
 				if (!worldObj.isRemote) {
+					
 					explosion.doBlockDamage();
 					explosion.doPlayerDamage();
 				}
@@ -101,14 +104,14 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		if (!canExplode && motionY < 3) {
 			
-			if (motionY < 0.3) motionY += 0.003F;
+			if (motionY < 0.2F) motionY += (0.001F * speed);
 			else motionY += 0.2F;
 		}
 			
 		if (posY > 300) {
 				
 			setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
-			motionY = -2;
+			motionY = -speed;
 			canExplode = true;			
 		}
 	}
@@ -126,6 +129,8 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		targetX = tag.getInteger("targetX");
 		targetZ = tag.getInteger("targetZ");
 		
+		canExplode = tag.getBoolean("canExplode");
+		
 		missileStack = ItemStack.loadItemStackFromNBT(tag);
 	}
 
@@ -134,6 +139,8 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		tag.setInteger("targetX", targetX);
 		tag.setInteger("targetZ", targetZ);
+		
+		tag.setBoolean("canExplode", canExplode);
 		
 		if (missileStack != null) missileStack.writeToNBT(tag);
 	}

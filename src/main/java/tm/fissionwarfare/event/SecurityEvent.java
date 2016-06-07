@@ -45,7 +45,7 @@ public class SecurityEvent {
 				
 				ISecurity security = (ISecurity) tileEntity;
 								
-				if (!security.getSecurityProfile().isSameTeam(event.entityPlayer)) {
+				if (!security.getSecurityProfile().isSameTeam(event.entityPlayer) && !event.entityPlayer.capabilities.isCreativeMode) {
 					
 					ChatUtil.printFWMessage(EnumChatFormatting.RED, "This unit doesn't belong to you!", event.entityPlayer);
 					event.setCanceled(true);

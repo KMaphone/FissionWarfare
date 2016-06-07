@@ -14,12 +14,12 @@ public abstract class ItemRenderBase implements IItemRenderer {
 	public IModelCustom model;
 	public ResourceLocation texture;
 	
-	public ItemRenderBase(String modelName, String textureName) {
-		this.textureName = textureName;
+	public ItemRenderBase(String modelName, String texturePath) {
+		this.textureName = texturePath;
 		this.modelName = modelName;
 		
 		model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MOD_ID + ":obj/" + modelName + ".obj"));
-		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/" + textureName + ".png");
+		texture = new ResourceLocation(Reference.MOD_ID + ":textures/models/" + texturePath + ".png");
 	}
 	
 	public ItemRenderBase(String name) {

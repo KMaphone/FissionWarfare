@@ -31,7 +31,7 @@ public class RenderMissile extends Render {
 		
 		if (entity.motionY < 0) {
 			GL11.glRotatef(180, 1, 0, 0);
-		}
+		}		
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(getEntityTexture(entity));
 		model.renderAll();

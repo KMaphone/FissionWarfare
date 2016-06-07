@@ -38,7 +38,7 @@ public class RenderLaunchPad extends RenderTileEntityBase {
 			RenderManager.instance.renderEntityWithPosYaw(entItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();	
-		}	
+		}
 		
 		GL11.glTranslated(x + 0.5D, y, z + 0.5D);
 		GL11.glScaled(0.85D, 0.85D, 0.85D);

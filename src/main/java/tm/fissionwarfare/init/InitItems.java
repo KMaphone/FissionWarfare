@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 import tm.fissionwarfare.item.ItemBase;
 import tm.fissionwarfare.item.ItemCompressor;
+import tm.fissionwarfare.item.ItemGun;
 import tm.fissionwarfare.item.ItemLocationLinker;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.item.ItemNailGun;
@@ -49,6 +50,8 @@ public class InitItems {
 	
 	public static Item location_linker;
 	
+	public static Item shotgun;
+	
 	public static ToolSet steel;
 	
 	public static void init() {
@@ -89,6 +92,8 @@ public class InitItems {
 		nail_gun_magazine = new ItemBase("nail_gun_magazine");
 		
 		location_linker = new ItemLocationLinker();
+		
+		shotgun = new ItemGun("shotgun");
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		

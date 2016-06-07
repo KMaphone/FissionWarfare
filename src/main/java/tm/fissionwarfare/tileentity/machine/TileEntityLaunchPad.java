@@ -158,7 +158,9 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 	@Override
 	public int getMaxProgress() {
-		return 20 * 10;
+		MissileData missileData = null;;
+		if (slots[0] != null) missileData = MissileData.getDataFromItem(slots[0]);
+		return (20 * 20) - (missileData == null ? 0 : missileData.getSpeed() * 4);
 	}
 	
 	@Override
