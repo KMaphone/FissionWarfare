@@ -1,6 +1,7 @@
 package tm.fissionwarfare.explosion.type;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -49,8 +50,16 @@ public class PyroExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		
+		Random rand = new Random();
+		double offset = 1.5D;
+		double d2 = vector.y + 1.1;
 		if (world.isRemote) {
+			for (int i = 0; i<8; i++){
+				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
+			}
 			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
 		}
 	}

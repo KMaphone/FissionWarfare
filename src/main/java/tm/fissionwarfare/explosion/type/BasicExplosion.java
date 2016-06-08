@@ -1,5 +1,7 @@
 package tm.fissionwarfare.explosion.type;
 
+import java.util.Random;
+
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.explosion.ConcreteUtil;
@@ -35,7 +37,16 @@ public class BasicExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
+		Random rand = new Random();
+		double offset = 0.5D;
+		double d2 = vector.y;
 		if (world.isRemote) {
+			for (int i = 0; i<8; i++){
+				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
+				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
+			}
 			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
 		}
 	}

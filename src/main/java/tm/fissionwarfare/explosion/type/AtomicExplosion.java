@@ -1,5 +1,7 @@
 package tm.fissionwarfare.explosion.type;
 
+import java.util.Random;
+
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.explosion.ConcreteUtil;
@@ -36,7 +38,6 @@ public class AtomicExplosion extends BasicExplosion implements IExplosionType {
 	@Override
 	public void doEffects() {
 		if (world.isRemote) {
-			System.out.println("Boom");
 			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
 			FWSound.rumbling.play(world, vector.x, vector.y, vector.z, 5, 1);
 		}
