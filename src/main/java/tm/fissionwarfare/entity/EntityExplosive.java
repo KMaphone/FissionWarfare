@@ -21,8 +21,6 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 	public BlockExplosive block;
 	public int fuse;
 	
-	private SoundBase beep;
-
 	public EntityExplosive(World world) {
 		super(world);
 	}
@@ -32,7 +30,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this.block = block;
 		this.fuse = block.getExplosion().getFuseTime();
 		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
-		SoundHelper.playSound(new BombSound(this));
+		if (world.isRemote) SoundHelper.playSound(new BombSound(this));
 	}
 
 	@Override
@@ -50,11 +48,8 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		
 		moveEntity(motionX, motionY, motionZ);
 		
-		if (!onGround) {
-			motionY -= 0.02D;
-		} else {
-			motionY = 0;
-		}
+		if (!onGround) motionY -= 0.02D;	
+		else motionY = 0;
 
 		if (!isDead && fuse <= 0) {
 
@@ -77,7 +72,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 			explosion.doPlayerDamage();
 		}
 			
-		explosion.doEffects();
+		else explosion.doEffects();
 	}
 	
 	public Vector3d getVector() {

@@ -52,6 +52,8 @@ public class ItemLocationLinker extends ItemBase {
 					tileEntity.targetCoords[0] = NBTUtil.getNBT(is).getInteger("X");
 					tileEntity.targetCoords[1] = NBTUtil.getNBT(is).getInteger("Z");
 					
+					tileEntity.update();
+					
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
 					
 					message.printMessage(EnumChatFormatting.GREEN, "Launch Pad's coords set to " + NBTUtil.getNBT(is).getInteger("X") + ", " + NBTUtil.getNBT(is).getInteger("Z"));

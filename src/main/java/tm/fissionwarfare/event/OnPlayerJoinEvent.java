@@ -15,9 +15,7 @@ public class OnPlayerJoinEvent {
 				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)o;
 				
-				tileEntity.markDirty();
-				event.player.worldObj.markBlockForUpdate(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
-				event.player.worldObj.func_147479_m(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+				tileEntity.update();
 			}
 		}
 	}

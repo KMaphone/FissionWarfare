@@ -40,10 +40,12 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	public TileEntityLaunchPad() {
 		setSideInputSlots(0);
 	}
-	
+		
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		
+		System.out.println(slots[0]);
 		
 		if (slots[0] == null || !canExtractEnergy(energyCost) || !isPathClear()) {
 			launching = false;
@@ -143,6 +145,12 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		if (!isPathClear()) message.printMessage(EnumChatFormatting.RED, "The path is not cleared! (A 3x3 wide square of blocks need to see the sky)");
 	}
 	
+	public void update() {
+		markDirty();
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		worldObj.func_147479_m(xCoord, yCoord, zCoord);
+	}
+	
 	@Override
 	public int getMaxEnergy() {
 		return 100000;
@@ -208,7 +216,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			slots[0] = ItemStack.loadItemStackFromNBT(tempTag);
 		}
 		
-		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");		
+		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");
 		launching = nbt.getBoolean("launching");
 	}
 	
