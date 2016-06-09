@@ -40,6 +40,7 @@ public class AtomicExplosion extends BasicExplosion implements IExplosionType {
 		if (world.isRemote) {
 			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
 			FWSound.rumbling.play(world, vector.x, vector.y, vector.z, 5, 1);
+			FWSound.cave_in.play(world, vector.x, vector.y, vector.z, 5, 1);
 		}
 	}
 }

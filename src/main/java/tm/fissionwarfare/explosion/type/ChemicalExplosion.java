@@ -36,7 +36,8 @@ public class ChemicalExplosion implements IExplosionType {
 
 	@Override
 	public void doEffects() {
-		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
+		//FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
+		FWSound.gas_cloud.play(world, vector.x, vector.y, vector.z, 2, 1);
 		
 		/*Random rand = new Random();
 		double offset = .05D;
