@@ -2,7 +2,6 @@
 
 item.missile.name=Missile
 
-item.quartz.name=Quartz
 item.quartz_sand.name=Quartz Sand
 item.quartz_chunk.name=Quartz Chunk
 
@@ -72,6 +71,7 @@ tile.sentry_turret.name=Sentry Turret
 tile.missile_factory.name=Missile Factory
 tile.launch_pad.name=Launch Pad
 tile.support_frame_1.name=Support Frame
+tile.control_panel.name=Control Panel
 
 #-#-#-#-#-FLUIDS-#-#-#-#-#
 

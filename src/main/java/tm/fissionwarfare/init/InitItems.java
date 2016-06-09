@@ -13,7 +13,6 @@ import tm.fissionwarfare.util.ToolSet;
 
 public class InitItems {
 
-	public static Item quartz;
 	public static Item quartz_sand;
 	public static Item limestone_chunk;
 	public static Item radioactive_chunk;
@@ -56,7 +55,6 @@ public class InitItems {
 	
 	public static void init() {
 		
-		quartz = new ItemBase("quartz");
 		quartz_sand = new ItemBase("quartz_sand");
 		limestone_chunk = new ItemBase("limestone_chunk");
 		radioactive_chunk = new ItemBase("radioactive_chunk");

@@ -16,8 +16,7 @@ public class InitRecipes {
 
 	public static void init() {
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz, 1), new Object[] { InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk, InitItems.quartz_chunk});
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz, InitItems.limestone_chunk });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, InitItems.limestone_chunk });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, InitItems.limestone_chunk });
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
@@ -143,7 +142,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.missile_factory, 1), new Object[] {
-			"MGM", "DCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 1), 'C', new ItemStack(InitItems.circuit, 1, 0), 'G', TFItems.gearGold, 'D', new ItemStack(TEBlocks.blockWorkbench, 1, 1)
+			"MGM", "DCD", "MGM", 'M', new ItemStack(TEBlocks.blockFrame, 1, 1), 'C', new ItemStack(InitItems.circuit, 1, 0), 'G', TFItems.gearGold, 'D', new ItemStack(TEBlocks.blockWorkbench, 1, 2)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.launch_pad, 1), new Object[] {
@@ -164,6 +163,10 @@ public class InitRecipes {
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.location_linker, 1), new Object[] {
 			"R  ", "SCS", "SBS", 'S', InitItems.steel_plate, 'B', Blocks.stone_button, 'R', Blocks.redstone_torch, 'C', new ItemStack(InitItems.circuit, 1, 0)
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.control_panel, 1), new Object[] {
+			"GGG", "SCS", "SSS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
 	}
 }
