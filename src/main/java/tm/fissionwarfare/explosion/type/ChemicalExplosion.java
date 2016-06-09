@@ -7,6 +7,7 @@ import org.apache.logging.log4j.core.appender.RandomAccessFileManager;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
+import tm.fissionwarfare.entity.EntityGasCloud;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.math.Vector3d;
@@ -29,11 +30,15 @@ public class ChemicalExplosion implements IExplosionType {
 
 	@Override
 	public void doPlayerDamage() {
+		EntityGasCloud gasCloud = new EntityGasCloud(world, vector.x, vector.y, vector.z);
+		world.spawnEntityInWorld(gasCloud);
 	}
 
 	@Override
 	public void doEffects() {
-		Random rand = new Random();
+		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
+		
+		/*Random rand = new Random();
 		double offset = .05D;
 		double d2 = vector.y + 1.1D;
 		double yMotion = .05D;
@@ -44,7 +49,7 @@ public class ChemicalExplosion implements IExplosionType {
 				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
 				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
 			}
-			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
-		}
+			
+		}*/
 	}
 }

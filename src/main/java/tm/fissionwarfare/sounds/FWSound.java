@@ -10,6 +10,7 @@ public class FWSound {
 	public static final FWSound rumbling = new FWSound("rumbling");
 	public static final FWSound cave_in = new FWSound("cave_in");
 	public static final FWSound rumbling_cave = new FWSound("rumbling_cave");
+	public static final FWSound beep = new FWSound("beep");
 	
 	private String sound;
 

@@ -1,7 +1,5 @@
 package tm.fissionwarfare.entity;
 
-import cofh.lib.audio.SoundBase;
-import cofh.lib.util.helpers.SoundHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
@@ -14,12 +12,14 @@ import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.math.Vector3d;
-import tm.fissionwarfare.sounds.BombSound;
+import tm.fissionwarfare.sounds.FWSound;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
-
+	
 	public BlockExplosive block;
 	public int fuse;
+	
+	private float pitch = 1;
 	
 	public EntityExplosive(World world) {
 		super(world);
@@ -30,7 +30,6 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this.block = block;
 		this.fuse = block.getExplosion().getFuseTime();
 		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
-		if (world.isRemote) SoundHelper.playSound(new BombSound(this));
 	}
 
 	@Override
@@ -59,6 +58,10 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		
 		fuse--;
 		worldObj.spawnParticle("smoke", posX, posY + 0.5, posZ, 0, 0, 0);
+		
+		if (ticksExisted % 6 == 0) {
+			FWSound.beep.play(worldObj, posX, posY, posZ, 5F, pitch += 0.05F);
+		}
 	}
 
 	private void explode() {
