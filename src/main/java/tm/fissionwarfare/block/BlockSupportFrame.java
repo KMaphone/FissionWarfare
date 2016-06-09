@@ -60,6 +60,24 @@ public class BlockSupportFrame extends BlockMetaBase {
 	public void setBlockBoundsForItemRender() {      
 		setBounds(0, 0, 5, 16, 16, 11);
     }
+
+	@Override
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+		
+		int meta = world.getBlockMetadata(x, y, z);
+		
+		for (int xzOffset = -1; x < 2; x++) {
+			
+			for (int yOffset= 0; y < 8; y++) {
+				
+				if (!super.canPlaceBlockAt(world, x + (meta == 0 ? xzOffset : 0), y + yOffset, z + (meta == 1 ? xzOffset : 0))) {
+					return false;
+				}
+			}
+		}
+		
+		return super.canPlaceBlockAt(world, x, y, z);
+	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack is) {
 		
