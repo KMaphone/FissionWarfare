@@ -9,7 +9,7 @@ import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 
-public abstract class ContainerEnergyBase extends ContainerBase {
+public class ContainerEnergyBase extends ContainerBase {
 	
 	private int lastProgress;	
 	public TileEntityEnergyBase tileEntityEnergy = (TileEntityEnergyBase)tileEntity;

@@ -3,12 +3,13 @@ package tm.fissionwarfare.inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
+import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 
-public class ContainerLaunchPad extends ContainerEnergyBase {
+public class ContainerLaunchPad extends ContainerBase {
 
-	public ContainerLaunchPad(EntityPlayer player, TileEntityEnergyBase tileEntity) {
+	public ContainerLaunchPad(EntityPlayer player, TileEntityInventoryBase tileEntity) {
 		super(player, tileEntity);
 
-		addSlotToContainer(new SlotFilter(tileEntityEnergy, tileEntity, 0, 116, 21, InitItems.missile));
+		addSlotToContainer(new SlotFilter(tileEntity, tileEntity, 0, 116, 21, InitItems.missile));
 	}
 }

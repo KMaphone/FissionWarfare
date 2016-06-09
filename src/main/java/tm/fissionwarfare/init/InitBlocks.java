@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.block.BlockBase;
 import tm.fissionwarfare.block.BlockConcrete;
+import tm.fissionwarfare.block.BlockControlPanel;
 import tm.fissionwarfare.block.BlockExplosive;
 import tm.fissionwarfare.block.BlockLaunchPad;
 import tm.fissionwarfare.block.BlockMissileFactory;
@@ -30,6 +31,8 @@ public class InitBlocks {
 	public static Block reinforced_glass;
 	
 	public static Block missile_factory;
+	
+	public static Block control_panel;
 	public static Block launch_pad;
 	public static Block support_frame;
 	
@@ -49,6 +52,7 @@ public class InitBlocks {
 		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		
 		missile_factory = new BlockMissileFactory();
+		control_panel = new BlockControlPanel();
 		launch_pad = new BlockLaunchPad();
 		support_frame = new BlockSupportFrame();
 		

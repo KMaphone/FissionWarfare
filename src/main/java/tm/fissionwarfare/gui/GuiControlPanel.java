@@ -1,43 +1,47 @@
 package tm.fissionwarfare.gui;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
-import tm.fissionwarfare.gui.base.GuiContainerBase;
 import tm.fissionwarfare.gui.base.GuiEnergyContainerBase;
 import tm.fissionwarfare.gui.base.GuiNumberFieldRect;
-import tm.fissionwarfare.gui.base.GuiTextFieldRect;
-import tm.fissionwarfare.gui.base.GuiUtil;
 import tm.fissionwarfare.packet.ServerPacketHandler;
-import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
-import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 
-public class GuiLaunchPad extends GuiEnergyContainerBase {
+public class GuiControlPanel extends GuiEnergyContainerBase {
 
-	TileEntityLaunchPad tileEntity;
+	private long lastTime;
+	private long targetTime = 5;
+	private float rot;
+	
+	TileEntityControlPanel tileEntity;
 	
 	private GuiNumberFieldRect xField, zField;
 	private GuiButtonRect launchButton;
 	
-	public GuiLaunchPad(Container container, EntityPlayer player, TileEntityEnergyBase tileEntity) {
+	public GuiControlPanel(Container container, EntityPlayer player, TileEntityControlPanel tileEntity) {
 		super(container, player, tileEntity);
-		this.tileEntity = (TileEntityLaunchPad) tileEntity;
+		this.tileEntity = (TileEntityControlPanel) tileEntity;
 	}
 
 	@Override
 	public String getGuiTextureName() {
-		return "launch_pad";
+		return "control_panel";
 	}
 
 	@Override
 	public String getGuiTitle() {
-		return "Launch Pad";
+		return "Control Panel";
 	}
 	
 	@Override
@@ -46,20 +50,20 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 		
 		Keyboard.enableRepeatEvents(true);
 		
-		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 26, getScreenY() + 32, 70, 9);
-		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 26, getScreenY() + 54, 70, 9);
+		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 32, 51, 8);
+		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 54, 51, 8);
 		
 		xField.setText("" + tileEntity.targetCoords[0]);
 		zField.setText("" + tileEntity.targetCoords[1]);
 		
-		launchButton = new GuiButtonRect(0, getScreenX() + 97, getScreenY() + 60, 54, tileEntity.launching ? "Abort" : "Launch", buttonList);
+		launchButton = new GuiButtonRect(0, getScreenX() + 107, getScreenY() + 41, 52, tileEntity.launching ? "Abort" : "Launch", buttonList);
 	}
 	
 	@Override
 	public void updateScreen() {
 		super.updateScreen();
 		
-		launchButton.displayString = tileEntity.launching ? "Cancel" : "Launch";
+		launchButton.displayString = tileEntity.launching ? "Abort" : "Launch";
 	}
 	
 	@Override
@@ -75,11 +79,41 @@ public class GuiLaunchPad extends GuiEnergyContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
+		if (tileEntity.getLaunchPad() != null && tileEntity.getLaunchPad().slots[0] != null) {
+					
+		ItemStack stack = tileEntity.getLaunchPad().slots[0];
+		
+		if (System.currentTimeMillis() - lastTime >= targetTime) {
+			lastTime = System.currentTimeMillis();
+			rot += 1F;
+			rot %= 360;
+		}
+		
+		EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld);
+		
+		entityItem.setEntityItemStack(stack);
+		entityItem.hoverStart = 0;
+
+        GL11.glPushMatrix();
+        GL11.glTranslated(getScreenX() + 88, getScreenY() + 76, 100);
+        GL11.glScaled(16, 16, -16);
+        GL11.glRotated(180, 1, 0, 0);
+        
+        if (Minecraft.getMinecraft().gameSettings.fancyGraphics) {
+        	GL11.glRotated(rot, 0, 1, 0);
+        }
+        
+        else GL11.glRotated(0, 0, 1, 0);
+      
+        RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0, 0.0, 0, 0, 0);
+        GL11.glPopMatrix();
+	}
+		
 		xField.drawTextBox();
 		zField.drawTextBox();
 		
-		fontRendererObj.drawString("X:", getScreenX() + 14, getScreenY() + 34, 0xCCCCCC);
-		fontRendererObj.drawString("Z:", getScreenX() + 14, getScreenY() + 56, 0xCCCCCC);
+		fontRendererObj.drawString("X:", getScreenX() + 7, getScreenY() + 34, 0xCCCCCC);
+		fontRendererObj.drawString("Z:", getScreenX() + 7, getScreenY() + 56, 0xCCCCCC);
 	}
 	
 	@Override

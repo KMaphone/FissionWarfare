@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.util.NBTUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
@@ -45,9 +46,9 @@ public class ItemLocationLinker extends ItemBase {
 						
 			if (player.isSneaking()) {
 				
-				if (world.getTileEntity(x, y, z) instanceof TileEntityLaunchPad) {
+				if (world.getTileEntity(x, y, z) instanceof TileEntityControlPanel) {
 					
-					TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)world.getTileEntity(x, y, z);
+					TileEntityControlPanel tileEntity = (TileEntityControlPanel)world.getTileEntity(x, y, z);
 					
 					tileEntity.targetCoords[0] = NBTUtil.getNBT(is).getInteger("X");
 					tileEntity.targetCoords[1] = NBTUtil.getNBT(is).getInteger("Z");
@@ -56,7 +57,7 @@ public class ItemLocationLinker extends ItemBase {
 					
 					player.worldObj.playSoundAtEntity(player, "random.orb", 1F, 1F);
 					
-					message.printMessage(EnumChatFormatting.GREEN, "Launch Pad's coords set to " + NBTUtil.getNBT(is).getInteger("X") + ", " + NBTUtil.getNBT(is).getInteger("Z"));
+					message.printMessage(EnumChatFormatting.GREEN, "Control Panel's coords set to " + NBTUtil.getNBT(is).getInteger("X") + ", " + NBTUtil.getNBT(is).getInteger("Z"));
 					return true;
 				}				
 			}
