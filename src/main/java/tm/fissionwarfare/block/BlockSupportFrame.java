@@ -1,5 +1,6 @@
 package tm.fissionwarfare.block;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -74,13 +75,26 @@ public class BlockSupportFrame extends BlockBase {
     }
 	
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
-		return new ItemStack(this, 1, 1);		
+	public boolean canBlockStay(World world, int x, int y, int z) {
+		
+		for (int yPos = -1; yPos < 2; yPos++) {
+			
+			if (world.getBlock(x, y + yPos, z) instanceof BlockSupportFrame) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	@Override
-	public Item getItemDropped(int i1, Random rand, int i2) {
-		return InitItems.support_frame;
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+		return new ItemStack(InitItems.support_frame);		
+	}
+	
+	@Override
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+		return new ArrayList<ItemStack>();
 	}
 	
 	@SideOnly(Side.CLIENT)

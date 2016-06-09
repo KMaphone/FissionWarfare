@@ -170,11 +170,13 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		
 		List<Location> locs = new ArrayList<Location>();
 		
+		Location loc = getLocation().add(getBlockMetadata(), true);
+		
 		for (int xzOffset = -1; xzOffset < 2; xzOffset++) {
 			
 			for (int yOffset = 0; yOffset < 7; yOffset++) {
 				
-				locs.add(new Location(worldObj, xCoord + (ItemSupportFrame.shouldRotate(getBlockMetadata()) ? xzOffset : 0), yOffset + yOffset, zCoord + (!ItemSupportFrame.shouldRotate(getBlockMetadata()) ? xzOffset : 0)));
+				locs.add(new Location(worldObj, loc.x + (ItemSupportFrame.shouldRotate(getBlockMetadata()) ? xzOffset : 0), loc.y + yOffset, loc.z + (!ItemSupportFrame.shouldRotate(getBlockMetadata()) ? xzOffset : 0)));
 			}
 		}
 		
@@ -183,13 +185,22 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	
 	public void checkForFullFrame() {
 		
+		boolean hasFrame = false;
+		boolean hasAir = false;
+		
 		for (Location loc : getFrame()) {
 			
-			if (!(loc.getBlock() instanceof BlockSupportFrame)) {
-				
-				destroyFrame();
-				break;
+			if (loc.getBlock() instanceof BlockSupportFrame) {
+				hasAir = true;
 			}
+			
+			else {
+				hasFrame = true;
+			}
+		}
+		
+		if (hasFrame && hasAir) {
+			destroyFrame();
 		}
 	}
 	

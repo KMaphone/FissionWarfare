@@ -42,7 +42,12 @@ public abstract class ItemBlockBase extends ItemBase {
 			return false;
 		} 
 		
-		return placeBlocks(world, x, y, z, newX, newY, newZ);
+		if (placeBlocks(world, x, y, z, newX, newY, newZ)) {
+			stack.stackSize--;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public void playSound(World world, int x, int y, int z, Block block) {
