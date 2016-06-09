@@ -9,6 +9,8 @@ import tm.fissionwarfare.item.ItemLocationLinker;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.item.ItemNailGun;
 import tm.fissionwarfare.item.ItemTiered;
+import tm.fissionwarfare.itemblock.ItemControlPanel;
+import tm.fissionwarfare.itemblock.ItemSupportFrame;
 import tm.fissionwarfare.util.ToolSet;
 
 public class InitItems {
@@ -34,13 +36,16 @@ public class InitItems {
 	public static Item lightning_rod;
 	public static Item iron_frame;
 	public static Item invar_frame;
-	public static Item circuit;	
+	public static Item circuit;
 	public static Item fuel_canister;
 	public static Item motor;
 	
 	public static Item missile;
 	public static Item nail_gun;
 	public static Item compressor;
+	
+	public static Item control_panel;
+	public static Item support_frame;
 	
 	public static Item nail;
 	public static Item shell;
@@ -83,6 +88,9 @@ public class InitItems {
 		missile = new ItemMissile();
 		nail_gun = new ItemNailGun();
 		compressor = new ItemCompressor();
+		
+		control_panel = new ItemControlPanel();
+		support_frame = new ItemSupportFrame();
 		
 		nail = new ItemBase("nail");
 		shell = new ItemBase("shell");

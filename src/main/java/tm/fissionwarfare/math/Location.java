@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
 public class Location {
 
@@ -29,10 +30,24 @@ public class Location {
 	public Location add(ForgeDirection dir, int scale) {
 		return new Location(world, x + dir.offsetX * scale, y + dir.offsetY * scale, z + dir.offsetZ * scale);
 	}
-	
-	
+		
 	public Location add(ForgeDirection dir) {
 		return add(dir, 1);
+	}
+	
+	public Location add(int meta, boolean frontDir) {
+		
+		Location loc;
+		
+		int offset = frontDir ? 1 : -1;
+			
+		if (meta == 0) loc = new Location(world, x, y, z - offset);
+		else if (meta == 1) loc = new Location(world, x + offset, y, z);
+		else if (meta == 2) loc = new Location(world, x, y, z + offset);
+		else if (meta == 3) loc = new Location(world, x - offset, y, z);
+		else loc = new Location(world, x, y, z);
+						
+		return loc;		
 	}
 
 	public Location copy() {

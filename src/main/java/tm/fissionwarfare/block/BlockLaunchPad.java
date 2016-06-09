@@ -29,13 +29,13 @@ public class BlockLaunchPad extends BlockContainerBase {
 	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
 		
-		TileEntityInventoryBase tileEntity = (TileEntityInventoryBase)w.getTileEntity(x, y, z);
+		TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)w.getTileEntity(x, y, z);
 		
 		if (p.getCurrentEquippedItem() != null && p.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
 			
-			if (tileEntity.slots[0] == null) {
+			if (tileEntity.missile == null) {
 				
-				tileEntity.setInventorySlotContents(0, p.getCurrentEquippedItem());
+				tileEntity.missile = p.getCurrentEquippedItem();
 				p.inventory.decrStackSize(p.inventory.currentItem, 1);
 				tileEntity.update();
 				
@@ -46,11 +46,10 @@ public class BlockLaunchPad extends BlockContainerBase {
 		
 		else if (p.getCurrentEquippedItem() == null) {
 			
-			if (tileEntity.slots[0] != null) {
+			if (tileEntity.missile != null) {
 				
-				p.inventory.setInventorySlotContents(p.inventory.currentItem, tileEntity.slots[0]);
-				tileEntity.decrStackSize(0, 1);
-				//((Slot)tileEntity.getTileContainer(p).inventorySlots.get(0)).onSlotChanged();
+				p.inventory.setInventorySlotContents(p.inventory.currentItem, tileEntity.missile);
+				tileEntity.missile = null;
 				tileEntity.update();
 				
 				w.playSound(x, y, z, "random.click", 1, 0, false);

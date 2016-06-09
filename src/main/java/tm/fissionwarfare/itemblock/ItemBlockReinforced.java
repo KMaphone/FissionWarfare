@@ -1,4 +1,4 @@
-package tm.fissionwarfare.item;
+package tm.fissionwarfare.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

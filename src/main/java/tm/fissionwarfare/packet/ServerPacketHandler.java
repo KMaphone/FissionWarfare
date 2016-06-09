@@ -7,7 +7,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
-import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
+import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
 public class ServerPacketHandler implements IMessage {
 
@@ -56,7 +56,7 @@ public class ServerPacketHandler implements IMessage {
 				int index = Integer.parseInt(data[4]);
 				int coord = Integer.parseInt(data[5]);
 				
-				TileEntityControlPanel tileEntity = (TileEntityControlPanel)player.worldObj.getTileEntity(x, y, z);
+				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
 				tileEntity.targetCoords[index] = coord;
 			}
 			
@@ -66,7 +66,7 @@ public class ServerPacketHandler implements IMessage {
 				int y = Integer.parseInt(data[2]);
 				int z = Integer.parseInt(data[3]);
 				
-				TileEntityControlPanel tileEntity = (TileEntityControlPanel)player.worldObj.getTileEntity(x, y, z);
+				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
 				tileEntity.toggleLaunch(player);
 			}
 			

@@ -1,7 +1,9 @@
 package tm.fissionwarfare.block;
 
 import java.util.List;
+import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -19,21 +21,18 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.item.ItemBlockMeta;
+import tm.fissionwarfare.init.InitItems;
+import tm.fissionwarfare.itemblock.ItemBlockMeta;
 
-public class BlockSupportFrame extends BlockMetaBase {
+public class BlockSupportFrame extends BlockBase {
 
 	private IIcon top_icon;
 	
 	public BlockSupportFrame() {
-		super("support_frame", Material.iron, 2, 2.0F, 2.0F, Block.soundTypeMetal, ItemBlockMeta.class);
+		super("support_frame", Material.iron, 2, 2.0F, 2.0F, Block.soundTypeMetal, false);
+		GameRegistry.registerBlock(this, "support_frame");
 	}
 	
-	@Override
-	public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
-		list.add(new ItemStack(item, 1, 1));
-	}
-		
 	private void setMetaBounds(int meta, int x, int y, int z) {		
 		if (meta == 0) setBounds(5, 0, 0, 11, 16, 16);
 		else setBounds(0, 0, 5, 16, 16, 11);
@@ -57,30 +56,12 @@ public class BlockSupportFrame extends BlockMetaBase {
 		return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
 	}
 	
-	public void setBlockBoundsForItemRender() {      
+	public void setBlockBoundsForItemRender() {
 		setBounds(0, 0, 5, 16, 16, 11);
     }
-
-	@Override
-	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		
-		int meta = world.getBlockMetadata(x, y, z);
-		
-		for (int xzOffset = -1; x < 2; x++) {
-			
-			for (int yOffset= 0; y < 8; y++) {
-				
-				if (!super.canPlaceBlockAt(world, x + (meta == 0 ? xzOffset : 0), y + yOffset, z + (meta == 1 ? xzOffset : 0))) {
-					return false;
-				}
-			}
-		}
-		
-		return super.canPlaceBlockAt(world, x, y, z);
-	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack is) {
-		
+				
 		int l = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         int i1 = world.getBlockMetadata(x, y, z) >> 2;
         ++l;
@@ -98,8 +79,8 @@ public class BlockSupportFrame extends BlockMetaBase {
 	}
 	
 	@Override
-	public int damageDropped(int meta) {
-		return 1;
+	public Item getItemDropped(int i1, Random rand, int i2) {
+		return InitItems.support_frame;
 	}
 	
 	@SideOnly(Side.CLIENT)

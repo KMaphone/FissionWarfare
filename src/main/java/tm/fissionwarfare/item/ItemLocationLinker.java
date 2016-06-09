@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
+import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.util.NBTUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
@@ -46,9 +46,9 @@ public class ItemLocationLinker extends ItemBase {
 						
 			if (player.isSneaking()) {
 				
-				if (world.getTileEntity(x, y, z) instanceof TileEntityControlPanel) {
+				if (world.getTileEntity(x, y, z) instanceof TileEntityLaunchPad) {
 					
-					TileEntityControlPanel tileEntity = (TileEntityControlPanel)world.getTileEntity(x, y, z);
+					TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)world.getTileEntity(x, y, z);
 					
 					tileEntity.targetCoords[0] = NBTUtil.getNBT(is).getInteger("X");
 					tileEntity.targetCoords[1] = NBTUtil.getNBT(is).getInteger("Z");

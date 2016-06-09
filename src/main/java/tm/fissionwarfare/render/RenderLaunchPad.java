@@ -23,9 +23,9 @@ public class RenderLaunchPad extends RenderTileEntityBase {
 		
 		GL11.glPushMatrix();
 		
-		if (tileEntityLP.getStackInSlot(0) != null) {
+		if (tileEntityLP.missile != null) {
 			
-			ItemStack stack = new ItemStack(tileEntityLP.slots[0].getItem(), 1, 0);
+			ItemStack stack = new ItemStack(tileEntityLP.missile.getItem(), 1, 0);
 			EntityItem entItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, stack);	
 			
 			entItem.hoverStart = 0;

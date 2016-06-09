@@ -16,7 +16,7 @@ import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiEnergyContainerBase;
 import tm.fissionwarfare.gui.base.GuiNumberFieldRect;
 import tm.fissionwarfare.packet.ServerPacketHandler;
-import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
+import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
 public class GuiControlPanel extends GuiEnergyContainerBase {
 
@@ -24,14 +24,14 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 	private long targetTime = 5;
 	private float rot;
 	
-	TileEntityControlPanel tileEntity;
+	TileEntityLaunchPad tileEntity;
 	
 	private GuiNumberFieldRect xField, zField;
 	private GuiButtonRect launchButton;
 	
-	public GuiControlPanel(Container container, EntityPlayer player, TileEntityControlPanel tileEntity) {
+	public GuiControlPanel(Container container, EntityPlayer player, TileEntityLaunchPad tileEntity) {
 		super(container, player, tileEntity);
-		this.tileEntity = (TileEntityControlPanel) tileEntity;
+		this.tileEntity = (TileEntityLaunchPad) tileEntity;
 	}
 
 	@Override
@@ -79,31 +79,31 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 	@Override
 	public void drawGuiBackground(int mouseX, int mouseY) {
 		
-		if (tileEntity.getLaunchPad() != null && tileEntity.getLaunchPad().slots[0] != null) {
+		if (tileEntity.getControlPanel() != null && tileEntity.missile != null) {
 					
-		ItemStack stack = tileEntity.getLaunchPad().slots[0];
+			ItemStack stack = tileEntity.missile;
 		
-		if (System.currentTimeMillis() - lastTime >= targetTime) {
-			lastTime = System.currentTimeMillis();
-			rot += 1F;
-			rot %= 360;
+			if (System.currentTimeMillis() - lastTime >= targetTime) {
+				lastTime = System.currentTimeMillis();
+				rot += 1F;
+				rot %= 360;
+			}
+			
+			EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld);
+		
+			entityItem.setEntityItemStack(stack);
+			entityItem.hoverStart = 0;
+			
+			GL11.glPushMatrix();
+			GL11.glTranslated(getScreenX() + 88, getScreenY() + 76, 100);
+			GL11.glScaled(16, 16, -16);
+			GL11.glRotated(180, 1, 0, 0);
+        
+			if (Minecraft.getMinecraft().gameSettings.fancyGraphics) {
+				GL11.glRotated(rot, 0, 1, 0);
 		}
-		
-		EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld);
-		
-		entityItem.setEntityItemStack(stack);
-		entityItem.hoverStart = 0;
-
-        GL11.glPushMatrix();
-        GL11.glTranslated(getScreenX() + 88, getScreenY() + 76, 100);
-        GL11.glScaled(16, 16, -16);
-        GL11.glRotated(180, 1, 0, 0);
-        
-        if (Minecraft.getMinecraft().gameSettings.fancyGraphics) {
-        	GL11.glRotated(rot, 0, 1, 0);
-        }
-        
-        else GL11.glRotated(0, 0, 1, 0);
+			
+		else GL11.glRotated(0, 0, 1, 0);
       
         RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0, 0.0, 0, 0, 0);
         GL11.glPopMatrix();
