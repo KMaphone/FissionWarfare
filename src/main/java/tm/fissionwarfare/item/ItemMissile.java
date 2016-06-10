@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import tm.fissionwarfare.missile.MissileData;
+import tm.fissionwarfare.util.ItemLoreUtil;
 
 public class ItemMissile extends ItemBase {
 
@@ -21,6 +22,12 @@ public class ItemMissile extends ItemBase {
 		
 		if (missileData.getExplosionType() != null) list.add(EnumChatFormatting.GOLD + "Type: " + EnumChatFormatting.AQUA + missileData.getExplosionType().getName());
 		list.add(EnumChatFormatting.GOLD + "Accuracy Tier: " + EnumChatFormatting.AQUA + missileData.getAccuracy());
-		list.add(EnumChatFormatting.GOLD + "Speed Tier: " + EnumChatFormatting.AQUA + missileData.getSpeed());
+		list.add(EnumChatFormatting.GOLD + "Speed Tier: " + EnumChatFormatting.AQUA + missileData.getSpeed());		
+		list.add("");
+		
+		if (ItemLoreUtil.addShiftLore(list)) {
+			
+			list.add("Right-click : Places it on a Launch Pad");			
+		}
 	}
 }

@@ -1,5 +1,7 @@
 package tm.fissionwarfare.item;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,12 +15,23 @@ import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.util.ChatUtil;
+import tm.fissionwarfare.util.ItemLoreUtil;
 
 public class ItemNailGun extends ItemBase {
 
 	public ItemNailGun() {
 		super("nail_gun");
 		setFull3D();
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b) {
+		
+		if (ItemLoreUtil.addShiftLore(list)) {
+			
+			list.add("Repairs and upgrades concrete.");
+			list.add("Right-click : Uses item.");
+		}
 	}
 	
 	@Override

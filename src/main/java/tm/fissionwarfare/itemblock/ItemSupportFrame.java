@@ -6,10 +6,25 @@ import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.util.math.Location;
 
-public class ItemSupportFrame extends ItemBlockBase {
+public class ItemSupportFrame extends ItemBlockLaunchPadAttachment {
 
 	public ItemSupportFrame() {
 		super("support_frame");
+	}
+	
+	@Override
+	public boolean placeAttachment(World world, Location loc, Location hitLoc) {
+		
+		Block block = InitBlocks.support_frame;
+		
+		if (canPlaceFrame(block, hitLoc.getMetadata(), loc)) {
+				
+			setFrames(block, hitLoc.getMetadata(), loc);
+			playSound(world, loc.x, loc.y, loc.z, block);
+			return true;
+		}	
+		
+		return false;
 	}
 
 	@Override
@@ -23,12 +38,7 @@ public class ItemSupportFrame extends ItemBlockBase {
 						
 			Location loc = hitLoc.add(hitLoc.getMetadata(), true);
 			
-			if (canPlaceFrame(block, hitLoc.getMetadata(), loc)) {
-				
-				setFrames(block, hitLoc.getMetadata(), loc);
-				playSound(world, loc.x, loc.y, loc.z, block);
-				return true;
-			}			
+					
 		}
 		
 		return false;

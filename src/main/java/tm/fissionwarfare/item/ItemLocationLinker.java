@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.util.ItemLoreUtil;
 import tm.fissionwarfare.util.NBTUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
 
@@ -23,19 +24,18 @@ public class ItemLocationLinker extends ItemBase {
 	
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {
-
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
-			
-			list.add(EnumChatFormatting.GOLD + "Block Location");
-			list.add(EnumChatFormatting.GOLD + "X: " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("X"));
-			list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("Z"));
-			list.add("");
+		
+		list.add(EnumChatFormatting.GOLD + "Block Location");
+		list.add(EnumChatFormatting.GOLD + "X: " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("X"));
+		list.add(EnumChatFormatting.GOLD + "Z: " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("Z"));
+		list.add("");
+		
+		if (ItemLoreUtil.addShiftLore(list)) {
+								
 			list.add("Binds locations to Control Panels");
 			list.add("Right-click : Links a location.");
 			list.add("Sneak Right-click : Sends coords to machine.");
-		} 
-		
-		else list.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
+		}
 	}
 	
 	@Override
