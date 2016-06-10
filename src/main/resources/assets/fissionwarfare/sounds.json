@@ -4,5 +4,6 @@
 	"turret_blast1": { "category": "master", "sounds": [{ "name": "turret_blast1", "stream": false }] },
 	"rumbling": { "category": "master", "sounds": [{ "name": "rumbling", "stream": false }] },
 	"cave_in": { "category": "master", "sounds": [{ "name": "cave_in", "stream": false }] },
-	"rumbling_cave": { "category": "master", "sounds": [{ "name": "rumbling_cave", "stream": false }] }
+	"rumbling_cave": { "category": "master", "sounds": [{ "name": "rumbling_cave", "stream": false }] },
+	"gas_cloud": { "category": "master", "sounds": [{ "name": "gas_cloud", "stream": false }] }
 }

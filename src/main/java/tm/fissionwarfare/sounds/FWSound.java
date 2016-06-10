@@ -11,6 +11,7 @@ public class FWSound {
 	public static final FWSound cave_in = new FWSound("cave_in");
 	public static final FWSound rumbling_cave = new FWSound("rumbling_cave");
 	public static final FWSound beep = new FWSound("beep");
+	public static final FWSound gas_cloud = new FWSound("gas_cloud");
 	
 	private String sound;
 

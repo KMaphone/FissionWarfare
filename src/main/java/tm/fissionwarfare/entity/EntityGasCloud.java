@@ -32,6 +32,7 @@ public class EntityGasCloud extends Entity {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		range+=0.01;
 
 		if (ticksExisted > life) {
 			setDead();
@@ -51,8 +52,9 @@ public class EntityGasCloud extends Entity {
 		double x = posX + (rand.nextDouble() * (range * 2)) - range;
 		double y = posY + (rand.nextDouble() * (range * 2)) - range;
 		double z = posZ + (rand.nextDouble() * (range * 2)) - range;
-			
-		worldObj.spawnParticle("hugeexplosion", x, y, z, 0.0, 0.0, 0.0);
+		for(int i =1; i<range; i++){
+			worldObj.spawnParticle("hugeexplosion", x, y, z, 0.0, 0.0, 0.0);
+		}
 	}
 
 	private void doDamage() {
