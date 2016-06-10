@@ -5,14 +5,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityGasCloud extends Entity {
 
-	private double range = 5;
-	private double damage = 5;
+	private double range = 10;
+	private double damage = 3;
 	private double life = 20 * 10;
 
 	public EntityGasCloud(World world) {
@@ -32,7 +34,7 @@ public class EntityGasCloud extends Entity {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		range+=0.01;
+		range+=0.001;
 
 		if (ticksExisted > life) {
 			setDead();
@@ -48,12 +50,18 @@ public class EntityGasCloud extends Entity {
 	}
 
 	private void doEffects() {
-			
+		
+		//double y = posY + (rand.nextDouble() * (range * 2)) - range;
 		double x = posX + (rand.nextDouble() * (range * 2)) - range;
-		double y = posY + (rand.nextDouble() * (range * 2)) - range;
+		double y = posY;
 		double z = posZ + (rand.nextDouble() * (range * 2)) - range;
-		for(int i =1; i<range; i++){
+		
+		double xx = posX + (rand.nextDouble() * (range * 1.5)) - range;
+		double yy = posY;
+		double zz = posZ + (rand.nextDouble() * (range * 1.5)) - range;
+		for(int i = 1; i<range; i++){
 			worldObj.spawnParticle("hugeexplosion", x, y, z, 0.0, 0.0, 0.0);
+			worldObj.spawnParticle("hugeexplosion", xx, yy, zz, 0.0, 0.0, 0.0);
 		}
 	}
 
@@ -70,6 +78,10 @@ public class EntityGasCloud extends Entity {
 				if (living.getDistance(posX, posY, posZ) <= range) {
 
 					living.attackEntityFrom(DamageSource.magic, (float) damage);
+					living.addPotionEffect(new PotionEffect(Potion.poison.id,250,0));
+					living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id,300,2));
+					living.addPotionEffect(new PotionEffect(Potion.confusion.id,250,0));
+					living.addPotionEffect(new PotionEffect(Potion.blindness.id,300,2));
 				}
 			}
 		}
