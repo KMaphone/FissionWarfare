@@ -2,6 +2,8 @@ package tm.fissionwarfare.entity;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,15 +14,20 @@ import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.missile.MissileData;
+import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityMissile extends Entity implements IEntityAdditionalSpawnData {
+	
+	public enum MissileState {
+		LAUNCHING, GOING_UP, GOING_DOWN
+	}
 	
 	public ItemStack missileStack;
 	
 	public int targetX, targetZ;
 	
-	private boolean canExplode;
+	private MissileState state = MissileState.LAUNCHING;
 	
 	public EntityMissile(World world) {
 		super(world);
@@ -33,12 +40,6 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		this.missileStack = missileStack;
 		this.targetX = targetX;
 		this.targetZ = targetZ;
-		canExplode = false;
-	}
-	
-	@Override
-	public void onCollideWithPlayer(EntityPlayer player) {
-		setDead();
 	}
 
 	@Override
@@ -50,16 +51,66 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		int speed = (missileData.getSpeed() + 1);
 		
-		noClip = !canExplode;
+		noClip = !(state == MissileState.GOING_DOWN);
 		
 		moveEntity(motionX, motionY, motionZ);
 		
+		if (state == MissileState.GOING_DOWN && onGround) {		
+			
+			if (missileData != null && missileData.getExplosionType() != null) {
+				
+				IExplosionType explosion = missileData.getExplosionType().getExplosionType();
+												
+				explosion.setup(worldObj, getVector());
+					
+				if (!worldObj.isRemote) {
+					
+					explosion.doBlockDamage();
+					explosion.doPlayerDamage();
+				}
+			
+				explosion.doEffects();		
+			}
+			
+			setDead();
+		}
+		
+		if (state == MissileState.LAUNCHING && motionY < 3) {
+			
+			motionY += (0.001F * speed);
+			
+			if (motionY >= 0.2F) {
+				FWSound.missile_fire.play(worldObj, posX, posY, posZ, 3F, 1F);
+				state = MissileState.GOING_UP;
+			}
+		}
+		
+		if (state == MissileState.GOING_UP && motionY < 3) {
+			
+			motionY += 0.2F;
+		}
+			
+		if (state == MissileState.GOING_UP && posY > 300) {
+				
+			setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
+			motionY = -speed;
+			state = MissileState.GOING_DOWN;
+		}
+		
+		if (worldObj.isRemote) {
+			doEffects();
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private void doEffects() {
+		
 		for (int i = 0; i < 8; i++) {
 
-			double yMotion = canExplode ? 0.5D : -0.5D;
+			double yMotion = (state == MissileState.GOING_DOWN) ? 0.5D : -0.5D;
 			
 			double offset = 0.5D;
-			double yOffset = canExplode ? 6.5D : 0;
+			double yOffset = (state == MissileState.GOING_DOWN) ? 6.5D : 0;
 			
 			double randX = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
 			double randZ = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
@@ -81,39 +132,6 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 				worldObj.spawnParticle("flame", posX, posY + yOffset, posZ - offset, randX, yMotion, randZ);
 			}
 		}
-		
-		if (canExplode && onGround) {		
-			
-			if (missileData != null && missileData.getExplosionType() != null) {
-				
-				IExplosionType explosion = missileData.getExplosionType().getExplosionType();
-												
-				explosion.setup(worldObj, getVector());
-					
-				if (!worldObj.isRemote) {
-					
-					explosion.doBlockDamage();
-					explosion.doPlayerDamage();
-				}
-			
-				explosion.doEffects();		
-			}
-			
-			setDead();
-		}
-		
-		if (!canExplode && motionY < 3) {
-			
-			if (motionY < 0.2F) motionY += (0.001F * speed);
-			else motionY += 0.2F;
-		}
-			
-		if (posY > 300) {
-				
-			setPosition(targetX + 0.5F, 300, targetZ + 0.5F);
-			motionY = -speed;
-			canExplode = true;			
-		}
 	}
 	
 	public Vector3d getVector() {
@@ -121,7 +139,8 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	}
 	
 	@Override
-	protected void entityInit() {}
+	protected void entityInit() {
+	}
 	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
@@ -129,7 +148,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		targetX = tag.getInteger("targetX");
 		targetZ = tag.getInteger("targetZ");
 		
-		canExplode = tag.getBoolean("canExplode");
+		state = MissileState.valueOf(tag.getString("state"));
 		
 		missileStack = ItemStack.loadItemStackFromNBT(tag);
 	}
@@ -140,7 +159,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		tag.setInteger("targetX", targetX);
 		tag.setInteger("targetZ", targetZ);
 		
-		tag.setBoolean("canExplode", canExplode);
+		tag.setString("state", state.name());;
 		
 		if (missileStack != null) missileStack.writeToNBT(tag);
 	}

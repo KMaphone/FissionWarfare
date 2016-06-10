@@ -53,9 +53,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			sound = new LaunchSound(this);
 		}
 		
-		if (!FMLClientHandler.instance().getClient().getSoundHandler().isSoundPlaying(sound)) {
-			FMLClientHandler.instance().getClient().getSoundHandler().playSound(sound);
-		}
+		sound.play();
 	}
 		
 	@Override

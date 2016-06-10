@@ -5,29 +5,32 @@ import net.minecraft.client.audio.MovingSound;
 import net.minecraft.util.ResourceLocation;
 import scala.annotation.meta.field;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
-public class LaunchSound extends MovingSound {
+public class BombSound extends MovingSound {
 
 	private static ResourceLocation location = new ResourceLocation(Reference.MOD_ID + ":launch");
 
-	private TileEntityLaunchPad launchPad;
+	private EntityExplosive explosive;
 
-	public LaunchSound(TileEntityLaunchPad launchPad) {
+	public BombSound(EntityExplosive explosive) {
 		super(location);
-
-		this.launchPad = launchPad;
-
-		xPosF = launchPad.xCoord;
-		yPosF = launchPad.yCoord;
-		zPosF = launchPad.zCoord;
-
+		this.explosive = explosive;
 		repeat = true;
 	}
 
 	@Override
 	public void update() {
-		donePlaying = !launchPad.launching;
+		xPosF = (float) explosive.posY;
+		yPosF = (float) explosive.posY;
+		zPosF = (float) explosive.posZ;
+		
+		field_147663_c += 0.001F;
+		
+		if (explosive.isDead) {
+			donePlaying = true;
+		}
 	}
 
 	public void play() {

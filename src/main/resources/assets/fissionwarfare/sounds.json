@@ -6,5 +6,8 @@
 	"cave_in": { "category": "master", "sounds": [{ "name": "cave_in", "stream": false }] },
 	"rumbling_cave": { "category": "master", "sounds": [{ "name": "rumbling_cave", "stream": false }] },
 	"gas_cloud": { "category": "master", "sounds": [{ "name": "gas_cloud", "stream": false }] },
-	"launch": { "category": "master", "sounds": [{ "name": "launch", "stream": false }] }
+	"launch": { "category": "master", "sounds": [{ "name": "launch", "stream": false }] },
+	"missile_start": { "category": "master", "sounds": [{ "name": "missile_start", "stream": false }] },
+	"missile_fire": { "category": "master", "sounds": [{ "name": "missile_fire", "stream": false }] },
+	"nuke": { "category": "master", "sounds": [{ "name": "nuke", "stream": false }] }
 }

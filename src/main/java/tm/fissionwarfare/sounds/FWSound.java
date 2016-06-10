@@ -12,6 +12,9 @@ public class FWSound {
 	public static final FWSound rumbling_cave = new FWSound("rumbling_cave");
 	public static final FWSound beep = new FWSound("beep");
 	public static final FWSound gas_cloud = new FWSound("gas_cloud");
+	public static final FWSound missile_start = new FWSound("missile_start");
+	public static final FWSound missile_fire = new FWSound("missile_fire");
+	public static final FWSound nuke = new FWSound("nuke");
 	
 	private String sound;
 
@@ -25,5 +28,9 @@ public class FWSound {
 	
 	public void play(World world, double x, double y, double z, float gain, float pitch) {
 		world.playSound(x, y, z, getSoundPath(), gain, pitch, false);
+	}
+	
+	public void broadcast(World world, double x, double y, double z, float gain, float pitch) {
+		world.playSound(x, y, z, getSoundPath(), gain, pitch, true);
 	}
 }
