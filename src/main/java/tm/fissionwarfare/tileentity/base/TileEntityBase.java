@@ -1,5 +1,6 @@
 package tm.fissionwarfare.tileentity.base;
 
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;

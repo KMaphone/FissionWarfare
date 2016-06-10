@@ -43,8 +43,6 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	
 	public ItemStack missile;
 	
-	public int[] targetCoords = new int[2];
-	
 	public boolean launching;
 		
 	@Override
@@ -110,10 +108,10 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 				if (rand.nextInt(2) == 0) x = 0 - x;
 				if (rand.nextInt(2) == 0) z = 0 - z;
 								
-				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, targetCoords[0] + x, targetCoords[1] + z, missile));
+				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, getControlPanel().targetCoords[0] + x, getControlPanel().targetCoords[1] + z, missile));
 			}
 			
-			decrStackSize(0, 1);
+			missile = null;
 		}
 	}
 	
@@ -144,12 +142,12 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		return true;
 	}
 	
-	public BlockControlPanel getControlPanel() {
+	public TileEntityControlPanel getControlPanel() {
 		
 		Location loc = getLocation().add(getBlockMetadata(), false);
 		
-		if (loc.getBlock() instanceof BlockControlPanel) {
-			return (BlockControlPanel)loc.getBlock();
+		if (loc.hasTileEntity() && loc.getTileEntity() instanceof TileEntityControlPanel) {
+			return (TileEntityControlPanel)loc.getTileEntity();
 		}
 		
 		return null;
@@ -295,7 +293,6 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		
 		profile.readFromNBT(nbt);
 		
-		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");
 		launching = nbt.getBoolean("launching");
 	}
 	
@@ -316,8 +313,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		nbt.setTag("missile", tempTag);
 		
 		profile.writeToNBT(nbt);
-		
-		nbt.setIntArray("coords", targetCoords);		
+			
 		nbt.setBoolean("launching", launching);		
 	}
 }

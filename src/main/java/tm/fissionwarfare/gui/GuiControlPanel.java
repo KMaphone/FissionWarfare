@@ -53,8 +53,8 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 32, 51, 8);
 		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 54, 51, 8);
 		
-		xField.setText("" + tileEntity.targetCoords[0]);
-		zField.setText("" + tileEntity.targetCoords[1]);
+		if (tileEntity.getControlPanel() != null) xField.setText("" + tileEntity.getControlPanel().targetCoords[0]);
+		if (tileEntity.getControlPanel() != null) zField.setText("" + tileEntity.getControlPanel().targetCoords[1]);
 		
 		launchButton = new GuiButtonRect(0, getScreenX() + 107, getScreenY() + 41, 52, tileEntity.launching ? "Abort" : "Launch", buttonList);
 	}
@@ -123,9 +123,9 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 			
 		if (field.getText() != null && !field.getText().trim().isEmpty()) {
 
-			int coord = parseInt(tileEntity.targetCoords[index], field.getText());
+			int coord = parseInt(tileEntity.getControlPanel().targetCoords[index], field.getText());
 			
-			tileEntity.targetCoords[index] = coord;
+			tileEntity.getControlPanel().targetCoords[index] = coord;
 			FissionWarfare.network.sendToServer(new ServerPacketHandler("set.coords%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord + "%" + index + "%" + coord));
 		}
 	}
@@ -156,8 +156,8 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		xField.textboxKeyTyped(c, i);
 		zField.textboxKeyTyped(c, i);
 		
-		setCoord(xField, 0);
-		setCoord(zField, 1);
+		if (tileEntity.getControlPanel() != null) setCoord(xField, 0);
+		if (tileEntity.getControlPanel() != null) setCoord(zField, 1);
     }
 
 	@Override

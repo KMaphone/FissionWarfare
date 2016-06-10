@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import tm.fissionwarfare.tileentity.ITileEntityGuiHandler;
 
-public abstract class TileEntityInventoryBase  extends TileEntityBase implements ISidedInventory, ITileEntityGuiHandler {
+public abstract class TileEntityInventoryBase extends TileEntityBase implements ISidedInventory, ITileEntityGuiHandler {
 	
 	public ItemStack[] slots = new ItemStack[getSizeInventory()];
 	public Slot[] containerSlots = new Slot[getSizeInventory()];
@@ -35,6 +35,10 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
 
+		if (this instanceof ISidedInventory) {
+			
+		}
+		
 		if (this.slots[i] != null) {
 
 			ItemStack itemstack;
@@ -132,7 +136,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int dir) {
 
-		if (dir == 1&& inputSlots != null) {
+		if (dir == 1 && inputSlots != null) {
 			
 			for (int id : inputSlots) {
 			
@@ -143,7 +147,7 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 			}
 		}
 		
-		if (dir > 1&& sideInputSlots != null) {
+		if (dir > 1 && sideInputSlots != null) {
 			
 			for (int id : sideInputSlots) {
 				
@@ -195,10 +199,9 @@ public abstract class TileEntityInventoryBase  extends TileEntityBase implements
 
 				slots[i].writeToNBT(tempTag);
 				tempTag.setBoolean("null", false);
-
-			} else {
-				tempTag.setBoolean("null", true);
-			}
+			} 
+			
+			else tempTag.setBoolean("null", true);
 
 			nbt.setTag("slot_" + i, tempTag);
 		}

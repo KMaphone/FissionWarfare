@@ -57,7 +57,7 @@ public class ServerPacketHandler implements IMessage {
 				int coord = Integer.parseInt(data[5]);
 				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
-				tileEntity.targetCoords[index] = coord;
+				if (tileEntity.getControlPanel() != null) tileEntity.getControlPanel().targetCoords[index] = coord;
 			}
 			
 			if (data[0].equalsIgnoreCase("toggle.launch")) {
