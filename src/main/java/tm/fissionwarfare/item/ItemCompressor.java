@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
+import tm.fissionwarfare.util.ItemLoreUtil;
 import tm.fissionwarfare.util.NBTUtil;
 
 public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
@@ -34,14 +35,14 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean par4) {
 		
-		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
-			
-			list.add(EnumChatFormatting.GOLD + "RF : " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("energy") + " / " + getMaxEnergyStored(is));
-			list.add("");
-			list.add("Used for the Nail Gun to operate.");
-		} 
+		list.add(EnumChatFormatting.GOLD + "RF : " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("energy") + " / " + getMaxEnergyStored(is));		
+		list.add("");
 		
-		else list.add("Press " + EnumChatFormatting.GOLD + "SHIFT" + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + " for more info");
+		if (ItemLoreUtil.addShiftLore(list)) {
+						
+			list.add("This item is placed in your chestplate slot");
+			list.add("Used for the Nail Gun to operate.");
+		}		
     }
 		
 	@Override
