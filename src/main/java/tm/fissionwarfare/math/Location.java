@@ -1,12 +1,16 @@
 package tm.fissionwarfare.math;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
 public class Location {
 
@@ -93,6 +97,39 @@ public class Location {
 	
 	public void setBlockToAir() {
 		setBlock(Blocks.air);
+	}
+	
+	public List<ItemStack> getDrops() {
+		return getBlock().getDrops(world, x, y, z, getMetadata(), 0);		
+	}
+	
+	public EntityItem dropItem(ItemStack stack) {
+		EntityItem entityItem = new EntityItem(world, x, y, z, stack);
+		world.spawnEntityInWorld(entityItem);
+		return entityItem;
+	}
+	
+	public void breakBlock() {
+		
+		List<ItemStack> drops = getDrops();
+		
+		for (ItemStack is : drops) {
+			dropItem(is);
+		}
+		
+		TileEntity entity = getTileEntity();
+		
+		if (entity != null && entity instanceof IInventory) {
+			
+			IInventory inv = (IInventory) entity;
+			
+			for (int i = 0 ; i < inv.getSizeInventory(); i++) {
+				
+				dropItem(inv.getStackInSlot(i));
+			}
+		}
+		
+		setBlockToAir();
 	}
 	
 	public boolean checkBlock(Block block) {

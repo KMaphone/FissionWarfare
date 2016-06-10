@@ -8,8 +8,10 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import tm.fissionwarfare.item.ItemMissile;
+import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 
@@ -20,6 +22,7 @@ public class BlockLaunchPad extends BlockContainerBase {
 		setBounds(0, 0, 0, 16, 10.9F, 16);
 	}
 	
+	@Override
 	public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase e, ItemStack is) {
 		
 		int l = MathHelper.floor_double((double) (e.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;		
@@ -27,32 +30,51 @@ public class BlockLaunchPad extends BlockContainerBase {
 	}
 	
 	@Override
-	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
+	public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
+		destroyLaunchPad(world, x, y, z);
+	}
+	
+	private void destroyLaunchPad(World world, int x, int y, int z) {
 		
-		TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)w.getTileEntity(x, y, z);
+		Location loc = new Location(world, x, y, z);
 		
-		if (p.getCurrentEquippedItem() != null && p.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
+		if (loc.hasTileEntity()) {
+			
+			TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)loc.getTileEntity();
+		
+			if (tileEntity.missile != null) loc.dropItem(tileEntity.missile);
+			if (tileEntity.getSupportFrame() != null) tileEntity.destroyFrame();
+			if (tileEntity.getControlPanel() != null) loc.add(loc.getMetadata(), false).breakBlock();
+		}		
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float f, float f2, float f3) {
+		
+		TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)world.getTileEntity(x, y, z);
+		
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
 			
 			if (tileEntity.missile == null) {
 				
-				tileEntity.missile = p.getCurrentEquippedItem();
-				p.inventory.decrStackSize(p.inventory.currentItem, 1);
+				tileEntity.missile = player.getCurrentEquippedItem();
+				player.inventory.decrStackSize(player.inventory.currentItem, 1);
 				tileEntity.update();
 				
-				w.playSound(x, y, z, "random.click", 1, 0, false);
+				world.playSound(x, y, z, "random.click", 1, 0, false);
 				return true;
 			}			
 		}
 		
-		else if (p.getCurrentEquippedItem() == null) {
+		else if (player.getCurrentEquippedItem() == null) {
 			
 			if (tileEntity.missile != null) {
 				
-				p.inventory.setInventorySlotContents(p.inventory.currentItem, tileEntity.missile);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, tileEntity.missile);
 				tileEntity.missile = null;
 				tileEntity.update();
 				
-				w.playSound(x, y, z, "random.click", 1, 0, false);
+				world.playSound(x, y, z, "random.click", 1, 0, false);
 				return true;
 			}
 		}

@@ -59,7 +59,8 @@ public abstract class BlockContainerBase extends BlockContainer {
 		return getTileEntity(meta);
 	}
 	
-	public void breakBlock(World world, int x, int y, int z, Block block, int i) {
+	@Override	
+	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 
 		if (!(world.getTileEntity(x, y, z) instanceof ISidedInventory)) {
 			return;
@@ -103,13 +104,13 @@ public abstract class BlockContainerBase extends BlockContainer {
 			world.func_147453_f(x, y, z, block);
 		}
 
-		super.breakBlock(world, x, y, z, block, i);
+		super.breakBlock(world, x, y, z, block, meta);
 	}
 	
-	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int i, float f, float f2, float f3) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float f2, float f3) {
 		
-		if (!w.isRemote) {			
-			FMLNetworkHandler.openGui(p, FissionWarfare.instance, 0, w, x, y, z);	
+		if (!world.isRemote) {			
+			FMLNetworkHandler.openGui(player, FissionWarfare.instance, 0, world, x, y, z);	
 		}
 		
 		return true;	
