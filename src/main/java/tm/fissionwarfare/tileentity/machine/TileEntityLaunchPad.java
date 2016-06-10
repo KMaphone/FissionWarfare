@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,16 +19,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
-import tm.fissionwarfare.block.BlockControlPanel;
 import tm.fissionwarfare.block.BlockSupportFrame;
 import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.gui.GuiControlPanel;
-import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
-import tm.fissionwarfare.inventory.ContainerLaunchPad;
 import tm.fissionwarfare.itemblock.ItemSupportFrame;
 import tm.fissionwarfare.missile.MissileData;
+import tm.fissionwarfare.sounds.LaunchSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.UnitChatMessage;
 import tm.fissionwarfare.util.math.Location;
@@ -44,6 +42,21 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	public ItemStack missile;
 	
 	public boolean launching;
+	
+	@SideOnly(Side.CLIENT)
+	private LaunchSound sound;
+	
+	@SideOnly(Side.CLIENT)
+	private void playSound() {
+		
+		if (sound == null) {
+			sound = new LaunchSound(this);
+		}
+		
+		if (!FMLClientHandler.instance().getClient().getSoundHandler().isSoundPlaying(sound)) {
+			FMLClientHandler.instance().getClient().getSoundHandler().playSound(sound);
+		}
+	}
 		
 	@Override
 	public void updateEntity() {
@@ -60,6 +73,10 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		if (launching) {
 			
 			progress++;
+			
+			if (worldObj.isRemote) {
+				playSound();
+			}
 			
 			for (int i = 0; i < progress / 20; i++) {
 
