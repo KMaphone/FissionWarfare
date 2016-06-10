@@ -1,4 +1,4 @@
-package tm.fissionwarfare.math;
+package tm.fissionwarfare.util.math;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

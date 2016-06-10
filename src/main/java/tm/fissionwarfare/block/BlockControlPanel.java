@@ -12,16 +12,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemMissile;
-import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.proxy.ClientProxy;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.util.math.Location;
 
 public class BlockControlPanel extends BlockContainerBase {
 
@@ -63,6 +64,11 @@ public class BlockControlPanel extends BlockContainerBase {
 	@Override
 	public boolean isOpaqueCube() {
 		return false;
+	}
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+		return new ItemStack(InitItems.control_panel);
 	}
 	
 	@Override

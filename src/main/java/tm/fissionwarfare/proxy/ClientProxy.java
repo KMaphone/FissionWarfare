@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.entity.EntityMissile;
+import tm.fissionwarfare.event.GunRenderEvent;
 import tm.fissionwarfare.event.TierTooltipEvent;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
@@ -32,6 +33,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders() {
 		
 		MinecraftForge.EVENT_BUS.register(new TierTooltipEvent());
+		MinecraftForge.EVENT_BUS.register(new GunRenderEvent());
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityExplosive.class, new RenderExplosive());

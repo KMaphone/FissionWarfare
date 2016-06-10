@@ -1,7 +1,7 @@
 package tm.fissionwarfare.api;
 
 import net.minecraft.world.World;
-import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public interface IExplosionType {
 	

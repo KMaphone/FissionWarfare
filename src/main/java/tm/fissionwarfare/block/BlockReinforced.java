@@ -19,7 +19,7 @@ import tm.fissionwarfare.api.IReinforcedBlock;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.itemblock.ItemBlockMeta;
 import tm.fissionwarfare.itemblock.ItemBlockReinforced;
-import tm.fissionwarfare.math.MathUtil;
+import tm.fissionwarfare.util.math.MathUtil;
 
 public abstract class BlockReinforced extends BlockMetaBase implements IReinforcedBlock {
 

@@ -10,8 +10,8 @@ import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.entity.EntityGasCloud;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class ChemicalExplosion implements IExplosionType {
 

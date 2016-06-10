@@ -28,10 +28,10 @@ import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
 import tm.fissionwarfare.inventory.ContainerLaunchPad;
 import tm.fissionwarfare.itemblock.ItemSupportFrame;
-import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.UnitChatMessage;
+import tm.fissionwarfare.util.math.Location;
 
 public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
 

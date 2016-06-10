@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import tm.fissionwarfare.api.IReinforcedBlock;
-import tm.fissionwarfare.math.Location;
-import tm.fissionwarfare.math.ShapeUtil;
+import tm.fissionwarfare.util.math.Location;
+import tm.fissionwarfare.util.math.ShapeUtil;
 
 public class ConcreteUtil {
 

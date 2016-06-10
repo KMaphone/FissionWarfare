@@ -13,12 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.MathHelper;
-import tm.fissionwarfare.api.EnumColorUtil;
 import tm.fissionwarfare.gui.base.GuiButtonRect;
 import tm.fissionwarfare.gui.base.GuiRect;
 import tm.fissionwarfare.gui.base.GuiScreenBase;
 import tm.fissionwarfare.gui.base.GuiTextFieldRect;
 import tm.fissionwarfare.gui.base.GuiUtil;
+import tm.fissionwarfare.util.EnumColorUtil;
 
 public class GuiTeamManager extends GuiScreenBase {
 	

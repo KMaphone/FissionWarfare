@@ -1,4 +1,4 @@
-package tm.fissionwarfare.math;
+package tm.fissionwarfare.util.math;
 
 public class Angle2d {
 

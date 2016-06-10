@@ -23,13 +23,13 @@ import tm.fissionwarfare.gui.GuiTurret;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerTurret;
-import tm.fissionwarfare.math.Angle2d;
-import tm.fissionwarfare.math.MathUtil;
-import tm.fissionwarfare.math.RaytraceUtil;
-import tm.fissionwarfare.math.RaytraceUtil.HitType;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
+import tm.fissionwarfare.util.math.Angle2d;
+import tm.fissionwarfare.util.math.MathUtil;
+import tm.fissionwarfare.util.math.RaytraceUtil;
+import tm.fissionwarfare.util.math.Vector3d;
+import tm.fissionwarfare.util.math.RaytraceUtil.HitType;
 
 public class TileEntityTurretSentry extends TileEntityTurretBase {
 

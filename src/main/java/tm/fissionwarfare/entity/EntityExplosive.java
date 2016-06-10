@@ -11,8 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.block.BlockExplosive;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 	

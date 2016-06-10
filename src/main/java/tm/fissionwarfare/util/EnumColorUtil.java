@@ -1,4 +1,4 @@
-package tm.fissionwarfare.api;
+package tm.fissionwarfare.util;
 
 public enum EnumColorUtil {
 

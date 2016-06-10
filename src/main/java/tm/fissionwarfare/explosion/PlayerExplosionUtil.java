@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class PlayerExplosionUtil {
 

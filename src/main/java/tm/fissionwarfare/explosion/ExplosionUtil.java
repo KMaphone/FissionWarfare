@@ -5,9 +5,9 @@ import java.util.List;
 
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IReinforcedBlock;
-import tm.fissionwarfare.math.Angle2d;
-import tm.fissionwarfare.math.Location;
-import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.util.math.Angle2d;
+import tm.fissionwarfare.util.math.Location;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class ExplosionUtil {
 	

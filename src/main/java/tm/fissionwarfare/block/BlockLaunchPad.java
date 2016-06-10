@@ -11,9 +11,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import tm.fissionwarfare.item.ItemMissile;
-import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.util.math.Location;
 
 public class BlockLaunchPad extends BlockContainerBase {
 

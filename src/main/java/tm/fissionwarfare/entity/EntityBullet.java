@@ -6,8 +6,8 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tm.fissionwarfare.math.Angle2d;
-import tm.fissionwarfare.math.Vector3d;
+import tm.fissionwarfare.util.math.Angle2d;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityBullet extends EntityThrowable {
 

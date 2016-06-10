@@ -6,10 +6,10 @@ import cofh.api.energy.IEnergyHandler;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.IExplosionType;
-import tm.fissionwarfare.math.Location;
-import tm.fissionwarfare.math.ShapeUtil;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.math.Location;
+import tm.fissionwarfare.util.math.ShapeUtil;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class EMPExplosion implements IExplosionType {
 

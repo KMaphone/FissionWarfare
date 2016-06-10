@@ -40,6 +40,11 @@ public class ItemRenderShotgun extends ItemRenderBase {
 	@Override
 	public void renderThirdPerson() {
 		
+		GL11.glRotatef(10, 1, 0, 0);
+		GL11.glRotatef(12, 0, 1, 0);
+		GL11.glRotatef(15, 0, 0, 1);
+		
+		GL11.glTranslatef(0.6F, -0.3F, 1.1F);
 	}	
 	
 	@Override

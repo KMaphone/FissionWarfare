@@ -6,14 +6,19 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.entity.EntityBullet;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.util.GunData;
 
 public class ServerPacketHandler implements IMessage {
 
 	private String text;
 	
 	public ServerPacketHandler() {
+		
 	}
 
 	public ServerPacketHandler(String text) {
@@ -68,6 +73,56 @@ public class ServerPacketHandler implements IMessage {
 				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
 				tileEntity.toggleLaunch(player);
+			}
+			
+			//GUN START---------------------------------------------------------------------------------------------
+			
+			if (data[0].equalsIgnoreCase("reload")) {
+				
+				ItemStack is = player.getCurrentEquippedItem();
+				
+				GunData gunData = new GunData(is);
+				
+				gunData.reloading = true;
+				gunData.flush();
+			}
+			
+			if (data[0].equalsIgnoreCase("stop.use")) {
+								
+				int ticks = Integer.parseInt(data[1]);
+				
+				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[2]));
+				
+				if (is != null) {
+					
+					GunData gunData = new GunData(is);
+				
+					gunData.usingTicks = ticks;
+					gunData.flush();
+				}				
+			}
+			
+			if (data[0].equalsIgnoreCase("use.gun")) {
+				
+				int shotsPerFire = Integer.parseInt(data[1]);
+				int damage = Integer.parseInt(data[2]);
+				int accuracy = Integer.parseInt(data[3]);
+				float gravityVelocity = Float.parseFloat(data[4]);
+				int hurtTime = Integer.parseInt(data[5]);
+				
+				ItemStack is = player.getCurrentEquippedItem();
+				
+				for (int i = 0; i < shotsPerFire; i++) {
+					
+				}
+								
+				if (is != null) {
+					
+					GunData gunData = new GunData(is);
+				
+					gunData.ammo--;
+					gunData.flush();
+				}	
 			}
 			
 			return null;

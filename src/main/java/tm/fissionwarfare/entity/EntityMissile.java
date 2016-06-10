@@ -11,8 +11,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.item.ItemMissile;
-import tm.fissionwarfare.math.Vector3d;
 import tm.fissionwarfare.missile.MissileData;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityMissile extends Entity implements IEntityAdditionalSpawnData {
 	

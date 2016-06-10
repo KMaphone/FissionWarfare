@@ -3,8 +3,8 @@ package tm.fissionwarfare.itemblock;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import tm.fissionwarfare.init.InitBlocks;
-import tm.fissionwarfare.math.Location;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
+import tm.fissionwarfare.util.math.Location;
 
 public class ItemControlPanel extends ItemBlockBase {
 

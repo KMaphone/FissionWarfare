@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import tm.fissionwarfare.Reference;
-import tm.fissionwarfare.math.MathUtil;
+import tm.fissionwarfare.util.math.MathUtil;
 
 public class GuiUtil {
 
