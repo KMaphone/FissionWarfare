@@ -20,6 +20,18 @@ public class TileEntityControlPanel extends TileEntityBase implements ISecurity 
 	}
 	
 	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		readSyncNBT(nbt);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		writeSyncNBT(nbt);
+	}
+	
+	@Override
 	public void readSyncNBT(NBTTagCompound nbt) {
 		super.readSyncNBT(nbt);
 		

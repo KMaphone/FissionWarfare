@@ -13,9 +13,11 @@ public class ItemSupportFrame extends ItemBlockLaunchPadAttachment {
 	}
 	
 	@Override
-	public boolean placeAttachment(World world, Location loc, Location hitLoc) {
+	public boolean placeAttachment(World world, Location hitLoc) {
 		
 		Block block = InitBlocks.support_frame;
+		
+		Location loc = hitLoc.add(hitLoc.getMetadata(), true);
 		
 		if (canPlaceFrame(block, hitLoc.getMetadata(), loc)) {
 				
@@ -23,23 +25,6 @@ public class ItemSupportFrame extends ItemBlockLaunchPadAttachment {
 			playSound(world, loc.x, loc.y, loc.z, block);
 			return true;
 		}	
-		
-		return false;
-	}
-
-	@Override
-	public boolean placeBlocks(World world, int hitX, int hitY, int hitZ, int x, int y, int z) {
-		
-		Block block = InitBlocks.support_frame;
-		
-		Location hitLoc = new Location(world, hitX, hitY, hitZ);
-		
-		if (hitLoc.getBlock() != null && hitLoc.hasTileEntity() && hitLoc.getTileEntity() instanceof TileEntityLaunchPad) {
-						
-			Location loc = hitLoc.add(hitLoc.getMetadata(), true);
-			
-					
-		}
 		
 		return false;
 	}

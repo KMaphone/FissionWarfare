@@ -13,8 +13,10 @@ public class ItemControlPanel extends ItemBlockLaunchPadAttachment {
 	}
 
 	@Override
-	public boolean placeAttachment(World world, Location loc, Location hitLoc) {
+	public boolean placeAttachment(World world, Location hitLoc) {
 		Block block = InitBlocks.control_panel;
+		
+		Location loc = hitLoc.add(hitLoc.getMetadata(), false);
 		
 		if (block.canPlaceBlockAt(loc.world, loc.x, loc.y, loc.z)) {
 				

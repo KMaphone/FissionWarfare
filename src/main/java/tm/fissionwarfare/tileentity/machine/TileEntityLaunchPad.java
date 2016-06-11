@@ -7,6 +7,7 @@ import java.util.Random;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +21,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.block.BlockSupportFrame;
+import tm.fissionwarfare.entity.EntityMissileSmokeFX;
+import tm.fissionwarfare.entity.EntityMissileFlameFX;
 import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.gui.GuiControlPanel;
 import tm.fissionwarfare.init.InitItems;
@@ -28,6 +31,7 @@ import tm.fissionwarfare.itemblock.ItemSupportFrame;
 import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.sounds.LaunchSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
+import tm.fissionwarfare.util.EffectUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
 import tm.fissionwarfare.util.math.Location;
 
@@ -80,19 +84,26 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 				double randX = MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D);
 				double randZ = MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D);
-								
-				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, -0.3D, -0.05D, randX);
-				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, 0.3D, -0.05D, randX);
-				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, 0.3D);
-				worldObj.spawnParticle("smoke", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, -0.3D);
 				
-				if (i % 8 == 7) {
+				double x = xCoord + 0.5D;
+				double y = yCoord + 0.77D;
+				double z = zCoord + 0.5D;
+				
+				if (worldObj.isRemote) {
 					
-					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, -0.3D, -0.05D, randX);
-					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, 0.3D, -0.05D, randX);
-					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, 0.3D);
-					worldObj.spawnParticle("flame", xCoord + 0.5D, yCoord + 0.77F, zCoord + 0.5D, randZ, -0.05D, -0.3D);
-				}
+					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, -0.3D, -0.05D, randX));
+					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, 0.3D, -0.05D, randX));
+					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, randZ, -0.05D, 0.3D));
+					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, randZ, -0.05D, -0.3D));
+					
+					if (i % 8 == 7) {
+					
+						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, -0.3D, -0.05D, randX));
+						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, 0.3D, -0.05D, randX));
+						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, randZ, -0.05D, 0.3D));
+						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, randZ, -0.05D, -0.3D));
+					}
+				}			
 			}
 		}
 		

@@ -18,7 +18,7 @@ public abstract class ItemBlockLaunchPadAttachment extends ItemBlockBase {
 		super(imageName);
 	}
 	
-	public abstract boolean placeAttachment(World world, Location loc, Location hitLoc);
+	public abstract boolean placeAttachment(World world, Location hitLoc);
 
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b) {
@@ -37,8 +37,7 @@ public abstract class ItemBlockLaunchPadAttachment extends ItemBlockBase {
 		
 		if (hitLoc.getBlock() != null && hitLoc.hasTileEntity() && hitLoc.getTileEntity() instanceof TileEntityLaunchPad) {
 						
-			Location loc = hitLoc.add(hitLoc.getMetadata(), true);
-			return placeAttachment(world, loc, hitLoc);
+			return placeAttachment(world, hitLoc);
 		}
 		
 		return false;

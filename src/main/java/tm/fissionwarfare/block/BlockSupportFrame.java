@@ -74,7 +74,7 @@ public class BlockSupportFrame extends BlockBase {
         if (l == 2) world.setBlockMetadataWithNotify(x, y, z, 0 | i1 << 2, 2);        
         if (l == 3) world.setBlockMetadataWithNotify(x, y, z, 1 | i1 << 2, 2);
     }
-	
+		
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		
@@ -101,14 +101,9 @@ public class BlockSupportFrame extends BlockBase {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {		
 		Block block = world.getBlock(x, y, z);
-		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
+		return block == this && (side == 0 || side == 1) ? false : super.shouldSideBeRendered(world, x, y, z, side);
 	}
 
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return 1;
-	}
-	
 	@Override
 	public boolean isOpaqueCube() {
 		return false;

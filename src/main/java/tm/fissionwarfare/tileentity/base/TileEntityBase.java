@@ -40,5 +40,5 @@ public class TileEntityBase extends TileEntity {
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {		
 		readSyncNBT(pkt.func_148857_g());
-	}	
+	}
 }
