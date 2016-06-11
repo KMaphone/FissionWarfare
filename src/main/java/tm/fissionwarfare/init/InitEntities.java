@@ -9,11 +9,12 @@ import tm.fissionwarfare.entity.EntityMissile;
 
 public class InitEntities {
 
-	private static int nextEntityId = 0;
+	private static int nextEntityId = 15;
 	
 	public static void init() {
+		
 		EntityRegistry.registerModEntity(EntityExplosive.class, "explosive", nextEntityId++, FissionWarfare.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityMissile.class, "missile", nextEntityId++, FissionWarfare.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityMissile.class, "missile", nextEntityId++, FissionWarfare.instance, 128, 10, true);
 		EntityRegistry.registerModEntity(EntityBullet.class, "bullet", nextEntityId++, FissionWarfare.instance, 64, 10, true);
 		EntityRegistry.registerModEntity(EntityGasCloud.class, "gas", nextEntityId++, FissionWarfare.instance, 64, 10, true);
 	}

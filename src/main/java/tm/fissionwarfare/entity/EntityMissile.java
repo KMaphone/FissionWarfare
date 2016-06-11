@@ -74,7 +74,6 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 				explosion.doEffects();		
 			}
 			
-			System.out.println("goooobye");
 			setDead();
 		}
 		
@@ -162,8 +161,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	}
 	
 	@Override
-	protected void entityInit() {
-	}
+	protected void entityInit() {}
 			
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {

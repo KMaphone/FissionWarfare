@@ -8,12 +8,15 @@ import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitTabs;
+import tm.fissionwarfare.render.RenderCompressor;
 import tm.fissionwarfare.util.ItemLoreUtil;
 import tm.fissionwarfare.util.NBTUtil;
 
@@ -42,9 +45,23 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 						
 			list.add("This item is placed in your chestplate slot");
 			list.add("Used for the Nail Gun to operate.");
-		}		
+		}
     }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
 		
+		RenderCompressor model = new RenderCompressor();
+		
+		if (model != null) {
+			
+			model.isSneak = entityLiving.isSneaking();			
+		}
+		
+		return model;
+	}
+	
 	@Override
 	public double getDurabilityForDisplay(ItemStack is) {
 		int stored = this.getMaxEnergyStored(is) - this.getEnergyStored(is) + 1;

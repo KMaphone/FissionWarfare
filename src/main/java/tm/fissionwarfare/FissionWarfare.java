@@ -1,5 +1,7 @@
 package tm.fissionwarfare;
 
+import com.sun.xml.internal.messaging.saaj.soap.GifDataContentHandler;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -12,6 +14,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import tm.fissionwarfare.config.FWConfig;
@@ -66,9 +72,7 @@ public class FissionWarfare {
 		
 		InitItems.init();
 		InitBlocks.init();
-		InitFluids.init();
-		InitEntities.init();
-		InitTileEntities.init();
+		InitFluids.init();	
 	}
 		
 	@EventHandler
@@ -78,6 +82,9 @@ public class FissionWarfare {
 		
 		InitRecipes.init();
 		InitTERecipes.init();
+		
+		InitEntities.init();
+		InitTileEntities.init();		
 		
 		worldGenOre = new WorldGenOre();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);

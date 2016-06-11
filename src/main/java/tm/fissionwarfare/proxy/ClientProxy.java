@@ -14,6 +14,7 @@ import tm.fissionwarfare.event.TierTooltipEvent;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.key.KeyInputHandler;
+import tm.fissionwarfare.render.RenderCompressor;
 import tm.fissionwarfare.render.RenderControlPanel;
 import tm.fissionwarfare.render.RenderExplosive;
 import tm.fissionwarfare.render.RenderLaunchPad;
