@@ -4,10 +4,12 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import tm.fissionwarfare.api.IExplosionType;
+import tm.fissionwarfare.entity.EntityShockwave;
 import tm.fissionwarfare.explosion.ConcreteUtil;
 import tm.fissionwarfare.explosion.ExplosionUtil;
 import tm.fissionwarfare.explosion.PlayerExplosionUtil;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.EffectUtil;
 import tm.fissionwarfare.util.math.Location;
 import tm.fissionwarfare.util.math.Vector3d;
 
@@ -39,8 +41,8 @@ public class AtomicExplosion extends BasicExplosion implements IExplosionType {
 	public void doEffects() {
 		if (world.isRemote) {
 			
-			FWSound.nuke.play(world, vector.x, vector.y, vector.z, 10, 1);
-			FWSound.rumbling.play(world, vector.x, vector.y, vector.z, 5, 1);
+			FWSound.nuke.play(world, vector.x, vector.y, vector.z, 20, 1);
+			FWSound.rumbling.play(world, vector.x, vector.y, vector.z, 20, 1);
 			FWSound.cave_in.play(world, vector.x, vector.y, vector.z, 5, 1);
 			
 			Random random = new Random();
@@ -51,7 +53,8 @@ public class AtomicExplosion extends BasicExplosion implements IExplosionType {
 				double y = vector.y + (random.nextDouble() * (SIZE * 2)) - SIZE;
 				double z = vector.z + (random.nextDouble() * (SIZE * 2)) - SIZE;
 				
-				world.spawnParticle("hugeexplosion", x, y, z, 0, 0, 0);
+				world.spawnParticle("hugeexplosion", x, y, z, 0.0, 0.0, 0.0);
+				//EffectUtil.spawnEffect(new EntityShockwave(world, x, y, z, 0, 0, 0));
 			}
 		}
 	}
