@@ -15,6 +15,8 @@ import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.EffectUtil;
+import tm.fissionwarfare.util.math.Angle2d;
 import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityMissile extends Entity implements IEntityAdditionalSpawnData {
@@ -72,15 +74,22 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 				explosion.doEffects();		
 			}
 			
+			System.out.println("goooobye");
 			setDead();
 		}
 		
 		if (state == MissileState.LAUNCHING && motionY < 3) {
 			
-			motionY += (0.001F * speed);
+			motionY += (0.001F * (speed * 0.5D));
 			
 			if (motionY >= 0.2F) {
+				
 				FWSound.missile_fire.play(worldObj, posX, posY, posZ, 3F, 1F);
+				
+				if (worldObj.isRemote) {
+					doBurstEffect();				
+				}
+				
 				state = MissileState.GOING_UP;
 			}
 		}
@@ -102,34 +111,48 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)	
+	public void doBurstEffect() {
+		
+		for (int i = 0; i < 360; i++) {
+			
+			double velX = (double)(-MathHelper.sin(i / 180.0F * (float)Math.PI));
+	        double velZ = (double)(MathHelper.cos(i / 180.0F * (float)Math.PI));
+			
+			EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX, posY - 0.5D, posZ, velX, MathHelper.getRandomDoubleInRange(rand, -0.2D, 0D), velZ));
+			++i;
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX, posY - 0.5D, posZ, velX, MathHelper.getRandomDoubleInRange(rand, -0.2D, 0D), velZ));
+		}
+	}
+	
 	@SideOnly(Side.CLIENT)
 	private void doEffects() {
 		
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 6; i++) {
 
 			double yMotion = (state == MissileState.GOING_DOWN) ? 0.5D : -0.5D;
 			
 			double offset = 0.5D;
-			double yOffset = (state == MissileState.GOING_DOWN) ? 6.5D : 0;
+			double yOffset = (state == MissileState.GOING_DOWN) ? 3.5D : 0;
 			
 			double randX = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
 			double randZ = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
 			
-			worldObj.spawnParticle("smoke", posX, posY + yOffset, posZ, randX, yMotion, randZ);			
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX, posY + yOffset, posZ, randX, yMotion * 2, randZ));			
 			
-			worldObj.spawnParticle("smoke", posX + offset, posY + yOffset, posZ, randX, yMotion, randZ);			
-			worldObj.spawnParticle("smoke", posX - offset, posY + yOffset, posZ, randX, yMotion, randZ);
-			worldObj.spawnParticle("smoke", posX, posY + yOffset, posZ + offset, randX, yMotion, randZ);
-			worldObj.spawnParticle("smoke", posX, posY + yOffset, posZ - offset, randX, yMotion, randZ);					
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX + offset, posY + yOffset, posZ, randX, yMotion, randZ));			
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX - offset, posY + yOffset, posZ, randX, yMotion, randZ));
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX, posY + yOffset, posZ + offset, randX, yMotion, randZ));
+			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, posX, posY + yOffset, posZ - offset, randX, yMotion, randZ));					
 			
-			if (i % 7 == 0) {
+			if (i % 5 == 0) {
 				
-				worldObj.spawnParticle("flame", posX, (posY + -motionY) + yOffset, posZ, randX, 0, randZ);
+				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX, posY + yOffset, posZ, randX, yMotion * 2, randZ));
 				
-				worldObj.spawnParticle("flame", posX + offset, posY + yOffset, posZ, randX, yMotion, randZ);
-				worldObj.spawnParticle("flame", posX - offset, posY + yOffset, posZ, randX, yMotion, randZ);
-				worldObj.spawnParticle("flame", posX, posY + yOffset, posZ + offset, randX, yMotion, randZ);
-				worldObj.spawnParticle("flame", posX, posY + yOffset, posZ - offset, randX, yMotion, randZ);
+				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX + offset, posY + yOffset, posZ, randX, yMotion, randZ));
+				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX - offset, posY + yOffset, posZ, randX, yMotion, randZ));
+				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX, posY + yOffset, posZ + offset, randX, yMotion, randZ));
+				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, posX, posY + yOffset, posZ - offset, randX, yMotion, randZ));
 			}
 		}
 	}
@@ -141,10 +164,10 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	@Override
 	protected void entityInit() {
 	}
-	
+			
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
-		
+				
 		targetX = tag.getInteger("targetX");
 		targetZ = tag.getInteger("targetZ");
 		
@@ -159,13 +182,13 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		tag.setInteger("targetX", targetX);
 		tag.setInteger("targetZ", targetZ);
 		
-		tag.setString("state", state.name());;
+		tag.setString("state", state.name());
 		
 		if (missileStack != null) missileStack.writeToNBT(tag);
 	}
 	
 	@Override
-	public void readSpawnData(ByteBuf buffer) {		
+	public void readSpawnData(ByteBuf buffer) {
 		readEntityFromNBT(ByteBufUtils.readTag(buffer));
 	}
 	

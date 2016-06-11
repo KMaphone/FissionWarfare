@@ -15,6 +15,7 @@ public class EntityMissileSmokeFX extends EntitySmokeFX {
 
 	public EntityMissileSmokeFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
 		super(world, x, y, z, motionX, motionY, motionZ, 1.5F);
+		particleMaxAge += 20;
 	}
 	
 	@Override
