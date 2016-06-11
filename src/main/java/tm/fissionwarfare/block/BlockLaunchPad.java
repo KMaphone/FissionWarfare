@@ -56,6 +56,8 @@ public class BlockLaunchPad extends BlockContainerBase {
 		
 		TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)world.getTileEntity(x, y, z);
 		
+		player.swingItem();
+		
 		if (!world.isRemote) {
 			
 			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
@@ -63,14 +65,13 @@ public class BlockLaunchPad extends BlockContainerBase {
 				if (tileEntity.missile == null) {
 					
 					tileEntity.missile = player.getCurrentEquippedItem();
-					tileEntity.update();	
-					
+					tileEntity.update();				
+										
 					player.inventory.decrStackSize(player.inventory.currentItem, 1);
-					player.inventory.markDirty();					
-				
-					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					player.inventory.markDirty();
 					
-					world.playSound(x, y, z, "random.click", 1, 0, false);
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%random.click%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					
 					return true;
 				}			
 			}
@@ -78,19 +79,20 @@ public class BlockLaunchPad extends BlockContainerBase {
 			else if (player.getCurrentEquippedItem() == null) {
 			
 				if (tileEntity.missile != null) {
-				
+									
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, tileEntity.missile);
 					player.inventory.markDirty();
 					
 					tileEntity.missile = null;
 					tileEntity.update();
-				
-					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%random.click%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					
 					return true;
 				}
 			}	
 		}
-		
+				
 		return false;		
 	}
 	

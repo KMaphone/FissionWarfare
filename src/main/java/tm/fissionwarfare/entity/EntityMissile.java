@@ -133,7 +133,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			double yMotion = (state == MissileState.GOING_DOWN) ? 0.5D : -0.5D;
 			
 			double offset = 0.5D;
-			double yOffset = (state == MissileState.GOING_DOWN) ? 3.5D : 0;
+			double yOffset = (state == MissileState.GOING_DOWN) ? 1D : 0;
 			
 			double randX = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);
 			double randZ = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0.1D);

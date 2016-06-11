@@ -77,20 +77,18 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			progress++;
 			
 			if (worldObj.isRemote) {
+				
 				playSound();
-			}
-			
-			for (int i = 0; i < progress / 40; i++) {
-
-				double randX = MathHelper.getRandomDoubleInRange(rand, -0.25D, 0.25D);
-				double randY = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0);
-				double randZ = MathHelper.getRandomDoubleInRange(rand, -0.25D, 0.25D);
 				
-				double x = xCoord + 0.5D;
-				double y = yCoord + 0.77D;
-				double z = zCoord + 0.5D;
-				
-				if (worldObj.isRemote) {
+				for (int i = 0; i < progress / 40; i++) {
+					
+					double randX = MathHelper.getRandomDoubleInRange(rand, -0.25D, 0.25D);
+					double randY = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0);
+					double randZ = MathHelper.getRandomDoubleInRange(rand, -0.25D, 0.25D);
+					
+					double x = xCoord + 0.5D;
+					double y = yCoord + 0.77D;
+					double z = zCoord + 0.5D;
 					
 					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, -0.3D, randY, randX));
 					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, 0.3D, randY, randX));
@@ -98,13 +96,13 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 					EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, randZ, randY, -0.3D));
 					
 					if (i % 8 == 7) {
-					
+						
 						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, -0.3D, randY, randX));
 						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, 0.3D, randY, randX));
 						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, randZ, randY, 0.3D));
 						EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, randZ, randY, -0.3D));
 					}
-				}			
+				}					
 			}
 		}
 		
@@ -317,6 +315,8 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		if (!tempTag.getBoolean("null")) {
 			missile = ItemStack.loadItemStackFromNBT(tempTag);
 		}
+		
+		else missile = null;
 		
 		profile.readFromNBT(nbt);
 		

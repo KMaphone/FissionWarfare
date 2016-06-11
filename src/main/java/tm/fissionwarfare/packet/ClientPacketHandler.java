@@ -64,7 +64,7 @@ public class ClientPacketHandler implements IMessage {
 				
 				player.worldObj.playSound(x, y, z, soundPath, gain, 1, false);
 			}
-			
+				
 			return null;
 		}
 	}

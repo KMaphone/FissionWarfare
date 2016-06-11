@@ -35,13 +35,17 @@ public class TileEntityControlPanel extends TileEntityBase implements ISecurity 
 	public void readSyncNBT(NBTTagCompound nbt) {
 		super.readSyncNBT(nbt);
 		
-		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");
+		profile.readFromNBT(nbt);
+		
+		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");		
 	}
 	
 	@Override
 	public void writeSyncNBT(NBTTagCompound nbt) {
 		super.writeSyncNBT(nbt);
 		
-		nbt.setIntArray("coords", targetCoords);
+		profile.writeToNBT(nbt);
+		
+		nbt.setIntArray("coords", targetCoords);		
 	}
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.init.InitBlocks;
+import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.util.ItemLoreUtil;
 import tm.fissionwarfare.util.math.Location;
@@ -36,7 +39,7 @@ public abstract class ItemBlockLaunchPadAttachment extends ItemBlockBase {
 		Location hitLoc = new Location(world, hitX, hitY, hitZ);
 		
 		if (!world.isRemote && hitLoc.getBlock() != null && hitLoc.hasTileEntity() && hitLoc.getTileEntity() instanceof TileEntityLaunchPad) {
-						
+			
 			return placeAttachment(world, hitLoc);
 		}
 		
