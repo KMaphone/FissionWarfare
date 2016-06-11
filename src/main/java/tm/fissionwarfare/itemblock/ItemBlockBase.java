@@ -11,7 +11,7 @@ import tm.fissionwarfare.item.ItemBase;
 public abstract class ItemBlockBase extends ItemBase {
 
 	public ItemBlockBase(String imageName) {
-		super("item_" + imageName);
+		super("itemblock_" + imageName);
 	}
 	
 	public abstract boolean placeBlocks(World world, int hitX, int hitY, int hitZ, int x, int y, int z);

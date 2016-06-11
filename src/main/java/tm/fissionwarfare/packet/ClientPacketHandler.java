@@ -39,7 +39,7 @@ public class ClientPacketHandler implements IMessage {
 			String[] data = message.text.split("%");
 			
 			EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-			
+						
 			if (data[0].equalsIgnoreCase("sync.energy")) {
 				
 				int energy = Integer.parseInt(data[1]);

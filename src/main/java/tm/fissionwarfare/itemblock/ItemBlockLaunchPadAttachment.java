@@ -35,7 +35,7 @@ public abstract class ItemBlockLaunchPadAttachment extends ItemBlockBase {
 
 		Location hitLoc = new Location(world, hitX, hitY, hitZ);
 		
-		if (hitLoc.getBlock() != null && hitLoc.hasTileEntity() && hitLoc.getTileEntity() instanceof TileEntityLaunchPad) {
+		if (!world.isRemote && hitLoc.getBlock() != null && hitLoc.hasTileEntity() && hitLoc.getTileEntity() instanceof TileEntityLaunchPad) {
 						
 			return placeAttachment(world, hitLoc);
 		}

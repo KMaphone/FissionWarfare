@@ -37,7 +37,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 			setCreativeTab(InitTabs.tabMain);
 			GameRegistry.registerBlock(this, name);
 		}
-	}
+	}	
 	
 	public BlockContainerBase(String name, String imageName, Material material, int harvestLevel, float hardness, float resistance, Block.SoundType stepSound) {
 		this(name, imageName, material, harvestLevel, hardness, resistance, stepSound, true);

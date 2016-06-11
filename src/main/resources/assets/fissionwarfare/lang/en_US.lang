@@ -38,12 +38,17 @@ item.missile.name=Missile
 item.nail_gun.name=Nail Gun
 item.compressor.name=Compressor
 
+item.itemblock_control_panel.name=Control Panel
+item.itemblock_support_frame.name=Support Frame
+
 item.nail_gun_magazine.name=Nail Gun Magazine
 item.nail.name=Nail
 item.shell.name=Shell
 item.bullet.name=Bullet
 
 item.location_linker.name=Location Linker
+
+item.shotgun.name=Shotgun
 
 #-#-#-#-#-EXPLOSIVES-#-#-#-#-#
 

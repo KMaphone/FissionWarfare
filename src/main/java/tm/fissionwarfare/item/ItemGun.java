@@ -25,7 +25,7 @@ public class ItemGun extends ItemBase {
 	public GunProfile profile;
 	
 	public ItemGun(String name, GunProfile profile) {
-		super(name, false);
+		super(name);
 		this.profile = profile;
 		setMaxStackSize(1);
 	}

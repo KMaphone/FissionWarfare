@@ -4,13 +4,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.item.ItemMissile;
+import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.tileentity.base.TileEntityInventoryBase;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.util.math.Location;
@@ -53,33 +56,42 @@ public class BlockLaunchPad extends BlockContainerBase {
 		
 		TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)world.getTileEntity(x, y, z);
 		
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
+		if (!world.isRemote) {
 			
-			if (tileEntity.missile == null) {
-				
-				tileEntity.missile = player.getCurrentEquippedItem();
-				player.inventory.decrStackSize(player.inventory.currentItem, 1);
-				tileEntity.update();
-				
-				world.playSound(x, y, z, "random.click", 1, 0, false);
-				return true;
-			}			
-		}
-		
-		else if (player.getCurrentEquippedItem() == null) {
+			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemMissile) {
 			
-			if (tileEntity.missile != null) {
+				if (tileEntity.missile == null) {
+					
+					tileEntity.missile = player.getCurrentEquippedItem();
+					tileEntity.update();	
+					
+					player.inventory.decrStackSize(player.inventory.currentItem, 1);
+					player.inventory.markDirty();					
 				
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, tileEntity.missile);
-				tileEntity.missile = null;
-				tileEntity.update();
-				
-				world.playSound(x, y, z, "random.click", 1, 0, false);
-				return true;
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					
+					world.playSound(x, y, z, "random.click", 1, 0, false);
+					return true;
+				}			
 			}
+		
+			else if (player.getCurrentEquippedItem() == null) {
+			
+				if (tileEntity.missile != null) {
+				
+					player.inventory.setInventorySlotContents(player.inventory.currentItem, tileEntity.missile);
+					player.inventory.markDirty();
+					
+					tileEntity.missile = null;
+					tileEntity.update();
+				
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + x + "%" + y + "%" + z + "%" + 1), (EntityPlayerMP) player);
+					return true;
+				}
+			}	
 		}
 		
-		return false;
+		return false;		
 	}
 	
 	@Override
