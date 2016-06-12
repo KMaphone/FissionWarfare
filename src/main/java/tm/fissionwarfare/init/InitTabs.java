@@ -23,4 +23,21 @@ public class InitTabs {
 			return Reference.MOD_NAME + " - Main";
 		}
 	};
+	
+	public static final CreativeTabs tabMissiles = new CreativeTabs(Reference.MOD_ID) {
+		
+		@Override
+		public Item getTabIconItem() {
+			return InitItems.missile;
+		}
+		
+		public ItemStack getIconItemStack() {
+			return new ItemStack(getTabIconItem(), 1, 4);
+		}
+		
+		@Override
+		public String getTranslatedTabLabel() {			
+			return Reference.MOD_NAME + " - Missiles";
+		}
+	};
 }
