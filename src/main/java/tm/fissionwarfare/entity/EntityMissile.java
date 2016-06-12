@@ -45,8 +45,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	}
 
 	@Override
-	public void onUpdate() {
-		
+	public void onUpdate() {		
 		super.onUpdate();
 		
 		MissileData missileData = MissileData.getDataFromItem(missileStack);
@@ -165,13 +164,15 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 			
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
-				
+
 		targetX = tag.getInteger("targetX");
 		targetZ = tag.getInteger("targetZ");
 		
 		state = MissileState.valueOf(tag.getString("state"));
 		
-		missileStack = ItemStack.loadItemStackFromNBT(tag);
+		NBTTagCompound stackTag = tag.getCompoundTag("stackData");
+		
+		missileStack = ItemStack.loadItemStackFromNBT(stackTag);
 	}
 
 	@Override
@@ -182,7 +183,10 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		tag.setString("state", state.name());
 		
-		if (missileStack != null) missileStack.writeToNBT(tag);
+		NBTTagCompound stackTag = new NBTTagCompound();
+		tag.setTag("stackData", stackTag);
+		
+		if (missileStack != null) missileStack.writeToNBT(stackTag);
 	}
 	
 	@Override

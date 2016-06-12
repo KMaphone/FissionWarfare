@@ -66,8 +66,6 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
-		System.out.println(MathUtil.scaleDouble(getEnergyStored(stack), getMaxEnergyStored(stack), 1));
-		
 		return 1 - MathUtil.scaleDouble(getEnergyStored(stack), getMaxEnergyStored(stack), 1);
 	}
 	
