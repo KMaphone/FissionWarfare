@@ -19,10 +19,12 @@ import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.render.RenderCompressor;
 import tm.fissionwarfare.util.ItemLoreUtil;
 import tm.fissionwarfare.util.NBTUtil;
+import tm.fissionwarfare.util.math.MathUtil;
 
 public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	
-	private final int MAX_ENERGY_TRANSFER = 1000;
+	public static final int MAX_ENERGY_STORED = 100000;
+	private static final int MAX_ENERGY_TRANSFER = 1000;
 	
 	public ItemCompressor() {
 		super(ArmorMaterial.CLOTH, Reference.armorIDCompressor, 1);
@@ -36,21 +38,21 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b) {
 		
-		list.add(EnumChatFormatting.GOLD + "RF : " + EnumChatFormatting.AQUA + NBTUtil.getNBT(is).getInteger("energy") + " / " + getMaxEnergyStored(is));		
+		list.add(EnumChatFormatting.GOLD + "RF : " + EnumChatFormatting.AQUA + NBTUtil.getNBT(stack).getInteger("energy") + " / " + getMaxEnergyStored(stack));		
 		list.add("");
 		
 		if (ItemLoreUtil.addShiftLore(list)) {
 						
-			list.add("This item is placed in your chestplate slot");
+			list.add("This item is placed in your chestplate slot.");
 			list.add("Used for the Nail Gun to operate.");
 		}
     }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, int armorSlot) {
 		
 		RenderCompressor model = new RenderCompressor();
 		
@@ -63,10 +65,10 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	}
 	
 	@Override
-	public double getDurabilityForDisplay(ItemStack is) {
-		int stored = this.getMaxEnergyStored(is) - this.getEnergyStored(is) + 1;
-	  	int max = this.getMaxEnergyStored(is) + 1;
-	  	return stored / max;
+	public double getDurabilityForDisplay(ItemStack stack) {
+		System.out.println(MathUtil.scaleDouble(getEnergyStored(stack), getMaxEnergyStored(stack), 1));
+		
+		return 1 - MathUtil.scaleDouble(getEnergyStored(stack), getMaxEnergyStored(stack), 1);
 	}
 	
 	@Override
@@ -75,7 +77,7 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	}
 	
 	@Override
-    public boolean showDurabilityBar(ItemStack is) {		
+    public boolean showDurabilityBar(ItemStack stack) {		
         return true;
     }
 	
@@ -86,40 +88,50 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	}
 	
 	@Override
-	public int receiveEnergy(ItemStack is, int maxReceive, boolean sim) {
+	public int receiveEnergy(ItemStack stack, int maxReceive, boolean sim) {
 		
-		int energy = this.getEnergyStored(is);
-        int energyReceived = Math.min(this.getMaxEnergyStored(is) - energy, Math.min(maxReceive, MAX_ENERGY_TRANSFER));
+		int energy = this.getEnergyStored(stack);
+        int energyReceived = Math.min(this.getMaxEnergyStored(stack) - energy, Math.min(maxReceive, MAX_ENERGY_TRANSFER));
         
         if (!sim) {
             energy += energyReceived;
-            NBTUtil.getNBT(is).setInteger("energy", energy);
+            NBTUtil.getNBT(stack).setInteger("energy", energy);
         }
         
         return energyReceived;
 	}
 	
 	@Override
-	public int extractEnergy(ItemStack is, int maxExtract, boolean sim) {
+	public int extractEnergy(ItemStack stack, int maxExtract, boolean sim) {
 		
-		int energy = this.getEnergyStored(is);
+		int energy = this.getEnergyStored(stack);
 	    int energyExtracted = Math.min(energy, Math.min(maxExtract, MAX_ENERGY_TRANSFER));
 	    
 	    if (!sim) {
 	    	energy -= energyExtracted;
-	    	NBTUtil.getNBT(is).setInteger("energy", energy);
+	    	NBTUtil.getNBT(stack).setInteger("energy", energy);
 	    }
 	    
 	    return energyExtracted;
 	}
 	
 	@Override
-	public int getEnergyStored(ItemStack is) {
-		return NBTUtil.getNBT(is).getInteger("energy");
+	public int getEnergyStored(ItemStack stack) {
+		return NBTUtil.getNBT(stack).getInteger("energy");
 	}
 	
 	@Override
-	public int getMaxEnergyStored(ItemStack is) {
-		return 10000;
+	public int getMaxEnergyStored(ItemStack stack) {
+		return MAX_ENERGY_STORED;
+	}
+	
+	@Override
+	public int getColor(ItemStack stack) {
+		return 0xFFFFFF;
+	}
+	
+	@Override
+	public boolean hasColor(ItemStack stack) {
+		return false;
 	}
 }

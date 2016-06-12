@@ -7,9 +7,12 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.util.NBTUtil;
 
 public class ClientPacketHandler implements IMessage {
 
@@ -50,6 +53,22 @@ public class ClientPacketHandler implements IMessage {
 					
 					container.tileEntityEnergy.storage.setEnergyStored(energy);
 				}
+			}
+			
+			if (data[0].equalsIgnoreCase("set.energy")) {
+				
+				int slot = Integer.parseInt(data[1]);
+				int energy = Integer.parseInt(data[2]);
+				
+				ItemStack stack = player.inventory.getStackInSlot(slot);
+				
+				NBTUtil.getNBT(stack).setInteger("energy", energy);
+			}
+			
+			if (data[0].equalsIgnoreCase("consumeitem")) {
+								
+				Item item = Item.getItemById(Integer.parseInt(data[1]));							
+				player.inventory.consumeInventoryItem(item);
 			}
 			
 			if (data[0].equalsIgnoreCase("playsound")) {

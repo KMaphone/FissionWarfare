@@ -9,6 +9,10 @@ public class MathUtil {
 		return (int)f;
 	}
 	
+	public static double scaleDouble(double value, double maxValue, double maxScale) {		
+		return (maxScale / maxValue) * value;
+	}
+	
 	public static double approach(double value, double target, double speed) {
 
 		double difference = Math.abs(value - target);
