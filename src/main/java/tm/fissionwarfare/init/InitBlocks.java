@@ -22,7 +22,6 @@ public class InitBlocks {
 	public static Block steel_block;
 	
 	public static Block basicExplosive;
-	//public static Block empExplosive;
 	public static Block chemicalExplosive;
 	public static Block atomicExplosive;
 	public static Block pyroExplosive;
@@ -45,11 +44,11 @@ public class InitBlocks {
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4).setRareDrop(TFItems.dustNiter);		
 		uranium_ore = new BlockOreBase("uranium").setDroppedItem(new ItemStack(InitItems.radioactive_chunk), 1, 2, 1, 2).setLightLevel(0.3F);
 		
+		
 		basicExplosive = new BlockExplosive("basic", EnumExplosionType.BASIC);
-		//empExplosive = new BlockExplosive("emp", EnumExplosionType.EMP);
+		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		chemicalExplosive = new BlockExplosive("chemical", EnumExplosionType.CHEMICAL);
 		atomicExplosive = new BlockExplosive("atomic", EnumExplosionType.ATOMIC);
-		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		
 		missile_factory = new BlockMissileFactory();
 		control_panel = new BlockControlPanel();

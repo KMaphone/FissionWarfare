@@ -9,17 +9,16 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.block.BlockExplosive;
-import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.explosion.type.EnumExplosionType;
 import tm.fissionwarfare.util.math.Vector3d;
 
 public class EntityExplosive extends Entity implements IEntityAdditionalSpawnData {
 	
 	public BlockExplosive block;
 	public int fuse;
-	
-	private float pitch = 1;
 	
 	public EntityExplosive(World world) {
 		super(world);
@@ -30,6 +29,7 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		this.block = block;
 		this.fuse = block.getExplosion().getFuseTime();
 		setPosition(x + 0.5D, y + 0.5D, z + 0.5D);
+		worldObj.playSoundAtEntity(this, "game.tnt.primed", 2F, 1F);
 	}
 
 	@Override
@@ -40,28 +40,26 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		prevPosY = posY;
 		prevPosZ = posZ;
 	}
-
+	
 	public void onUpdate() {
 		
 		super.onUpdate();
 		
 		moveEntity(motionX, motionY, motionZ);
 		
-		if (!onGround) motionY -= 0.02D;	
-		else motionY = 0;
+		if (!onGround) {
+			motionY -= 0.02D;	
+		} else {
+			motionY = 0;
+		}
 
 		if (!isDead && fuse <= 0) {
-
 			setDead();
 			explode();
 		}
 		
 		fuse--;
 		worldObj.spawnParticle("smoke", posX, posY + 0.5, posZ, 0, 0, 0);
-		
-		if (ticksExisted % 6 == 0) {
-			FWSound.beep.play(worldObj, posX, posY, posZ, 5F, pitch += 0.05F);
-		}
 	}
 
 	private void explode() {
@@ -73,9 +71,9 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		if (!worldObj.isRemote) {
 			explosion.doBlockDamage();
 			explosion.doPlayerDamage();
+		} else {
+			explosion.doEffects();
 		}
-			
-		else explosion.doEffects();
 	}
 	
 	public Vector3d getVector() {
@@ -99,14 +97,14 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbt) {
-		nbt.setInteger("Fuse", fuse);
-		nbt.setInteger("Block", Block.getIdFromBlock(block));
+		nbt.setInteger("fuse", fuse);
+		nbt.setInteger("block", Block.getIdFromBlock(block));
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
-		fuse = nbt.getInteger("Fuse");
-		block = (BlockExplosive) Block.getBlockById(nbt.getInteger("Block"));
+		fuse = nbt.getInteger("fuse");
+		block = (BlockExplosive) Block.getBlockById(nbt.getInteger("block"));
 	}
 
 	@Override

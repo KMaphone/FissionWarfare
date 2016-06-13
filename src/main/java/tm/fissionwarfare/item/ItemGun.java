@@ -19,6 +19,9 @@ import tm.fissionwarfare.key.KeyBindings;
 import tm.fissionwarfare.packet.ServerPacketHandler;
 import tm.fissionwarfare.util.GunData;
 import tm.fissionwarfare.util.GunProfile;
+import tm.fissionwarfare.util.math.Angle2d;
+import tm.fissionwarfare.util.math.GunTraceUtil;
+import tm.fissionwarfare.util.math.Vector3d;
 
 public class ItemGun extends ItemBase {
 
@@ -147,12 +150,9 @@ public class ItemGun extends ItemBase {
 		
 		if (data.ammo > 0) {		
 
-			if (world.isRemote) {
-				
-				FissionWarfare.network.sendToServer(new ServerPacketHandler("use.gun%" + profile.shotsPerFire + "%" + profile.damage + "%" + profile.accuracy + "%" + profile.gravityVelocity + "%" + hurtTime));
-				
-				player.rotationPitch -= profile.recoil;
-			}			
+			GunTraceUtil.doGunTrace(player, new Vector3d(player.posX, player.posY, player.posZ), new Angle2d(-player.rotationPitch, -player.rotationYaw - 90), world, 20, 10);	
+			
+			//player.rotationPitch -= profile.recoil;			
 		}
 			
 		else world.playSoundAtEntity(player, "random.click", 1, 0.5F);			
