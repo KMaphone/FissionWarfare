@@ -89,15 +89,13 @@ public class ServerPacketHandler implements IMessage {
 			
 			if (data[0].equalsIgnoreCase("stop.use")) {
 								
-				int ticks = Integer.parseInt(data[1]);
-				
-				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[2]));
+				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[1]));
 				
 				if (is != null) {
 					
 					GunData gunData = new GunData(is);
 				
-					gunData.usingTicks = ticks;
+					gunData.usingTicks = 0;
 					gunData.flush();
 				}				
 			}

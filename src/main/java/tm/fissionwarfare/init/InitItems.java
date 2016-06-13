@@ -100,7 +100,7 @@ public class InitItems {
 		
 		location_linker = new ItemLocationLinker();
 		
-		shotgun = new ItemGun("shotgun", new GunProfile(30, 6, 4, 10, 8, 0.09F, 20, false));
+		shotgun = new ItemGun("shotgun", new GunProfile(30, 6, 4, 10, 10, 10, 20, false));
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		

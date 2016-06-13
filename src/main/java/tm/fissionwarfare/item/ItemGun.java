@@ -1,6 +1,7 @@
 package tm.fissionwarfare.item;
 
 import java.util.List;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
@@ -25,6 +26,8 @@ import tm.fissionwarfare.util.math.Vector3d;
 
 public class ItemGun extends ItemBase {
 
+	Random rand = new Random();
+	
 	public GunProfile profile;
 	
 	public ItemGun(String name, GunProfile profile) {
@@ -35,7 +38,7 @@ public class ItemGun extends ItemBase {
 	
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean b) {
-		
+			
 		if (!(entity instanceof EntityPlayer)) {
 			return;
 		}
@@ -45,6 +48,7 @@ public class ItemGun extends ItemBase {
 		
 		if (world.isRemote && (Minecraft.getMinecraft().currentScreen != null || player.getCurrentEquippedItem() != stack || !Minecraft.getMinecraft().gameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindUseItem))) {
 			data.usingTicks = 0;
+			FissionWarfare.network.sendToServer(new ServerPacketHandler("stop.use%" + slot));
 		}
 		
 		if (player.getCurrentEquippedItem() == stack) {
@@ -53,10 +57,15 @@ public class ItemGun extends ItemBase {
 				
 				if (data.ammo < profile.maxAmmo) {
 				
-					if (Keyboard.isKeyDown(KeyBindings.reloadGunButton.getKeyCode()) && Minecraft.getMinecraft().currentScreen == null) {
-												
-						FissionWarfare.network.sendToServer(new ServerPacketHandler("reload"));
-						data.time = 0;
+					if (Minecraft.getMinecraft().currentScreen == null) {
+										
+						if (Keyboard.isKeyDown(KeyBindings.reloadGunButton.getKeyCode())) {
+							
+							FissionWarfare.network.sendToServer(new ServerPacketHandler("reload"));
+							data.time = 0;
+						}
+						
+						else world.playSoundAtEntity(player, "random.click", 1, 0.5F);
 					}
 				}			
 			}
@@ -100,7 +109,7 @@ public class ItemGun extends ItemBase {
 		GunData data = new GunData(is);
 	
 		if (profile.isAuto || data.usingTicks == 0) {
-				
+			
 			shootBullet(world, is, player, data, 0);			
 		}
 		
@@ -150,12 +159,20 @@ public class ItemGun extends ItemBase {
 		
 		if (data.ammo > 0) {		
 
-			GunTraceUtil.doGunTrace(player, new Vector3d(player.posX, player.posY, player.posZ), new Angle2d(-player.rotationPitch, -player.rotationYaw - 90), world, 20, 10);	
+			for (int i = 0; i < profile.shotsPerFire; i++) {
+				
+				float randomPitch = profile.accuracy == 0 ? 0 : rand.nextInt(profile.accuracy * 2) - profile.accuracy;
+				float randomYaw = profile.accuracy == 0 ? 0 : rand.nextInt(profile.accuracy * 2) - profile.accuracy;
+				
+				GunTraceUtil.doGunTrace(player, new Vector3d(player.posX, (!world.isRemote ? 1.62F : 0) + player.posY, player.posZ), new Angle2d((-player.rotationPitch) + randomPitch, (-player.rotationYaw - 90) + randomYaw), world, profile.damage, profile.distance);
+			}
 			
-			//player.rotationPitch -= profile.recoil;			
+			data.ammo--;	
+			
+			player.rotationPitch -= profile.recoil;			
 		}
 			
-		else world.playSoundAtEntity(player, "random.click", 1, 0.5F);			
+		else world.playSoundAtEntity(player, "random.click", 1, 0.5F);
 		
 		data.flush();
 	}	
