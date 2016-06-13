@@ -165,8 +165,17 @@ public class InitRecipes {
 			"R  ", "SCS", "SBS", 'S', InitItems.steel_plate, 'B', Blocks.stone_button, 'R', Blocks.redstone_torch, 'C', new ItemStack(InitItems.circuit, 1, 0)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.control_panel, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.control_panel, 1), new Object[] {
 			"GGG", "SCS", "SSS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.support_frame, 1), new Object[] {
+			"SGS", "SGS", "SGS", 'S', InitItems.steel_plate, 'G', Blocks.iron_bars
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shotgun, 1), new Object[] {
+			"GGG", "GSP", "BBB", 'G', InitItems.steel_plate, 'B', Blocks.log, 'P', Blocks.dispenser, 'S', InitItems.steel_ingot
+		}));
+		
 	}
 }
