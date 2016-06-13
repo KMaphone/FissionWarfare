@@ -9,8 +9,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -49,6 +51,17 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 			list.add("Used for the Nail Gun to operate.");
 		}
     }
+	
+	@Override
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		
+		list.add(new ItemStack(this));
+		
+		ItemStack stack = new ItemStack(this);
+		NBTUtil.getNBT(stack).setInteger("energy", MAX_ENERGY_STORED);
+		
+		list.add(stack);
+	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)

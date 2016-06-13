@@ -20,6 +20,7 @@ public class ToolSet {
 	public ItemHoeBase hoe;
 	
 	public ToolSet(String imagePath, ToolMaterial toolMaterial, Item recipeItem, boolean hasCraftingRecipe){
+		
 		sword = new ItemSwordBase(imagePath + "_sword", toolMaterial);
 		pickaxe = new ItemPickaxeBase(imagePath + "_pickaxe", toolMaterial);
 		shovel = new ItemShovelBase(imagePath + "_shovel", toolMaterial);
@@ -27,22 +28,26 @@ public class ToolSet {
 		hoe = new ItemHoeBase(imagePath + "_hoe", toolMaterial);
 		
 		if(hasCraftingRecipe){
+			
+			GameRegistry.addRecipe(new ItemStack(sword), new Object[] {
+				"X", "X", "S", 'S', Items.stick, 'X', recipeItem
+			});	
+						
 			GameRegistry.addRecipe(new ItemStack(pickaxe), new Object[] {
 				"XXX", " S ", " S ", 'S', Items.stick, 'X', recipeItem
 			});
 			
-			GameRegistry.addRecipe(new ItemStack(axe), new Object[] {
-				"XX", "XS", " S", 'S', Items.stick, 'X', recipeItem
-			});
-				
-				GameRegistry.addRecipe(new ItemStack(shovel), new Object[] {
+			GameRegistry.addRecipe(new ItemStack(shovel), new Object[] {
 				"X", "S", "S", 'S', Items.stick, 'X', recipeItem
 			});
-				
-				GameRegistry.addRecipe(new ItemStack(sword), new Object[] {
-				"X", "X", "S", 'S', Items.stick, 'X', recipeItem
-			});
 			
+			GameRegistry.addRecipe(new ItemStack(axe), new Object[] {
+				"XX", "XS", " S", 'S', Items.stick, 'X', recipeItem
+			});			
+			
+			GameRegistry.addRecipe(new ItemStack(hoe), new Object[] {
+				"XX", " S", " S", 'S', Items.stick, 'X', recipeItem
+			});	
 		}
 	}
 
