@@ -71,8 +71,10 @@ public class ServerPacketHandler implements IMessage {
 				int y = Integer.parseInt(data[2]);
 				int z = Integer.parseInt(data[3]);
 				
+				EntityPlayer entityPlayer = player.worldObj.getPlayerEntityByName(data[4]);
+				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
-				tileEntity.toggleLaunch(player);
+				tileEntity.toggleLaunch(entityPlayer);
 			}
 			
 			//GUN START---------------------------------------------------------------------------------------------

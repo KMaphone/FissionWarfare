@@ -24,7 +24,7 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 	private long targetTime = 5;
 	private float rot;
 	
-	TileEntityLaunchPad tileEntity;
+	private TileEntityLaunchPad tileEntity;
 	
 	private GuiNumberFieldRect xField, zField;
 	private GuiButtonRect launchButton;
@@ -71,8 +71,7 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		
 		if (button.id == launchButton.id) {
 			
-			tileEntity.toggleLaunch(player);
-			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord + "%" + player.getDisplayName()));
 		}
 	}
 	

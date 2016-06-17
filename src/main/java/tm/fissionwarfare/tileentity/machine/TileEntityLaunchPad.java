@@ -51,7 +51,9 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-
+		
+		System.out.println(progress);
+		
 		if (!worldObj.isRemote) {
 			checkForFullFrame();
 		}
@@ -102,6 +104,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			}
 
 			missile = null;
+			update();
 		}
 	}
 
@@ -109,10 +112,12 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 		if (launching) launching = false;
 		else startLaunch(player);
+		
+		update();
 	}
 
 	public void startLaunch(EntityPlayer player) {
-
+		
 		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && canExtractEnergy(energyCost) && isPathClear()) {
 			launching = true;
 		}
