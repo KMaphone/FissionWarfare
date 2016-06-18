@@ -16,15 +16,15 @@ public class InitRecipes {
 
 	public static void init() {
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, InitItems.limestone_chunk });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, InitItems.limestone_chunk });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, Items.clay_ball });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, });
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 10), new Object[] {
 			" C ", "C C", "C C", 'C', TFItems.ingotCopper
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 16), new Object[] {
-			" S ", "SCS", "SLS", 'S', InitItems.shell, 'C', InitItems.fiery_capsule, 'L', new ItemStack(TFBlocks.blockStorage, 1, 3)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 8), new Object[] {
+			" S ", "SCS", "SCS", 'S', InitItems.shell, 'C', TFItems.ingotLead 
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.lightning_rod, 2), new Object[] {
@@ -166,7 +166,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.control_panel, 1), new Object[] {
-			"GGG", "SCS", "SSS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1)
+			"GGG", "SCS", "SRS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1), 'R', TEItems.powerCoilElectrum
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.support_frame, 1), new Object[] {

@@ -10,7 +10,7 @@ import tm.fissionwarfare.init.InitBlocks;
 
 public class WorldGenOre implements IWorldGenerator {
 	
-	private OreGenProfile sulfurGen = new OreGenProfile(5, 20, 10, 8, InitBlocks.sulfur_ore);
+	private OreGenProfile sulfurGen = new OreGenProfile(11, 30, 10, 8, InitBlocks.sulfur_ore);
 	private OreGenProfile quartzGen = new OreGenProfile(20, 60, 10, 4, InitBlocks.quartz_ore);
 	private OreGenProfile uraniumGen = new OreGenProfileSingle(5, 30, 5, InitBlocks.uranium_ore);
 	private OreGenProfile limestoneGen = new OreGenProfile(40, 70, 15, 10, InitBlocks.limestone_ore);
