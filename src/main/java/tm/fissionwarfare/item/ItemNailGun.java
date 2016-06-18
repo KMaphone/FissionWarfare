@@ -34,29 +34,12 @@ public class ItemNailGun extends ItemBase {
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b) {
 
 		list.add(EnumChatFormatting.GOLD + "Multi-Mode : " + EnumChatFormatting.AQUA + (NBTUtil.getNBT(stack).getBoolean("multiMode") ? "On" : "Off"));
-		
-		if (NBTUtil.getNBT(stack).getBoolean("hasCompressor")) {
-
-			list.add(EnumChatFormatting.GOLD + "Compressor RF : " + EnumChatFormatting.AQUA + NBTUtil.getNBT(stack).getInteger("simEnergy") + " / " + ItemCompressor.MAX_ENERGY_STORED);
-			list.add("");
-		}
+		list.add("");
 
 		if (ItemLoreUtil.addShiftLore(list)) {
 			list.add("Repairs and upgrades concrete.");
 			list.add("Right-click : Uses item.");
 		}
-	}
-
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-
-		return NBTUtil.getNBT(stack).getBoolean("hasCompressor");
-	}
-
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-
-		return 1 - MathUtil.scaleDouble(NBTUtil.getNBT(stack).getInteger("simEnergy"), ItemCompressor.MAX_ENERGY_STORED, 1);
 	}
 
 	@Override
@@ -66,11 +49,7 @@ public class ItemNailGun extends ItemBase {
 
 			EntityPlayer player = (EntityPlayer) entity;
 
-			if (getCompressor(player) != null) {
-
-				NBTUtil.getNBT(stack).setBoolean("hasCompressor", true);
-				NBTUtil.getNBT(stack).setInteger("simEnergy", getCompressorItem(player).getEnergyStored(getCompressor(player)));
-			}
+			if (getCompressor(player) != null) NBTUtil.getNBT(stack).setBoolean("hasCompressor", true);
 
 			else NBTUtil.getNBT(stack).setBoolean("hasCompressor", false);
 		}
@@ -138,7 +117,7 @@ public class ItemNailGun extends ItemBase {
 									for (int zPos = z - 1; zPos < z + 2; zPos++) {
 
 										if (!upgradeConcrete(player, world, xPos, yPos, zPos, message)) {
-											return false;
+											return true;
 										}
 									}
 								}
@@ -162,38 +141,57 @@ public class ItemNailGun extends ItemBase {
 
 		int meta = world.getBlockMetadata(x, y, z);
 
-		if (world.getBlock(x, y, z) == InitBlocks.concrete) {
+		if (world.getBlock(x, y, z) == InitBlocks.concrete && meta < 14) {
 
-			if (meta < 14) {
+			if (getCompressorItem(player).getEnergyStored(getCompressor(player)) >= 1000) {
 
-				if (getCompressorItem(player).getEnergyStored(getCompressor(player)) >= 1000) {
+				if (useMagazine(player) || player.capabilities.isCreativeMode) {
 
-					if (player.inventory.hasItemStack(new ItemStack(InitItems.nail_gun_magazine)) || player.capabilities.isCreativeMode) {
+					getCompressorItem(player).extractEnergy(getCompressor(player), 1000, false);
+					FissionWarfare.network.sendTo(new ClientPacketHandler("set.energy%" + 38 + "%" + NBTUtil.getNBT(getCompressor(player)).getInteger("energy")), (EntityPlayerMP) player);
 
-						if (!player.capabilities.isCreativeMode) {
+					player.inventory.markDirty();
 
-							player.inventory.consumeInventoryItem(InitItems.nail_gun_magazine);
-							FissionWarfare.network.sendTo(new ClientPacketHandler("consumeitem%" + Item.getIdFromItem(InitItems.nail_gun_magazine)), (EntityPlayerMP) player);
-						}
+					world.setBlockMetadataWithNotify(x, y, z, meta + ((meta == BlockConcrete.metaTiers[0] || meta == BlockConcrete.metaTiers[1]) ? 5 : 1), 2);
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%random.anvil_land%" + x + "%" + y + "%" + z + "%" + 0.1F), (EntityPlayerMP) player);
 
-						getCompressorItem(player).extractEnergy(getCompressor(player), 1000, false);
-						FissionWarfare.network.sendTo(new ClientPacketHandler("set.energy%" + 38 + "%" + NBTUtil.getNBT(getCompressor(player)).getInteger("energy")), (EntityPlayerMP) player);
-
-						player.inventory.markDirty();
-
-						world.setBlockMetadataWithNotify(x, y, z, meta + ((meta == BlockConcrete.metaTiers[0] || meta == BlockConcrete.metaTiers[1]) ? 5 : 1), 2);
-						FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%random.anvil_land%" + x + "%" + y + "%" + z + "%" + 0.1F), (EntityPlayerMP) player);
-
-						return true;
-					}
+					return true;
 				}
-
-				else message.printMessage(EnumChatFormatting.RED, "Not enough energy! (1000 RF required)");
-
-				return false;
+				
+				else message.printMessage(EnumChatFormatting.RED, "No Magazine!");
 			}
+
+			else message.printMessage(EnumChatFormatting.RED, "Not enough energy! (1000 RF required)");
+
+			return false;
 		}
 
 		return true;
+	}
+
+	public boolean useMagazine(EntityPlayer player) {
+
+		for (int slot = 0; slot < player.inventory.getSizeInventory(); slot++) {
+
+			ItemStack stack = player.inventory.getStackInSlot(slot);
+
+			if (stack != null && stack.getItem() == InitItems.nail_gun_magazine) {
+
+				if (!player.capabilities.isCreativeMode) {
+					
+					FissionWarfare.network.sendTo(new ClientPacketHandler("damageitem%" + slot + "%1"), (EntityPlayerMP) player);	
+					
+					stack.damageItem(1, player);
+					
+					if (stack.getItemDamage() >= stack.getMaxDamage()) {
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

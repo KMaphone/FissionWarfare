@@ -71,6 +71,19 @@ public class ClientPacketHandler implements IMessage {
 				player.inventory.consumeInventoryItem(item);
 			}
 			
+			if (data[0].equalsIgnoreCase("damageitem")) {
+				
+				int slot = Integer.parseInt(data[1]);
+				
+				ItemStack stack = player.inventory.getStackInSlot(slot);
+								
+				stack.damageItem(Integer.parseInt(data[2]), player);
+				
+				if (stack.getItemDamage() >= stack.getMaxDamage()) {
+					player.inventory.setInventorySlotContents(slot, null);
+				}
+			}
+			
 			if (data[0].equalsIgnoreCase("playsound")) {
 				
 				String soundPath = data[1];

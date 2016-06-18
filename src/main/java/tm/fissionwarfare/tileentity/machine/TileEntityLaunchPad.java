@@ -52,8 +52,6 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	public void updateEntity() {
 		super.updateEntity();
 		
-		System.out.println(progress);
-		
 		if (!worldObj.isRemote) {
 			checkForFullFrame();
 		}
