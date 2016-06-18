@@ -11,6 +11,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tm.fissionwarfare.damage.DamageSourceCustom;
+import tm.fissionwarfare.init.InitBlocks;
+import tm.fissionwarfare.util.math.RaytraceUtil.HitType;
 
 public class GunTraceUtil {
 
@@ -26,10 +28,8 @@ public class GunTraceUtil {
 			
 			raytrace.add(velcity);
 			
-			if (world.isRemote) {
-				world.spawnParticle("smoke", raytrace.x, raytrace.y, raytrace.z, 0, 0, 0);
-			}
-						
+			world.spawnParticle("smoke", raytrace.x, raytrace.y, raytrace.z, 0, 0, 0);
+			
 			for (EntityLivingBase living : list) {
 				
 				AxisAlignedBB box = living.boundingBox;

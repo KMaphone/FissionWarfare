@@ -102,13 +102,13 @@ public class ItemNailGun extends ItemBase {
 				if (NBTUtil.getNBT(stack).getBoolean("multiMode")) {
 
 					NBTUtil.getNBT(stack).setBoolean("multiMode", false);
-					message.printMessage(EnumChatFormatting.WHITE, "Multi-Mode : Off.");
+					message.printMessage(EnumChatFormatting.WHITE, "Multi-Mode : Off");
 				}
 
 				else {
 
 					NBTUtil.getNBT(stack).setBoolean("multiMode", true);
-					message.printMessage(EnumChatFormatting.WHITE, "Multi-Mode : On.");
+					message.printMessage(EnumChatFormatting.WHITE, "Multi-Mode : On");
 				}
 			}
 		}
@@ -155,7 +155,7 @@ public class ItemNailGun extends ItemBase {
 			else message.printMessage(EnumChatFormatting.RED, "This function was disabled by config!");
 		}
 
-		return true;
+		return false;
 	}
 
 	public boolean upgradeConcrete(EntityPlayer player, World world, int x, int y, int z, UnitChatMessage message) {

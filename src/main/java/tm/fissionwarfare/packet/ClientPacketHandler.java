@@ -80,7 +80,6 @@ public class ClientPacketHandler implements IMessage {
 				int z = Integer.parseInt(data[4]);
 				
 				float gain = Float.parseFloat(data[5]);
-				
 				player.worldObj.playSound(x, y, z, soundPath, gain, 1, false);
 			}
 				

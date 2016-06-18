@@ -122,7 +122,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			launching = true;
 		}
 
-		else if (worldObj.isRemote) printErrorMessage(player);
+		else printErrorMessage(player);
 	}
 
 	private boolean isPathClear() {
