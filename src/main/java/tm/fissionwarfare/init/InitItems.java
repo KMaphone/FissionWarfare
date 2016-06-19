@@ -96,7 +96,7 @@ public class InitItems {
 		nail = new ItemBase("nail");
 		shell = new ItemBase("shell");
 		bullet = new ItemBase("bullet");
-		nail_gun_magazine = new ItemBase("nail_gun_magazine").setMaxStackSize(1).setMaxDamage(100);
+		nail_gun_magazine = new ItemBase("nail_gun_magazine").setMaxStackSize(1).setMaxDamage(200);
 		
 		location_linker = new ItemLocationLinker();
 		

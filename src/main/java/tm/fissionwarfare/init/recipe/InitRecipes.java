@@ -39,12 +39,12 @@ public class InitRecipes {
 			"I I", " I ", "I I", 'I', TFItems.ingotInvar
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 16), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 1), new Object[] {
 			"SSS", " S ", " S ", 'S', new ItemStack(InitItems.steel_ingot)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun_magazine, 16), new Object[] {
-			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', new ItemStack(InitItems.invar_frame)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun_magazine, 1), new Object[] {
+			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', TFItems.ingotInvar
 		}));
 	
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
