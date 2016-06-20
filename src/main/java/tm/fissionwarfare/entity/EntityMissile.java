@@ -50,7 +50,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		MissileData missileData = MissileData.getDataFromItem(missileStack);
 		
-		int speed = (missileData.getSpeed() + 1);
+		int speed = (missileData.getFuelTier() + 1);
 		
 		noClip = !(state == MissileState.GOING_DOWN);
 		

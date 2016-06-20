@@ -51,8 +51,8 @@ public class ItemLocationLinker extends ItemBase {
 					
 					TileEntityControlPanel tileEntity = (TileEntityControlPanel)world.getTileEntity(x, y, z);
 					
-					tileEntity.targetCoords[0] = NBTUtil.getNBT(is).getInteger("X");
-					tileEntity.targetCoords[1] = NBTUtil.getNBT(is).getInteger("Z");
+					tileEntity.targetX = NBTUtil.getNBT(is).getInteger("X");
+					tileEntity.targetZ = NBTUtil.getNBT(is).getInteger("Z");
 					
 					tileEntity.update();
 					

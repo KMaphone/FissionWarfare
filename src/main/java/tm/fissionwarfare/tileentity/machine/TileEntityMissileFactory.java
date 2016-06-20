@@ -64,8 +64,8 @@ public class TileEntityMissileFactory extends TileEntityEnergyBase {
 			MissileData data = new MissileData();
 			
 			data.setExplosionType(((BlockExplosive)Block.getBlockFromItem(slots[0].getItem())).getExplosion());
-			data.setAccuracy(slots[1].getItemDamage() + 1);
-			data.setSpeed(slots[2].getItemDamage() + 1);
+			data.setAccuracyTier(slots[1].getItemDamage() + 1);
+			data.setFuelTier(slots[2].getItemDamage() + 1);
 			
 			setInventorySlotContents(4, MissileData.setDataToItem(stack, data));
 						

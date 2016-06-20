@@ -6,52 +6,52 @@ import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class MissileData {
 
-	private int accuracy = 0;
-	private int speed = 0;
+	private int accuracyTier = 0;
+	private int fuelTier = 0;
 	private EnumExplosionType explosionType;
 
 	public void readFromNBT(NBTTagCompound nbt) {
 
-		accuracy = nbt.getInteger("accuracy");
-		speed = nbt.getInteger("speed");
+		accuracyTier = nbt.getInteger("accuracy");
+		fuelTier = nbt.getInteger("speed");
 
 		if (nbt.hasKey("explosionType")) {
 			explosionType = EnumExplosionType.valueOf(nbt.getString("explosionType"));
 		}
 	}
 	
-	public int returnBlockRange(){
-		return getSpeed() * 500;
+	public int getMaxBlockDistance(){
+		return getFuelTier() * 500;
 	}
 
 	public void writeToNBT(NBTTagCompound nbt) {
 
-		nbt.setInteger("accuracy", accuracy);
-		nbt.setInteger("speed", speed);
+		nbt.setInteger("accuracy", accuracyTier);
+		nbt.setInteger("speed", fuelTier);
 
 		if (explosionType != null) {
 			nbt.setString("explosionType", explosionType.name());
 		}
 	}
 
-	public void setAccuracy(int accuracy) {
-		this.accuracy = accuracy;
+	public void setAccuracyTier(int accuracy) {
+		this.accuracyTier = accuracy;
 	}
 
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setFuelTier(int fuel) {
+		this.fuelTier = fuel;
 	}
 
 	public void setExplosionType(EnumExplosionType explosionType) {
 		this.explosionType = explosionType;
 	}
 
-	public int getAccuracy() {
-		return accuracy;
+	public int getAccuracyTier() {
+		return accuracyTier;
 	}
 
-	public int getSpeed() {
-		return speed;
+	public int getFuelTier() {
+		return fuelTier;
 	}
 
 	public EnumExplosionType getExplosionType() {
