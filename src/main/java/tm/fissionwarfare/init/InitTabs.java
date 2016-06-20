@@ -11,7 +11,7 @@ public class InitTabs {
 		
 		@Override
 		public Item getTabIconItem() {
-			return Item.getItemFromBlock(InitBlocks.concrete);
+			return InitItems.circuit;
 		}
 		
 		public ItemStack getIconItemStack() {
@@ -24,7 +24,7 @@ public class InitTabs {
 		}
 	};
 	
-	public static final CreativeTabs tabMissiles = new CreativeTabs(Reference.MOD_ID) {
+	public static final CreativeTabs tabWarfare = new CreativeTabs(Reference.MOD_ID) {
 		
 		@Override
 		public Item getTabIconItem() {
@@ -37,7 +37,7 @@ public class InitTabs {
 		
 		@Override
 		public String getTranslatedTabLabel() {			
-			return Reference.MOD_NAME + " - Missiles";
+			return Reference.MOD_NAME + " - Warfare";
 		}
 	};
 }

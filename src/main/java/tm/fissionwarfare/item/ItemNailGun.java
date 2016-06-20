@@ -15,6 +15,7 @@ import tm.fissionwarfare.block.BlockConcrete;
 import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.util.ChatUtil;
@@ -26,7 +27,7 @@ import tm.fissionwarfare.util.math.MathUtil;
 public class ItemNailGun extends ItemBase {
 
 	public ItemNailGun() {
-		super("nail_gun");
+		super("nail_gun", InitTabs.tabWarfare);
 		setFull3D();
 	}
 

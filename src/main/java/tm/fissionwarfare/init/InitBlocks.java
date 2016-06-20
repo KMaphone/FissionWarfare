@@ -18,47 +18,56 @@ import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class InitBlocks {
 
+	//Main
+	
 	public static Block quartz_ore, sulfur_ore, limestone_ore, uranium_ore;
 	public static Block steel_block;
 	
-	public static Block basicExplosive;
-	public static Block chemicalExplosive;
-	public static Block atomicExplosive;
-	public static Block pyroExplosive;
+	//Warfare
 	
 	public static Block concrete;
 	public static Block reinforced_glass;
 	
-	public static Block missile_factory;
-	
-	public static Block control_panel;
-	public static Block launch_pad;
-	public static Block support_frame;
+	public static Block basicExplosive;
+	public static Block pyroExplosive;
+	public static Block chemicalExplosive;	
+	public static Block atomicExplosive;
 	
 	public static Block sentry_turret;
 	
+	public static Block missile_factory;
+	
+	public static Block launch_pad;
+	public static Block control_panel;	
+	public static Block support_frame;
+	
 	public static void init() {
+		
+		//Main
 		
 		limestone_ore = new BlockOreBase("limestone").setDroppedItem(new ItemStack(InitItems.limestone_chunk), 1, 2, 1, 2);
 		quartz_ore = new BlockOreBase("quartz").setDroppedItem(new ItemStack(InitItems.quartz_chunk), 1, 2, 1, 2);
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4).setRareDrop(TFItems.dustNiter);		
 		uranium_ore = new BlockOreBase("uranium").setDroppedItem(new ItemStack(InitItems.radioactive_chunk), 1, 2, 1, 2).setLightLevel(0.3F);
 		
+		steel_block = new BlockBase("steel_block", Material.iron, 2, 2.0F, 2.0F, Block.soundTypeMetal);	
+		
+		//Warfare
+		
+		concrete = new BlockConcrete();
+		reinforced_glass = new BlockReinforcedGlass();
 		
 		basicExplosive = new BlockExplosive("basic", EnumExplosionType.BASIC);
 		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		chemicalExplosive = new BlockExplosive("chemical", EnumExplosionType.CHEMICAL);
 		atomicExplosive = new BlockExplosive("atomic", EnumExplosionType.ATOMIC);
 		
-		missile_factory = new BlockMissileFactory();
-		control_panel = new BlockControlPanel();
-		launch_pad = new BlockLaunchPad();
-		support_frame = new BlockSupportFrame();
-		
-		steel_block = new BlockBase("steel_block", Material.iron, 2, 2.0F, 2.0F, Block.soundTypeMetal);
-		concrete = new BlockConcrete();		
-		reinforced_glass = new BlockReinforcedGlass();
-		
 		sentry_turret = new BlockSentryTurret();
+		
+		missile_factory = new BlockMissileFactory();
+		
+		launch_pad = new BlockLaunchPad();
+		control_panel = new BlockControlPanel();
+		support_frame = new BlockSupportFrame();
 	}	
 }

@@ -33,7 +33,7 @@ public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 		String imageName = "compressor";
 		setUnlocalizedName(imageName);
 		setTextureName(Reference.MOD_ID + ":" + imageName);
-		setCreativeTab(InitTabs.tabMain);
+		setCreativeTab(InitTabs.tabWarfare);
 		setMaxDamage(0);
 		GameRegistry.registerItem(this, imageName);		
 	}

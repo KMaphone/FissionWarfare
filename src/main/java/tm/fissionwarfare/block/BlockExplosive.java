@@ -13,6 +13,7 @@ import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.entity.EntityExplosive;
 import tm.fissionwarfare.entity.EntityMissile;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;
+import tm.fissionwarfare.init.InitTabs;
 
 public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	
@@ -21,6 +22,7 @@ public class BlockExplosive extends BlockBase implements IExplosiveBlock {
 	public BlockExplosive(String imagePath, EnumExplosionType explosion) {
 		super(imagePath, Material.tnt, 0, 0, 0, Block.soundTypeStone);
 		this.explosion = explosion;
+		setCreativeTab(InitTabs.tabWarfare);
 	}
 
 	public void onBlockAdded(World world, int x, int y, int z) {

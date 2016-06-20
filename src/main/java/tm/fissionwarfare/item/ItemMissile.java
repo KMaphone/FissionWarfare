@@ -15,9 +15,8 @@ import tm.fissionwarfare.util.ItemLoreUtil;
 public class ItemMissile extends ItemBase {
 
 	public ItemMissile() {
-		super("missile", false);
+		super("missile", InitTabs.tabWarfare, false);
 		setMaxStackSize(1);
-		setCreativeTab(InitTabs.tabMissiles);
 	}
 	
 	@Override

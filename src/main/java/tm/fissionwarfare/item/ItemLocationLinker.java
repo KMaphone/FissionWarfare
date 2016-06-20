@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
@@ -19,7 +20,7 @@ import tm.fissionwarfare.util.UnitChatMessage;
 public class ItemLocationLinker extends ItemBase {
 
 	public ItemLocationLinker() {
-		super("location_linker");	
+		super("location_linker", InitTabs.tabWarfare);
 	}
 	
 	@Override

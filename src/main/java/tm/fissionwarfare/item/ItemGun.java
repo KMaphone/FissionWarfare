@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.damage.DamageSourceCustom;
 import tm.fissionwarfare.init.InitItems;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.key.KeyBindings;
 import tm.fissionwarfare.packet.ServerPacketHandler;
 import tm.fissionwarfare.util.GunData;
@@ -31,7 +32,7 @@ public class ItemGun extends ItemBase {
 	public GunProfile profile;
 	
 	public ItemGun(String name, GunProfile profile) {
-		super(name);
+		super(name, InitTabs.tabWarfare);
 		this.profile = profile;
 		setMaxStackSize(1);
 	}
