@@ -36,7 +36,6 @@ public class InitItems {
 	
 	public static Item lightning_rod;
 	public static Item iron_frame;
-	public static Item invar_frame;
 	public static Item circuit;
 	public static Item fuel_canister;
 	public static Item motor;
@@ -81,7 +80,6 @@ public class InitItems {
 		
 		lightning_rod = new ItemBase("lightning_rod");
 		iron_frame = new ItemBase("iron_frame");
-		invar_frame = new ItemBase("invar_frame");
 		circuit = new ItemTiered("circuit", 3);
 		fuel_canister = new ItemTiered("fuel_canister", 3);
 		motor = new ItemBase("motor");
@@ -100,7 +98,7 @@ public class InitItems {
 		
 		location_linker = new ItemLocationLinker();
 		
-		shotgun = new ItemGun("shotgun", new GunProfile(20, 4, 4, 10, 5, 10, 20, false));
+		shotgun = new ItemGun("shotgun", new GunProfile(15, 4, 4, 10, 2, 30, 20, false));
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		

@@ -23,7 +23,7 @@ public class InitRecipes {
 			" C ", "C C", "C C", 'C', TFItems.ingotCopper
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 8), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 16), new Object[] {
 			" S ", "SCS", "SCS", 'S', InitItems.shell, 'C', TFItems.ingotLead 
 		}));
 		
@@ -33,10 +33,6 @@ public class InitRecipes {
 					
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 16), new Object[] {
 			"I I", " I ", "I I", 'I', "ingotIron"
-		}));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.invar_frame, 16), new Object[] {
-			"I I", " I ", "I I", 'I', TFItems.ingotInvar
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 1), new Object[] {

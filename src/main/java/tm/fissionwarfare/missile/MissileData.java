@@ -19,6 +19,10 @@ public class MissileData {
 			explosionType = EnumExplosionType.valueOf(nbt.getString("explosionType"));
 		}
 	}
+	
+	public int returnBlockRange(){
+		return getSpeed() * 500;
+	}
 
 	public void writeToNBT(NBTTagCompound nbt) {
 

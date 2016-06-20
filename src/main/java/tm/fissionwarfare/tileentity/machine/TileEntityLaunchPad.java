@@ -56,7 +56,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			checkForFullFrame();
 		}
 
-		if (getControlPanel() == null || getSupportFrame() == null || missile == null || !canExtractEnergy(energyCost) || !isPathClear()) {
+		if (getControlPanel() == null || getSupportFrame() == null || missile == null || !isDistanceInRange() || !canExtractEnergy(energyCost) || !isPathClear()) {
 			launching = false;
 		}
 
@@ -75,7 +75,6 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 		if (isDoneAndReset()) {
 
-			MissileData missileData = MissileData.getDataFromItem(missile);
 
 			launching = false;
 			storage.extractEnergy(energyCost, false);
@@ -84,7 +83,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 				int distances[] = { 0, 5, 20, 50 };
 
-				int percentage = rand.nextInt(100 - ((missileData.getAccuracy() - 1) * 20));
+				int percentage = rand.nextInt(100 - ((getMissileData().getAccuracy() - 1) * 20));
 
 				int index;
 
@@ -97,6 +96,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 				if (rand.nextInt(2) == 0) x = 0 - x;
 				if (rand.nextInt(2) == 0) z = 0 - z;
+				
 
 				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, getControlPanel().targetCoords[0] + x, getControlPanel().targetCoords[1] + z, missile));
 			}
@@ -116,11 +116,21 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 	public void startLaunch(EntityPlayer player) {
 		
-		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && canExtractEnergy(energyCost) && isPathClear()) {
+		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && isDistanceInRange() && canExtractEnergy(energyCost) && isPathClear()) {
 			launching = true;
 		}
 
 		else printErrorMessage(player);
+	}
+	
+	private boolean isDistanceInRange(){
+		
+		return returnDistance() >= getMissileData().returnBlockRange();
+		
+	}
+	
+	private double returnDistance(){
+		return getLocation().getDistance(new Location(worldObj, getControlPanel().targetCoords[0], yCoord, getControlPanel().targetCoords[1]));
 	}
 
 	private boolean isPathClear() {
@@ -134,6 +144,10 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		}
 
 		return true;
+	}
+	
+	public MissileData getMissileData(){
+		return MissileData.getDataFromItem(missile);
 	}
 
 	public TileEntityControlPanel getControlPanel() {
@@ -216,6 +230,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		else {
 
 			if (missile == null) message.printMessage(EnumChatFormatting.RED, "No missile in this unit!");
+			message.printMessage(EnumChatFormatting.RED, "Distance between target position is too great: " + (int) returnDistance());
 			if (!isPathClear()) message.printMessage(EnumChatFormatting.RED, "The path is not cleared! (A 3x3 wide square of blocks need to see the sky)");
 		}
 
