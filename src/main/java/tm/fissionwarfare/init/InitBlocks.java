@@ -29,8 +29,9 @@ public class InitBlocks {
 	public static Block reinforced_glass;
 	
 	public static Block basicExplosive;
+	public static Block empExplosive;
 	public static Block pyroExplosive;
-	public static Block chemicalExplosive;	
+	public static Block chemicalExplosive;
 	public static Block atomicExplosive;
 	
 	public static Block sentry_turret;
@@ -58,6 +59,7 @@ public class InitBlocks {
 		reinforced_glass = new BlockReinforcedGlass();
 		
 		basicExplosive = new BlockExplosive("basic", EnumExplosionType.BASIC);
+		empExplosive = new BlockExplosive("emp", EnumExplosionType.EMP);
 		pyroExplosive = new BlockExplosive("pyro", EnumExplosionType.PYRO);
 		chemicalExplosive = new BlockExplosive("chemical", EnumExplosionType.CHEMICAL);
 		atomicExplosive = new BlockExplosive("atomic", EnumExplosionType.ATOMIC);

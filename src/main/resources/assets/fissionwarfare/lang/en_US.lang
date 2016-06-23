@@ -70,8 +70,8 @@ tile.concrete_2.name=Reinforced Concrete
 tile.reinforced_glass_0.name=Reinforced Glass
 
 tile.basic.name=Basic Explosive
-tile.pyro.name=Pyrotechnics Explosive
 tile.emp.name=EMP Explosive
+tile.pyro.name=Pyrotechnics Explosive
 tile.chemical.name=Chemical Explosive
 tile.atomic.name=Atomic Explosive
 

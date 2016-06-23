@@ -47,13 +47,11 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		
 		moveEntity(motionX, motionY, motionZ);
 		
-		if (!onGround) {
-			motionY -= 0.02D;	
-		} else {
-			motionY = 0;
-		}
+		if (!onGround) motionY -= 0.02D;	
+		else motionY = 0;
 
 		if (!isDead && fuse <= 0) {
+			
 			setDead();
 			explode();
 		}
@@ -71,9 +69,9 @@ public class EntityExplosive extends Entity implements IEntityAdditionalSpawnDat
 		if (!worldObj.isRemote) {
 			explosion.doBlockDamage();
 			explosion.doPlayerDamage();
-		} else {
-			explosion.doEffects();
-		}
+		} 
+		
+		else explosion.doEffects();
 	}
 	
 	public Vector3d getVector() {

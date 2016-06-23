@@ -13,10 +13,10 @@ import net.minecraft.world.World;
 
 public class EntityGasCloud extends Entity {
 
+	private static final double MAX_LIFE = 20 * 10;
+	private static final double DAMAGE = 3;	
 	private double range = 10;
-	private double damage = 3;
-	private double life = 20 * 10;
-
+	
 	public EntityGasCloud(World world) {
 		super(world);
 	}
@@ -27,16 +27,15 @@ public class EntityGasCloud extends Entity {
 	}
 
 	@Override
-	public void entityInit() {
-
-	}
+	public void entityInit() {}
 
 	@Override
-	public void onUpdate() {
+	public void onUpdate() {		
 		super.onUpdate();
-		range+=0.001;
+		
+		range = ticksExisted * (0.001);
 
-		if (ticksExisted > life) {
+		if (ticksExisted >= MAX_LIFE) {
 			setDead();
 		}
 		
@@ -51,7 +50,6 @@ public class EntityGasCloud extends Entity {
 
 	private void doEffects() {
 		
-		//double y = posY + (rand.nextDouble() * (range * 2)) - range;
 		double x = posX + (rand.nextDouble() * (range * 2)) - range;
 		double y = posY;
 		double z = posZ + (rand.nextDouble() * (range * 2)) - range;
@@ -59,7 +57,9 @@ public class EntityGasCloud extends Entity {
 		double xx = posX + (rand.nextDouble() * (range * 1.5)) - range;
 		double yy = posY;
 		double zz = posZ + (rand.nextDouble() * (range * 1.5)) - range;
-		for(int i = 1; i<range; i++){
+		
+		for(int i = 1; i < range; i++){
+			
 			worldObj.spawnParticle("hugeexplosion", x, y, z, 0.0, 0.0, 0.0);
 			worldObj.spawnParticle("hugeexplosion", xx, yy, zz, 0.0, 0.0, 0.0);
 		}
@@ -77,7 +77,7 @@ public class EntityGasCloud extends Entity {
 
 				if (living.getDistance(posX, posY, posZ) <= range) {
 
-					living.attackEntityFrom(DamageSource.magic, (float) damage);
+					living.attackEntityFrom(DamageSource.magic, (float) DAMAGE);
 					living.addPotionEffect(new PotionEffect(Potion.poison.id,250,0));
 					living.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id,300,2));
 					living.addPotionEffect(new PotionEffect(Potion.confusion.id,250,0));
@@ -88,16 +88,8 @@ public class EntityGasCloud extends Entity {
 	}
 
 	@Override
-	public void readEntityFromNBT(NBTTagCompound nbt) {
-		range = nbt.getDouble("range");
-		damage = nbt.getDouble("damage");
-		life = nbt.getDouble("life");
-	}
+	public void readEntityFromNBT(NBTTagCompound nbt) {}
 
 	@Override
-	public void writeEntityToNBT(NBTTagCompound nbt) {
-		nbt.setDouble("range", range);
-		nbt.setDouble("damage", damage);
-		nbt.setDouble("life", life);
-	}
+	public void writeEntityToNBT(NBTTagCompound nbt) {}
 }

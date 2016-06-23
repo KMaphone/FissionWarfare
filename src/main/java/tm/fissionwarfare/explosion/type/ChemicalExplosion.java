@@ -25,32 +25,18 @@ public class ChemicalExplosion implements IExplosionType {
 	}
 	
 	@Override
-	public void doBlockDamage() {
-	}
+	public void doBlockDamage() {}
 
 	@Override
 	public void doPlayerDamage() {
+		
 		EntityGasCloud gasCloud = new EntityGasCloud(world, vector.x, vector.y, vector.z);
 		world.spawnEntityInWorld(gasCloud);
 	}
 
 	@Override
 	public void doEffects() {
-		//FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
-		FWSound.gas_cloud.play(world, vector.x, vector.y, vector.z, 2, 1);
 		
-		/*Random rand = new Random();
-		double offset = .05D;
-		double d2 = vector.y + 1.1D;
-		double yMotion = .05D;
-		if (world.isRemote) {
-			for (int i = 0; i<8; i++){
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-			}
-			
-		}*/
+		FWSound.gas_cloud.play(world, vector.x, vector.y, vector.z, 2, 1);		
 	}
 }

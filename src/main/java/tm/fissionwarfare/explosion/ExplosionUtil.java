@@ -50,6 +50,7 @@ public class ExplosionUtil {
 	private static boolean contains(Location location) {
 		
 		for (Location loc : effectedBlocks) {
+			
 			if (loc.matches(location)) {
 				return true;
 			}

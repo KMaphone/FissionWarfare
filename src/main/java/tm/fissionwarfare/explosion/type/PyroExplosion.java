@@ -45,22 +45,24 @@ public class PyroExplosion implements IExplosionType {
 
 	@Override
 	public void doPlayerDamage() {
+		
 		PlayerExplosionUtil.doLivingDamage(world, vector, SIZE * 2, DAMAGE);
 	}
 
 	@Override
 	public void doEffects() {
-		Random rand = new Random();
+		
 		double offset = 1.5D;
 		double d2 = vector.y + 1.1;
-		if (world.isRemote) {
-			for (int i = 0; i<8; i++){
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-			}
-			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);
+		
+		for (int i = 0; i < 8; i++){
+			
+			world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0, 0, 0);
 		}
+		
+		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, 10, 1);		
 	}
 }
