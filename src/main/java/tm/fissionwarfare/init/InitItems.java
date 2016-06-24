@@ -43,7 +43,7 @@ public class InitItems {
 	public static Item motor;	
 	
 	public static Item nail;
-	public static Item shell;
+	public static Item cartridge;
 	
 	public static ToolSet steel;
 	
@@ -59,7 +59,11 @@ public class InitItems {
 	public static Item location_linker;
 	
 	public static Item shotgun;
-	public static Item bullet;		
+	public static Item bullet;
+	
+	public static Item stock;
+	public static Item trigger;
+	public static Item barrel;
 	
 	public static Item missile;
 	
@@ -92,7 +96,11 @@ public class InitItems {
 		motor = new ItemBase("motor");
 		
 		nail = new ItemBase("nail");		
-		shell = new ItemBase("shell");
+		cartridge = new ItemBase("cartridge");
+		
+		stock = new ItemBase("stock");
+		trigger = new ItemBase("trigger");
+		barrel = new ItemBase("barrel");
 		
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		
