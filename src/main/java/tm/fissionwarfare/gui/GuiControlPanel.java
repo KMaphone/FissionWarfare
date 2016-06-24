@@ -74,7 +74,6 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		
 		if (button.id == launchButton.id) {
 			
-			tileEntity.toggleLaunch(player);
 			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord + "%" + player.getDisplayName()));
 		}
 	}

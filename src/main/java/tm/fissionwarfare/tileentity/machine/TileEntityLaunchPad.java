@@ -16,6 +16,7 @@ import net.minecraft.client.audio.ISound.AttenuationType;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +24,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
@@ -35,6 +37,7 @@ import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
 import tm.fissionwarfare.itemblock.ItemSupportFrame;
 import tm.fissionwarfare.missile.MissileData;
+import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.sounds.MissileSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.EffectUtil;
@@ -118,11 +121,10 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 	public void startLaunch(EntityPlayer player) {
 		
 		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && isDistanceInRange() && canExtractEnergy(ENERGY_COST) && isPathClear()) {			
-			launching = true;
 			
-			if (worldObj.isRemote) {
-				SoundHelper.playSound(getSound());
-			}
+			launching = true;			
+			update();			
+			sendSoundsToPlayers();
 		}
 
 		else printErrorMessage(player);
@@ -358,13 +360,31 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 		nbt.setBoolean("launching", launching);
 	}
-
+	
+	public void sendSoundsToPlayers() {
+		
+		for (Object o : worldObj.loadedEntityList) {
+			
+			if (o instanceof EntityPlayer) {
+				
+				EntityPlayer entityPlayer = (EntityPlayer)o;
+				
+				if (entityPlayer.getDistance(xCoord, yCoord, zCoord) <= 50) {
+					
+					FissionWarfare.network.sendTo(new ClientPacketHandler("playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord), (EntityPlayerMP) entityPlayer);
+				}
+			}				
+		}	
+	}
+	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ISound getSound() {
 		return new SoundTile(this, Reference.MOD_ID + ":launch", 4, 1, true, 0, xCoord, yCoord, zCoord).setFadeOut(30);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public boolean shouldPlaySound() {
 		return launching;
 	}

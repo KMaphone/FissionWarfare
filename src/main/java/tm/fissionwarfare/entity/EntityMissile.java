@@ -170,7 +170,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData,
 			SoundHelper.playSound(getSound());
 		}
 	}
-			
+	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
 
@@ -211,11 +211,13 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData,
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ISound getSound() {
 		return new MissileSound(this);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public boolean shouldPlaySound() {
 		return !isDead;
 	}

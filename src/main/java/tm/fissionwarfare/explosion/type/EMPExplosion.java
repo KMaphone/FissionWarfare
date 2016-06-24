@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -53,6 +55,7 @@ public class EMPExplosion implements IExplosionType {
 	public void doPlayerDamage() {}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void doEffects() {
 		
 		List<Location> locations = ShapeUtil.getSphere(new Location(world, vector), SIZE);

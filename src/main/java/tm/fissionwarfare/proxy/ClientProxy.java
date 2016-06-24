@@ -3,6 +3,8 @@ package tm.fissionwarfare.proxy;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,5 +58,10 @@ public class ClientProxy extends CommonProxy {
 	
 	public int addArmor(String armor) {
 		return RenderingRegistry.addNewArmourRendererPrefix(armor);				
+	}
+
+	@Override
+	public EntityPlayer getPlayer() {
+		return Minecraft.getMinecraft().thePlayer;
 	}
 }
