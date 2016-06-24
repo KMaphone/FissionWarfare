@@ -66,7 +66,7 @@ public class ClientPacketHandler implements IMessage {
 				ItemStack stack = player.inventory.getStackInSlot(slot);
 				
 				NBTUtil.getNBT(stack).setInteger("energy", energy);
-			}
+			}			
 			
 			if (data[0].equalsIgnoreCase("consumeitem")) {
 								
@@ -85,6 +85,29 @@ public class ClientPacketHandler implements IMessage {
 				if (stack.getItemDamage() >= stack.getMaxDamage()) {
 					player.inventory.setInventorySlotContents(slot, null);
 				}
+			}
+			
+			if (data[0].equalsIgnoreCase("launch")) {
+				
+				int x = Integer.parseInt(data[1]);
+				int y = Integer.parseInt(data[2]);
+				int z = Integer.parseInt(data[3]);
+				
+				((TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z)).launching = true;		
+			}
+			
+			if (data[0].equalsIgnoreCase("spawnparticle")) {
+				
+				String particleName = data[1];
+				
+				double x = Double.parseDouble(data[2]);
+				double y = Double.parseDouble(data[3]);
+				double z = Double.parseDouble(data[4]);
+				double velX = Double.parseDouble(data[5]);
+				double velY = Double.parseDouble(data[6]);
+				double velZ = Double.parseDouble(data[7]);
+				
+				player.worldObj.spawnParticle(particleName, x, y, z, velX, velY, velZ);
 			}
 			
 			if (data[0].equalsIgnoreCase("playsound")) {
@@ -106,8 +129,6 @@ public class ClientPacketHandler implements IMessage {
 				int z = Integer.parseInt(data[3]);
 				
 				ISoundSource tileSound = (ISoundSource) player.worldObj.getTileEntity(x, y, z);
-				
-				System.out.println(tileSound.getSound().getPositionedSoundLocation());
 				
 				SoundHelper.playSound(tileSound.getSound());
 			}

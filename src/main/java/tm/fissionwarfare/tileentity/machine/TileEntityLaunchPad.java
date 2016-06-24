@@ -122,9 +122,10 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		
 		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && isDistanceInRange() && canExtractEnergy(ENERGY_COST) && isPathClear()) {			
 			
-			launching = true;			
-			update();			
-			sendSoundsToPlayers();
+			launching = true;
+			
+			FissionWarfare.network.sendToAll(new ClientPacketHandler("launch%" + xCoord + "%" + yCoord + "%" + zCoord));
+			FissionWarfare.network.sendToAll(new ClientPacketHandler("playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord));
 		}
 
 		else printErrorMessage(player);
@@ -359,22 +360,6 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		profile.writeToNBT(nbt);
 
 		nbt.setBoolean("launching", launching);
-	}
-	
-	public void sendSoundsToPlayers() {
-		
-		for (Object o : worldObj.loadedEntityList) {
-			
-			if (o instanceof EntityPlayer) {
-				
-				EntityPlayer entityPlayer = (EntityPlayer)o;
-				
-				if (entityPlayer.getDistance(xCoord, yCoord, zCoord) <= 50) {
-					
-					FissionWarfare.network.sendTo(new ClientPacketHandler("playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord), (EntityPlayerMP) entityPlayer);
-				}
-			}				
-		}	
 	}
 	
 	@Override

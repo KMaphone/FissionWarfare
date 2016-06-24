@@ -12,13 +12,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tm.fissionwarfare.FissionWarfare;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.damage.DamageSourceCustom;
 import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.key.KeyBindings;
 import tm.fissionwarfare.packet.ServerPacketHandler;
+import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.util.GunData;
 import tm.fissionwarfare.util.GunProfile;
 import tm.fissionwarfare.util.math.Angle2d;
@@ -165,7 +168,9 @@ public class ItemGun extends ItemBase {
 				float randomPitch = profile.accuracy == 0 ? 0 : rand.nextInt(profile.accuracy * 2) - profile.accuracy;
 				float randomYaw = profile.accuracy == 0 ? 0 : rand.nextInt(profile.accuracy * 2) - profile.accuracy;
 				
-				GunTraceUtil.doGunTrace(player, new Vector3d(player.posX, (!world.isRemote ? 1.62F : 0) + player.posY, player.posZ), new Angle2d((-player.rotationPitch) + randomPitch, (-player.rotationYaw - 90) + randomYaw), world, profile.damage, profile.distance);
+				if (!world.isRemote) GunTraceUtil.doGunTrace(player, new Vector3d(player.posX, 1.62F + player.posY, player.posZ), new Angle2d((-player.rotationPitch) + randomPitch, (-player.rotationYaw - 90) + randomYaw), world, profile.damage, profile.distance);
+				
+				world.playSoundAtEntity(player, profile.sound.getSoundPath(), 1, (float)MathHelper.getRandomDoubleInRange(rand, 0.8D, 1.2D));
 			}
 			
 			data.ammo--;	

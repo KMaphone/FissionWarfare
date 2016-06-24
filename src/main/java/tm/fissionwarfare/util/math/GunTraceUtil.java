@@ -10,8 +10,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tm.fissionwarfare.FissionWarfare;
 import tm.fissionwarfare.damage.DamageSourceCustom;
 import tm.fissionwarfare.init.InitBlocks;
+import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.util.math.RaytraceUtil.HitType;
 
 public class GunTraceUtil {
@@ -28,7 +30,7 @@ public class GunTraceUtil {
 			
 			raytrace.add(velcity);
 			
-			world.spawnParticle("smoke", raytrace.x, raytrace.y, raytrace.z, 0, 0, 0);
+			FissionWarfare.network.sendToAll(new ClientPacketHandler("spawnparticle%smoke%" + raytrace.x + "%" + raytrace.y + "%" + raytrace.z + "%" + 0 + "%" + 0 + "%" + 0));
 			
 			for (EntityLivingBase living : list) {
 				

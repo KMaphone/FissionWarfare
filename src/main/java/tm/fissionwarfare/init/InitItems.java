@@ -11,6 +11,7 @@ import tm.fissionwarfare.item.ItemNailGun;
 import tm.fissionwarfare.item.ItemTiered;
 import tm.fissionwarfare.itemblock.ItemControlPanel;
 import tm.fissionwarfare.itemblock.ItemSupportFrame;
+import tm.fissionwarfare.sounds.FWSound;
 import tm.fissionwarfare.util.GunProfile;
 import tm.fissionwarfare.util.ToolSet;
 
@@ -115,7 +116,7 @@ public class InitItems {
 		
 		location_linker = new ItemLocationLinker();	
 		
-		shotgun = new ItemGun("shotgun", new GunProfile(15, 4, 4, 10, 2, 30, 20, false));
+		shotgun = new ItemGun("shotgun", new GunProfile(15, 4, 4, 10, 2, 30, 20, false, FWSound.shotgun_fire));
 		bullet = new ItemBase("bullet", InitTabs.tabWarfare);
 		
 		missile = new ItemMissile();
