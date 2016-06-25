@@ -63,7 +63,7 @@ public class InitRecipes {
 			" SL", "SLS", "LS ", 'L', "logWood", 'S', "stairWood",
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.trigger, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.handle, 1), new Object[] {
 			"SSS", "SLI", "SII", 'I', TFItems.ingotInvar, 'S', new ItemStack(InitItems.steel_plate, 1), 'L', Blocks.lever
 		}));
 		
@@ -72,7 +72,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shotgun, 1), new Object[] {
-			"   ", "SHB", " T ", 'S', new ItemStack(InitItems.stock), 'T', new ItemStack(InitItems.trigger), 'B', new ItemStack(InitItems.barrel), 'H', Blocks.hopper
+			"   ", "SHB", " T ", 'S', new ItemStack(InitItems.stock), 'T', new ItemStack(InitItems.handle), 'B', new ItemStack(InitItems.barrel), 'H', Blocks.hopper
 		}));
 		
 		/////////////////////////////////////////////////////////CIRCUIT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -113,9 +113,9 @@ public class InitRecipes {
 			"RRR", "FPF", "RRR", 'R', Items.rotten_flesh, 'F', Items.fermented_spider_eye, 'P', new ItemStack(Items.fish, 1, 3)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shrapnel_capsule, 1), new Object[] {
+		/*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shrapnel_capsule, 1), new Object[] {
 			"AAA", "AIA", "AAA", 'I', Items.iron_axe, 'A', Items.arrow,
-		}));
+		}));*/
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nuclear_capsule, 1), new Object[] {
 			"EEE", "UUU", "EEE", 'U', InitItems.uranium_pellet, 'E', TFItems.ingotEnderium,

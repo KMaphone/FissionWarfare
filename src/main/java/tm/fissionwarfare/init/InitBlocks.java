@@ -20,7 +20,7 @@ public class InitBlocks {
 
 	//Main
 	
-	public static Block quartz_ore, sulfur_ore, limestone_ore, uranium_ore;
+	public static Block quartz_ore, sulfur_ore, uranium_ore;
 	public static Block steel_block;
 	
 	//Warfare
@@ -46,7 +46,6 @@ public class InitBlocks {
 		
 		//Main
 		
-		limestone_ore = new BlockOreBase("limestone").setDroppedItem(new ItemStack(InitItems.limestone_chunk), 1, 2, 1, 2);
 		quartz_ore = new BlockOreBase("quartz").setDroppedItem(new ItemStack(InitItems.quartz_chunk), 1, 2, 1, 2);
 		sulfur_ore = new BlockOreBase("sulfur").setDroppedItem(TFItems.dustSulfur, 1, 2, 2, 4).setRareDrop(TFItems.dustNiter);		
 		uranium_ore = new BlockOreBase("uranium").setDroppedItem(new ItemStack(InitItems.radioactive_chunk), 1, 2, 1, 2).setLightLevel(0.3F);

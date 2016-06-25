@@ -23,7 +23,7 @@ public class InitTERecipes {
 		
 		ThermalExpansionHelper.addTransposerFill(1000, new ItemStack(InitItems.iron_frame), new ItemStack(InitBlocks.reinforced_glass, 1, 4), new FluidStack(InitFluids.liquid_glass, 1000), false);
 		
-		ThermalExpansionHelper.addPulverizerRecipe(2000, new ItemStack(InitItems.radioactive_chunk), new ItemStack(Blocks.cobblestone), new ItemStack(InitItems.uranium_pellet), 40);
+		ThermalExpansionHelper.addPulverizerRecipe(2000, new ItemStack(InitItems.radioactive_chunk), new ItemStack(Blocks.cobblestone), new ItemStack(InitItems.uranium_pellet), 20);
 		
 		ThermalExpansionHelper.addSmelterRecipe(1000, new ItemStack(InitItems.steel_ingot), new ItemStack(InitItems.steel_ingot), new ItemStack(InitItems.steel_plate));
 		

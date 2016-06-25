@@ -29,8 +29,7 @@ public class InitItems {
 	public static Item steel_plate;
 	
 	public static Item poison_capsule;
-	public static Item fiery_capsule;
-	public static Item shrapnel_capsule;	
+	public static Item fiery_capsule;	
 	public static Item electromagnetic_capsule;
 	public static Item nuclear_capsule;
 	
@@ -60,7 +59,7 @@ public class InitItems {
 	public static Item location_linker;
 	
 	public static Item stock;
-	public static Item trigger;
+	public static Item handle;
 	public static Item barrel;
 	
 	public static Item shotgun;
@@ -79,8 +78,7 @@ public class InitItems {
 		uranium_pellet = new ItemBase("uranium_pellet");		
 		
 		poison_capsule = new ItemBase("poison_capsule");
-		fiery_capsule = new ItemBase("fiery_capsule");
-		shrapnel_capsule = new ItemBase("shrapnel_capsule");		
+		fiery_capsule = new ItemBase("fiery_capsule");		
 		electromagnetic_capsule = new ItemBase("electromagnetic_capsule");
 		nuclear_capsule = new ItemBase("nuclear_capsule");
 		
@@ -113,7 +111,7 @@ public class InitItems {
 		location_linker = new ItemLocationLinker();	
 		
 		stock = new ItemBase("stock");
-		trigger = new ItemBase("trigger");
+		handle = new ItemBase("handle");
 		barrel = new ItemBase("barrel");
 		
 		shotgun = new ItemGun("shotgun", new GunProfile(15, 4, 4, 10, 2, 30, 20, false, FWSound.shotgun_fire));
