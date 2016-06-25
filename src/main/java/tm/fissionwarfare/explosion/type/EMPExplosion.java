@@ -55,7 +55,6 @@ public class EMPExplosion implements IExplosionType {
 	public void doPlayerDamage() {}
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void doEffects() {
 		
 		List<Location> locations = ShapeUtil.getSphere(new Location(world, vector), SIZE);
