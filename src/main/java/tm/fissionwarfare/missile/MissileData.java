@@ -2,6 +2,7 @@ package tm.fissionwarfare.missile;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import tm.fissionwarfare.config.FWConfig;
 import tm.fissionwarfare.explosion.type.EnumExplosionType;
 
 public class MissileData {
@@ -21,7 +22,7 @@ public class MissileData {
 	}
 	
 	public int getMaxBlockDistance(){
-		return getFuelTier() * 1000;
+		return getFuelTier() * FWConfig.missileBlockRangeMultiplier;
 	}
 
 	public void writeToNBT(NBTTagCompound nbt) {

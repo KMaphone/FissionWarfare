@@ -99,3 +99,4 @@ tile.liquid_glass.name=Liquid Glass
 category.general_options.name=General Options
 category.client.name=Client
 category.gen.name=World Gen
+category.warfare.name=Warfare
