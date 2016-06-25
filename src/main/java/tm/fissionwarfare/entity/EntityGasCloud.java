@@ -59,8 +59,6 @@ public class EntityGasCloud extends Entity {
 
 				EntityLivingBase living = (EntityLivingBase) obj;
 				
-				System.out.println(range);
-				
 				if (living.getDistance(posX, posY, posZ) <= range) {
 
 					living.attackEntityFrom(DamageSource.magic, (float) DAMAGE);

@@ -48,7 +48,7 @@ public class SecurityEvent {
 				security.getSecurityProfile().cleanTeam(event.world);
 				
 				if (!security.getSecurityProfile().isSameTeam(event.entityPlayer) && !event.entityPlayer.capabilities.isCreativeMode) {
-					System.out.println("heey");
+					
 					ChatUtil.printFWMessage(EnumChatFormatting.RED, "This unit doesn't belong to you!", event.entityPlayer);
 					event.setCanceled(true);
 				}
