@@ -41,6 +41,7 @@ import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.sounds.MissileSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.EffectUtil;
+import tm.fissionwarfare.util.PacketUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
 import tm.fissionwarfare.util.math.Location;
 
@@ -124,8 +125,8 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			
 			launching = true;
 			
-			FissionWarfare.network.sendToAll(new ClientPacketHandler("launch%" + xCoord + "%" + yCoord + "%" + zCoord));
-			FissionWarfare.network.sendToAll(new ClientPacketHandler("playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord));
+			PacketUtil.sendClientPacketsToGroup(worldObj, "launch%" + xCoord + "%" + yCoord + "%" + zCoord, xCoord, yCoord, zCoord, 50);			
+			PacketUtil.sendClientPacketsToGroup(worldObj, "playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord, xCoord, yCoord, zCoord, 50);
 		}
 
 		else printErrorMessage(player);
