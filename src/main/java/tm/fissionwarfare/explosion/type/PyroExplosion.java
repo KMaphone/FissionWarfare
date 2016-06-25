@@ -15,8 +15,8 @@ import tm.fissionwarfare.util.math.Vector3d;
 
 public class PyroExplosion implements IExplosionType {
 
-	public static final int SIZE = 5;
-	public static final int DAMAGE = 10;
+	public static final int SIZE = 15;
+	public static final int DAMAGE = 5;
 	
 	private World world;
 	private Vector3d vector;
@@ -30,7 +30,7 @@ public class PyroExplosion implements IExplosionType {
 	@Override
 	public void doBlockDamage() {
 		
-		List<Location> locations = ExplosionUtil.getEffectedExplosionBlocks(world, vector, SIZE, 15);
+		List<Location> locations = ExplosionUtil.getEffectedExplosionBlocks(world, vector, SIZE, 10);
 		
 		for (Location loc : locations) {
 			

@@ -21,7 +21,7 @@ public class MissileData {
 	}
 	
 	public int getMaxBlockDistance(){
-		return getFuelTier() * 500;
+		return getFuelTier() * 1000;
 	}
 
 	public void writeToNBT(NBTTagCompound nbt) {

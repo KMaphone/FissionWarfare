@@ -43,11 +43,11 @@ public class InitRecipes {
 			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', TFItems.ingotInvar
 		}));
 	
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 2), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', Items.coal
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 2), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', new ItemStack(Items.coal, 1, 1)
 		}));
 		
