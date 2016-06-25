@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import cofh.api.energy.IEnergyHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -68,7 +66,7 @@ public class EMPExplosion implements IExplosionType {
 					double randX = MathHelper.getRandomDoubleInRange(rand, 0, 1);
 					double randZ = MathHelper.getRandomDoubleInRange(rand, 0, 1);
 					
-					EffectUtil.spawnEffect(new EntityMissileSmokeFX(world, loc.x + randX, loc.y + 1D, loc.z + randZ, 0, 0, 0));
+					world.spawnParticle("smoke", loc.x + randX, loc.y + 1D, loc.z + randZ, 0, 0, 0);
 				}
 				
 				world.playSound(loc.x, loc.y, loc.z, "random.fizz", 1, 0.5F, false);
