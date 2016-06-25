@@ -66,7 +66,7 @@ public class FissionWarfare {
 		
 		InitItems.init();
 		InitBlocks.init();
-		InitFluids.init();	
+		InitFluids.init();
 	}
 		
 	@EventHandler
@@ -78,7 +78,7 @@ public class FissionWarfare {
 		InitTERecipes.init();
 		
 		InitEntities.init();
-		InitTileEntities.init();		
+		InitTileEntities.init();
 		
 		worldGenOre = new WorldGenOre();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);

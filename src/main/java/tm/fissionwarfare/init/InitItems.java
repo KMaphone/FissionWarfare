@@ -59,12 +59,12 @@ public class InitItems {
 		
 	public static Item location_linker;
 	
-	public static Item shotgun;
-	public static Item bullet;
-	
 	public static Item stock;
 	public static Item trigger;
 	public static Item barrel;
+	
+	public static Item shotgun;
+	public static Item bullet;
 	
 	public static Item missile;
 	
@@ -98,11 +98,7 @@ public class InitItems {
 		
 		nail = new ItemBase("nail");		
 		cartridge = new ItemBase("cartridge");
-		
-		stock = new ItemBase("stock");
-		trigger = new ItemBase("trigger");
-		barrel = new ItemBase("barrel");
-		
+						
 		steel = new ToolSet("steel", InitToolMaterials.toolMaterialSteel, steel_ingot, true);
 		
 		//Warfare
@@ -115,6 +111,10 @@ public class InitItems {
 		compressor = new ItemCompressor();	
 		
 		location_linker = new ItemLocationLinker();	
+		
+		stock = new ItemBase("stock");
+		trigger = new ItemBase("trigger");
+		barrel = new ItemBase("barrel");
 		
 		shotgun = new ItemGun("shotgun", new GunProfile(15, 4, 4, 10, 2, 30, 20, false, FWSound.shotgun_fire));
 		bullet = new ItemBase("bullet", InitTabs.tabWarfare);

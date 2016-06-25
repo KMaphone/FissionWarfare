@@ -60,7 +60,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.stock, 1), new Object[] {
-			" SL", "SLS", "LS ", 'L', Blocks.log, 'S', Blocks.oak_stairs,
+			" SL", "SLS", "LS ", 'L', "logWood", 'S', "stairWood",
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.trigger, 1), new Object[] {

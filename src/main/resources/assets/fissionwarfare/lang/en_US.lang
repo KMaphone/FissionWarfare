@@ -48,6 +48,10 @@ item.compressor.name=Compressor
 
 item.location_linker.name=Location Linker
 
+item.stock.name=Stock
+item.trigger.name=Trigger
+item.barrel.name=Barrel
+
 item.shotgun.name=Shotgun
 item.bullet.name=Bullet
 
