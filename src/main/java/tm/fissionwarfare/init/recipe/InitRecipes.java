@@ -17,7 +17,7 @@ public class InitRecipes {
 	public static void init() {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, Items.clay_ball });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 3), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, });
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.cartridge, 10), new Object[] {
 			" C ", "CGC", "CGC", 'C', TFItems.ingotCopper, 'G', Items.gunpowder
@@ -35,12 +35,12 @@ public class InitRecipes {
 			"I I", " I ", "I I", 'I', "ingotIron"
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 1), new Object[] {
-			"SSS", " S ", " S ", 'S', new ItemStack(InitItems.steel_ingot)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 3), new Object[] {
+			"SSS", " S ", " S ", 'S', TFItems.nuggetPlatinum
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun_magazine, 1), new Object[] {
-			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', TFItems.ingotInvar
+			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', InitItems.steel_plate
 		}));
 	
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 2), new Object[] {

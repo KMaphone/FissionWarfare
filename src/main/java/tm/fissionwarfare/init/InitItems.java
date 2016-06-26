@@ -105,7 +105,7 @@ public class InitItems {
 		support_frame = new ItemSupportFrame();
 		
 		nail_gun = new ItemNailGun();
-		nail_gun_magazine = new ItemBase("nail_gun_magazine", InitTabs.tabWarfare).setMaxStackSize(1).setMaxDamage(200);
+		nail_gun_magazine = new ItemBase("nail_gun_magazine", InitTabs.tabWarfare).setMaxStackSize(1).setMaxDamage(150);
 		compressor = new ItemCompressor();	
 		
 		location_linker = new ItemLocationLinker();	

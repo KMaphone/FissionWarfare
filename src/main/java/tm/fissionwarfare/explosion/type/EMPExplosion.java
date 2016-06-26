@@ -19,7 +19,7 @@ public class EMPExplosion implements IExplosionType {
 
 	private Random rand = new Random();
 	
-	public static final int SIZE = 5;
+	public static final int SIZE = 15;
 	
 	private World world;
 	private Vector3d vector;
