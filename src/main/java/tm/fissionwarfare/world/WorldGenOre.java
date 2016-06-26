@@ -12,7 +12,7 @@ public class WorldGenOre implements IWorldGenerator {
 	
 	private OreGenProfile sulfurGen = new OreGenProfile(11, 30, 10, 8, InitBlocks.sulfur_ore);
 	private OreGenProfile quartzGen = new OreGenProfile(20, 60, 10, 4, InitBlocks.quartz_ore);
-	private OreGenProfile uraniumGen = new OreGenProfileSingle(5, 25, 2, InitBlocks.uranium_ore);
+	private OreGenProfile uraniumGen = new OreGenProfileSingle(5, 25, 1, 50, InitBlocks.uranium_ore);
 	
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
