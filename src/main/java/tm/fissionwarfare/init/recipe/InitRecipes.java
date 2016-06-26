@@ -31,7 +31,7 @@ public class InitRecipes {
 			" L ", "LBL", " L ", 'B', Items.blaze_rod, 'L', TFItems.ingotLumium
 		}));
 					
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 16), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 32), new Object[] {
 			"I I", " I ", "I I", 'I', "ingotIron"
 		}));
 		
@@ -86,7 +86,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1, 2), new Object[] {
-			"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass), 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
+			"LLL", "DCD", "LLL", 'L', TEBlocks.blockGlass, 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
 		
 		/////////////////////////////////////////////////////////CANISTER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -122,7 +122,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.electromagnetic_capsule, 1), new Object[] {
-			"SSS", "SLS", "CPC", 'L', new ItemStack(InitItems.lightning_rod), 'C', TEItems.capacitorHardened, 'P', TEItems.powerCoilElectrum, 'S', new ItemStack(InitItems.steel_plate)
+			"SSS", "SLS", "CPC", 'L', new ItemStack(InitItems.lightning_rod), 'C', TEItems.capacitorHardened, 'P', TEItems.powerCoilSilver, 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		////////////////////////////////////////////////////////EXPLOSIVES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
