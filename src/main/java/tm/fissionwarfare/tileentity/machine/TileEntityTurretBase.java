@@ -81,7 +81,7 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 					for (Object o : worldObj.loadedEntityList) {
 						
 						if (o != null && o instanceof EntityPlayerMP && ((EntityPlayer) o).getDistance(xCoord, yCoord, zCoord) <= 30) {
-							FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + FWSound.turret_blast1.getSoundPath() + "%" + xCoord + "%" + yCoord + "%" + zCoord + "%" + 0.3F), (EntityPlayerMP)o);
+							FissionWarfare.network.sendTo(new ClientPacketHandler("playsound%" + FWSound.turret_fire.getSoundPath() + "%" + xCoord + "%" + yCoord + "%" + zCoord + "%" + 3F), (EntityPlayerMP)o);
 						}						
 					}				
 										
@@ -89,7 +89,7 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 					
 					if (!canShellFitInHopper()) {
 						
-						EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 1F, zCoord + 0.5F, new ItemStack(InitItems.shell));						
+						EntityItem entityItem = new EntityItem(worldObj, xCoord + 0.5F, yCoord + 1F, zCoord + 0.5F, new ItemStack(InitItems.cartridge));						
 						worldObj.spawnEntityInWorld(entityItem);
 					}
 					
@@ -140,11 +140,11 @@ public abstract class TileEntityTurretBase extends TileEntityEnergyBase implemen
 			for (int s = 0; s < hopper.getSizeInventory(); s++) {
 				
 				if (hopper.getStackInSlot(s) == null) {
-					hopper.setInventorySlotContents(s, new ItemStack(InitItems.shell));
+					hopper.setInventorySlotContents(s, new ItemStack(InitItems.cartridge));
 					return true;
 				}
 				
-				else if (hopper.getStackInSlot(s).getItem() == InitItems.shell && hopper.getStackInSlot(s).stackSize < hopper.getInventoryStackLimit()) {
+				else if (hopper.getStackInSlot(s).getItem() == InitItems.cartridge && hopper.getStackInSlot(s).stackSize < hopper.getInventoryStackLimit()) {
 					hopper.getStackInSlot(s).stackSize++;
 					return true;
 				}

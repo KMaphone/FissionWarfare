@@ -16,42 +16,38 @@ public class InitRecipes {
 
 	public static void init() {
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, InitItems.limestone_chunk });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 2), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, InitItems.limestone_chunk });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.quartz_sand, 2), new Object[] { Blocks.sand, Blocks.gravel, InitItems.quartz_chunk, Items.clay_ball });
+		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.cement, 3), new Object[] { Blocks.sand, Blocks.gravel, Items.clay_ball, });
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shell, 5), new Object[] {
-			" C ", "C C", "C C", 'C', TFItems.ingotCopper
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.cartridge, 10), new Object[] {
+			" C ", "CGC", "CGC", 'C', TFItems.ingotCopper, 'G', Items.gunpowder
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.bullet, 16), new Object[] {
-			" S ", "SCS", "SLS", 'S', InitItems.shell, 'C', InitItems.fiery_capsule, 'L', new ItemStack(TFBlocks.blockStorage, 1, 3)
+			" S ", "SCS", "SCS", 'S', InitItems.cartridge, 'C', TFItems.ingotLead 
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.lightning_rod, 2), new Object[] {
 			" L ", "LBL", " L ", 'B', Items.blaze_rod, 'L', TFItems.ingotLumium
 		}));
 					
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 16), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.iron_frame, 32), new Object[] {
 			"I I", " I ", "I I", 'I', "ingotIron"
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.invar_frame, 16), new Object[] {
-			"I I", " I ", "I I", 'I', TFItems.ingotInvar
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 3), new Object[] {
+			"SSS", " S ", " S ", 'S', TFItems.nuggetPlatinum
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail, 16), new Object[] {
-			"SSS", " S ", " S ", 'S', new ItemStack(InitItems.steel_ingot)
-		}));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun_magazine, 16), new Object[] {
-			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', new ItemStack(InitItems.invar_frame)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun_magazine, 1), new Object[] {
+			"FNF", "FNF", "FNF", 'N', new ItemStack(InitItems.nail), 'F', InitItems.steel_plate
 		}));
 	
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 2), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', Items.coal
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1), new Object[] {
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 2), new Object[] {
 			"SSS", "SCS", "SSS", 'S', TFItems.dustSulfur, 'C', new ItemStack(Items.coal, 1, 1)
 		}));
 		
@@ -61,6 +57,22 @@ public class InitRecipes {
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nail_gun, 1), new Object[] {
 			"SSS", " BC", " SS", 'S', InitItems.steel_ingot, 'C', new ItemStack(InitItems.motor, 1), 'B', Blocks.stone_button
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.stock, 1), new Object[] {
+			" SL", "SLS", "LS ", 'L', "logWood", 'S', "stairWood",
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.handle, 1), new Object[] {
+			"SSS", "SLI", "SII", 'I', TFItems.ingotInvar, 'S', new ItemStack(InitItems.steel_plate, 1), 'L', Blocks.lever
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.barrel, 1), new Object[] {
+			" SD", "SIS", "IS ", 'I', TFItems.ingotInvar, 'S', new ItemStack(InitItems.steel_plate), 'D', Blocks.dispenser
+		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shotgun, 1), new Object[] {
+			"   ", "SHB", " T ", 'S', new ItemStack(InitItems.stock), 'T', new ItemStack(InitItems.handle), 'B', new ItemStack(InitItems.barrel), 'H', Blocks.hopper
 		}));
 		
 		/////////////////////////////////////////////////////////CIRCUIT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -74,7 +86,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.circuit, 1, 2), new Object[] {
-			"LLL", "DCD", "LLL", 'L', new ItemStack (TEBlocks.blockGlass), 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
+			"LLL", "DCD", "LLL", 'L', TEBlocks.blockGlass, 'D', Items.diamond, 'C', new ItemStack(InitItems.circuit, 1, 1)
 		}));
 		
 		/////////////////////////////////////////////////////////CANISTER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -101,16 +113,16 @@ public class InitRecipes {
 			"RRR", "FPF", "RRR", 'R', Items.rotten_flesh, 'F', Items.fermented_spider_eye, 'P', new ItemStack(Items.fish, 1, 3)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shrapnel_capsule, 1), new Object[] {
+		/*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.shrapnel_capsule, 1), new Object[] {
 			"AAA", "AIA", "AAA", 'I', Items.iron_axe, 'A', Items.arrow,
-		}));
+		}));*/
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.nuclear_capsule, 1), new Object[] {
 			"EEE", "UUU", "EEE", 'U', InitItems.uranium_pellet, 'E', TFItems.ingotEnderium,
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.electromagnetic_capsule, 1), new Object[] {
-			"SSS", "SLS", "CPC", 'L', new ItemStack(InitItems.lightning_rod), 'C', TEItems.capacitorHardened, 'P', TEItems.powerCoilElectrum, 'S', new ItemStack(InitItems.steel_plate)
+			"SSS", "SLS", "CPC", 'L', new ItemStack(InitItems.lightning_rod), 'C', TEItems.capacitorHardened, 'P', TEItems.powerCoilSilver, 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		////////////////////////////////////////////////////////EXPLOSIVES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -119,12 +131,12 @@ public class InitRecipes {
 			"SRS", "BNB", "SRS", 'R', TFItems.bucketEnder, 'N', InitItems.nuclear_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
-		/*GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.empExplosive, 1), new Object[] {
-			"ICI", "BEB", "ICI", 'C', new ItemStack(InitItems.circuit, 1, 1), 'E', InitItems.electromagnetic_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'I', new ItemStack(InitItems.frame, 1, 2)
-		}));*/
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.empExplosive, 1), new Object[] {
+			"IGI", "BEB", "IGI", 'E', InitItems.electromagnetic_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'I', new ItemStack(InitItems.steel_plate), 'G', TFItems.bucketGlowstone
+		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.pyroExplosive, 1), new Object[] {
-			"SPS", "PFP", "SPS", 'P', TFItems.bucketPyrotheum, 'F', InitItems.fiery_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
+			"SPS", "BFB", "SPS", 'P', TFItems.bucketPyrotheum, 'F', InitItems.fiery_capsule, 'B', new ItemStack(InitBlocks.basicExplosive, 1), 'S', new ItemStack(InitItems.steel_plate)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.chemicalExplosive, 1), new Object[] {
@@ -132,7 +144,7 @@ public class InitRecipes {
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.basicExplosive, 1), new Object[] {
-			"SES", "RRR", "SES", 'S', InitItems.steel_plate, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
+			"SES", "ERE", "SES", 'S', InitItems.steel_plate, 'E', Blocks.tnt, 'R', TEItems.powerCoilSilver
 		}));
 		
 		/////////////////////////////////////////////////////////MACHINES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -165,8 +177,13 @@ public class InitRecipes {
 			"R  ", "SCS", "SBS", 'S', InitItems.steel_plate, 'B', Blocks.stone_button, 'R', Blocks.redstone_torch, 'C', new ItemStack(InitItems.circuit, 1, 0)
 		}));
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitBlocks.control_panel, 1), new Object[] {
-			"GGG", "SCS", "SSS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1)
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.control_panel, 1), new Object[] {
+			"GGG", "SCS", "SRS", 'S', InitItems.steel_plate, 'G', InitBlocks.reinforced_glass,'C', new ItemStack(InitItems.circuit, 1, 1), 'R', TEItems.powerCoilElectrum
 		}));
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(InitItems.support_frame, 1), new Object[] {
+			"SGS", "SGS", "SGS", 'S', InitItems.steel_plate, 'G', Blocks.iron_bars
+		}));
+		
 	}
 }

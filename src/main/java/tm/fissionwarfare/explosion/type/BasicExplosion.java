@@ -13,41 +13,44 @@ import tm.fissionwarfare.util.math.Vector3d;
 
 public class BasicExplosion implements IExplosionType {
 
-	private final static int BASIC_SIZE = 5;
-	
+	private final static int SIZE = 5;
+
 	private World world;
 	private Vector3d vector;
-	
+
 	@Override
 	public void setup(World world, Vector3d vector) {
 		this.world = world;
 		this.vector = vector;
 	}
-	
+
 	@Override
 	public void doBlockDamage() {
-		ConcreteUtil.generateShockwave(new Location(world, vector), BASIC_SIZE, 1);
-		ExplosionUtil.generateExplosion(world, vector, BASIC_SIZE, 1);
+
+		ConcreteUtil.generateShockwave(new Location(world, vector), SIZE, 1);
+		ExplosionUtil.generateExplosion(world, vector, SIZE, 1);
 	}
 
 	@Override
 	public void doPlayerDamage() {
-		PlayerExplosionUtil.doLivingDamage(world, vector, BASIC_SIZE * 2, 20);
+
+		PlayerExplosionUtil.doLivingDamage(world, vector, SIZE * 2, 20);
 	}
 
 	@Override
 	public void doEffects() {
-		Random rand = new Random();
+
 		double offset = 0.5D;
 		double d2 = vector.y;
-		if (world.isRemote) {
-			for (int i = 0; i<8; i++){
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-				world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0.0, 0.0, 0.0);
-			}
-			FWSound.small_blast.play(world, vector.x, vector.y, vector.z, BASIC_SIZE * 2, 1);
+
+		for (int i = 0; i < 8; i++) {
+
+			world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z + offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z + offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x - offset), d2, (vector.z - offset), 0, 0, 0);
+			world.spawnParticle("hugeexplosion", (vector.x + offset), d2, (vector.z - offset), 0, 0, 0);
 		}
+
+		FWSound.small_blast.play(world, vector.x, vector.y, vector.z, SIZE * 2, 1);
 	}
 }

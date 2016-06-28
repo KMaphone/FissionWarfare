@@ -12,7 +12,7 @@ public class TileEntityControlPanel extends TileEntityBase implements ISecurity 
 	
 	public SecurityProfile profile = new SecurityProfile();
 	
-	public int[] targetCoords = new int[2];
+	public int targetX, targetZ;
 
 	@Override
 	public SecurityProfile getSecurityProfile() {
@@ -37,7 +37,8 @@ public class TileEntityControlPanel extends TileEntityBase implements ISecurity 
 		
 		profile.readFromNBT(nbt);
 		
-		if (nbt.hasKey("coords")) targetCoords = nbt.getIntArray("coords");		
+		targetX = nbt.getInteger("targetX");
+		targetZ = nbt.getInteger("targetZ");
 	}
 	
 	@Override
@@ -46,6 +47,7 @@ public class TileEntityControlPanel extends TileEntityBase implements ISecurity 
 		
 		profile.writeToNBT(nbt);
 		
-		nbt.setIntArray("coords", targetCoords);		
+		nbt.setInteger("targetX", targetX);
+		nbt.setInteger("targetZ", targetZ);
 	}
 }

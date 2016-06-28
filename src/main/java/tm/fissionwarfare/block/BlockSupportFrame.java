@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.init.InitItems;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.itemblock.ItemBlockMeta;
 
 public class BlockSupportFrame extends BlockBase {

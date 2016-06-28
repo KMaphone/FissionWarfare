@@ -10,10 +10,9 @@ import tm.fissionwarfare.init.InitBlocks;
 
 public class WorldGenOre implements IWorldGenerator {
 	
-	private OreGenProfile sulfurGen = new OreGenProfile(5, 20, 10, 8, InitBlocks.sulfur_ore);
+	private OreGenProfile sulfurGen = new OreGenProfile(11, 30, 10, 8, InitBlocks.sulfur_ore);
 	private OreGenProfile quartzGen = new OreGenProfile(20, 60, 10, 4, InitBlocks.quartz_ore);
-	private OreGenProfile uraniumGen = new OreGenProfileSingle(5, 30, 5, InitBlocks.uranium_ore);
-	private OreGenProfile limestoneGen = new OreGenProfile(40, 70, 15, 10, InitBlocks.limestone_ore);
+	private OreGenProfile uraniumGen = new OreGenProfileSingle(5, 25, 1, 50, InitBlocks.uranium_ore);
 	
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
@@ -26,7 +25,6 @@ public class WorldGenOre implements IWorldGenerator {
 				
 		if (FWConfig.enableSulfurGen) sulfurGen.generate(world, rand, chunkX, chunkZ);
 		if (FWConfig.enableQuartzGen) quartzGen.generate(world, rand, chunkX, chunkZ);
-		if (FWConfig.enableUraniumGen) uraniumGen.generate(world, rand, chunkX, chunkZ);
-		if (FWConfig.enableLimestoneGen) limestoneGen.generate(world, rand, chunkX, chunkZ);		
+		if (FWConfig.enableUraniumGen) uraniumGen.generate(world, rand, chunkX, chunkZ);		
 	}
 }

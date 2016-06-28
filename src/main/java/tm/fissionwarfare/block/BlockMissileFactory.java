@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import tm.fissionwarfare.Reference;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.tileentity.machine.TileEntityMissileFactory;
 
 public class BlockMissileFactory extends BlockContainerBase {
@@ -15,6 +16,7 @@ public class BlockMissileFactory extends BlockContainerBase {
 	
 	public BlockMissileFactory() {
 		super("missile_factory", Material.iron, 2, 2, 2, Block.soundTypeMetal);
+		setCreativeTab(InitTabs.tabWarfare);
 	}
 	
 	@Override

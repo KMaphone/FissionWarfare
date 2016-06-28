@@ -6,9 +6,9 @@ public enum EnumExplosionType {
 
 	BASIC("Basic", new BasicExplosion(), 80),
 	EMP("EMP", new EMPExplosion(), 100),
-	ATOMIC("Atomic", new AtomicExplosion(), 100),
+	PYRO("Pyro", new PyroExplosion(), 100),
 	CHEMICAL("Chemical", new ChemicalExplosion(), 100),
-	PYRO("Pyro", new PyroExplosion(), 100);
+	ATOMIC("Atomic", new AtomicExplosion(), 100);
 
 	private String name;
 	private IExplosionType explosionType;

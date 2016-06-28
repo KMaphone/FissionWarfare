@@ -1,10 +1,13 @@
 package tm.fissionwarfare.entity;
 
+import cofh.lib.audio.ISoundSource;
+import cofh.lib.util.helpers.SoundHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,11 +18,12 @@ import tm.fissionwarfare.api.IExplosionType;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.missile.MissileData;
 import tm.fissionwarfare.sounds.FWSound;
+import tm.fissionwarfare.sounds.MissileSound;
 import tm.fissionwarfare.util.EffectUtil;
 import tm.fissionwarfare.util.math.Angle2d;
 import tm.fissionwarfare.util.math.Vector3d;
 
-public class EntityMissile extends Entity implements IEntityAdditionalSpawnData {
+public class EntityMissile extends Entity implements IEntityAdditionalSpawnData, ISoundSource {
 	
 	public enum MissileState {
 		LAUNCHING, GOING_UP, GOING_DOWN
@@ -29,7 +33,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	
 	public int targetX, targetZ;
 	
-	private MissileState state = MissileState.LAUNCHING;
+	public MissileState state = MissileState.LAUNCHING;
 	
 	public EntityMissile(World world) {
 		super(world);
@@ -50,7 +54,7 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		MissileData missileData = MissileData.getDataFromItem(missileStack);
 		
-		int speed = (missileData.getSpeed() + 1);
+		int speed = (missileData.getFuelTier() + 1);
 		
 		noClip = !(state == MissileState.GOING_DOWN);
 		
@@ -78,9 +82,9 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		
 		if (state == MissileState.LAUNCHING && motionY < 3) {
 			
-			motionY += (0.001F * (speed * 0.5D));
+			motionY += (0.001F * (speed * 0.3D));
 			
-			if (motionY >= 0.2F) {
+			if (motionY >= 0.15F) {
 				
 				FWSound.missile_fire.play(worldObj, posX, posY, posZ, 3F, 1F);
 				
@@ -160,8 +164,13 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 	}
 	
 	@Override
-	protected void entityInit() {}
-			
+	protected void entityInit() {
+		
+		if (worldObj.isRemote) {
+			SoundHelper.playSound(getSound());
+		}
+	}
+	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
 
@@ -199,5 +208,17 @@ public class EntityMissile extends Entity implements IEntityAdditionalSpawnData 
 		NBTTagCompound tag = new NBTTagCompound();
 		writeEntityToNBT(tag);
 		ByteBufUtils.writeTag(buffer, tag);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ISound getSound() {
+		return new MissileSound(this);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldPlaySound() {
+		return !isDead;
 	}
 }

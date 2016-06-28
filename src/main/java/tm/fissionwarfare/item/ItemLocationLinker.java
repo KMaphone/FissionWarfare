@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.tileentity.machine.TileEntityControlPanel;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
@@ -19,7 +20,7 @@ import tm.fissionwarfare.util.UnitChatMessage;
 public class ItemLocationLinker extends ItemBase {
 
 	public ItemLocationLinker() {
-		super("location_linker");	
+		super("location_linker", InitTabs.tabWarfare);
 	}
 	
 	@Override
@@ -51,8 +52,8 @@ public class ItemLocationLinker extends ItemBase {
 					
 					TileEntityControlPanel tileEntity = (TileEntityControlPanel)world.getTileEntity(x, y, z);
 					
-					tileEntity.targetCoords[0] = NBTUtil.getNBT(is).getInteger("X");
-					tileEntity.targetCoords[1] = NBTUtil.getNBT(is).getInteger("Z");
+					tileEntity.targetX = NBTUtil.getNBT(is).getInteger("X");
+					tileEntity.targetZ = NBTUtil.getNBT(is).getInteger("Z");
 					
 					tileEntity.update();
 					

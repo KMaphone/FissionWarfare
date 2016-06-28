@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cofh.lib.audio.ISoundSource;
+import cofh.lib.audio.SoundBase;
+import cofh.lib.audio.SoundTile;
+import cofh.lib.util.helpers.SoundHelper;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.ISound.AttenuationType;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +24,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
+import tm.fissionwarfare.FissionWarfare;
+import tm.fissionwarfare.Reference;
 import tm.fissionwarfare.api.ISecurity;
 import tm.fissionwarfare.api.SecurityProfile;
 import tm.fissionwarfare.block.BlockSupportFrame;
@@ -27,46 +37,43 @@ import tm.fissionwarfare.init.InitItems;
 import tm.fissionwarfare.inventory.ContainerEnergyBase;
 import tm.fissionwarfare.itemblock.ItemSupportFrame;
 import tm.fissionwarfare.missile.MissileData;
-import tm.fissionwarfare.sounds.LaunchSound;
+import tm.fissionwarfare.packet.ClientPacketHandler;
+import tm.fissionwarfare.sounds.MissileSound;
 import tm.fissionwarfare.tileentity.base.TileEntityEnergyBase;
 import tm.fissionwarfare.util.EffectUtil;
+import tm.fissionwarfare.util.PacketUtil;
 import tm.fissionwarfare.util.UnitChatMessage;
 import tm.fissionwarfare.util.math.Location;
 
-public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity {
-
-	@SideOnly(Side.CLIENT)
-	private LaunchSound sound;
-
+public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecurity, ISoundSource {
+	
 	private Random rand = new Random();
-
+	
 	public SecurityProfile profile = new SecurityProfile();
-
-	public int energyCost = 10000;
+	
+	public static final int ENERGY_COST = 10000;
 
 	public ItemStack missile;
 
 	public boolean launching;
-
+		
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-
+		
 		if (!worldObj.isRemote) {
 			checkForFullFrame();
 		}
 
-		if (getControlPanel() == null || getSupportFrame() == null || missile == null || !canExtractEnergy(energyCost) || !isPathClear()) {
+		if (getControlPanel() == null || getSupportFrame() == null || missile == null || !isDistanceInRange() || !canExtractEnergy(ENERGY_COST) || !isPathClear()) {
 			launching = false;
 		}
 
 		if (launching) {
-
-			progress++;
-
+			
+			progress++;	
+			
 			if (worldObj.isRemote) {
-
-				playSound();
 				doEffects();
 			}
 		}
@@ -75,16 +82,14 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 		if (isDoneAndReset()) {
 
-			MissileData missileData = MissileData.getDataFromItem(missile);
-
 			launching = false;
-			storage.extractEnergy(energyCost, false);
+			storage.extractEnergy(ENERGY_COST, false);
 
 			if (!worldObj.isRemote) {
 
 				int distances[] = { 0, 5, 20, 50 };
 
-				int percentage = rand.nextInt(100 - ((missileData.getAccuracy() - 1) * 20));
+				int percentage = rand.nextInt(100 - ((getMissileData().getAccuracyTier() - 1) * 20));
 
 				int index;
 
@@ -96,28 +101,47 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 				int z = MathHelper.getRandomIntegerInRange(rand, distances[index - 1], distances[index]);
 
 				if (rand.nextInt(2) == 0) x = 0 - x;
-				if (rand.nextInt(2) == 0) z = 0 - z;
+				if (rand.nextInt(2) == 0) z = 0 - z;				
 
-				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, getControlPanel().targetCoords[0] + x, getControlPanel().targetCoords[1] + z, missile));
+				worldObj.spawnEntityInWorld(new EntityMissile(worldObj, xCoord, yCoord + 0.6D, zCoord, getControlPanel().targetX + x, getControlPanel().targetZ + z, missile));
 			}
 
 			missile = null;
+			update();
 		}
 	}
 
 	public void toggleLaunch(EntityPlayer player) {
 
-		if (launching) launching = false;
+		if (launching) launching = false;		
 		else startLaunch(player);
+		
+		update();
 	}
 
 	public void startLaunch(EntityPlayer player) {
-
-		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && canExtractEnergy(energyCost) && isPathClear()) {
+		
+		if (!launching && getControlPanel() != null && getSupportFrame() != null && missile != null && isDistanceInRange() && canExtractEnergy(ENERGY_COST) && isPathClear()) {			
+			
 			launching = true;
+			
+			PacketUtil.sendClientPacketsToGroup(worldObj, "launch%" + xCoord + "%" + yCoord + "%" + zCoord, xCoord, yCoord, zCoord, 50);			
+			PacketUtil.sendClientPacketsToGroup(worldObj, "playtilesound%" + xCoord + "%" + yCoord + "%" + zCoord, xCoord, yCoord, zCoord, 50);
 		}
 
-		else if (worldObj.isRemote) printErrorMessage(player);
+		else printErrorMessage(player);
+	}
+	
+	public MissileData getMissileData() {
+		return MissileData.getDataFromItem(missile);
+	}
+	
+	private boolean isDistanceInRange() {		
+		return getDistanceFromCoords() <= getMissileData().getMaxBlockDistance();		
+	}
+	
+	private double getDistanceFromCoords() {
+		return getLocation().getDistance(new Location(worldObj, getControlPanel().targetX, yCoord, getControlPanel().targetZ));
 	}
 
 	private boolean isPathClear() {
@@ -183,9 +207,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 				hasAir = true;
 			}
 
-			else {
-				hasFrame = true;
-			}
+			else hasFrame = true;
 		}
 
 		if (hasFrame && hasAir) {
@@ -213,27 +235,19 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		else {
 
 			if (missile == null) message.printMessage(EnumChatFormatting.RED, "No missile in this unit!");
+			else if (!isDistanceInRange()) message.printMessage(EnumChatFormatting.RED, "Distance between target position is too great: " + (int)getDistanceFromCoords());
+			
 			if (!isPathClear()) message.printMessage(EnumChatFormatting.RED, "The path is not cleared! (A 3x3 wide square of blocks need to see the sky)");
 		}
 
-		if (!canExtractEnergy(energyCost)) message.printMessage(EnumChatFormatting.RED, "Not enough energy! (" + energyCost + " RF required)");
+		if (!canExtractEnergy(ENERGY_COST)) message.printMessage(EnumChatFormatting.RED, "Not enough energy! (" + ENERGY_COST + " RF required)");
 
-	}
-	
-	@SideOnly(Side.CLIENT)
-	private void playSound() {
-
-		if (sound == null) {
-			sound = new LaunchSound(this);
-		}
-
-		sound.play();
 	}
 	
 	@SideOnly(Side.CLIENT)
 	private void doEffects() {
 		
-		for (int i = 0; i < progress / 40; i++) {
+		for (int i = 0; i < 1 + (progress / 60); i++) {
 
 			double randX = MathHelper.getRandomDoubleInRange(rand, -0.25D, 0.25D);
 			double randY = MathHelper.getRandomDoubleInRange(rand, -0.1D, 0);
@@ -248,7 +262,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, randZ, randY, 0.3D));
 			EffectUtil.spawnEffect(new EntityMissileSmokeFX(worldObj, x, y, z, randZ, randY, -0.3D));
 
-			if (i % 8 == 7) {
+			if (i % 4 == 3) {
 
 				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, -0.3D, randY, randX));
 				EffectUtil.spawnEffect(new EntityMissileFlameFX(worldObj, x, y, z, 0.3D, randY, randX));
@@ -275,11 +289,7 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 
 	@Override
 	public int getMaxProgress() {
-
-		MissileData missileData = null;
-
-		if (getControlPanel() != null && missile != null) missileData = MissileData.getDataFromItem(missile);
-		return (20 * 20) - (missileData == null ? 0 : missileData.getSpeed() * 60);
+		return (20 * 16) + 10;
 	}
 
 	@Override
@@ -351,5 +361,17 @@ public class TileEntityLaunchPad extends TileEntityEnergyBase implements ISecuri
 		profile.writeToNBT(nbt);
 
 		nbt.setBoolean("launching", launching);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ISound getSound() {
+		return new SoundTile(this, Reference.MOD_ID + ":launch", 4, 1, true, 0, xCoord, yCoord, zCoord).setFadeOut(30);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldPlaySound() {
+		return launching;
 	}
 }

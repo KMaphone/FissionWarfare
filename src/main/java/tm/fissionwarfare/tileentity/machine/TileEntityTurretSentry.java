@@ -41,9 +41,14 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 
 		for (Object object : worldObj.loadedEntityList) {
 
-			if (object instanceof EntityPlayer && !((EntityPlayer)object).capabilities.isCreativeMode && !profile.isSameTeam((EntityPlayer)object)) {
-
-				return (EntityPlayer) object;
+			if (object instanceof EntityPlayer) {
+				
+				EntityPlayer player = (EntityPlayer)object;
+				
+				if (player.getDistance(xCoord, yCoord, zCoord) < RANGE && !player.capabilities.isCreativeMode && !profile.isSameTeam(player)) {
+					
+					return player;
+				}
 			}
 		}
 
@@ -83,9 +88,10 @@ public class TileEntityTurretSentry extends TileEntityTurretBase {
 
 			EntityLivingBase livingBase = (EntityLivingBase) target;
 			livingBase.attackEntityFrom(new DamageSourceTeam((EntityPlayer) livingBase, profile.getTeamName() + "'s Sentry Turret"), DAMAGE);
-			livingBase.setFire(3);
+			//livingBase.setFire(3);
 		}
 	}
+	
 
 	@Override
 	public int getEnergyCost() {

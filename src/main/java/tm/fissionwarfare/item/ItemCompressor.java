@@ -25,15 +25,15 @@ import tm.fissionwarfare.util.math.MathUtil;
 
 public class ItemCompressor extends ItemArmor implements IEnergyContainerItem {
 	
-	public static final int MAX_ENERGY_STORED = 100000;
-	private static final int MAX_ENERGY_TRANSFER = 1000;
+	public static final int MAX_ENERGY_STORED = 250000;
+	private static final int MAX_ENERGY_TRANSFER = 2000;
 	
 	public ItemCompressor() {
 		super(ArmorMaterial.CLOTH, Reference.armorIDCompressor, 1);
 		String imageName = "compressor";
 		setUnlocalizedName(imageName);
 		setTextureName(Reference.MOD_ID + ":" + imageName);
-		setCreativeTab(InitTabs.tabMain);
+		setCreativeTab(InitTabs.tabWarfare);
 		setMaxDamage(0);
 		GameRegistry.registerItem(this, imageName);		
 	}

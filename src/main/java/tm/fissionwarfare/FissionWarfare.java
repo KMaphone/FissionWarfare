@@ -47,7 +47,7 @@ public class FissionWarfare {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-			
+		
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		FWConfig.syncConfig();
 		
@@ -66,7 +66,7 @@ public class FissionWarfare {
 		
 		InitItems.init();
 		InitBlocks.init();
-		InitFluids.init();	
+		InitFluids.init();
 	}
 		
 	@EventHandler
@@ -78,7 +78,7 @@ public class FissionWarfare {
 		InitTERecipes.init();
 		
 		InitEntities.init();
-		InitTileEntities.init();		
+		InitTileEntities.init();
 		
 		worldGenOre = new WorldGenOre();
 		GameRegistry.registerWorldGenerator(worldGenOre, 1);

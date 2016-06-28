@@ -58,11 +58,17 @@ public class ServerPacketHandler implements IMessage {
 				int x = Integer.parseInt(data[1]);
 				int y = Integer.parseInt(data[2]);
 				int z = Integer.parseInt(data[3]);
+				
 				int index = Integer.parseInt(data[4]);
 				int coord = Integer.parseInt(data[5]);
 				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
-				if (tileEntity.getControlPanel() != null) tileEntity.getControlPanel().targetCoords[index] = coord;
+				
+				if (tileEntity.getControlPanel() != null) {
+										
+					if (index == 0) tileEntity.getControlPanel().targetX = coord;
+					else tileEntity.getControlPanel().targetZ = coord;
+				}
 			}
 			
 			if (data[0].equalsIgnoreCase("toggle.launch")) {
@@ -71,8 +77,10 @@ public class ServerPacketHandler implements IMessage {
 				int y = Integer.parseInt(data[2]);
 				int z = Integer.parseInt(data[3]);
 				
+				EntityPlayer entityPlayer = player.worldObj.getPlayerEntityByName(data[4]);
+				
 				TileEntityLaunchPad tileEntity = (TileEntityLaunchPad)player.worldObj.getTileEntity(x, y, z);
-				tileEntity.toggleLaunch(player);
+				tileEntity.toggleLaunch(entityPlayer);
 			}
 			
 			//GUN START---------------------------------------------------------------------------------------------
@@ -89,15 +97,13 @@ public class ServerPacketHandler implements IMessage {
 			
 			if (data[0].equalsIgnoreCase("stop.use")) {
 								
-				int ticks = Integer.parseInt(data[1]);
-				
-				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[2]));
+				ItemStack is = player.inventory.getStackInSlot(Integer.parseInt(data[1]));
 				
 				if (is != null) {
 					
 					GunData gunData = new GunData(is);
 				
-					gunData.usingTicks = ticks;
+					gunData.usingTicks = 0;
 					gunData.flush();
 				}				
 			}

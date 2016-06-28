@@ -15,9 +15,8 @@ import tm.fissionwarfare.util.ItemLoreUtil;
 public class ItemMissile extends ItemBase {
 
 	public ItemMissile() {
-		super("missile", false);
+		super("missile", InitTabs.tabWarfare, false);
 		setMaxStackSize(1);
-		setCreativeTab(InitTabs.tabMissiles);
 	}
 	
 	@Override
@@ -26,8 +25,8 @@ public class ItemMissile extends ItemBase {
 		MissileData missileData = MissileData.getDataFromItem(is);
 		
 		if (missileData.getExplosionType() != null) list.add(EnumChatFormatting.GOLD + "Type: " + EnumChatFormatting.AQUA + missileData.getExplosionType().getName());
-		list.add(EnumChatFormatting.GOLD + "Accuracy Tier: " + EnumChatFormatting.AQUA + missileData.getAccuracy());
-		list.add(EnumChatFormatting.GOLD + "Speed Tier: " + EnumChatFormatting.AQUA + missileData.getSpeed());		
+		list.add(EnumChatFormatting.GOLD + "Accuracy Tier: " + EnumChatFormatting.AQUA + missileData.getAccuracyTier());
+		list.add(EnumChatFormatting.GOLD + "Fuel Tier: " + EnumChatFormatting.AQUA + missileData.getFuelTier() + " (Max Distance: " + missileData.getMaxBlockDistance() + ")");		
 		list.add("");
 		
 		if (ItemLoreUtil.addShiftLore(list)) {
@@ -46,8 +45,8 @@ public class ItemMissile extends ItemBase {
 				ItemStack stack = new ItemStack(this);
 				MissileData data = MissileData.getDataFromItem(stack);
 			
-				data.setAccuracy(i);
-				data.setSpeed(i);			
+				data.setAccuracyTier(i);
+				data.setFuelTier(i);			
 				data.setExplosionType(type);
 			
 				list.add(MissileData.setDataToItem(stack, data));				

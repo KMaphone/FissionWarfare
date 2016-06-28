@@ -27,6 +27,7 @@ public abstract class BlockReinforced extends BlockMetaBase implements IReinforc
 	
 	public BlockReinforced(String imageName) {
 		super(imageName, Material.rock, 2, 0, Float.MAX_VALUE, Block.soundTypeStone, ItemBlockReinforced.class);
+		setCreativeTab(InitTabs.tabWarfare);
 	}
 	
 	@Override

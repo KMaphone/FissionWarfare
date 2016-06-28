@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tm.fissionwarfare.FissionWarfare;
+import tm.fissionwarfare.init.InitTabs;
 import tm.fissionwarfare.item.ItemMissile;
 import tm.fissionwarfare.packet.ClientPacketHandler;
 import tm.fissionwarfare.tileentity.machine.TileEntityLaunchPad;
@@ -20,6 +21,7 @@ public class BlockLaunchPad extends BlockContainerBase {
 	public BlockLaunchPad() {
 		super("launch_pad", "steel_block", Material.iron, 2, 2.0F, 2.0F, Block.soundTypeMetal);
 		setBounds(0, 0, 0, 16, 10.9F, 16);
+		setCreativeTab(InitTabs.tabWarfare);
 	}
 	
 	@Override

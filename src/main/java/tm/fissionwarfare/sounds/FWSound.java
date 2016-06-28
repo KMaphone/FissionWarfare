@@ -5,17 +5,21 @@ import tm.fissionwarfare.Reference;
 
 public class FWSound {
 
-	public static final FWSound small_blast = new FWSound("blast_1");
-	public static final FWSound turret_blast1 = new FWSound("turret_blast1");
-	public static final FWSound rumbling = new FWSound("rumbling");
+	public static final FWSound beep = new FWSound("beep");
+	public static final FWSound small_blast = new FWSound("blast");
+	public static final FWSound gas_cloud = new FWSound("gas_cloud");
+	public static final FWSound nuke = new FWSound("nuke");
 	public static final FWSound cave_in = new FWSound("cave_in");
 	public static final FWSound rumbling_cave = new FWSound("rumbling_cave");
-	public static final FWSound beep = new FWSound("beep");
-	public static final FWSound gas_cloud = new FWSound("gas_cloud");
+	public static final FWSound rumbling = new FWSound("rumbling");
+	
+	public static final FWSound shotgun_fire = new FWSound("shotgun_fire");
+	
+	public static final FWSound turret_fire = new FWSound("turret_fire");
+	
 	public static final FWSound missile_start = new FWSound("missile_start");
 	public static final FWSound missile_fire = new FWSound("missile_fire");
-	public static final FWSound nuke = new FWSound("nuke");
-	
+		
 	private String sound;
 
 	public FWSound(String sound) {

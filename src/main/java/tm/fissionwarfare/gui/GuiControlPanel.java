@@ -24,7 +24,7 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 	private long targetTime = 5;
 	private float rot;
 	
-	TileEntityLaunchPad tileEntity;
+	private TileEntityLaunchPad tileEntity;
 	
 	private GuiNumberFieldRect xField, zField;
 	private GuiButtonRect launchButton;
@@ -53,8 +53,11 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		xField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 32, 51, 8);
 		zField = new GuiNumberFieldRect(fontRendererObj, getScreenX() + 17, getScreenY() + 54, 51, 8);
 		
-		if (tileEntity.getControlPanel() != null) xField.setText("" + tileEntity.getControlPanel().targetCoords[0]);
-		if (tileEntity.getControlPanel() != null) zField.setText("" + tileEntity.getControlPanel().targetCoords[1]);
+		if (tileEntity.getControlPanel() != null) {
+			
+			xField.setText("" + tileEntity.getControlPanel().targetX);
+			zField.setText("" + tileEntity.getControlPanel().targetZ);
+		}
 		
 		launchButton = new GuiButtonRect(0, getScreenX() + 107, getScreenY() + 41, 52, tileEntity.launching ? "Abort" : "Launch", buttonList);
 	}
@@ -71,8 +74,7 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		
 		if (button.id == launchButton.id) {
 			
-			tileEntity.toggleLaunch(player);
-			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord));
+			FissionWarfare.network.sendToServer(new ServerPacketHandler("toggle.launch%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord + "%" + player.getDisplayName()));
 		}
 	}
 	
@@ -101,13 +103,13 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
         
 			if (Minecraft.getMinecraft().gameSettings.fancyGraphics) {
 				GL11.glRotated(rot, 0, 1, 0);
-		}
+			}
 			
-		else GL11.glRotated(0, 0, 1, 0);
+			else GL11.glRotated(0, 0, 1, 0);
       
-        RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0, 0.0, 0, 0, 0);
-        GL11.glPopMatrix();
-	}
+			RenderManager.instance.renderEntityWithPosYaw(entityItem, 0.0, 0.0, 0, 0, 0);
+			GL11.glPopMatrix();
+		}
 		
 		xField.drawTextBox();
 		zField.drawTextBox();
@@ -119,13 +121,22 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 	@Override
 	public void drawGuiForeground(int mouseX, int mouseY) {}
 	
-	private void setCoord(GuiTextField field, int index) {
+	private void setCoords(GuiTextField field, int index) {
 			
 		if (field.getText() != null && !field.getText().trim().isEmpty()) {
 
-			int coord = parseInt(tileEntity.getControlPanel().targetCoords[index], field.getText());
+			int coord;
 			
-			tileEntity.getControlPanel().targetCoords[index] = coord;
+			if (index == 0) {				
+				coord = parseInt(tileEntity.getControlPanel().targetX, field.getText());				
+				tileEntity.getControlPanel().targetX = coord;
+			}
+			
+			else {				
+				coord = parseInt(tileEntity.getControlPanel().targetZ, field.getText());								
+				tileEntity.getControlPanel().targetZ = coord;
+			}
+			
 			FissionWarfare.network.sendToServer(new ServerPacketHandler("set.coords%" + tileEntity.xCoord + "%" + tileEntity.yCoord + "%" + tileEntity.zCoord + "%" + index + "%" + coord));
 		}
 	}
@@ -156,8 +167,11 @@ public class GuiControlPanel extends GuiEnergyContainerBase {
 		xField.textboxKeyTyped(c, i);
 		zField.textboxKeyTyped(c, i);
 		
-		if (tileEntity.getControlPanel() != null) setCoord(xField, 0);
-		if (tileEntity.getControlPanel() != null) setCoord(zField, 1);
+		if (tileEntity.getControlPanel() != null) {
+			
+			setCoords(xField, 0);
+			setCoords(zField, 1);
+		}
     }
 
 	@Override
