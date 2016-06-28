@@ -15,6 +15,7 @@ import tm.fissionwarfare.event.GunRenderEvent;
 import tm.fissionwarfare.event.TierTooltipEvent;
 import tm.fissionwarfare.init.InitBlocks;
 import tm.fissionwarfare.init.InitItems;
+import tm.fissionwarfare.key.KeyBindings;
 import tm.fissionwarfare.key.KeyInputHandler;
 import tm.fissionwarfare.render.RenderCompressor;
 import tm.fissionwarfare.render.RenderControlPanel;
@@ -34,6 +35,9 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void registerRenders() {
+		
+		ClientRegistry.registerKeyBinding(KeyBindings.teamGuiButton);
+		ClientRegistry.registerKeyBinding(KeyBindings.reloadGunButton);
 		
 		MinecraftForge.EVENT_BUS.register(new TierTooltipEvent());
 		MinecraftForge.EVENT_BUS.register(new GunRenderEvent());
